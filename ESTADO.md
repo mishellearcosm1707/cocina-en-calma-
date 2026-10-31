@@ -63,7 +63,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - NO construir: red social/foro, pedidos a supermercados, escáner de códigos, chat con nutricionista en vivo, seguimiento de agua
 
 ## Problemas conocidos ⚠️
-- FICHA-MODELO: pospuesto — aún no se construye nada; se elige la app modelo (candidata: Eat This Much / Fitia, por revenue del PDF) y se crea FICHA-MODELO.md ANTES de la landing.
+- FICHA-MODELO: creada en BORRADOR (modelo: Fitia, eje: ángulo síntoma). Secciones 2-6 con NO ENCONTRADO: completar con investigación antes de la landing.
 - veredicto paywall: no aplica todavía — el paywall NO está construido (etapa no iniciada); el veredicto del revisor-visual se genera al construirlo.
 - Riesgo legal salud: deslinde obligatorio (orientación general, no sustituye médico). No prometer curación ni "panza plana" garantizada.
 - Claim "personalizado por nutricionistas / respaldo profesional": NO usar hasta tener un nutricionista real que lo respalde (gate 61).
