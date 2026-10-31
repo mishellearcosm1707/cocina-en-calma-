@@ -70,9 +70,11 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Loop completo gatillo→acción→recompensa→inversión + D1-D7: pendiente
 
 ## Secuencia maestra de construcción (NO saltar)
-- Estado: pre-Landing (fichas pendientes)
+- Estado: Landing en revisión (1ª revisión del revisor-visual: NECESITA CORRECCIÓN 30/40 · 14/20 · 15/20; ajustes aplicados, 2ª revisión en curso)
 - Ruta: `/` → `/onboarding` → `/paywall` → `/login` → `/app`
-- Landing / Onboarding / Paywall / Login / App interna / Servicios externos: pendiente
+- Landing: construida en Next 16 desde el kit (app/page.tsx, components/landing/), CTA → /onboarding (modelo 2) · Onboarding / Paywall / Login / App interna / Servicios externos: pendiente
+- Proyecto de código en la raíz (Next 16.4 + Tailwind 4 + motion + lucide). Servidor local de revisión: npx next start -p 3100
+- DESVIACIONES del kit (justificadas): (1) OfertaUnica.tsx — el kit trae Oferta anual/mensual con trial; la decisión del usuario es pago único $14.99 sin trial. (2) FooterLegal con soporteEmail opcional — aún no hay correo de la empresa. (3) CtaFinal usa --accent-on-dark para que el acento se lea sobre el bloque invertido. (4) FooterLegal con anio fijo 2026 (new Date() no compila en client component prerenderizado).
 
 ## Puertas de etapa
 - Todas: no iniciadas. Servicios externos: bloqueados.
@@ -83,6 +85,8 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - NO construir: red social/foro, pedidos a supermercados, escáner de códigos, chat con nutricionista en vivo, seguimiento de agua
 
 ## Problemas conocidos ⚠️
+- veredicto landing: ver docs/revisiones/landing-veredicto.md. Hallazgos abiertos: fotos de comida reales (hoy son emojis sobre degradado en hero y carrusel), cifra real para el ancla de la oferta (consulta de nutricionista), capturas reales de la app al cerrarla, chip del mecanismo parece botón.
+- audit-conversion.sh: 13 críticos mayormente falsos positivos por escanear comentarios/strings del propio kit (voseo "animate", hairlines y gradientes que sí existen en ui.tsx/Hero.tsx); se revisan con el revisor-visual.
 - Legal (47): borradores en docs/legal/ (política de privacidad + consentimiento y deslinde). Responsable: Conexión Digital, Ecuador (LOPDP; autoridad: Superintendencia de Protección de Datos Personales — verificar con abogado). Pendientes: correo de contacto propio, ciudad/RUC, términos y política de reembolso, pantalla de consentimiento en la app, revisión de abogado local. Datos de salud = sensibles.
 - FICHA-MODELO: creada en BORRADOR (modelo: Fitia, eje: ángulo síntoma). Secciones 2-6 con NO ENCONTRADO: completar con investigación antes de la landing.
 - veredicto paywall: no aplica todavía — el paywall NO está construido (etapa no iniciada); el veredicto del revisor-visual se genera al construirlo.

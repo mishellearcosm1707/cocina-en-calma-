@@ -4,7 +4,7 @@ Nivel de consciencia del tráfico principal (TikTok/Reels orgánico): **2 — co
 
 ## 1. Hero  (dolor #1 + razón #1 "escapar del dolor"; razón #2 "evitar esfuerzo")
 - H1: Termina el día más [acento]ligera[/acento], sin pesar ni contar calorías  _(10 palabras)_
-- Subtítulo: Menús antiinflamatorios según tu [b]síntoma[/b] y lo que tienes en casa  _(12)_
+- Subtítulo: El Menú Calma arma tu día según tu [b]síntoma[/b] y lo que tienes en casa  _(14)_
 - CTA: Ver mi menú de hoy gratis
 - Prueba social (solo real): Pago único de $14.99 · Garantía de 15 días
 - Visual sugerido: captura del "Tu primer menú de hoy" con 4 comidas y barra "100% cubierto"
@@ -19,8 +19,7 @@ Nivel de consciencia del tráfico principal (TikTok/Reels orgánico): **2 — co
 - Decides qué comer [b]3 o 4 veces al día[/b], todos los días.
 - Contar gramos no calma tu abdomen: solo suma [acento]culpa y ansiedad[/acento].
 - Las dietas que prohíben todo se abandonan, y la hinchazón [b]vuelve[/b].
-- Contraste — Hoy: Panza dura, pantalón apretado y la pregunta de las 7 pm: ¿qué cocino?
-- Contraste — Si nada cambia: Otra semana improvisando, con la misma culpa.
+- (Sin bloque de contraste: ya lo cubre el Antes/Después de la solución — hallazgo del revisor)
 
 ## 4. Solución  (mecanismo: el Menú Calma — razón #3 "ahorrar tiempo")
 - Título: Un menú armado con tu [acento]síntoma[/acento] y tu nevera
@@ -41,23 +40,23 @@ Nivel de consciencia del tráfico principal (TikTok/Reels orgánico): **2 — co
 - Ancla externa: Una sola consulta con nutricionista cuesta más.
 - Incluye:
   - Menú de cada día según tu síntoma y tu despensa
-  - Lo que tu cuerpo necesita, calculado sin contar nada
+  - Tus requerimientos del día, calculados con solo 6 datos
   - 60 recetas antiinflamatorias para elegir
   - Meal prep guiado de una tarde y lista de compras
   - Chequeo diario que ajusta tu menú de mañana
-- CTA: Quiero mi Menú Calma por $14.99
+- CTA: Ver mi menú de hoy gratis (mismo verbo que el hero; microcopy: Pagas $14.99 solo si te quedas con tu menú · Garantía Calma de 15 días)
 
 ## 7. Garantía
 - Nombre: la Garantía Calma de 15 días
 - Condición: Si en 15 días tu Menú Calma no te convence, escribes un correo y te devolvemos [b]todo tu pago[/b]. Sin preguntas.
-- Piso: Respaldada por la garantía de Hotmart
+- Piso: 15 días para decidir, sin letra chica
 
 ## 8. FAQ  (objeciones de FICHA-AVATAR)
 1. ¿Tengo que pesar la comida o contar calorías? — No. Usamos tazas, puños y unidades. La app hace las cuentas: [b]tú solo eliges qué comer[/b].
 2. ¿Las recetas llevan ingredientes raros o caros? — No. Todo se consigue en cualquier supermercado, y el menú se arma con [b]lo que ya tienes[/b].
 3. ¿Y si no tengo tiempo para cocinar el domingo? — Hay Menús Express de 10 minutos. Y cocinar una vez [b]te ahorra cocinar cada noche[/b].
 4. ¿Reemplaza a mi médico o nutricionista? — No. Es orientación nutricional general, no un servicio médico. Si tienes una condición de salud, consúltalo con tu profesional.
-5. ¿Es una suscripción? — No. Es un solo pago de $14.99, sin mensualidades ni renovaciones, con [b]15 días de garantía[/b].
+5. ¿Es una suscripción? ¿Cómo pago? — No. Pagas $14.99 una sola vez, con tarjeta u otros métodos según tu país. [b]Sin renovaciones[/b] y con 15 días de garantía.
 6. ¿Qué pasa con mis datos de salud? — Solo los usamos para armar tu menú. No los vendemos y puedes [b]borrar tu cuenta[/b] cuando quieras.
 
 ## 9. CTA final
