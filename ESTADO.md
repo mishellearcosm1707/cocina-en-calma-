@@ -40,8 +40,8 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 ## Estrategia de monetización (propuesta del PDF; el modelo A-F de 02C lo decide el agente antes del paywall)
 - Modelo propuesto: Freemium; se cobra el plan semanal completo, el filtro de despensa, las compras consolidadas y la guía meal prep
 - Gratis: ingresar síntoma + ver un menú diario de muestra
-- Trial: 7 días (PDF pide tarjeta desde onboarding en anual) → validar en 02C/FICHA-MERCADO (plazos que permite Hotmart)
-- Pricing propuesto: $7.99/mes · $44.99/año ($3.75/mes) — ajustable por el usuario; validar con gate del 40
+- Trial: 7 días con tarjeta (Hotmart permite prueba gratis) · Garantía: 30 días, sin fijar fecha de inicio en el copy (FICHA-MERCADO §4)
+- Pricing: $7.99/mes · $44.99/año ($3.75/mes) — desvío anual ≈ -24% vs mediana (FICHA-MERCADO §1); ajustable por el usuario
 - Venta: Hotmart (default del SO)
 
 ## Decisiones de producto del usuario (2026-10-31, nutricionista)

@@ -6,7 +6,7 @@
 ## 1. LA APP MODELO
 - Nombre: Fitia · Plataforma: Android/iOS · País/idioma: LATAM / español
 - POR QUÉ ella: [x] mecanismo replicable (plan de comidas automático + lista de compras) · [x] sin foso estructural (no tiene red ni data exclusiva) · [x] demanda creciendo (1.43M MAU según PDF) · [x] grietas visibles (obsesión por pesaje y gramos; no aborda malestar digestivo)
-- Respaldo secundario (no es el modelo): Eat This Much — ~$1.0M USD/año, 4.7★, 22K valoraciones (PDF)
+- Respaldo secundario (no es el modelo): Eat This Much — ~$1.0M USD/año, 4.7★, 22K valoraciones (PDF) · anual $59.99, prueba 14 días, reembolso 30 días (fuentes secundarias, 2026-10-31)
 
 ## 2. REVENUE PROBADO (≥2 señales INDEPENDIENTES)
 - [ ] MRR verificado (TrustMRR) | NO ENCONTRADO — no intentado aún
@@ -24,7 +24,7 @@
 ## 4. EL PLANO DE PRODUCTO
 - Onboarding (pasos, preguntas, micro-compromisos): NO ENCONTRADO — por extraer (Mobbin o app descargada)
 - Momento del paywall: NO ENCONTRADO
-- Pricing: $9.99/mes · $39.99/año · freemium (PDF, 2026-10-30)
+- Pricing: PDF dice $9.99/mes · $39.99/año (NO VERIFICADO en sitio oficial, 2026-10-31) · freemium · prueba de 3 días solo en el plan anual (fuente oficial: https://fitia.app/help/articles/is-there-a-free-trial-for-fitia-premium, 2026-10-31)
 - Features CORE: conteo de macros y calorías · menús automáticos · lista de compras (PDF)
 - Accesorias: NO ENCONTRADO
 
