@@ -1,5 +1,5 @@
 # FICHA DE DIRECCIÓN DE ARTE — Cocina en Calma
-Estado: BORRADOR (extracción mirada sobre las 6 imágenes; hex estimados visualmente → verificar con muestreo de píxeles al construir tokens)
+Estado: APROBADA por el usuario el 2026-10-31 tras réplica fiel y tour de 13 vistas (con ajuste de calidez en el inicio). Hex estimados visualmente → verificar con muestreo de píxeles al volcar a tokens finales.
 
 ## Referencia del usuario (CONTRATO — ver 16)
 - ¿Hay imagen(es) de referencia?: SÍ → docs/revisiones/referencia-1.webp … referencia-6.webp
@@ -40,9 +40,9 @@ La referencia muestra kcal, macros y gramos ("329 kcal", "120 g de zapallo", "Mi
 ## Trazabilidad y vetos
 - Ruta de diseño: réplica de referencia (captura de pantalla completa → RÉPLICA FIEL)
 - Réplica fiel: pendiente (replica-fiel.html) · test de fidelidad: pendiente
-- Tour de la app (vista-previa-app.html): pendiente · aprobado por el usuario: NO
+- Tour de la app (vista-previa-app.html): hecho · aprobado por el usuario: SÍ (2026-10-31)
 - Paleta derivada de: referencia del usuario
 - Registro anti-repetición: paleta oliva/crema + Fraunces/Nunito → vetados para el próximo proyecto del SO
 - Modo claro DERIVADO por: referencia del usuario (cocina, calma, luz natural)
 
-## Idioma UI: español neutro LATAM · Fecha: 2026-10-30 · Aprobada por el usuario: NO
+## Idioma UI: español neutro LATAM · Fecha: 2026-10-30 · Aprobada por el usuario: SÍ (2026-10-31)
