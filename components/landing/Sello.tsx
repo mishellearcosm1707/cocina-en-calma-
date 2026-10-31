@@ -9,11 +9,13 @@ export function Sello({
   texto = 'GARANTÍA CALMA · 7 DÍAS · SIN PREGUNTAS ·',
   tamano = 112,
   giro = -8,
+  fuente = 9,
   className = '',
 }: {
   texto?: string;
   tamano?: number;
   giro?: number;
+  fuente?: number;
   className?: string;
 }) {
   const id = useId().replace(/:/g, '');
@@ -31,7 +33,7 @@ export function Sello({
       </defs>
       <circle cx="60" cy="60" r="56" fill="var(--accent)" />
       <circle cx="60" cy="60" r="51" fill="none" stroke="var(--accent-on-dark)" strokeWidth="1.2" strokeDasharray="2 3" />
-      <text fill="var(--bg)" fontSize="9" fontWeight="700" style={{ fontFamily: 'var(--font-body)' }}>
+      <text fill="var(--bg)" fontSize={fuente} fontWeight="700" style={{ fontFamily: 'var(--font-body)' }}>
         <textPath href={`#${id}`} startOffset="0" textLength="272" lengthAdjust="spacing">
           {texto}
         </textPath>

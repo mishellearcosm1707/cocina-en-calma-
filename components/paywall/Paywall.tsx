@@ -3,12 +3,12 @@
 // PANTALLA DE PLANES — plan único de pago único (FICHA-MERCADO: $14.99, sin suscripción, garantía de 7 días por Hotmart).
 // Misión: que la persona desbloquee su semana completa. Objeto principal: la semana con el lunes ya armado y
 // 6 días bloqueados (pérdida honesta). Copy trazado a FICHA-AVATAR (deseo: terminar el día ligera sin contar;
-// objeción "es caro" → precio por día + ancla de la consulta; objeción de confianza → garantía y pago por Hotmart).
+// objeción "es caro" → precio por día (el ancla con la tarifa de una consulta se añade cuando la dueña aporte la cifra real); objeción de confianza → garantía y pago por Hotmart).
 // El cobro real se conecta en la etapa de servicios externos: hasta entonces el botón NO simula un pago.
 
 import { useEffect, useState } from 'react';
 import { animate, AnimatePresence, motion, MotionConfig, useReducedMotion } from 'motion/react';
-import { Apple, Check, ChevronDown, Coffee, Loader2, Lock, Moon, ShieldCheck, Soup, X, type LucideIcon } from 'lucide-react';
+import { Apple, BadgeCheck, Check, ChevronDown, Coffee, Leaf, Loader2, Lock, Moon, Soup, X, type LucideIcon } from 'lucide-react';
 import { calcularRequerimientos, generarMenu, type Actividad, type Objetivo, type Sexo } from '@/lib/calculos';
 import { Sello } from '@/components/landing/Sello';
 import type { Comida, Receta, Sintoma } from '@/lib/recetas';
@@ -79,7 +79,7 @@ const BENEFICIOS = [
   'Tus 7 días con 4 comidas, ajustados a tu síntoma',
   'Meal prep de una sola tarde y lista de compras',
   '60 recetas antiinflamatorias con ingredientes de casa',
-  'Pagas una vez: sin renovaciones ni letra chica',
+  'Chequeo diario que ajusta tu menú de mañana',
 ];
 
 export function Paywall({ fotos }: { fotos: string[] }) {
@@ -88,6 +88,7 @@ export function Paywall({ fotos }: { fotos: string[] }) {
   const [aviso, setAviso] = useState('');
   const [cargando, setCargando] = useState(false);
   const [abierto, setAbierto] = useState<number | null>(null);
+  const [diaAviso, setDiaAviso] = useState(false);
 
   const sintomas = g.sintomas ?? [];
   const ingredientes = g.ingredientes ?? [];
@@ -157,7 +158,9 @@ export function Paywall({ fotos }: { fotos: string[] }) {
               <X size={22} aria-hidden="true" />
             </a>
             <span className="flex items-center gap-2 text-base font-semibold text-[var(--text-primary)]">
-              <span aria-hidden="true" className="size-5 rounded-md bg-[var(--accent)]" />
+              <span aria-hidden="true" className="flex size-6 items-center justify-center rounded-lg bg-[var(--accent)]">
+                <Leaf size={14} strokeWidth={2.4} color="var(--bg)" />
+              </span>
               Cocina en Calma
             </span>
             <span aria-hidden="true" className="size-11" />
@@ -195,25 +198,31 @@ export function Paywall({ fotos }: { fotos: string[] }) {
             transition={{ duration: 0.5, ease: EASE }}
             className="mt-6 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-2)]"
           >
-            <div className="flex items-center justify-between gap-1" aria-hidden="true">
+            <div className="flex items-center justify-between gap-1">
               {DIAS.map((d, i) => (
-                <motion.span
+                <motion.button
+                  type="button"
                   key={d}
+                  aria-label={i === 0 ? 'Lunes, ya armado' : 'Se desbloquea al comprar'}
+                  onClick={() => i > 0 && setDiaAviso(true)}
+                  whileTap={{ scale: 0.92 }}
                   initial={{ scale: 0.6, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.25 + i * 0.06, type: 'spring', stiffness: 380, damping: 22 }}
-                  className={`flex h-10 flex-1 items-center justify-center rounded-full text-sm font-bold ${
+                  className={`flex h-11 flex-1 items-center justify-center rounded-full text-sm font-bold [touch-action:manipulation] ${
                     i === 0
                       ? 'bg-[var(--accent)] text-[var(--bg)]'
                       : 'bg-[var(--surface-2)] text-[var(--text-secondary)]'
                   }`}
                 >
-                  {i === 0 ? d : <Lock size={13} strokeWidth={2.2} />}
-                </motion.span>
+                  {i === 0 ? d : <Lock size={13} strokeWidth={2.2} aria-hidden="true" />}
+                </motion.button>
               ))}
             </div>
-            <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">
-              Lunes · ya armado
+            <p role="status" className="mt-4 text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">
+              <motion.span key={String(diaAviso)} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }} className="inline-block">
+                {diaAviso ? 'Martes a domingo se desbloquean al comprar' : 'Lunes · ya armado'}
+              </motion.span>
             </p>
             <ul className="mt-3 space-y-3">
                 {menu.items.map((it) => (
@@ -249,19 +258,19 @@ export function Paywall({ fotos }: { fotos: string[] }) {
             aria-label="Plan"
             variants={ENTRA}
             transition={{ duration: 0.5, ease: EASE }}
-            className="relative mt-9 rounded-[var(--radius-card)] border-2 border-[var(--accent)] bg-[var(--olive-wash)] px-5 pb-6 pt-6 shadow-[var(--shadow-2)]"
+            className="relative mt-9 rounded-[var(--radius-card)] border-2 border-transparent px-5 pb-6 pt-6 shadow-[var(--shadow-2)]"
+            style={{
+              background:
+                'linear-gradient(var(--olive-wash), var(--olive-wash)) padding-box, linear-gradient(135deg, var(--accent), var(--mustard)) border-box',
+            }}
           >
             <span className="absolute -top-3 left-5 rounded-full bg-[var(--mustard)] px-3 py-1 text-sm font-bold uppercase tracking-wide text-[var(--text-primary)]">
               Pago único
             </span>
-            <motion.span
-              initial={{ scale: 0.4, rotate: -40, opacity: 0 }}
-              animate={{ scale: 1, rotate: 0, opacity: 1 }}
-              transition={{ delay: 0.7, type: 'spring', stiffness: 260, damping: 14 }}
-              className="absolute -top-10 right-3 drop-shadow-sm"
-            >
-              <Sello tamano={104} giro={10} texto="GARANTÍA 7 DÍAS · REEMBOLSO ·" />
-            </motion.span>
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-[var(--surface)] px-3 py-1 text-sm font-semibold text-[var(--accent)] shadow-[var(--shadow-1)]">
+              <BadgeCheck size={20} aria-hidden="true" />
+              Avalada por una nutricionista
+            </p>
             <p className="text-5xl font-bold leading-none text-[var(--text-primary)] [font-family:var(--font-display)]">
               <Precio valor={PRECIO} />
             </p>
@@ -288,12 +297,19 @@ export function Paywall({ fotos }: { fotos: string[] }) {
             transition={{ duration: 0.45, ease: EASE }}
             className="mt-4 flex flex-col gap-3 rounded-[var(--radius-card)] bg-[var(--peach-wash)] p-4 text-base text-[var(--text-secondary)]"
           >
-            <p className="flex items-start gap-3">
-              <ShieldCheck size={20} color="var(--peach-ink)" aria-hidden="true" className="mt-0.5 shrink-0" />
-              <span>
+            <div className="flex items-center gap-4">
+              <motion.span
+                initial={{ scale: 0.4, rotate: -40, opacity: 0 }}
+                animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                transition={{ delay: 0.7, type: 'spring', stiffness: 260, damping: 14 }}
+                className="shrink-0"
+              >
+                <Sello tamano={96} giro={-8} fuente={13} texto="GARANTÍA CALMA · 7 DÍAS ·" />
+              </motion.span>
+              <p>
                 <b className={fuerte}>Garantía Calma de 7 días:</b> si no te convence, pides tu reembolso en Hotmart.
-              </span>
-            </p>
+              </p>
+            </div>
             <p className="flex items-start gap-3">
               <Lock size={20} color="var(--peach-ink)" aria-hidden="true" className="mt-0.5 shrink-0" />
               Pago seguro con Hotmart. Tus datos de salud no se comparten.
@@ -344,7 +360,7 @@ export function Paywall({ fotos }: { fotos: string[] }) {
           <motion.div variants={APARECE} className="mt-6 text-center">
             <a
               href="/onboarding"
-              className="inline-flex h-11 items-center px-4 text-base font-semibold text-[var(--text-secondary)] underline underline-offset-4 [touch-action:manipulation]"
+              className="inline-flex h-11 items-center px-4 text-sm font-medium text-[var(--text-secondary)] underline underline-offset-4 [touch-action:manipulation]"
             >
               Ahora no, volver a mi menú de hoy
             </a>

@@ -66,6 +66,6 @@ Otro: "Ponerme mis vestidos y jeans ajustados sin acomplejarme."
 - Ancla emocional: "panza de embarazada" → "ligera y tranquila, sin báscula"
 
 ## Cierre
-- INVENTARIO DE PRUEBA DÍA-1: la creadora es nutricionista (credencial y nombre por confirmar) · demo grabable (recorrido de la app) · sin testimonios ni betas contactables todavía
+- INVENTARIO DE PRUEBA DÍA-1: la creadora es nutricionista y NO quiere mostrar su nombre, rostro ni datos personales: la prueba se comunica solo como "avalada por una nutricionista" (decisión de la usuaria, 2026-10-31) · demo grabable (recorrido de la app) · sin testimonios ni betas contactables todavía
 - ¿Entrevistas del 44?: NO
 - Fecha de cierre: 2026-10-31 · Aprobada por el usuario: SÍ (2026-10-31)

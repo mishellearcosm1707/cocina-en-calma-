@@ -41,7 +41,7 @@ Nivel de consciencia del tráfico principal (TikTok/Reels orgánico): **2 — co
 - Incluye:
   - Menú de cada día según tu síntoma y tu despensa
   - Tus requerimientos del día, calculados con solo 6 datos
-  - 60 recetas con valores de las tablas INCAP y USDA
+  - 60 recetas avaladas por una nutricionista, con valores INCAP y USDA
   - Meal prep guiado de una tarde y lista de compras
   - Chequeo diario que ajusta tu menú de mañana
 - CTA: Ver mi menú de hoy gratis (mismo verbo que el hero; microcopy: Pagas $14.99 solo si te quedas con tu menú · Garantía Calma de 7 días)
