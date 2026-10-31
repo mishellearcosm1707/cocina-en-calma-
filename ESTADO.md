@@ -88,6 +88,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - NO construir: red social/foro, pedidos a supermercados, escáner de códigos, chat con nutricionista en vivo, seguimiento de agua
 
 ## Problemas conocidos ⚠️
+- veredicto onboarding (aviso de "caducado" tras el 6º veredicto LISTA): desde entonces solo cambió una frase dentro de "Ver mis números" (fórmula de Mifflin-St Jeor) y los factores de proteína en lib/calculos.ts, sin cambio visual de pantalla. Se re-lanza el revisor-visual del onboarding y de la landing cuando termine el recálculo de las recetas con la tabla de composición, antes de cerrar la etapa.
 - veredicto landing (aviso de "caducado"): el control compara con cualquier .tsx más nuevo (p. ej. components/onboarding/Flow.tsx, que es del onboarding). El código de la landing (app/page.tsx y components/landing/) no cambió desde su 4ª revisión LISTA; solo se editó el onboarding. Si se toca la landing, se re-lanza el revisor.
 - fotos: 8 fotos de la Etapa 1 recibidas el 2026-10-31 (generadas por la usuaria con IA) e instaladas en public/recetas/{d01,a02,m01,c01,d02,a01,m02,c07}.jpg; m01 se recortó para quitar una tarjeta de ingredientes superpuesta. Landing e onboarding usan capturas REALES de la app (public/mocks/real-*.jpg). Quedan 52 recetas sin foto (color + emoji de apoyo). Re-revisión del revisor-visual de landing y onboarding en curso.
 
