@@ -13,8 +13,8 @@ Estado: BORRADOR (investigación del 2026-10-31; falta tu OK y la verificación 
 - Mealime: cerrado el 21-oct-2026 (https://www.mealime.com/closing) → ya no es referencia de precio; el PDF decía $2.99/mes y $24.99/año (histórico, sin verificar)
 - Plan to Eat: $59/año según el PDF (sin verificar)
 - Mediana anual de referencia: ≈ $59 (ETM verificable + Plan to Eat del PDF; Fitia sin verificar) · mensual: no hay dato confiable
-- **Precio elegido:** $44.99/año ($3.75/mes) y $7.99/mes · **Desvío anual vs mediana:** ≈ -24% (dentro de ±30%)
-- Desvío mensual: vs ~$9-15 sería ≈ -20% a -47% → razón escrita: el mensual es el ancla de entrada; la oferta principal es el anual, y el precio menor compensa que somos nuevos sin prueba social todavía
+- **Precio elegido (decisión del usuario 2026-10-31, hasta probar cómo va): PAGO ÚNICO $14.99 USD, sin suscripción.** Reemplaza el esquema $7.99/mes + $44.99/año del estudio, que queda como plan B · **Desvío vs mediana anual (≈$59):** ≈ -75% (fuera de ±30%)
+- Razón escrita del desvío: precio de lanzamiento para probar demanda con fricción mínima y llegar a quienes no tienen tarjeta de crédito; se revisa con datos propios (conversión y reembolsos) antes de subirlo o pasar a suscripción
 - Price parity por país: NO ENCONTRADO — decidir con criterio (sugerencia: empezar con un solo precio en USD y medir)
 
 ## 2. CICLO DE DECISIÓN
@@ -27,14 +27,14 @@ Estado: BORRADOR (investigación del 2026-10-31; falta tu OK y la verificación 
 - Con suscripción: Mercado Pago NO está disponible para ofertas de suscripción (misma fuente). OXXO funciona como comprobante de pago único; que renueve solo NO está confirmado → asumir que cada renovación exige pago manual (impacta el dunning de 58)
 - Cobros recurrentes: Hotmart dice que su pasarela los permite, sin detallar qué métodos (https://hotmart.com/mx/herramientas/pasarela-de-pagos) → confirmar con soporte de Hotmart qué métodos renuevan solos en MX y CO. Pendiente
 - Penetración de tarjetas (cifras aproximadas y de segunda mano, no Findex oficial): México ≈ 29% de adultos con tarjeta de crédito (ENIF/INEGI vía https://www.xataka.com.mx/banca-digital/adultos-mexico-cada-vez-usan-tarjetas-ninos-siguen-practicamente-igual-hace-casi-decada); débito+crédito combinado: Chile líder, Argentina >50%, México ~40%, Colombia ~30% (https://www.larepublica.co/globoeconomia/chile-y-venezuela-lideran-penetracion-de-tarjetas-debito-y-credito-en-america-latina-3826998). Verificar en la base oficial Global Findex
-- **Consecuencia:** una suscripción con tarjeta deja fuera a gran parte del mercado general; tu clienta (urbana, NSE medio a medio-alto) está más bancarizada, pero la brecha es real. Vía alterna a evaluar: acceso anual de pago único con OXXO/SPEI/PSE
+- **Consecuencia con PAGO ÚNICO:** al no ser suscripción, quedan disponibles más métodos en Hotmart (OXXO, SPEI, PSE y otros; Mercado Pago está excluido solo en suscripciones) → mejora el acceso. Antes, con suscripción, la tarjeta dejaba fuera a gran parte del mercado general; tu clienta (urbana, NSE medio a medio-alto) está más bancarizada, pero la brecha es real. Vía alterna a evaluar: acceso anual de pago único con OXXO/SPEI/PSE
 
 ## 4. PRUEBA Y GARANTÍA
-- Prueba gratis en suscripciones: Hotmart permite prueba gratis (primer cobro al terminar) | https://help.hotmart.com/es/article/115002364191/
+- Con pago único NO hay prueba gratis de Hotmart (es función de suscripciones): el menú de muestra gratis hace de prueba
 - Garantías que permite Hotmart: 7, 15, 21 o 30 días; en suscripciones la garantía aplica solo al primer cobro, no a renovaciones | https://help.hotmart.com/es/article/360034552751/-como-ajustar-el-plazo-de-garantia-del-producto-que-he-creado- | 2026-10-31
 - Competencia: Eat This Much ofrece 14 días de prueba y 30 días de reembolso (secundaria); Fitia: prueba de 3 días solo en plan anual (oficial: https://fitia.app/help/articles/is-there-a-free-trial-for-fitia-premium)
-- **Prueba elegida: 7 días · Garantía elegida: 30 días** → garantía 30 > prueba 7: SÍ
-- ¿Desde cuándo cuenta la garantía? Los términos de Hotmart dicen desde la compra completada (https://hotmart.com/es/terminos-de-compra/); con prueba gratis no está confirmado si cuenta desde la adhesión o el primer cobro → el copy dirá "30 días de garantía" SIN fijar fecha de inicio. Confirmar con soporte de Hotmart
+- **Prueba elegida: ninguna (menú de muestra gratis) · Garantía elegida: 15 días** (opciones de Hotmart: 7/15/21/30). La regla garantía > prueba no aplica sin prueba
+- ¿Desde cuándo cuenta la garantía? Los términos de Hotmart dicen desde la compra completada (https://hotmart.com/es/terminos-de-compra/); con prueba gratis no está confirmado si cuenta desde la adhesión o el primer cobro → el copy dirá "15 días de garantía" SIN fijar fecha de inicio. Confirmar con soporte de Hotmart
 
 ## 5. CONVERSIÓN ESPERABLE
 - Visita→registro y prueba→pago del nicho: NO ENCONTRADO (no inventar). Se medirán con datos propios; umbral de muestra: usar el de 60 hasta tener tráfico real

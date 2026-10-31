@@ -38,9 +38,9 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Verbatims para copy: ver PDF (sección "Lenguaje Literal del Cliente")
 
 ## Estrategia de monetización (propuesta del PDF; el modelo A-F de 02C lo decide el agente antes del paywall)
-- Modelo propuesto: Freemium; se cobra el plan semanal completo, el filtro de despensa, las compras consolidadas y la guía meal prep
+- Modelo: freemium con compra única; se cobra el plan semanal completo, el filtro de despensa, las compras consolidadas y la guía meal prep
 - Gratis: ingresar síntoma + ver un menú diario de muestra
-- Trial: 7 días con tarjeta (Hotmart permite prueba gratis) · Garantía: 30 días, sin fijar fecha de inicio en el copy (FICHA-MERCADO §4)
+- Trial: NINGUNO — el menú de muestra gratis hace de prueba · Garantía: 15 días, sin fijar fecha de inicio en el copy (FICHA-MERCADO §4)
 - Pricing: $7.99/mes · $44.99/año ($3.75/mes) — desvío anual ≈ -24% vs mediana (FICHA-MERCADO §1); ajustable por el usuario
 - Venta: Hotmart (default del SO)
 
@@ -74,6 +74,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - NO construir: red social/foro, pedidos a supermercados, escáner de códigos, chat con nutricionista en vivo, seguimiento de agua
 
 ## Problemas conocidos ⚠️
+- Legal (47): borradores en docs/legal/ (política de privacidad + consentimiento y deslinde). Pendientes: datos del responsable, términos y política de reembolso, pantalla de consentimiento en la app, revisión de abogado local. Datos de salud = sensibles.
 - FICHA-MODELO: creada en BORRADOR (modelo: Fitia, eje: ángulo síntoma). Secciones 2-6 con NO ENCONTRADO: completar con investigación antes de la landing.
 - veredicto paywall: no aplica todavía — el paywall NO está construido (etapa no iniciada); el veredicto del revisor-visual se genera al construirlo.
 - direcciones-abc (kit abc-v2): replica-fiel.html y vista-previa-app.html se escribieron a mano (HTML+CSS propio con tokens.css), NO desde plantillas-codigo/direcciones-abc/plantilla.html, así que no llevan data-kit="abc-v2". Pospuesto a propósito: son previsualizaciones de identidad, no la app. Se rehacen desde el kit si el usuario lo pide o antes de construir la landing. Fuente de verdad de estilo: FICHA-ARTE.md + tokens.css.
