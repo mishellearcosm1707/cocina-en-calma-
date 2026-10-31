@@ -8,7 +8,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, animate, motion, useReducedMotion } from 'motion/react';
 import Link from 'next/link';
-import { ArrowLeft, BatteryLow, Check, Leaf, Scale, Sunset, type LucideIcon } from 'lucide-react';
+import {
+  Activity, ArrowLeft, ArrowRight, BatteryLow, Bike, CalendarDays, Check, CircleAlert, CircleCheck, CircleDot,
+  Clock, Dumbbell, Footprints, Gauge, Heart, HeartPulse, Hourglass, Leaf, Mars, Scale, ShieldCheck, ShoppingBasket, Smile,
+  Sofa, Sunset, Target, Timer, TrendingDown, TrendingUp, User, Venus, Weight, Wind, Zap, type LucideIcon,
+} from 'lucide-react';
 import {
   calcularRequerimientos,
   etiquetaPerfil,
@@ -58,6 +62,27 @@ const PASOS: Paso[] = [
 /** Pasos de elección única (sin botón, avanzan solos al elegir) y el de carga animada (avanza solo). */
 const AUTO: Paso[] = ['tiempo', 'filtro', 'actividad', 'objetivo', 'armando'];
 
+const TONOS = {
+  peach: { fondo: 'var(--peach)', tinta: 'var(--peach-ink)' },
+  mustard: { fondo: 'var(--mustard-soft)', tinta: 'var(--mustard-ink)' },
+  sky: { fondo: 'var(--sky)', tinta: 'var(--sky-ink)' },
+  olive: { fondo: 'var(--olive-wash)', tinta: 'var(--accent)' },
+} as const;
+type Tono = keyof typeof TONOS;
+const ORDEN: Tono[] = ['peach', 'mustard', 'sky', 'olive'];
+
+function ChipIcono({ icono: Icono, tono, tam = 40 }: { icono: LucideIcon; tono: Tono; tam?: 40 | 64 }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`flex shrink-0 items-center justify-center rounded-full ${tam === 64 ? 'size-16' : 'size-10'}`}
+      style={{ background: TONOS[tono].fondo }}
+    >
+      <Icono size={tam === 64 ? 32 : 20} strokeWidth={1.9} color={TONOS[tono].tinta} />
+    </span>
+  );
+}
+
 export type Dolor = 'panza' | 'cansancio' | 'bascula';
 /** Las situaciones salen literales de la FICHA-AVATAR (dolores #1, #4 y "harta de pesar y contar"). */
 const DOLORES: { v: Dolor; t: string; icono: LucideIcon }[] = [
@@ -65,6 +90,22 @@ const DOLORES: { v: Dolor; t: string; icono: LucideIcon }[] = [
   { v: 'cansancio', t: 'Llego cansada y me da fatiga pensar qué cocinar hoy', icono: BatteryLow },
   { v: 'bascula', t: 'Estoy harta de pesar la comida y contar calorías', icono: Scale },
 ];
+/** Ícono grande de cada paso: da vida y orienta de un vistazo (solo decoración, no cambia el contenido). */
+const ICONO_PASO: Partial<Record<Paso, [LucideIcon, Tono]>> = {
+  gancho: [Heart, 'peach'],
+  sintomas: [Activity, 'mustard'],
+  tiempo: [Clock, 'sky'],
+  consent: [ShieldCheck, 'olive'],
+  filtro: [HeartPulse, 'peach'],
+  datos: [User, 'sky'],
+  actividad: [Footprints, 'mustard'],
+  objetivo: [Target, 'peach'],
+  cuerpo: [Gauge, 'olive'],
+  nombre: [Smile, 'mustard'],
+  ingredientes: [ShoppingBasket, 'olive'],
+};
+const ICONO_RITMO: Record<Ritmo, LucideIcon> = { prep: CalendarDays, diaria: Timer, express: Zap };
+const ICONO_SINTOMA: Record<Sintoma, LucideIcon> = { Hinchazón: CircleDot, Gases: Wind, Pesadez: Weight, 'Digestión lenta': Hourglass };
 const RITMOS: { v: Ritmo; t: string; nota: string }[] = [
   { v: 'prep', t: 'Cocino todo en una tarde a la semana', nota: 'Preparación de una tarde: recetas que se guardan bien' },
   { v: 'diaria', t: 'Tengo 20 a 30 minutos al día', nota: 'Recetas de cocina corta y diaria' },
@@ -72,16 +113,16 @@ const RITMOS: { v: Ritmo; t: string; nota: string }[] = [
 ];
 
 const SINTOMAS: Sintoma[] = ['Hinchazón', 'Gases', 'Pesadez', 'Digestión lenta'];
-const ACTIVIDADES: { v: Actividad; t: string }[] = [
-  { v: 'sedentaria', t: 'Casi nada: mi día es sedentario' },
-  { v: 'ligera', t: 'Ligera: 1 a 3 días por semana' },
-  { v: 'moderada', t: 'Moderada: 3 a 5 días por semana' },
-  { v: 'alta', t: 'Alta: 6 a 7 días por semana' },
+const ACTIVIDADES: { v: Actividad; t: string; icono: LucideIcon }[] = [
+  { v: 'sedentaria', t: 'Casi nada: mi día es sedentario', icono: Sofa },
+  { v: 'ligera', t: 'Ligera: 1 a 3 días por semana', icono: Footprints },
+  { v: 'moderada', t: 'Moderada: 3 a 5 días por semana', icono: Bike },
+  { v: 'alta', t: 'Alta: 6 a 7 días por semana', icono: Dumbbell },
 ];
-const OBJETIVOS: { v: Objetivo; t: string }[] = [
-  { v: 'mantener', t: 'Mantener mi peso' },
-  { v: 'bajar', t: 'Bajar de peso con calma' },
-  { v: 'subir', t: 'Subir de peso con calma' },
+const OBJETIVOS: { v: Objetivo; t: string; icono: LucideIcon }[] = [
+  { v: 'mantener', t: 'Mantener mi peso', icono: Scale },
+  { v: 'bajar', t: 'Bajar de peso con calma', icono: TrendingDown },
+  { v: 'subir', t: 'Subir de peso con calma', icono: TrendingUp },
 ];
 const CONDICIONES = [
   'Estoy embarazada o en lactancia',
@@ -156,20 +197,33 @@ function Casilla({
   );
 }
 
-function Opcion({ activa, onClick, children }: { activa: boolean; onClick: () => void; children: ReactNode }) {
+function Opcion({
+  activa,
+  onClick,
+  children,
+  icono,
+  tono = 'peach',
+}: {
+  activa: boolean;
+  onClick: () => void;
+  children: ReactNode;
+  icono?: LucideIcon;
+  tono?: Tono;
+}) {
   return (
     <motion.button
       type="button"
       whileTap={{ scale: 0.97 }}
       onClick={onClick}
       aria-pressed={activa}
-      className={`flex min-h-14 w-full items-center justify-between gap-3 rounded-[var(--radius-button)] border px-4 py-3 text-left text-base font-semibold transition-colors duration-200 ${
+      className={`flex min-h-14 w-full items-center gap-3 rounded-[var(--radius-button)] border px-4 py-3 text-left text-base font-semibold transition-colors duration-200 ${
         activa
           ? 'border-[var(--accent)] bg-[var(--chip-bg)] text-[var(--text-primary)]'
           : 'border-[var(--surface-2)] bg-[var(--surface)] text-[var(--text-primary)] shadow-[var(--shadow-1)]'
       }`}
     >
-      <span>{children}</span>
+      {icono && <ChipIcono icono={icono} tono={activa ? 'olive' : tono} />}
+      <span className="flex-1">{children}</span>
       {activa && <Check size={20} strokeWidth={2.5} color="var(--accent)" aria-hidden="true" />}
     </motion.button>
   );
@@ -464,7 +518,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
           className="h-1 flex-1 overflow-hidden rounded-full bg-[var(--surface-2)]"
         >
           <motion.div
-            className="h-full rounded-full bg-[var(--accent)]"
+            className="h-full rounded-full bg-[linear-gradient(90deg,var(--accent),var(--mustard))]"
             initial={false}
             animate={{ width: `${progreso}%` }}
             transition={{ duration: reducir ? 0 : 0.3, ease: EASE }}
@@ -484,6 +538,17 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
             exit="sale"
             transition={{ duration: reducir ? 0.2 : 0.3, ease: EASE }}
           >
+            {ICONO_PASO[paso] && (
+              <motion.div
+                initial={{ scale: reducir ? 1 : 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 280, damping: 16, delay: 0.05 }}
+                className="mb-4 w-fit"
+              >
+                <ChipIcono icono={ICONO_PASO[paso]![0]} tono={ICONO_PASO[paso]![1]} tam={64} />
+              </motion.div>
+            )}
+
             {paso === 'gancho' && (
               <div className="flex flex-col gap-5">
                 <Titulo>
@@ -543,8 +608,8 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   Tu menú se arma a tu ritmo. Cero culpa: elige lo que de verdad puedes.
                 </p>
                 <div className="flex flex-col gap-3">
-                  {RITMOS.map((r) => (
-                    <Opcion key={r.v} activa={ritmo === r.v} onClick={() => elegirYAvanzar(() => setRitmo(r.v))}>
+                  {RITMOS.map((r, n) => (
+                    <Opcion key={r.v} icono={ICONO_RITMO[r.v]} tono={ORDEN[n % 4]} activa={ritmo === r.v} onClick={() => elegirYAvanzar(() => setRitmo(r.v))}>
                       <span className="block">{r.t}</span>
                       <span className="mt-1 block text-sm font-normal text-[var(--text-secondary)]">{r.nota}</span>
                     </Opcion>
@@ -630,10 +695,10 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   ))}
                 </ul>
                 <div className="flex flex-col gap-3">
-                  <Opcion activa={filtro === 'ok'} onClick={() => elegirYAvanzar(() => setFiltro('ok'))}>
+                  <Opcion icono={CircleCheck} tono="olive" activa={filtro === 'ok'} onClick={() => elegirYAvanzar(() => setFiltro('ok'))}>
                     Ninguna me aplica
                   </Opcion>
-                  <Opcion activa={filtro === 'aplica'} onClick={() => setFiltro('aplica')}>
+                  <Opcion icono={CircleAlert} tono="mustard" activa={filtro === 'aplica'} onClick={() => setFiltro('aplica')}>
                     Alguna me aplica
                   </Opcion>
                 </div>
@@ -663,10 +728,10 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                 <fieldset>
                   <legend className="mb-2 text-sm text-[var(--text-secondary)]">Sexo (lo pide la fórmula)</legend>
                   <div className="grid grid-cols-2 gap-3">
-                    <Opcion activa={sexo === 'mujer'} onClick={() => setSexo('mujer')}>
+                    <Opcion icono={Venus} tono="peach" activa={sexo === 'mujer'} onClick={() => setSexo('mujer')}>
                       Mujer
                     </Opcion>
-                    <Opcion activa={sexo === 'hombre'} onClick={() => setSexo('hombre')}>
+                    <Opcion icono={Mars} tono="sky" activa={sexo === 'hombre'} onClick={() => setSexo('hombre')}>
                       Hombre
                     </Opcion>
                   </div>
@@ -684,8 +749,8 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                 </Titulo>
                 <p className="text-base text-[var(--text-secondary)]">Ejercicio o caminatas, en una semana normal.</p>
                 <div className="flex flex-col gap-3">
-                  {ACTIVIDADES.map((a) => (
-                    <Opcion key={a.v} activa={actividad === a.v} onClick={() => elegirYAvanzar(() => setActividad(a.v))}>
+                  {ACTIVIDADES.map((a, n) => (
+                    <Opcion key={a.v} icono={a.icono} tono={ORDEN[n % 4]} activa={actividad === a.v} onClick={() => elegirYAvanzar(() => setActividad(a.v))}>
                       {a.t}
                     </Opcion>
                   ))}
@@ -703,8 +768,8 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   Cualquier cambio es gradual y suave: nada de dietas extremas.
                 </p>
                 <div className="flex flex-col gap-3">
-                  {OBJETIVOS.map((o) => (
-                    <Opcion key={o.v} activa={objetivo === o.v} onClick={() => elegirYAvanzar(() => setObjetivo(o.v))}>
+                  {OBJETIVOS.map((o, n) => (
+                    <Opcion key={o.v} icono={o.icono} tono={ORDEN[(n + 1) % 4]} activa={objetivo === o.v} onClick={() => elegirYAvanzar(() => setObjetivo(o.v))}>
                       {o.t}
                     </Opcion>
                   ))}
@@ -778,9 +843,11 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   Cuéntanos sin pena. Elige todo lo que aplique: aquí no hay juicios, solo comida rica que te cuida.
                 </p>
                 <div className="flex flex-col gap-3">
-                  {SINTOMAS.map((s) => (
+                  {SINTOMAS.map((s, n) => (
                     <Opcion
                       key={s}
+                      icono={ICONO_SINTOMA[s]}
+                      tono={ORDEN[n % 4]}
                       activa={sintomas.includes(s)}
                       onClick={() => {
                         setAviso('');
@@ -849,7 +916,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   Elige por mí
                 </button>
                 <div className="flex flex-col gap-5">
-                  {GRUPOS_INGREDIENTES.map((g) => (
+                  {GRUPOS_INGREDIENTES.map((g, gi) => (
                     <div key={g.titulo}>
                       <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--text-secondary)]">{g.titulo}</p>
                       <div className="flex flex-wrap gap-3">
@@ -870,8 +937,9 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                         className={`min-h-11 rounded-full border px-4 text-base transition-colors duration-200 ${
                           activo
                             ? 'border-[var(--accent)] bg-[var(--accent)] font-semibold text-[var(--bg)]'
-                            : 'border-[var(--surface-2)] bg-[var(--surface)] shadow-[var(--shadow-1)]'
+                            : 'border-transparent shadow-[var(--shadow-1)]'
                         }`}
+                        style={activo ? undefined : { background: TONOS[(['peach', 'mustard', 'olive'] as const)[gi % 3]].fondo }}
                       >
                         {i.etiqueta}
                       </motion.button>
@@ -996,16 +1064,17 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
             <motion.a
               whileTap={{ scale: 0.97 }}
               href="/paywall"
-              className="flex h-14 w-full items-center justify-center rounded-[var(--radius-button)] bg-[var(--accent)] text-base font-bold text-[var(--bg)] shadow-[var(--shadow-2)]"
+              className="flex h-14 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] bg-[var(--accent)] text-base font-bold text-[var(--bg)] shadow-[0_10px_24px_-8px_color-mix(in_oklab,var(--accent)_70%,transparent)]"
             >
               Ver mi semana completa
+              <ArrowRight size={20} strokeWidth={2.5} aria-hidden="true" />
             </motion.a>
           ) : (
             <motion.button
               type="button"
               whileTap={{ scale: 0.97 }}
               onClick={siguiente}
-              className="h-14 w-full rounded-[var(--radius-button)] bg-[var(--accent)] text-base font-bold text-[var(--bg)] shadow-[var(--shadow-2)]"
+              className="flex h-14 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] bg-[var(--accent)] text-base font-bold text-[var(--bg)] shadow-[0_10px_24px_-8px_color-mix(in_oklab,var(--accent)_70%,transparent)]"
             >
               {(paso === 'consent' || paso === 'gancho') && 'Continuar'}
               {paso === 'nombre' && (nombre.trim() ? 'Continuar' : 'Seguir sin nombre')}
@@ -1013,6 +1082,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
               {paso === 'cuerpo' && 'Siguiente'}
               {paso === 'sintomas' && 'Siguiente'}
               {paso === 'ingredientes' && 'Ver mi primer menú'}
+              <ArrowRight size={20} strokeWidth={2.5} aria-hidden="true" />
             </motion.button>
           )}
         </footer>
