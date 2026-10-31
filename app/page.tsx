@@ -26,10 +26,10 @@ export default function Landing() {
       <Hero
         appName="Cocina en Calma"
         h1Marked="Termina el día más [acento]ligera[/acento], sin pesar ni contar calorías"
-        subtitleMarked="El Menú Calma arma tu día según tu [b]síntoma[/b] y lo que tienes en casa"
+        subtitleMarked="El Menú Calma arma tu día con tu [b]síntoma[/b] y tu despensa"
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
-        socialProof={<span>Pago único de $14.99 · Garantía de 15 días</span>}
+        socialProof={<span>Pruébalo gratis · $14.99 una sola vez si te quedas · 15 días de garantía</span>}
         visual={<img src="/mocks/primer-menu.png" alt="Tu primer menú de hoy con 4 comidas y la barra 100% cubierto" width={250} height={518} className="mx-auto w-[250px] rounded-[30px] shadow-[var(--shadow-2)]" />}
       />
 
@@ -102,7 +102,7 @@ export default function Landing() {
       />
 
       <Garantia
-        nombre="la Garantía Calma de 15 días"
+        nombre="Garantía Calma de 15 días"
         condicionMarked="Si en 15 días tu Menú Calma no te convence, escribes un correo y te devolvemos [b]todo tu pago[/b]. Sin preguntas."
         pisoLegal="15 días para decidir, sin letra chica"
       />
@@ -142,7 +142,7 @@ export default function Landing() {
         futurePacingMarked="Esta noche marcas cómo te sientes, eliges 3 ingredientes y ya sabes qué cocinar, sin báscula."
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
-        recap="Pago único de $14.99 · Garantía de 15 días"
+        recap="Pruébalo gratis · $14.99 una sola vez si te quedas · 15 días de garantía"
         psMarked="PS: Cocina en Calma arma tu menú con tu síntoma y tu despensa. Pruébalo gratis hoy; si decides quedártelo, es un solo pago de $14.99 con 15 días de garantía."
       />
 

@@ -4,9 +4,9 @@ Nivel de consciencia del tráfico principal (TikTok/Reels orgánico): **2 — co
 
 ## 1. Hero  (dolor #1 + razón #1 "escapar del dolor"; razón #2 "evitar esfuerzo")
 - H1: Termina el día más [acento]ligera[/acento], sin pesar ni contar calorías  _(10 palabras)_
-- Subtítulo: El Menú Calma arma tu día según tu [b]síntoma[/b] y lo que tienes en casa  _(14)_
+- Subtítulo: El Menú Calma arma tu día con tu [b]síntoma[/b] y tu despensa  _(12)_
 - CTA: Ver mi menú de hoy gratis
-- Prueba social (solo real): Pago único de $14.99 · Garantía de 15 días
+- Prueba social (solo real): Pruébalo gratis · $14.99 una sola vez si te quedas · 15 días de garantía
 - Visual sugerido: captura del "Tu primer menú de hoy" con 4 comidas y barra "100% cubierto"
 
 ## 2. Problema  (dolores #1, #2, #4, #5 — verbatims de FICHA-AVATAR)
@@ -47,7 +47,7 @@ Nivel de consciencia del tráfico principal (TikTok/Reels orgánico): **2 — co
 - CTA: Ver mi menú de hoy gratis (mismo verbo que el hero; microcopy: Pagas $14.99 solo si te quedas con tu menú · Garantía Calma de 15 días)
 
 ## 7. Garantía
-- Nombre: la Garantía Calma de 15 días
+- Nombre: Garantía Calma de 15 días
 - Condición: Si en 15 días tu Menú Calma no te convence, escribes un correo y te devolvemos [b]todo tu pago[/b]. Sin preguntas.
 - Piso: 15 días para decidir, sin letra chica
 
@@ -63,7 +63,7 @@ Nivel de consciencia del tráfico principal (TikTok/Reels orgánico): **2 — co
 - H2: Imagina cenar tranquila y [acento]sentirte ligera[/acento]  _(6)_
 - Future pacing: Esta noche marcas cómo te sientes, eliges 3 ingredientes y ya sabes qué cocinar, sin báscula.  _(19)_
 - CTA: Ver mi menú de hoy gratis
-- Recap: Pago único de $14.99 · Garantía de 15 días
+- Recap: Pruébalo gratis · $14.99 una sola vez si te quedas · 15 días de garantía
 - PS: PS: Cocina en Calma arma tu menú con tu síntoma y tu despensa. Pruébalo gratis hoy; si decides quedártelo, es un solo pago de $14.99 con 15 días de garantía.
 
 ## 10. Footer
