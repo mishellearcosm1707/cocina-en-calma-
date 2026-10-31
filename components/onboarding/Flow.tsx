@@ -646,14 +646,13 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                 </div>
                 <div className="rounded-[var(--radius-card)] bg-[var(--chip-bg)] p-4">
                   <p className="text-sm font-semibold">
-                    Tus 4 comidas de hoy · cobertura estimada de tu día:{' '}
-                    <Conteo hasta={Math.min(100, Math.round(menu.cobertura * 100))} sufijo="%" />
+                    <Conteo hasta={menu.items.length} /> de 4 comidas armadas, con la porción ajustada a ti
                   </p>
                   <div className="mt-2 h-2 overflow-hidden rounded-full bg-[var(--surface-2)]">
                     <motion.div
                       className="h-full rounded-full bg-[var(--accent)]"
                       initial={{ width: 0 }}
-                      animate={{ width: `${Math.min(100, Math.round(menu.cobertura * 100))}%` }}
+                      animate={{ width: '100%' }}
                       transition={{ duration: reducir ? 0 : 0.9, ease: EASE }}
                     />
                   </div>
@@ -665,15 +664,15 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                       initial={{ opacity: 0, y: reducir ? 0 : 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: reducir ? 0 : 0.06 * n, duration: 0.3, ease: EASE }}
-                      className="overflow-hidden rounded-[var(--radius-card)] bg-[var(--surface)] shadow-[var(--shadow-1)]"
+                      className="flex flex-col overflow-hidden rounded-[var(--radius-card)] bg-[var(--surface)] shadow-[var(--shadow-1)]"
                     >
                       <FotoReceta receta={it.receta} className="h-28" conFoto={fotos.includes(it.receta.id)} />
-                      <div className="p-3">
-                        <h2 className="text-base font-bold leading-snug">{it.receta.nombre}</h2>
+                      <div className="flex flex-1 flex-col p-3">
+                        <h2 className="line-clamp-2 min-h-11 text-base font-bold leading-snug">{it.receta.nombre}</h2>
                         <p className="mt-1 text-sm text-[var(--text-secondary)]">
                           {it.receta.min} min · {porcionTexto(it.porcion)}
                         </p>
-                        <p className="mt-2 flex flex-wrap gap-1">
+                        <p className="mt-auto flex flex-wrap gap-1 pt-2">
                           {it.receta.sintomas.slice(0, 2).map((s) => (
                             <span
                               key={s}
