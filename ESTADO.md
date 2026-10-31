@@ -70,14 +70,16 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Loop completo gatillo→acción→recompensa→inversión + D1-D7: pendiente
 
 ## Secuencia maestra de construcción (NO saltar)
-- Estado: Onboarding construido y en revisión (revisor-visual en curso) · Landing: LISTA en la 4ª revisión (36/40 · 16/20 · 17/20, fidelidad FIEL; margen de 1 punto). Detalle:  (1ª revisión del revisor-visual: NECESITA CORRECCIÓN 30/40 · 14/20 · 15/20; ajustes aplicados, 2ª revisión en curso)
+- Estado: Landing y Onboarding LISTOS (revisor-visual) · siguiente etapa: Paywall (pendiente del OK del usuario). Onboarding: LISTA en la 6ª revisión (36/40 · 16/20 · 16/20, fidelidad FIEL, justo en umbral) · Landing: LISTA en la 4ª revisión (36/40 · 16/20 · 17/20, fidelidad FIEL; margen de 1 punto). Detalle:  (1ª revisión del revisor-visual: NECESITA CORRECCIÓN 30/40 · 14/20 · 15/20; ajustes aplicados, 2ª revisión en curso)
 - Ruta: `/` → `/onboarding` → `/paywall` → `/login` → `/app`
 - Landing: construida en Next 16 desde el kit (app/page.tsx, components/landing/), CTA → /onboarding (modelo 2) · Onboarding: construido (components/onboarding/Flow.tsx, lib/calculos.ts, lib/recetas.ts; 6 pasos: consentimiento → datos → requerimientos → síntomas → 3 ingredientes → primer menú; cálculo local Mifflin-St Jeor; datos solo en memoria, sin backend) · Paywall (marcador /paywall) / Login / App interna / Servicios externos: pendiente
 - Proyecto de código en la raíz (Next 16.4 + Tailwind 4 + motion + lucide). Servidor local de revisión: npx next start -p 3100
 - DESVIACIONES del kit (justificadas): (1) OfertaUnica.tsx — el kit trae Oferta anual/mensual con trial; la decisión del usuario es pago único $14.99 sin trial. (2) FooterLegal con soporteEmail opcional — aún no hay correo de la empresa. (3) CtaFinal usa --accent-on-dark para que el acento se lea sobre el bloque invertido. (4) FooterLegal con anio fijo 2026 (new Date() no compila en client component prerenderizado).
 
 ## Puertas de etapa
-- Todas: no iniciadas. Servicios externos: bloqueados.
+- Landing: aprobada por el revisor (4ª pasada) · pendiente OK del usuario
+- Onboarding: aprobado por el revisor (6ª pasada) · pendiente OK del usuario
+- Paywall, Login, App interna: no iniciadas · Servicios externos: bloqueados.
 
 ## Decisiones técnicas (NO re-discutir sin pedirlo el usuario)
 - Framework: pendiente (regla de 51/04)
@@ -88,7 +90,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - veredicto landing (aviso de "caducado"): el control compara con cualquier .tsx más nuevo (p. ej. components/onboarding/Flow.tsx, que es del onboarding). El código de la landing (app/page.tsx y components/landing/) no cambió desde su 4ª revisión LISTA; solo se editó el onboarding. Si se toca la landing, se re-lanza el revisor.
 - fotos: 8 fotos de la Etapa 1 recibidas el 2026-10-31 (generadas por la usuaria con IA) e instaladas en public/recetas/{d01,a02,m01,c01,d02,a01,m02,c07}.jpg; m01 se recortó para quitar una tarjeta de ingredientes superpuesta. Landing e onboarding usan capturas REALES de la app (public/mocks/real-*.jpg). Quedan 52 recetas sin foto (color + emoji de apoyo). Re-revisión del revisor-visual de landing y onboarding en curso.
 
-- veredicto onboarding: 2ª revisión NECESITA CORRECCIÓN (29/40 · 14/20 · 14/20; 1ª fue 24/13/13), fidelidad FIEL. Corregido después: progreso en sessionStorage (sobrevive a recargar), consentimiento resumido con detalle plegable, placeholders/autoenfoque/Enter, texto neutro de género, celebración suave del menú. BLOQUEO para LISTA: fotos reales de comida (hoy color + emoji; la usuaria las entregará) — al llegar las 8 fotos de la Etapa 1, relanzar revisor-visual. Abiertos: validación de la nutricionista, consentimiento en servidor.
+- veredicto onboarding: LISTA (docs/revisiones/onboarding-veredicto.md, 6ª pasada). Abiertos S2/S3: 52 recetas sin foto (color + emoji), fotos de platos generadas con IA por la usuaria, vacío en los pasos 3-4, identidad cercana al veto "papel cálido + verde" (viene de la referencia), consentimiento en servidor y validación de la nutricionista (fórmula y banco de recetas).
 - veredicto landing: LISTA (docs/revisiones/landing-veredicto.md, 4ª pasada). Abiertos de severidad media/baja: cifra real para "60 recetas" y el ancla de nutricionista, alineación mixta de títulos del kit, sin testimonios (no se inventan), fotos generadas con IA (leyenda "ilustrativas" visible), FAQ sin gluten/lácteos.
 - audit-conversion.sh: 13 críticos mayormente falsos positivos por escanear comentarios/strings del propio kit (voseo "animate", hairlines y gradientes que sí existen en ui.tsx/Hero.tsx); se revisan con el revisor-visual.
 - Legal (47): borradores en docs/legal/ (política de privacidad + consentimiento y deslinde). Responsable: Conexión Digital, Ecuador (LOPDP; autoridad: Superintendencia de Protección de Datos Personales — verificar con abogado). Pendientes: correo de contacto propio, ciudad/RUC, términos y política de reembolso, pantalla de consentimiento en la app, revisión de abogado local. Datos de salud = sensibles.
