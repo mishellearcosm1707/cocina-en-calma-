@@ -5,10 +5,10 @@
 // palabra clave · el botón nunca nace apagado: si falta algo, avisa qué (los datos viven solo en memoria
 // mientras dura el recorrido; el registro del consentimiento con servidor llega con la etapa de servicios).
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, animate, motion, useReducedMotion } from 'motion/react';
 import Link from 'next/link';
-import { ArrowLeft, Check } from 'lucide-react';
+import { ArrowLeft, BatteryLow, Check, Leaf, Scale, Sunset, type LucideIcon } from 'lucide-react';
 import {
   calcularRequerimientos,
   generarMenu,
@@ -17,15 +17,56 @@ import {
   type Actividad,
   type Datos,
   type Objetivo,
+  type Ritmo,
   type Sexo,
 } from '@/lib/calculos';
 import { COMIDAS, RECETAS, type Sintoma } from '@/lib/recetas';
 import { FotoReceta } from './FotoReceta';
 
-type Paso = 'consent' | 'filtro' | 'datos' | 'actividad' | 'objetivo' | 'cuerpo' | 'sintomas' | 'ingredientes' | 'menu';
-const PASOS: Paso[] = ['consent', 'filtro', 'datos', 'actividad', 'objetivo', 'cuerpo', 'sintomas', 'ingredientes', 'menu'];
-/** Pasos de elección única: sin botón, avanzan solos al elegir. */
-const AUTO: Paso[] = ['filtro', 'actividad', 'objetivo'];
+// Orden v3 (tras comparar con los mejores onboardings): primero la EMPATÍA (reconocerse en su día), luego el
+// síntoma y su ritmo de cocina; recién después el permiso y los datos del cuerpo; al final el momento "ajá".
+type Paso =
+  | 'gancho'
+  | 'sintomas'
+  | 'tiempo'
+  | 'consent'
+  | 'filtro'
+  | 'datos'
+  | 'actividad'
+  | 'objetivo'
+  | 'cuerpo'
+  | 'ingredientes'
+  | 'armando'
+  | 'menu';
+const PASOS: Paso[] = [
+  'gancho',
+  'sintomas',
+  'tiempo',
+  'consent',
+  'filtro',
+  'datos',
+  'actividad',
+  'objetivo',
+  'cuerpo',
+  'ingredientes',
+  'armando',
+  'menu',
+];
+/** Pasos de elección única (sin botón, avanzan solos al elegir) y el de carga animada (avanza solo). */
+const AUTO: Paso[] = ['tiempo', 'filtro', 'actividad', 'objetivo', 'armando'];
+
+export type Dolor = 'panza' | 'cansancio' | 'bascula';
+/** Las situaciones salen literales de la FICHA-AVATAR (dolores #1, #4 y "harta de pesar y contar"). */
+const DOLORES: { v: Dolor; t: string; icono: LucideIcon }[] = [
+  { v: 'panza', t: 'Me levanto bien, pero al final del día parezco de 5 meses de embarazada', icono: Sunset },
+  { v: 'cansancio', t: 'Llego cansada y me da fatiga pensar qué cocinar hoy', icono: BatteryLow },
+  { v: 'bascula', t: 'Estoy harta de pesar la comida y contar calorías', icono: Scale },
+];
+const RITMOS: { v: Ritmo; t: string; nota: string }[] = [
+  { v: 'prep', t: 'Cocino todo en una tarde a la semana', nota: 'Meal prep: recetas que se guardan bien' },
+  { v: 'diaria', t: 'Tengo 20 a 30 minutos al día', nota: 'Recetas de cocina corta y diaria' },
+  { v: 'express', t: 'Lo menos posible: casi sin cocinar', nota: 'Recetas express de 15 minutos o menos' },
+];
 
 const SINTOMAS: Sintoma[] = ['Hinchazón', 'Gases', 'Pesadez', 'Digestión lenta'];
 const ACTIVIDADES: { v: Actividad; t: string }[] = [
@@ -67,6 +108,8 @@ interface Guardado {
   objetivo: Objetivo | null;
   sintomas: Sintoma[];
   ingredientes: string[];
+  dolores: Dolor[];
+  ritmo: Ritmo | null;
 }
 
 /** Progreso de esta visita (se borra al cerrar la pestaña; nunca sale del navegador). */
@@ -206,6 +249,63 @@ function Conteo({ hasta, sufijo = '' }: { hasta: number; sufijo?: string }) {
   return <span ref={ref}>{`${hasta}${sufijo}`}</span>;
 }
 
+/** Momento "ajá": 3 frases reales (lo que la app de verdad hace con sus respuestas) y avanza solo; se puede saltar. */
+function Armando({ frases, alTerminar, reducir }: { frases: string[]; alTerminar: () => void; reducir: boolean }) {
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    const t = [
+      window.setTimeout(() => setN(1), 1200),
+      window.setTimeout(() => setN(2), 2400),
+      window.setTimeout(alTerminar, 3600),
+    ];
+    return () => t.forEach((x) => window.clearTimeout(x));
+  }, [alTerminar]);
+  return (
+    <div className="flex flex-col items-center gap-6 pt-12 text-center" role="status" aria-live="polite">
+      <div className="relative flex size-24 items-center justify-center">
+        <motion.span
+          aria-hidden="true"
+          className="absolute inset-0 rounded-full border-4 border-[var(--olive-wash)] border-t-[var(--accent)]"
+          animate={{ rotate: reducir ? 0 : 360 }}
+          transition={{ duration: 1.1, ease: 'linear', repeat: Infinity }}
+        />
+        <Leaf size={32} strokeWidth={2} color="var(--accent)" aria-hidden="true" />
+      </div>
+      <h1 className="text-balance text-3xl font-bold leading-tight [font-family:var(--font-display)]">
+        Armando tu <Resaltada>Menú Calma</Resaltada>
+      </h1>
+      <ul className="flex w-full flex-col gap-3 text-left">
+        {frases.map((f, i) => (
+          <motion.li
+            key={f}
+            initial={false}
+            animate={{ opacity: i <= n ? 1 : 0.35 }}
+            transition={{ duration: reducir ? 0 : 0.3 }}
+            className="flex items-center gap-3 rounded-[var(--radius-button)] bg-[var(--surface)] p-3 text-base shadow-[var(--shadow-1)]"
+          >
+            <span
+              aria-hidden="true"
+              className={`flex size-6 shrink-0 items-center justify-center rounded-full ${
+                i < n ? 'bg-[var(--accent)]' : 'bg-[var(--surface-2)]'
+              }`}
+            >
+              {i < n && <Check size={14} strokeWidth={3} color="var(--bg)" />}
+            </span>
+            {f}
+          </motion.li>
+        ))}
+      </ul>
+      <button
+        type="button"
+        onClick={alTerminar}
+        className="min-h-12 rounded-[var(--radius-button)] border border-[var(--accent)] px-5 text-base font-semibold text-[var(--accent)]"
+      >
+        Ver ya mi menú
+      </button>
+    </div>
+  );
+}
+
 function porcionTexto(p: number): string {
   if (p < 1) return 'Porción chica';
   if (p >= 1.25) return 'Porción generosa';
@@ -232,6 +332,9 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
   const [intento, setIntento] = useState(false);
   const [sintomas, setSintomas] = useState<Sintoma[]>(ini.sintomas ?? []);
   const [ingredientes, setIngredientes] = useState<string[]>(ini.ingredientes ?? []);
+  const [dolores, setDolores] = useState<Dolor[]>(ini.dolores ?? []);
+  const [verMas, setVerMas] = useState(false);
+  const [ritmo, setRitmo] = useState<Ritmo | null>(ini.ritmo ?? null);
 
   const errores = {
     edad: !(+edad >= 18 && +edad <= 99) ? 'Escribe una edad entre 18 y 99 años' : '',
@@ -246,23 +349,27 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
     return calcularRequerimientos(d);
   }, [datosOk, sexo, edad, peso, talla, actividad, objetivo]);
   const menu = useMemo(
-    () => (req ? generarMenu(sintomas, ingredientes, req.kcal, fotos) : null),
-    [req, sintomas, ingredientes, fotos],
+    () => (req ? generarMenu(sintomas, ingredientes, req.kcal, fotos, ritmo) : null),
+    [req, sintomas, ingredientes, fotos, ritmo],
   );
 
   useEffect(() => {
     try {
-      const g: Guardado = { idx, c, filtro, sexo, edad, peso, talla, actividad, objetivo, sintomas, ingredientes };
+      const g: Guardado = { idx, c, filtro, sexo, edad, peso, talla, actividad, objetivo, sintomas, ingredientes, dolores, ritmo };
       window.sessionStorage.setItem(CLAVE, JSON.stringify(g));
     } catch {
       /* sin almacenamiento: el recorrido funciona igual, solo no recuerda al recargar */
     }
-  }, [idx, c, filtro, sexo, edad, peso, talla, actividad, objetivo, sintomas, ingredientes]);
+  }, [idx, c, filtro, sexo, edad, peso, talla, actividad, objetivo, sintomas, ingredientes, dolores, ritmo]);
 
   function ir(delta: number) {
     setDir(delta);
     setAviso('');
-    setIdx((i) => Math.min(PASOS.length - 1, Math.max(0, i + delta)));
+    setIdx((i) => {
+      let n = Math.min(PASOS.length - 1, Math.max(0, i + delta));
+      if (delta < 0 && PASOS[n] === 'armando') n -= 1; // la carga animada no se vuelve a ver al retroceder
+      return n;
+    });
   }
 
   /** Elección única: marca y avanza a los 300ms (el usuario VE su elección antes de que cambie la pantalla). */
@@ -279,6 +386,12 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
     );
   }
 
+  /** Pasa de la carga animada al menú (se llama una sola vez, por tiempo o al saltar). */
+  const irAlMenu = useCallback(() => {
+    setDir(1);
+    setIdx((i) => (PASOS[i] === 'armando' ? i + 1 : i));
+  }, []);
+
   function siguiente() {
     if (paso === 'consent' && !(c.terminos && c.salud)) {
       setAviso('Marca las dos casillas obligatorias para continuar.');
@@ -290,6 +403,10 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
         setAviso('Revisa los campos marcados en rojo.');
         return;
       }
+    }
+    if (paso === 'gancho' && dolores.length === 0) {
+      setAviso('Elige al menos una para continuar.');
+      return;
     }
     if (paso === 'sintomas' && sintomas.length === 0) {
       setAviso('Elige al menos una opción para ajustar tu menú.');
@@ -315,11 +432,19 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
 
   return (
     <div className="relative mx-auto flex min-h-dvh w-full max-w-md flex-col bg-[var(--bg)] text-[var(--text-primary)] [font-family:var(--font-body)]">
-      <header className="flex items-center gap-3 px-5 pb-2 pt-4">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-80"
+        style={{
+          background:
+            'radial-gradient(360px 260px at 0% 0%, var(--peach) 0%, transparent 70%), radial-gradient(320px 240px at 100% 6%, var(--mustard-soft) 0%, transparent 68%)',
+        }}
+      />
+      <header className="relative z-10 flex items-center gap-3 px-5 pb-2 pt-4">
         <button
           type="button"
           onClick={() => ir(-1)}
-          disabled={idx === 0}
+          disabled={idx === 0 || paso === 'armando'}
           aria-label="Volver al paso anterior"
           className="flex size-11 items-center justify-center rounded-full text-[var(--text-secondary)] disabled:opacity-0"
         >
@@ -343,7 +468,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
         <span className="w-10 text-right text-xs tabular-nums text-[var(--text-secondary)]">{Math.round(progreso)}%</span>
       </header>
 
-      <main className="flex-1 overflow-x-hidden px-5 pb-48 pt-4">
+      <main className="relative z-10 flex-1 overflow-x-hidden px-5 pb-48 pt-4">
         <AnimatePresence mode="wait" custom={dir} initial={false}>
           <motion.section
             key={paso}
@@ -354,6 +479,90 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
             exit="sale"
             transition={{ duration: reducir ? 0.2 : 0.3, ease: EASE }}
           >
+            {paso === 'gancho' && (
+              <div className="flex flex-col gap-5">
+                <Titulo>
+                  ¿Cuál se parece más a tus <Resaltada>días</Resaltada>?
+                </Titulo>
+                <p className="text-base text-[var(--text-secondary)]">
+                  Elige las que quieras. Aquí no hay culpa: solo comida rica que te cuida.
+                </p>
+                <div className="flex flex-col gap-3">
+                  {DOLORES.map((d) => {
+                    const activa = dolores.includes(d.v);
+                    const Icono = d.icono;
+                    return (
+                      <motion.button
+                        key={d.v}
+                        type="button"
+                        whileTap={{ scale: 0.97 }}
+                        aria-pressed={activa}
+                        onClick={() => {
+                          setAviso('');
+                          setDolores(toggle(dolores, d.v));
+                        }}
+                        className={`flex min-h-16 w-full items-center gap-3 rounded-[var(--radius-card)] border p-4 text-left text-base font-semibold leading-snug transition-colors duration-200 ${
+                          activa
+                            ? 'border-[var(--accent)] bg-[var(--chip-bg)]'
+                            : 'border-[var(--surface-2)] bg-[var(--surface)] shadow-[var(--shadow-1)]'
+                        }`}
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[var(--peach)]"
+                        >
+                          <Icono size={24} strokeWidth={1.8} color="var(--peach-ink)" />
+                        </span>
+                        <span className="flex-1">{d.t}</span>
+                        {activa && <Check size={20} strokeWidth={2.5} color="var(--accent)" aria-hidden="true" />}
+                      </motion.button>
+                    );
+                  })}
+                </div>
+                {dolores.length > 0 ? (
+                  <p role="status" className="rounded-[var(--radius-card)] bg-[var(--olive-wash)] p-4 text-base leading-snug">
+                    <b>Te entendemos.</b> Para eso armamos tu Menú Calma: comida suave, sin pesar y sin contar.
+                  </p>
+                ) : (
+                  <p className="text-sm text-[var(--text-secondary)]">Tus respuestas se quedan solo en tu celular.</p>
+                )}
+              </div>
+            )}
+
+            {paso === 'tiempo' && (
+              <div className="flex flex-col gap-5">
+                <Titulo>
+                  ¿Cuánto tiempo tienes para <Resaltada>cocinar</Resaltada>?
+                </Titulo>
+                <p className="text-base text-[var(--text-secondary)]">
+                  Tu menú se arma a tu ritmo. Cero culpa: elige lo que de verdad puedes.
+                </p>
+                <div className="flex flex-col gap-3">
+                  {RITMOS.map((r) => (
+                    <Opcion key={r.v} activa={ritmo === r.v} onClick={() => elegirYAvanzar(() => setRitmo(r.v))}>
+                      <span className="block">{r.t}</span>
+                      <span className="mt-1 block text-sm font-normal text-[var(--text-secondary)]">{r.nota}</span>
+                    </Opcion>
+                  ))}
+                </div>
+                <p className="rounded-[var(--radius-card)] bg-[var(--chip-bg)] p-4 text-sm leading-snug">
+                  <b>Tu ritmo cambia tu menú.</b> Si tienes poco tiempo, te sugerimos recetas cortas; si cocinas una tarde a la semana, las que se guardan bien en el refrigerador o el congelador.
+                </p>
+              </div>
+            )}
+
+            {paso === 'armando' && (
+              <Armando
+                reducir={Boolean(reducir)}
+                alTerminar={irAlMenu}
+                frases={[
+                  `Cruzando lo que sientes (${sintomas.join(' y ').toLowerCase() || 'tu síntoma'}) con tus ingredientes…`,
+                  'Calculando lo que necesita tu cuerpo…',
+                  `Armando tu menú de hoy a tu ritmo${ritmo === 'prep' ? ' de meal prep' : ''}…`,
+                ]}
+              />
+            )}
+
             {paso === 'consent' && (
               <div className="flex flex-col gap-4">
                 <Titulo>
@@ -375,8 +584,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                     . Tengo 18 años o más.
                   </Casilla>
                   <Casilla marcada={c.salud} onChange={(v) => setC({ ...c, salud: v })}>
-                    <b>Obligatoria.</b> Autorizo el uso de mis datos de salud para calcular mis requerimientos y sugerirme
-                    menús. Puedo retirar mi permiso cuando quiera.
+                    <b>Obligatoria.</b> Autorizo el uso de mis datos de salud para armar mis menús. Puedo retirarlo cuando quiera.
                   </Casilla>
                   <details className="px-1 text-sm text-[var(--text-secondary)]">
                     <summary className="min-h-11 cursor-pointer py-2 font-semibold text-[var(--accent)]">
@@ -389,10 +597,10 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   </details>
                   <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-[var(--text-secondary)]">Opcionales</p>
                   <Casilla marcada={c.novedades} onChange={(v) => setC({ ...c, novedades: v })}>
-                    Quiero recibir novedades y recetas por correo.
+                    Quiero novedades y recetas por correo.
                   </Casilla>
                   <Casilla marcada={c.analitica} onChange={(v) => setC({ ...c, analitica: v })}>
-                    Acepto que midan cómo uso la app para mejorarla.
+                    Ayudar a mejorar la app (medir mi uso).
                   </Casilla>
                 </div>
               </div>
@@ -595,7 +803,9 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                     <div key={g.titulo}>
                       <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--text-secondary)]">{g.titulo}</p>
                       <div className="flex flex-wrap gap-3">
-                        {INGREDIENTES_RAPIDOS.filter((i) => g.items.includes(i.etiqueta)).map((i) => {
+                        {INGREDIENTES_RAPIDOS.filter((i) => g.items.includes(i.etiqueta))
+                          .filter((i, n) => verMas || n < 4 || ingredientes.includes(i.etiqueta))
+                          .map((i) => {
                           const activo = ingredientes.includes(i.etiqueta);
                           return (
                       <motion.button
@@ -621,6 +831,14 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                     </div>
                   ))}
                 </div>
+                <button
+                  type="button"
+                  onClick={() => setVerMas(!verMas)}
+                  aria-expanded={verMas}
+                  className="min-h-11 self-start text-base font-semibold text-[var(--accent)] underline underline-offset-4"
+                >
+                  {verMas ? 'Ver menos ingredientes' : 'Ver más ingredientes'}
+                </button>
                 <p className="text-sm tabular-nums text-[var(--text-secondary)]" aria-live="polite">
                   {ingredientes.length >= 3
                     ? `${ingredientes.length} marcados: listo para armar tu menú`
@@ -646,6 +864,11 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   <h1 className="mt-2 text-balance text-3xl font-bold leading-tight [font-family:var(--font-display)]">
                     Tu menú de hoy para <Resaltada>{sintomas.join(' y ').toLowerCase()}</Resaltada>
                   </h1>
+                  {ritmo && (
+                    <p className="mt-2 text-base text-[var(--text-secondary)]">
+                      A tu ritmo: {RITMOS.find((x) => x.v === ritmo)?.nota.toLowerCase()}.
+                    </p>
+                  )}
                 </div>
                 <div className="rounded-[var(--radius-card)] bg-[var(--chip-bg)] p-4">
                   <p className="text-sm font-semibold">
@@ -676,7 +899,17 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                           {it.receta.min} min · {porcionTexto(it.porcion)}
                         </p>
                         <p className="mt-auto flex flex-wrap gap-1 pt-2">
-                          {it.receta.sintomas.slice(0, 2).map((s) => (
+                          {it.receta.min <= 15 && (
+                            <span className="rounded-full bg-[var(--mustard-soft)] px-2 py-1 text-xs font-semibold text-[var(--mustard-ink)]">
+                              Express
+                            </span>
+                          )}
+                          {it.receta.congelable_dias ? (
+                            <span className="rounded-full bg-[var(--sky)] px-2 py-1 text-xs font-semibold text-[var(--sky-ink)]">
+                              Congelable
+                            </span>
+                          ) : null}
+                          {it.receta.sintomas.slice(0, 1).map((s) => (
                             <span
                               key={s}
                               className="rounded-full bg-[var(--chip-bg)] px-2 py-1 text-xs font-semibold text-[var(--accent)]"
@@ -700,6 +933,9 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
             )}
           </motion.section>
         </AnimatePresence>
+        {AUTO.includes(paso) && paso !== 'armando' && (
+          <p className="mt-6 text-center text-sm text-[var(--text-secondary)]">Toca una opción y seguimos.</p>
+        )}
       </main>
 
       {!sinBoton && (
@@ -722,7 +958,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
               onClick={siguiente}
               className="h-14 w-full rounded-[var(--radius-button)] bg-[var(--accent)] text-base font-bold text-[var(--bg)] shadow-[var(--shadow-2)]"
             >
-              {paso === 'consent' && 'Continuar'}
+              {(paso === 'consent' || paso === 'gancho') && 'Continuar'}
               {paso === 'datos' && 'Siguiente'}
               {paso === 'cuerpo' && 'Siguiente'}
               {paso === 'sintomas' && 'Siguiente'}

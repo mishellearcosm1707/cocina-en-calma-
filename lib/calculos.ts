@@ -7,6 +7,8 @@ import { COMIDAS, RECETAS, type Comida, type Receta, type Sintoma } from './rece
 
 export type Sexo = 'mujer' | 'hombre';
 export type Actividad = 'sedentaria' | 'ligera' | 'moderada' | 'alta';
+/** Ritmo de cocina de la usuaria: una tarde a la semana (meal prep), 20-30 min diarios, o lo mínimo posible. */
+export type Ritmo = 'prep' | 'diaria' | 'express';
 export type Objetivo = 'mantener' | 'bajar' | 'subir';
 
 export interface Datos {
@@ -80,12 +82,24 @@ export interface MenuDia {
 
 export const REPARTO: Record<Comida, number> = { Desayuno: 0.25, Almuerzo: 0.33, Merienda: 0.12, Cena: 0.3 };
 
+/** Mientras solo 8 de 60 recetas tengan foto real, el primer menú usa solo recetas con foto (bajar a 1 cuando haya más). */
+const BONO_FOTO = 20;
+
+/** El ritmo de cocina empuja recetas: express → ≤15 min · diaria → ≤30 min · meal prep → las que se congelan. */
+function bonoRitmo(r: Receta, ritmo: Ritmo | null): number {
+  if (ritmo === 'express') return r.min <= 15 ? 2 : 0;
+  if (ritmo === 'diaria') return r.min <= 30 ? 1 : 0;
+  if (ritmo === 'prep') return r.congelable_dias ? 2 : 0;
+  return 0;
+}
+
 /** Elige 1 receta por comida: prioriza síntoma + ingredientes que la usuaria tiene, y ajusta la porción. */
 export function generarMenu(
   sintomas: Sintoma[],
   ingredientes: string[],
   kcalObjetivo: number,
   conFoto: string[] = [],
+  ritmo: Ritmo | null = null,
 ): MenuDia {
   const elegidos = INGREDIENTES_RAPIDOS.filter((i) => ingredientes.includes(i.etiqueta));
   const items: ItemMenu[] = COMIDAS.map((comida) => {
@@ -96,7 +110,8 @@ export function generarMenu(
         r.sintomas.filter((s) => sintomas.includes(s)).length * 2 +
         coincidencias.length * 3 +
         (r.min <= 15 ? 0.5 : 0) +
-        (conFoto.includes(r.id) ? 1 : 0); // a igual relevancia, gana la receta que ya tiene foto
+        (conFoto.includes(r.id) ? BONO_FOTO : 0) + // el primer menú se ve completo: gana la receta que ya tiene foto
+        bonoRitmo(r, ritmo);
       return { r, coincidencias, puntaje };
     });
     candidatas.sort((a, b) => b.puntaje - a.puntaje || a.r.id.localeCompare(b.r.id));

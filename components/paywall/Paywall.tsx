@@ -31,6 +31,7 @@ interface Guardado {
   objetivo: Objetivo | null;
   sintomas: Sintoma[];
   ingredientes: string[];
+  dolores: ('panza' | 'cansancio' | 'bascula')[];
 }
 
 function leer(): Partial<Guardado> {
@@ -70,6 +71,13 @@ function Miniatura({ receta, foto }: { receta: Receta; foto: boolean }) {
   );
 }
 
+/** La línea sobre el titular sigue la situación que la persona eligió al empezar (literales de la FICHA-AVATAR). */
+const LINEA_DOLOR = {
+  panza: '¿Panza de embarazada sin estarlo?',
+  cansancio: '¿Llegas agotada y sin saber qué cocinar?',
+  bascula: '¿Harta de pesar la comida y contar calorías?',
+} as const;
+
 const PREGUNTAS = [
   { q: '¿Tengo que pesar la comida?', a: 'No. Usamos tazas, puños y unidades. La app hace las cuentas: tú solo eliges qué comer.' },
   { q: '¿Cómo pago desde mi país?', a: 'Con tarjeta u otros métodos que Hotmart ofrece según tu país. Pagas una sola vez, sin renovaciones.' },
@@ -90,6 +98,7 @@ export function Paywall({ fotos }: { fotos: string[] }) {
   const [abierto, setAbierto] = useState<number | null>(null);
   const [diaAviso, setDiaAviso] = useState(false);
 
+  const dolores = g.dolores ?? [];
   const sintomas = g.sintomas ?? [];
   const ingredientes = g.ingredientes ?? [];
   const datosOk = Boolean(g.edad && g.peso && g.talla && g.actividad && g.objetivo);
@@ -171,7 +180,7 @@ export function Paywall({ fotos }: { fotos: string[] }) {
             transition={{ duration: 0.45, ease: EASE }}
             className="mt-2 text-sm font-semibold uppercase tracking-wider text-[var(--accent-2)]"
           >
-            ¿Panza de embarazada sin estarlo?
+            {LINEA_DOLOR[dolores[0] ?? 'panza']}
           </motion.p>
           <motion.h1
             variants={ENTRA}

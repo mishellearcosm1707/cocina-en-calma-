@@ -1,7 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { emojiDe, type Comida, type Receta } from '@/lib/recetas';
+import { Apple, Coffee, Moon, Soup, type LucideIcon } from 'lucide-react';
+import type { Comida, Receta } from '@/lib/recetas';
+
+const ICONO: Record<Comida, LucideIcon> = { Desayuno: Coffee, Almuerzo: Soup, Merienda: Apple, Cena: Moon };
 
 // Fondo de apoyo por comida, derivado de los tokens (sin hex). Se muestra solo mientras la receta
 // no tiene su foto real en public/recetas/<id>.jpg (ver docs/fotos/guia-de-fotos.md).
@@ -23,6 +26,7 @@ export function FotoReceta({
 }) {
   const [falla, setFalla] = useState(false);
   const sinFoto = !conFoto || falla;
+  const Icono = ICONO[receta.comida];
   return (
     <div
       className={`relative overflow-hidden ${className}`}
@@ -39,8 +43,8 @@ export function FotoReceta({
         />
       )}
       {sinFoto && (
-        <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center text-4xl">
-          {emojiDe(receta)}
+        <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
+          <Icono size={44} strokeWidth={1.5} color="var(--accent)" />
         </span>
       )}
       <span className="absolute left-2 top-2 rounded-full bg-[var(--surface)] px-2 py-1 text-xs font-bold uppercase tracking-wide text-[var(--accent)]">
