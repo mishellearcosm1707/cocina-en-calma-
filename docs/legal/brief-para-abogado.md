@@ -11,5 +11,5 @@
 4. Vendiendo a usuarias de otros países: ¿qué obligaciones mínimas adicionales (México LFPDPPP, Colombia Ley 1581, Argentina, Chile, UE) conviene cubrir desde el inicio?
 5. Plazos de respuesta a solicitudes de derechos y de conservación tras eliminar la cuenta.
 6. Deslinde de salud y límites de lo que puede decir la publicidad ("desinflamar", "sentirse ligera"): ¿hay riesgo por claims? ¿Qué requisitos hay para decir que la app cuenta con respaldo de una nutricionista (título/registro)?
-7. Política de reembolso: garantía de 15 días alineada a Hotmart y a la ley de defensa del consumidor aplicable.
+7. Política de reembolso: garantía de 7 días alineada a Hotmart y a la ley de defensa del consumidor aplicable.
 8. Forma jurídica de "Conexión Digital" (¿empresa constituida o nombre comercial?) y quién figura como responsable en los documentos.

@@ -3,10 +3,12 @@
 // Landing de Cocina en Calma — compuesta desde el kit (components/landing/) con el copy de
 // docs/copy/landing.md (trazado a FICHA-AVATAR.md). Modelo 2: el CTA lleva a /onboarding.
 
-import { ChefHat, Moon, Scale, Shirt } from 'lucide-react';
+import { CalendarClock, ChefHat, Moon, Repeat, Scale, Shirt } from 'lucide-react';
 import { Hero } from '@/components/landing/Hero';
 import { Problema } from '@/components/landing/Problema';
-import { Agitacion } from '@/components/landing/Agitacion';
+import { AgitacionCifras } from '@/components/landing/AgitacionCifras';
+import { GaleriaPlatos } from '@/components/landing/GaleriaPlatos';
+import { CtaIntermedio } from '@/components/landing/CtaIntermedio';
 import { Solucion } from '@/components/landing/Solucion';
 import { AppPorDentro } from '@/components/landing/AppPorDentro';
 import { OfertaUnica } from '@/components/landing/OfertaUnica';
@@ -29,7 +31,7 @@ export default function Landing() {
         subtitleMarked="El Menú Calma arma tu día con tu [b]síntoma[/b] y tu despensa"
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
-        socialProof={<span>Pruébalo gratis · $14.99 una sola vez si te quedas · 15 días de garantía</span>}
+        socialProof={<span>Pruébalo gratis · $14.99 una sola vez si te quedas · 7 días de garantía</span>}
         visual={
           <div className="bg-[var(--surface)] px-4 pt-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -49,11 +51,12 @@ export default function Landing() {
         ]}
       />
 
-      <Agitacion
-        frases={[
-          'Decides qué comer [b]3 o 4 veces al día[/b], todos los días.',
-          'Contar gramos no calma tu abdomen: solo suma [acento]culpa y ansiedad[/acento].',
-          'Las dietas que prohíben todo se abandonan, y la hinchazón [b]vuelve[/b].',
+      <AgitacionCifras
+        tituloMarked="Cada día, [acento]la misma pregunta[/acento]"
+        cifras={[
+          { icon: CalendarClock, cifra: '3 a 4', textoMarked: 'veces al día decides [b]qué comer[/b]' },
+          { icon: Repeat, cifra: '+1.000', textoMarked: 'decisiones de comida [b]cada año[/b]' },
+          { icon: Scale, cifra: '0 gramos', textoMarked: 'que pesar: usamos [b]tazas y puños[/b]' },
         ]}
       />
 
@@ -74,13 +77,15 @@ export default function Landing() {
         }}
       />
 
+      <GaleriaPlatos kicker="PLATOS DE TU MENÚ" tituloMarked="Comida rica de casa, sin complicarte" />
+
       <AppPorDentro
         tituloMarked="Tu semana, [acento]ya resuelta[/acento]"
         frames={[
-          { label: 'Tu primer menú de hoy', nombrePantalla: 'Menú de hoy', src: '/mocks/real-menu.jpg', alt: 'Tu menú de hoy con 4 recetas y cuánto cubre de tu día' },
           { label: 'Dinos cómo te sientes', nombrePantalla: 'Síntomas', src: '/mocks/real-sintomas.jpg', alt: 'Pantalla donde marcas cómo te sientes hoy' },
           { label: 'Marca lo que tienes en casa', nombrePantalla: 'Ingredientes', src: '/mocks/real-ingredientes.jpg', alt: 'Pantalla donde marcas 3 ingredientes de tu cocina' },
           { label: 'Sabe lo que necesita tu cuerpo', nombrePantalla: 'Tu cuerpo', src: '/mocks/real-cuerpo.jpg', alt: 'Pantalla con el reparto de tu día entre las 4 comidas' },
+          { label: 'Tu primer menú de hoy', nombrePantalla: 'Menú de hoy', src: '/mocks/real-menu.jpg', alt: 'Tu menú de hoy con 4 recetas y cuánto cubre de tu día' },
         ]}
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
@@ -97,31 +102,29 @@ export default function Landing() {
           features: [
             'Menú de cada día según tu síntoma y tu despensa',
             'Tus requerimientos del día, calculados con solo 6 datos',
-            '60 recetas antiinflamatorias para elegir',
+            '60 recetas con valores de las tablas INCAP y USDA',
             'Meal prep guiado de una tarde y lista de compras',
             'Chequeo diario que ajusta tu menú de mañana',
           ],
           ctaLabel: CTA_OFERTA,
           ctaHref: CTA_HREF,
-          microcopyCta: 'Pagas $14.99 solo si te quedas con tu menú · Garantía Calma de 15 días',
+          microcopyCta: 'Pagas $14.99 solo si te quedas con tu menú · Garantía Calma de 7 días',
         }}
       />
 
       <Garantia
-        nombre="Garantía Calma de 15 días"
-        condicionMarked="Si en 15 días tu Menú Calma no te convence, escribes un correo y te devolvemos [b]todo tu pago[/b]. Sin preguntas."
-        pisoLegal="15 días para decidir, sin letra chica"
+        nombre="Garantía Calma de 7 días"
+        condicionMarked="Si en 7 días tu Menú Calma no te convence, pides el reembolso en Hotmart y te devolvemos [b]todo tu pago[/b]. Sin preguntas."
+        pisoLegal="7 días para decidir, con reembolso por Hotmart"
       />
+
+      <CtaIntermedio href={CTA_HREF} label={CTA_LABEL} microcopy="Pruébalo gratis · 7 días de garantía si te quedas" elevacion="elevada" />
 
       <Faq
         items={[
           {
             pregunta: '¿Tengo que pesar la comida o contar calorías?',
             respuestaMarked: 'No. Usamos tazas, puños y unidades. La app hace las cuentas: [b]tú solo eliges qué comer[/b].',
-          },
-          {
-            pregunta: '¿Las recetas llevan ingredientes raros o caros?',
-            respuestaMarked: 'No. Todo se consigue en cualquier supermercado, y el menú se arma con [b]lo que ya tienes[/b].',
           },
           {
             pregunta: '¿Y si no tengo tiempo para cocinar el domingo?',
@@ -134,7 +137,7 @@ export default function Landing() {
           },
           {
             pregunta: '¿Es una suscripción? ¿Cómo pago?',
-            respuestaMarked: 'No. Pagas $14.99 una sola vez, con tarjeta u otros métodos según tu país. [b]Sin renovaciones[/b] y con 15 días de garantía.',
+            respuestaMarked: 'No. Pagas $14.99 una sola vez, con tarjeta u otros métodos según tu país. [b]Sin renovaciones[/b] y con 7 días de garantía.',
           },
           {
             pregunta: '¿Qué pasa con mis datos de salud?',
@@ -148,8 +151,8 @@ export default function Landing() {
         futurePacingMarked="Esta noche marcas cómo te sientes, eliges 3 ingredientes y ya sabes qué cocinar, sin báscula."
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
-        recap="Pruébalo gratis · $14.99 una sola vez si te quedas · 15 días de garantía"
-        psMarked="PS: Cocina en Calma arma tu menú con tu síntoma y tu despensa. Pruébalo gratis hoy; si decides quedártelo, es un solo pago de $14.99 con 15 días de garantía."
+        recap="Pruébalo gratis · $14.99 una sola vez si te quedas · 7 días de garantía"
+        psMarked="PS: Pruébalo gratis hoy. Si te quedas, es un solo pago de $14.99 y desbloqueas tu semana, tus compras y tu tarde de cocina."
       />
 
       <FooterLegal

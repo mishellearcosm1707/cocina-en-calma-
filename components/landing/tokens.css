@@ -13,13 +13,24 @@
 
   /* ── TEXTO ── */
   --text-primary: #23291f;
-  --text-secondary: #5e6355;
-  --text-tertiary: #5a5f50;
+  --text-secondary: #4d5246;
+  --text-tertiary: #4d5246;
 
   /* ── MARCA ── */
   --accent: #4f6f2b;
   --accent-2: #a64b33;
   --error: #b0432f; /* semántico de error de la FICHA-ARTE */
+  /* ── PALETA SECUNDARIA de la referencia (FICHA-ARTE): notas de color para dar vida; nunca para texto largo ── */
+  --peach: #f8e1d6;
+  --peach-wash: #fcf0e9;
+  --peach-ink: #8a3b25;
+  --sky: #dcebef;
+  --sky-ink: #2d5560;
+  --mustard: #d9a03f;
+  --mustard-soft: #f5e6be;
+  --mustard-ink: #7a5400;
+  --olive-wash: #e4ebd6;
+  --terra-bright: #c0583f;
   --accent-on-dark: #b9d48a; /* acento legible sobre el bloque invertido del CTA final (≥7:1 sobre --text-primary) */
 
   /* ── FORMA ── */

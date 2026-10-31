@@ -64,7 +64,7 @@ export function OfertaUnica({ kicker = 'LA OFERTA', tituloMarked, plan, id = 'of
   const { contenedor, item } = useReveal();
 
   return (
-    <SectionShell id={id} elevacion="base" ariaLabel="Precio">
+    <SectionShell id={id} elevacion="base" ariaLabel="Precio" className="bg-[var(--peach-wash)]">
       <motion.div variants={contenedor} initial="hidden" whileInView="visible" viewport={VIEWPORT_ONCE}>
         <motion.div variants={item} className="mx-auto max-w-[620px] text-center">
           <Kicker>{kicker}</Kicker>
@@ -76,7 +76,12 @@ export function OfertaUnica({ kicker = 'LA OFERTA', tituloMarked, plan, id = 'of
         <motion.div variants={item} className="mx-auto mt-10 max-w-md">
           <Hairline emphasis surface="surface" className="shadow-[0_12px_36px_color-mix(in_oklab,var(--accent)_16%,transparent)]">
             <div className="rounded-[var(--radius-card)] bg-[color-mix(in_oklab,var(--accent)_5%,transparent)] p-6 md:p-7">
-              <h3 className="text-[18px] font-semibold text-[var(--text-primary)]">{plan.nombre}</h3>
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-[18px] font-semibold text-[var(--text-primary)]">{plan.nombre}</h3>
+                <span className="rounded-full bg-[var(--mustard)] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.06em] text-[var(--text-primary)]">
+                  {plan.sufijo}
+                </span>
+              </div>
               <div className="mt-4">
                 <p className="flex items-baseline gap-2">
                   <span className="text-[36px] font-bold leading-none tabular-nums text-[var(--text-primary)] [font-family:var(--font-display)]">

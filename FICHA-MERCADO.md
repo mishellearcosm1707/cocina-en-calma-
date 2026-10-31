@@ -34,8 +34,8 @@ Estado: BORRADOR (investigación del 2026-10-31; falta tu OK y la verificación 
 - Garantías que permite Hotmart: 7, 15, 21 o 30 días; en suscripciones la garantía aplica solo al primer cobro, no a renovaciones | https://help.hotmart.com/es/article/360034552751/-como-ajustar-el-plazo-de-garantia-del-producto-que-he-creado- | 2026-10-31
 - Competencia: Eat This Much ofrece 14 días de prueba y 30 días de reembolso (secundaria); Fitia: prueba de 3 días solo en plan anual (oficial: https://fitia.app/help/articles/is-there-a-free-trial-for-fitia-premium)
 - Prueba elegida: 0 días (sin prueba de Hotmart: el menú de muestra gratis hace de prueba)
-- Garantía elegida: 15 días (opciones de Hotmart: 7/15/21/30). Garantía 15 > prueba 0: SÍ
-- ¿Desde cuándo cuenta la garantía? Los términos de Hotmart dicen desde la compra completada (https://hotmart.com/es/terminos-de-compra/); con prueba gratis no está confirmado si cuenta desde la adhesión o el primer cobro → el copy dirá "15 días de garantía" SIN fijar fecha de inicio. Confirmar con soporte de Hotmart
+- Garantía elegida: 7 días (a través de Hotmart; la define la dueña). Garantía 7 > prueba 0: SÍ
+- ¿Desde cuándo cuenta la garantía? Los términos de Hotmart dicen desde la compra completada (https://hotmart.com/es/terminos-de-compra/); con prueba gratis no está confirmado si cuenta desde la adhesión o el primer cobro → el copy dirá "7 días de garantía" SIN fijar fecha de inicio. Confirmar con soporte de Hotmart
 
 ## 5. CONVERSIÓN ESPERABLE
 - Visita→registro y prueba→pago del nicho: NO ENCONTRADO (no inventar). Se medirán con datos propios; umbral de muestra: usar el de 60 hasta tener tráfico real

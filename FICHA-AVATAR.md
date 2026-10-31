@@ -5,7 +5,7 @@
 
 ## El avatar (cliente ideal — UNA persona concreta)
 - Nombre/arquetipo: Laura · Edad: 34 · Situación: profesional corporativa urbana (o mamá que gestiona el hogar) · País(es): México, Colombia, Argentina, Chile, España y hispanas en EE.UU.
-- Poder adquisitivo: medio a medio-alto ($3.75/mes del plan anual no le duele; el mensual de $7.99 sí lo compara) · Dispositivo: celular (Android gama media como default LATAM)
+- Poder adquisitivo: medio a medio-alto (el pago único de $14.99 no le duele; compara contra una consulta con nutricionista) · Dispositivo: celular (Android gama media como default LATAM)
 - IDENTIDAD (literal): "Me despierto desinflamada, pero al final del día parezco de 5 meses de embarazada."
 - MOMENTO DEL DÍA en que duele: tarde-noche (13:00-22:00): tras almorzar el abdomen se endurece; llega a casa agotada y no sabe qué cocinar
 - MOMENTO DEL AÑO: hipótesis a validar — enero (propósitos), antes de vacaciones/eventos, cambio de estación
@@ -57,7 +57,7 @@ Otro: "Ponerme mis vestidos y jeans ajustados sin acomplejarme."
 3. "¿Tengo que pesar o registrar gramos?" → No: tazas, puños y unidades → hero/FAQ/microcopy
 4. "¿Las recetas son raras o caras?" → ingredientes de cualquier supermercado → landing + app
 5. "Ya dejé gluten y lácteos y seguí inflamada" → no se trata de quitar, sino de combinar alimentos y horarios → landing (sin promesa médica)
-6. "Es caro / no lo usaré" → plan anual $3.75/mes, trial de 7 días, salida clara; garantía: por definir en FICHA-MERCADO
+6. "Es caro / no lo usaré" → pago único $14.99 (menos de $0.05 al día en un año), sin suscripción, garantía de 7 días (FICHA-MERCADO)
 7. Pago LATAM → métodos y seguridad según Hotmart (por confirmar en FICHA-MERCADO)
 
 ## Lenguaje

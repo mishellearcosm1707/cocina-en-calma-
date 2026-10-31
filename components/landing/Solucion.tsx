@@ -8,7 +8,7 @@
 // escalonados (whileInView + stagger, reduced-motion respetado).
 
 import { motion } from 'motion/react';
-import { Accent, Hairline, Kicker, SectionShell, useReveal, VIEWPORT_ONCE } from './ui';
+import { Accent, Kicker, SectionShell, useReveal, VIEWPORT_ONCE } from './ui';
 import { MarkedCopy, warnCopy } from './MarkedCopy';
 
 export interface PasoMecanismo {
@@ -54,7 +54,7 @@ export function Solucion({
   const { contenedor, item } = useReveal();
 
   return (
-    <SectionShell id={id} elevacion="base" ariaLabel="Cómo funciona">
+    <SectionShell id={id} elevacion="base" ariaLabel="Cómo funciona" className="bg-[var(--olive-wash)]">
       <motion.div
         variants={contenedor}
         initial="hidden"
@@ -86,7 +86,8 @@ export function Solucion({
             <motion.li key={i} variants={item} className="flex items-start gap-4 md:flex-col">
               <span
                 aria-hidden="true"
-                className="flex size-11 shrink-0 items-center justify-center text-[28px] font-bold tabular-nums text-[var(--accent)] [font-family:var(--font-display)]"
+                className="flex size-12 shrink-0 items-center justify-center rounded-full text-[20px] font-bold tabular-nums text-[var(--surface)] [font-family:var(--font-display)]"
+                style={{ background: ['var(--accent)', 'var(--terra-bright)', 'var(--mustard)'][i % 3] }}
               >
                 {String(i + 1).padStart(2, '0')}
               </span>
@@ -101,14 +102,14 @@ export function Solucion({
         {antesDespues && (
           <motion.div variants={item} className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="rounded-[var(--radius-card)] bg-[var(--surface-2)] p-5">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+              <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
                 {antesDespues.labelAntes}
               </p>
               <p className="mt-2 text-[15px] leading-snug text-[var(--text-secondary)]">{antesDespues.antes}</p>
             </div>
             {/* El "después" con acento sutil de fondo (4-6%) */}
             <div className="rounded-[var(--radius-card)] bg-[color-mix(in_oklab,var(--accent)_6%,transparent)] p-5">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--accent)]">
+              <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-[var(--accent)]">
                 {antesDespues.labelDespues}
               </p>
               <p className="mt-2 text-[15px] font-medium leading-snug text-[var(--text-primary)]">

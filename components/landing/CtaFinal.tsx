@@ -56,7 +56,7 @@ export function CtaFinal({
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(720px 420px at 50% 0%, color-mix(in oklab, var(--accent) 16%, transparent) 0%, transparent 60%)',
+            'radial-gradient(520px 360px at 0% 0%, color-mix(in oklab, var(--terra-bright) 38%, transparent) 0%, transparent 70%), radial-gradient(480px 340px at 100% 100%, color-mix(in oklab, var(--mustard) 30%, transparent) 0%, transparent 70%), radial-gradient(720px 420px at 50% 0%, color-mix(in oklab, var(--accent) 30%, transparent) 0%, transparent 60%)',
         }}
       />
 
@@ -70,7 +70,7 @@ export function CtaFinal({
         <motion.h2
           variants={item}
           className="text-balance text-[30px] font-bold leading-[1.15] [font-family:var(--font-display)] md:text-[44px]"
-          style={{ color: 'var(--bg)', ['--accent' as string]: 'var(--accent-on-dark)' }}
+          style={{ color: 'var(--bg)', ['--accent' as string]: 'var(--accent-on-dark)', ['--accent-hl' as string]: 'transparent' }}
         >
           <MarkedCopy text={h2Marked} />
         </motion.h2>
@@ -85,7 +85,7 @@ export function CtaFinal({
 
         <motion.div variants={item} className="mt-8 w-full sm:w-auto">
           {/* Acento pleno sobre fondo invertido = el máximo contraste de la página */}
-          <CtaButton href={ctaHref} alto={56}>
+          <CtaButton href={ctaHref} alto={56} sobreOscuro>
             {ctaLabel}
           </CtaButton>
         </motion.div>

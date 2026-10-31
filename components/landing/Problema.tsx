@@ -8,7 +8,14 @@
 
 import { motion } from 'motion/react';
 import type { LucideIcon } from 'lucide-react';
-import { IconChip, SectionShell, useReveal, VIEWPORT_ONCE } from './ui';
+import { IconChip, SectionShell, useReveal, VIEWPORT_ONCE, type TonoColor } from './ui';
+
+const COLORES: { tono: TonoColor; fondo: string }[] = [
+  { tono: 'peach', fondo: 'var(--peach-wash)' },
+  { tono: 'mustard', fondo: 'color-mix(in oklab, var(--mustard-soft) 45%, var(--surface))' },
+  { tono: 'sky', fondo: 'color-mix(in oklab, var(--sky) 45%, var(--surface))' },
+  { tono: 'olive', fondo: 'color-mix(in oklab, var(--olive-wash) 55%, var(--surface))' },
+];
 import { MarkedCopy, warnCopy, warnRango } from './MarkedCopy';
 
 export interface PreguntaProblema {
@@ -53,9 +60,10 @@ export function Problema({ titulo, preguntas, id }: ProblemaProps) {
             <motion.li
               key={i}
               variants={item}
-              className="flex items-start gap-4 rounded-[var(--radius-card)] bg-[var(--bg)] p-4 shadow-[var(--shadow-1)]"
+              className="flex items-start gap-4 rounded-[var(--radius-card)] p-4 shadow-[var(--shadow-1)]"
+              style={{ background: COLORES[i % COLORES.length].fondo }}
             >
-              <IconChip icon={p.icon} tone="muted" />
+              <IconChip icon={p.icon} tone={COLORES[i % COLORES.length].tono} />
               <p className="pt-2 text-[17px] font-medium leading-snug text-[var(--text-primary)]">
                 <MarkedCopy text={p.textoMarked} />
               </p>

@@ -40,7 +40,8 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 ## Estrategia de monetización (propuesta del PDF; el modelo A-F de 02C lo decide el agente antes del paywall)
 - Modelo: freemium con compra única; se cobra el plan semanal completo, el filtro de despensa, las compras consolidadas y la guía meal prep
 - Gratis: ingresar síntoma + ver un menú diario de muestra
-- Trial: NINGUNO — el menú de muestra gratis hace de prueba · Garantía: 15 días, sin fijar fecha de inicio en el copy (FICHA-MERCADO §4)
+- Garantía: 7 días a través de Hotmart (confirmado por la usuaria el 2026-10-31).
+- Trial: NINGUNO — el menú de muestra gratis hace de prueba · Garantía: 7 días, sin fijar fecha de inicio en el copy (FICHA-MERCADO §4)
 - Pricing (decisión del usuario 2026-10-31): PAGO ÚNICO $14.99 USD, sin suscripción, hasta probar cómo va. Plan B: $7.99/mes y $44.99/año del estudio. Pendiente definir qué incluye exactamente (acceso completo sin mensualidades; NO prometer "de por vida" hasta validar costos). Economía: LTV = $14.99 → priorizar tráfico orgánico; el costo por venta pagada debe quedar muy por debajo (comisión de Hotmart: verificar).
 - Venta: Hotmart (default del SO)
 
@@ -71,14 +72,14 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Loop completo gatillo→acción→recompensa→inversión + D1-D7: pendiente
 
 ## Secuencia maestra de construcción (NO saltar)
-- Estado: Landing y Onboarding LISTOS (revisor-visual) · siguiente etapa: Paywall (pendiente del OK del usuario). Onboarding: LISTA en la 6ª revisión (36/40 · 16/20 · 16/20, fidelidad FIEL, justo en umbral) · Landing: LISTA en la 4ª revisión (36/40 · 16/20 · 17/20, fidelidad FIEL; margen de 1 punto). Detalle:  (1ª revisión del revisor-visual: NECESITA CORRECCIÓN 30/40 · 14/20 · 15/20; ajustes aplicados, 2ª revisión en curso)
+- Estado: Landing y Onboarding LISTOS (revisor-visual) · siguiente etapa: Paywall (pendiente del OK del usuario). Onboarding: LISTA en la 6ª revisión (36/40 · 16/20 · 16/20, fidelidad FIEL, justo en umbral) · Landing: LISTA en la 6ª revisión tras el rediseño con color y vida (36/40 · 16/20 · 16/20, fidelidad FIEL; justo en umbral). Detalle:  (1ª revisión del revisor-visual: NECESITA CORRECCIÓN 30/40 · 14/20 · 15/20; ajustes aplicados, 2ª revisión en curso)
 - Ruta: `/` → `/onboarding` → `/paywall` → `/login` → `/app`
 - Landing: construida en Next 16 desde el kit (app/page.tsx, components/landing/), CTA → /onboarding (modelo 2) · Onboarding: construido (components/onboarding/Flow.tsx, lib/calculos.ts, lib/recetas.ts; 6 pasos: consentimiento → datos → requerimientos → síntomas → 3 ingredientes → primer menú; cálculo local Mifflin-St Jeor; datos solo en memoria, sin backend) · Paywall (marcador /paywall) / Login / App interna / Servicios externos: pendiente
 - Proyecto de código en la raíz (Next 16.4 + Tailwind 4 + motion + lucide). Servidor local de revisión: npx next start -p 3100
 - DESVIACIONES del kit (justificadas): (1) OfertaUnica.tsx — el kit trae Oferta anual/mensual con trial; la decisión del usuario es pago único $14.99 sin trial. (2) FooterLegal con soporteEmail opcional — aún no hay correo de la empresa. (3) CtaFinal usa --accent-on-dark para que el acento se lea sobre el bloque invertido. (4) FooterLegal con anio fijo 2026 (new Date() no compila en client component prerenderizado).
 
 ## Puertas de etapa
-- Landing: aprobada por el revisor (4ª pasada) · pendiente OK del usuario
+- Landing: aprobada por el revisor (6ª pasada, con color y vida; garantía 7 días por Hotmart) · pendiente OK del usuario
 - Onboarding: aprobado por el revisor (6ª pasada) · pendiente OK del usuario
 - Paywall, Login, App interna: no iniciadas · Servicios externos: bloqueados.
 
@@ -93,7 +94,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - fotos: 8 fotos de la Etapa 1 recibidas el 2026-10-31 (generadas por la usuaria con IA) e instaladas en public/recetas/{d01,a02,m01,c01,d02,a01,m02,c07}.jpg; m01 se recortó para quitar una tarjeta de ingredientes superpuesta. Landing e onboarding usan capturas REALES de la app (public/mocks/real-*.jpg). Quedan 52 recetas sin foto (color + emoji de apoyo). Re-revisión del revisor-visual de landing y onboarding en curso.
 
 - veredicto onboarding: LISTA (docs/revisiones/onboarding-veredicto.md, 6ª pasada). Abiertos S2/S3: 52 recetas sin foto (color + emoji), fotos de platos generadas con IA por la usuaria, vacío en los pasos 3-4, identidad cercana al veto "papel cálido + verde" (viene de la referencia), consentimiento en servidor y validación de la nutricionista (fórmula y banco de recetas).
-- veredicto landing: LISTA (docs/revisiones/landing-veredicto.md, 4ª pasada). Abiertos de severidad media/baja: cifra real para "60 recetas" y el ancla de nutricionista, alineación mixta de títulos del kit, sin testimonios (no se inventan), fotos generadas con IA (leyenda "ilustrativas" visible), FAQ sin gluten/lácteos.
+- veredicto landing: LISTA (docs/revisiones/landing-veredicto.md, 6ª pasada). Después solo cambió el texto de garantía de 15 a 7 días (por Hotmart), sin cambio de diseño: el aviso de veredicto caducado es por fecha de archivo. Pendiente de contenido de la usuaria: credencial de nutricionista y testimonios reales (especificidad del copy = 2/4; no se inventan). Sello de garantía: repetirlo como firma en hero/oferta es opcional. Abiertos de severidad media/baja: cifra real para "60 recetas" y el ancla de nutricionista, alineación mixta de títulos del kit, sin testimonios (no se inventan), fotos generadas con IA (leyenda "ilustrativas" visible), FAQ sin gluten/lácteos.
 - audit-conversion.sh: 13 críticos mayormente falsos positivos por escanear comentarios/strings del propio kit (voseo "animate", hairlines y gradientes que sí existen en ui.tsx/Hero.tsx); se revisan con el revisor-visual.
 - Legal (47): borradores en docs/legal/ (política de privacidad + consentimiento y deslinde). Responsable: Conexión Digital, Ecuador (LOPDP; autoridad: Superintendencia de Protección de Datos Personales — verificar con abogado). Pendientes: correo de contacto propio, ciudad/RUC, términos y política de reembolso, pantalla de consentimiento en la app, revisión de abogado local. Datos de salud = sensibles.
 - FICHA-MODELO: creada en BORRADOR (modelo: Fitia, eje: ángulo síntoma). Secciones 2-6 con NO ENCONTRADO: completar con investigación antes de la landing.

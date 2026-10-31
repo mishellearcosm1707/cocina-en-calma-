@@ -13,13 +13,21 @@ import type { LucideIcon } from 'lucide-react';
 
 /* ── <Accent> — la palabra que vende, en el acento del kit ─────────────────── */
 export function Accent({ children }: { children: ReactNode }) {
-  return <span className="text-[var(--accent)]">{children}</span>;
+  // Resalte tipo marcador: la palabra que vende lleva una franja de color suave detrás.
+  return (
+    <span
+      className="text-[var(--accent)]"
+      style={{ backgroundImage: 'linear-gradient(transparent 62%, var(--accent-hl, var(--mustard-soft)) 62%)' }}
+    >
+      {children}
+    </span>
+  );
 }
 
 /* ── <Kicker> — caps 12px/600 tracking +0.08em en acento (máx 1 por sección) ── */
 export function Kicker({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--accent)]">
+    <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.08em] text-[var(--accent)]">
       {children}
     </p>
   );
@@ -29,7 +37,33 @@ export function Kicker({ children }: { children: ReactNode }) {
    tone 'accent' para secciones cálidas · 'muted' para íconos de dolor (§2:
    neutro apagado, nunca checks verdes). La FORMA la decide --radius-button:
    una sola forma de chip por página. */
-export function IconChip({ icon: Icono, tone = 'accent' }: { icon: LucideIcon; tone?: 'accent' | 'muted' }) {
+const TONOS = {
+  peach: { fondo: 'var(--peach)', icono: 'var(--peach-ink)' },
+  sky: { fondo: 'var(--sky)', icono: 'var(--sky-ink)' },
+  mustard: { fondo: 'var(--mustard-soft)', icono: 'var(--mustard-ink)' },
+  olive: { fondo: 'var(--olive-wash)', icono: 'var(--accent)' },
+} as const;
+export type TonoColor = keyof typeof TONOS;
+
+export function IconChip({
+  icon: Icono,
+  tone = 'accent',
+}: {
+  icon: LucideIcon;
+  tone?: 'accent' | 'muted' | TonoColor;
+}) {
+  if (tone !== 'accent' && tone !== 'muted') {
+    const t = TONOS[tone];
+    return (
+      <span
+        aria-hidden="true"
+        className="inline-flex size-12 shrink-0 items-center justify-center rounded-full"
+        style={{ background: t.fondo }}
+      >
+        <Icono size={24} strokeWidth={2} color={t.icono} aria-hidden="true" />
+      </span>
+    );
+  }
   const acento = tone === 'accent';
   return (
     <span
@@ -147,17 +181,21 @@ export function CtaButton({
   children,
   alto = 52,
   fullMobile = true,
+  sobreOscuro = false,
 }: {
   href: string;
   children: ReactNode;
   alto?: 52 | 56;
   fullMobile?: boolean;
+  sobreOscuro?: boolean;
 }) {
   return (
     <motion.a
       whileTap={{ scale: 0.97 }}
       href={href}
-      className={`inline-flex items-center justify-center rounded-[var(--radius-button)] bg-[var(--accent)] px-8 text-[17px] font-semibold text-[var(--bg)] shadow-[0_8px_30px_color-mix(in_oklab,var(--accent)_25%,transparent)] transition-colors duration-150 hover:bg-[color-mix(in_oklab,var(--accent)_88%,var(--text-primary))] [touch-action:manipulation] ${
+      className={`inline-flex items-center justify-center rounded-[var(--radius-button)] px-8 text-[17px] font-semibold shadow-[0_8px_30px_color-mix(in_oklab,var(--accent)_25%,transparent)] transition-colors duration-150  [touch-action:manipulation] ${
+        sobreOscuro ? 'bg-[var(--accent-on-dark)] text-[var(--text-primary)]' : 'bg-[var(--accent)] text-[var(--bg)] hover:bg-[color-mix(in_oklab,var(--accent)_88%,var(--text-primary))]'
+      } ${
         alto === 56 ? 'h-14' : 'h-[52px]'
       } ${fullMobile ? 'w-full sm:w-auto' : ''}`}
     >

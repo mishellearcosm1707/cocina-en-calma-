@@ -131,6 +131,7 @@ export function AppPorDentro({
             ))}
           </div>
 
+          <p className="mt-3 text-center text-[13px] font-semibold text-[var(--accent)]">Desliza para ver más pantallas →</p>
           {/* Dots: activo en acento, resto neutro 30% — tocables (ir al frame) */}
           <div className="mt-4 flex justify-center gap-2">
             {frames.map((f, i) => (
