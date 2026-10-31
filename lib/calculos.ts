@@ -77,7 +77,12 @@ export interface MenuDia {
 export const REPARTO: Record<Comida, number> = { Desayuno: 0.25, Almuerzo: 0.33, Merienda: 0.12, Cena: 0.3 };
 
 /** Elige 1 receta por comida: prioriza síntoma + ingredientes que la usuaria tiene, y ajusta la porción. */
-export function generarMenu(sintomas: Sintoma[], ingredientes: string[], kcalObjetivo: number): MenuDia {
+export function generarMenu(
+  sintomas: Sintoma[],
+  ingredientes: string[],
+  kcalObjetivo: number,
+  conFoto: string[] = [],
+): MenuDia {
   const elegidos = INGREDIENTES_RAPIDOS.filter((i) => ingredientes.includes(i.etiqueta));
   const items: ItemMenu[] = COMIDAS.map((comida) => {
     const candidatas = RECETAS.filter((r) => r.comida === comida).map((r) => {
@@ -86,7 +91,8 @@ export function generarMenu(sintomas: Sintoma[], ingredientes: string[], kcalObj
       const puntaje =
         r.sintomas.filter((s) => sintomas.includes(s)).length * 2 +
         coincidencias.length * 3 +
-        (r.min <= 15 ? 0.5 : 0);
+        (r.min <= 15 ? 0.5 : 0) +
+        (conFoto.includes(r.id) ? 1 : 0); // a igual relevancia, gana la receta que ya tiene foto
       return { r, coincidencias, puntaje };
     });
     candidatas.sort((a, b) => b.puntaje - a.puntaje || a.r.id.localeCompare(b.r.id));

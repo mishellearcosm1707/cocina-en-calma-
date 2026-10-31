@@ -30,7 +30,13 @@ export default function Landing() {
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
         socialProof={<span>Pruébalo gratis · $14.99 una sola vez si te quedas · 15 días de garantía</span>}
-        visual={<img src="/mocks/real-menu.jpg" alt="Tu primer menú de hoy con 4 comidas y la barra 100% cubierto" width={250} height={518} className="mx-auto w-[250px] rounded-[30px] shadow-[var(--shadow-2)]" />}
+        visual={
+          <div className="bg-[var(--surface)] px-4 pt-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/mocks/real-menu-hero.jpg" alt="Tu primer menú de hoy con 4 recetas con foto" width={320} height={420} className="mx-auto w-[320px] max-w-full rounded-[var(--radius-card)] shadow-[var(--shadow-2)]" />
+            <p className="py-3 text-center text-xs text-[var(--text-secondary)]">Imágenes ilustrativas de los platos</p>
+          </div>
+        }
       />
 
       <Problema
@@ -71,10 +77,10 @@ export default function Landing() {
       <AppPorDentro
         tituloMarked="Tu semana, [acento]ya resuelta[/acento]"
         frames={[
+          { label: 'Tu primer menú de hoy', nombrePantalla: 'Menú de hoy', src: '/mocks/real-menu.jpg', alt: 'Tu menú de hoy con 4 recetas y cuánto cubre de tu día' },
           { label: 'Dinos cómo te sientes', nombrePantalla: 'Síntomas', src: '/mocks/real-sintomas.jpg', alt: 'Pantalla donde marcas cómo te sientes hoy' },
           { label: 'Marca lo que tienes en casa', nombrePantalla: 'Ingredientes', src: '/mocks/real-ingredientes.jpg', alt: 'Pantalla donde marcas 3 ingredientes de tu cocina' },
           { label: 'Sabe lo que necesita tu cuerpo', nombrePantalla: 'Tu cuerpo', src: '/mocks/real-cuerpo.jpg', alt: 'Pantalla con el reparto de tu día entre las 4 comidas' },
-          { label: 'Tu primer menú de hoy', nombrePantalla: 'Menú de hoy', src: '/mocks/real-menu.jpg', alt: 'Tu menú de hoy con 4 recetas y cuánto cubre de tu día' },
         ]}
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}

@@ -6,7 +6,8 @@
 // lo demás de Oferta: hairline degradada en la card, checkmarks custom, precio con unidad
 // y ancla al lado (nunca desnudo), CTA vivo y reveal una sola vez.
 
-import { motion } from 'motion/react';
+import { useEffect, useRef } from 'react';
+import { animate, motion, useInView, useReducedMotion } from 'motion/react';
 import { CheckCustom, CtaButton, Hairline, Kicker, SectionShell, useReveal, VIEWPORT_ONCE } from './ui';
 import { MarkedCopy, warnCopy, warnRango } from './MarkedCopy';
 
@@ -34,6 +35,28 @@ export interface OfertaUnicaProps {
   id?: string;
 }
 
+/** El precio cuenta de $0.00 a su valor al entrar en pantalla (conteo animado del número héroe). */
+function PrecioConteo({ precio }: { precio: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const visto = useInView(ref, { once: true, margin: '-10%' });
+  const reducir = useReducedMotion();
+  useEffect(() => {
+    const el = ref.current;
+    const valor = parseFloat(precio.replace(/[^0-9.]/g, ''));
+    if (!el || !visto || reducir || Number.isNaN(valor)) return;
+    const simbolo = precio.replace(/[0-9.,]/g, '');
+    const ctl = animate(0, valor, {
+      duration: 0.9,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => {
+        el.textContent = simbolo + v.toFixed(2);
+      },
+    });
+    return () => ctl.stop();
+  }, [visto, reducir, precio]);
+  return <span ref={ref}>{precio}</span>;
+}
+
 export function OfertaUnica({ kicker = 'LA OFERTA', tituloMarked, plan, id = 'oferta' }: OfertaUnicaProps) {
   warnCopy('Oferta → título', tituloMarked, 8);
   warnRango('Oferta → features', plan.features.length, 4, 6);
@@ -57,7 +80,7 @@ export function OfertaUnica({ kicker = 'LA OFERTA', tituloMarked, plan, id = 'of
               <div className="mt-4">
                 <p className="flex items-baseline gap-2">
                   <span className="text-[36px] font-bold leading-none tabular-nums text-[var(--text-primary)] [font-family:var(--font-display)]">
-                    {plan.precio}
+                    <PrecioConteo precio={plan.precio} />
                   </span>
                   <span className="text-[15px] font-semibold text-[var(--accent)]">{plan.sufijo}</span>
                 </p>

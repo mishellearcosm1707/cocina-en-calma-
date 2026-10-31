@@ -8,7 +8,7 @@
 
 import type { ReactNode } from 'react';
 import Link from 'next/link';
-import { motion } from 'motion/react';
+import { MotionConfig, motion } from 'motion/react';
 import { Camera } from 'lucide-react';
 import { CtaButton } from './ui';
 import { MarkedCopy, truncarMarcado, warnCopy } from './MarkedCopy';
@@ -55,6 +55,7 @@ export function Hero({
   const subtitulo = truncarMarcado(subtitleMarked, 14);
 
   return (
+    <MotionConfig reducedMotion="user">
     <section id={id} className="relative overflow-hidden">
       {/* Fondo con profundidad: mesh/radial sutil del acento — nunca fill plano */}
       <div
@@ -82,32 +83,27 @@ export function Hero({
         </header>
 
         {/* Carga inmediata: fade simple 300ms — el LCP manda (55 T4) */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          className="mx-auto flex max-w-[820px] flex-col items-center pt-10 text-center md:pt-16"
-        >
+        <div className="mx-auto flex max-w-[820px] flex-col items-center pt-10 text-center md:pt-16">
           {/* H1: bold completo por defecto; el acento lo pone el [acento] del copy */}
-          <h1 className="text-balance text-[40px] font-bold leading-[1.08] tracking-[-0.01em] text-[var(--text-primary)] [font-family:var(--font-display)] md:text-[60px]">
+          <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0 }} className="text-balance text-[40px] font-bold leading-[1.08] tracking-[-0.01em] text-[var(--text-primary)] [font-family:var(--font-display)] md:text-[60px]">
             <MarkedCopy text={h1Marked} />
-          </h1>
+          </motion.h1>
 
-          <p className="mt-4 max-w-[560px] text-[17px] leading-relaxed text-[var(--text-secondary)] md:text-[18px]">
+          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.08 }} className="mt-4 max-w-[560px] text-[17px] leading-relaxed text-[var(--text-secondary)] md:text-[18px]">
             <MarkedCopy text={subtitulo} />
-          </p>
+          </motion.p>
 
-          <div className="mt-6 w-full sm:w-auto">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.16 }} className="mt-6 w-full sm:w-auto">
             <CtaButton href={ctaHref}>{ctaLabel}</CtaButton>
-          </div>
+          </motion.div>
 
           {/* Franja de prueba social: 8-12px bajo el CTA — SOLO números reales */}
           {socialProof && (
-            <div className="mt-3 text-[13px] text-[var(--text-secondary)]">{socialProof}</div>
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.22 }} className="mt-3 text-[13px] text-[var(--text-secondary)]">{socialProof}</motion.div>
           )}
 
           {/* Visual del producto: asoma en el primer viewport e invita al scroll */}
-          <div className="mt-10 w-full max-w-[720px]">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.3 }} className="mt-10 w-full max-w-[720px]">
             {visual ? (
               <div className="overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--accent)_18%,transparent)] shadow-[var(--shadow-2)]">
                 {visual}
@@ -122,9 +118,10 @@ export function Hero({
                 </p>
               </div>
             )}
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
+    </MotionConfig>
   );
 }

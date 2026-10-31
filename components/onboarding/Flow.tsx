@@ -19,7 +19,7 @@ import {
   type Objetivo,
   type Sexo,
 } from '@/lib/calculos';
-import { COMIDAS, type Sintoma } from '@/lib/recetas';
+import { COMIDAS, RECETAS, type Sintoma } from '@/lib/recetas';
 import { FotoReceta } from './FotoReceta';
 
 type Paso = 'consent' | 'filtro' | 'datos' | 'actividad' | 'objetivo' | 'cuerpo' | 'sintomas' | 'ingredientes' | 'menu';
@@ -44,6 +44,12 @@ const CONDICIONES = [
   'Tengo diabetes, enfermedad renal o hepática',
   'Tengo alergias alimentarias graves',
   'He tenido un trastorno de la conducta alimentaria',
+];
+
+const GRUPOS_INGREDIENTES: { titulo: string; items: string[] }[] = [
+  { titulo: 'Proteínas', items: ['Pechuga de pollo', 'Huevos', 'Pescado blanco', 'Lenteja', 'Garbanzo', 'Yogur griego'] },
+  { titulo: 'Cereales y tubérculos', items: ['Arroz integral', 'Avena', 'Papa', 'Camote'] },
+  { titulo: 'Verduras y frutas', items: ['Zapallo', 'Zanahoria', 'Espinaca', 'Brócoli', 'Zucchini', 'Pepino', 'Aguacate', 'Banano'] },
 ];
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -240,8 +246,8 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
     return calcularRequerimientos(d);
   }, [datosOk, sexo, edad, peso, talla, actividad, objetivo]);
   const menu = useMemo(
-    () => (req ? generarMenu(sintomas, ingredientes, req.kcal) : null),
-    [req, sintomas, ingredientes],
+    () => (req ? generarMenu(sintomas, ingredientes, req.kcal, fotos) : null),
+    [req, sintomas, ingredientes, fotos],
   );
 
   useEffect(() => {
@@ -581,10 +587,14 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                 <p className="text-base text-[var(--text-secondary)]">
                   Con eso armamos tu primer menú en segundos. Después puedes sumar más.
                 </p>
-                <div className="flex flex-wrap gap-3">
-                  {INGREDIENTES_RAPIDOS.map((i) => {
-                    const activo = ingredientes.includes(i.etiqueta);
-                    return (
+                <div className="flex flex-col gap-5">
+                  {GRUPOS_INGREDIENTES.map((g) => (
+                    <div key={g.titulo}>
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--text-secondary)]">{g.titulo}</p>
+                      <div className="flex flex-wrap gap-3">
+                        {INGREDIENTES_RAPIDOS.filter((i) => g.items.includes(i.etiqueta)).map((i) => {
+                          const activo = ingredientes.includes(i.etiqueta);
+                          return (
                       <motion.button
                         key={i.etiqueta}
                         type="button"
@@ -602,8 +612,11 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                       >
                         {i.etiqueta}
                       </motion.button>
-                    );
-                  })}
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
                 </div>
                 <p className="text-sm tabular-nums text-[var(--text-secondary)]" aria-live="polite">
                   {ingredientes.length >= 3
@@ -633,8 +646,8 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                 </div>
                 <div className="rounded-[var(--radius-card)] bg-[var(--chip-bg)] p-4">
                   <p className="text-sm font-semibold">
-                    Este menú cubre <Conteo hasta={Math.min(100, Math.round(menu.cobertura * 100))} sufijo="%" /> de lo
-                    que necesitas hoy
+                    Tus 4 comidas de hoy · cobertura estimada de tu día:{' '}
+                    <Conteo hasta={Math.min(100, Math.round(menu.cobertura * 100))} sufijo="%" />
                   </p>
                   <div className="mt-2 h-2 overflow-hidden rounded-full bg-[var(--surface-2)]">
                     <motion.div
@@ -675,8 +688,8 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   ))}
                 </ul>
                 <div className="rounded-[var(--radius-card)] border border-[var(--surface-2)] bg-[var(--surface)] p-4 text-sm leading-snug">
-                  <b>Este es tu menú de muestra gratis.</b> Con tu plan completo armas toda la semana, filtras por lo que
-                  tienes, ves tus compras y cocinas todo en una tarde.
+                  <b>Este es tu menú de muestra gratis.</b> Con tu plan completo eliges entre {RECETAS.length} recetas, armas
+                  toda la semana, ves tus compras y cocinas todo en una tarde.
                 </div>
                 <p className="text-sm text-[var(--text-secondary)]">
                   Orientación nutricional general. No reemplaza a tu médico o nutricionista.

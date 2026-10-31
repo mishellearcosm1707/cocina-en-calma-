@@ -1,52 +1,44 @@
-# VEREDICTO revisor-visual — Landing (segunda revisión, tras correcciones)
-Fecha: 2026-10-31 04:00
-Screenshot: docs/revisiones/landing-375.png (tramos _seg0.._seg3.png, 375x6631)
-Usabilidad: 31/40
-Craft: 14/20
-Copy (si vende): 16/20
+# VEREDICTO revisor-visual — Landing (tercera revisión)
+Fecha: 2026-10-31 05:00
+Screenshot: docs/revisiones/landing-375.png (tramos _seg0.._seg3.png, 375x6666)
+Usabilidad: 34/40
+Craft: 15/20
+Copy: 17/20
+Copy (si vende): 17/20
 Fidelidad (si hubo referencia): FIEL
 Veredicto: NECESITA CORRECCIÓN
 
 ## Puntajes
-- Usabilidad: h1:3 h2:4 h3:3 h4:3 h5:3 h6:3 h7:3 h8:3 h9:3 h10:3 = 31 (h2 sube a 4: CTA unificado y sin jerga; h5/h9 casi N/A en landing sin formularios). Umbral 36: faltan 5.
-- Craft: jerarquía 3 · profundidad 3 · identidad 2 · movimiento 3 · encaje 3 = 14/20. Umbral 16: faltan 2.
-- Copy: idea 3 · especificidad 3 · emoción 4 · oferta 3 · acción 3 = 16/20. Pasa justo el umbral y ningún eje ≤2, pero bajó un punto frente a 17 por la promesa de pago inconsistente (acción/oferta).
+- Usabilidad: h1:3 h2:4 h3:3 h4:3 h5:3 h6:4 h7:3 h8:3 h9:3 h10:3 = 34 (umbral 36: faltan 2). h6 sube a 4: capturas reales muestran el producto sin imaginarlo.
+- Craft: jerarquía 3 · profundidad 3 · identidad 3 · movimiento 3 · encaje 3 = 15/20 (umbral 16: falta 1). Identidad sube de 2 a 3 por fotografía de platos y capturas reales; no llega a 4 porque las fotos son generadas con IA y es un tratamiento de foto sin detalle firma propio.
+- Copy: idea 3 · especificidad 3 · emoción 4 · oferta 4 · acción 3 = 17/20. Sin eje <=2. Oferta sube por flujo de pago coherente.
 
 ## Test de fidelidad (6 puntos) — FIEL, 0 de 6 fallos
-1. Modo claro cálido: pasa. 2. Acento oliva #4F6F2B, misma familia: pasa. 3. Display serif suave (Fraunces) + Nunito: pasa. 4. Radios 16-18px: pasa. 5. Densidad aireada: pasa. 6. Sombras difusas y sutiles: pasa.
-Matiz fuera del test: la referencia es fotografía real; aquí hay emojis (hallazgo 2). Anti-clon: crema+verde+serif roza "Capítulo", pero fuentes distintas y paleta fijada por el usuario en FICHA-ARTE; no se penaliza como clon.
+1. Modo claro cálido: pasa. 2. Acento oliva, misma familia: pasa. 3. Display serif (Fraunces) + Nunito: pasa. 4. Radios 16-18px: pasa. 5. Densidad aireada: pasa. 6. Sombras difusas sutiles: pasa. Ahora además la fotografía real acerca el resultado a las referencias. Anti-clon: crema+verde+serif roza "Capítulo", pero fuentes distintas y paleta fijada en FICHA-ARTE; no se penaliza.
 
-## Estado de la 1ª pasada
-- CORREGIDOS: verbo del CTA de oferta (idéntico al hero), garantía nombrada junto al CTA, bloque de contraste redundante de Agitación, logo del footer con acento, Hotmart retirado, FAQ de pago por país, mockups sin botones inferiores.
-- PARCIAL: mecanismo nombrado en el hero (en código sí, en render sale truncado: ver 1); apariencia de botón en elementos no interactivos; especificidad; FAQ (falta "ya dejé gluten y lácteos").
-- ABIERTOS: fotos de comida = emojis (aceptado, en ESTADO.md); alineación de títulos mixta; movimiento sin stagger en hero ni conteo del precio; logo footer 20px/r6 vs header 24px/r8.
+## Estado de la 2ª pasada
+- CORREGIDOS: subtítulo del hero sin truncar; flujo de pago coherente en hero, oferta, PS y cierre; título de Garantía en mayúscula; emojis reemplazados por fotos y capturas reales; carrusel con pantallas reales.
+- ABIERTOS: chip "el Menú Calma" y cuadros 01-03 con aspecto de botón; "Una sola consulta con nutricionista cuesta más" sin cifra; "60 recetas" (solo 8 con foto, no verificable); alineación de títulos mixta (izq. Problema/Solución/FAQ, centro App/Oferta/Garantía); hero sin stagger y precio sin conteo (Hero.tsx sin ninguna animación de entrada); FAQ sin "ya dejé gluten y lácteos"; candado en "15 días para decidir".
 
 ## Hallazgos por severidad
-
 ### ALTO
-1. [ABIERTO — NUEVO en la 1ª pasada, sin corregir] Subtítulo del hero truncado con "…": render muestra "El Menú Calma arma tu día según tu síntoma y lo que tienes en…". Causa: app/page.tsx:29 tiene 15 palabras y Hero.tsx:54 aplica truncarMarcado(…, 14). Fix: reescribir a ≤14 palabras (ej. "El Menú Calma arma tu día con tu síntoma y lo que hay en casa") y que el truncado falle en build en vez de cortar en silencio.
-2. [ABIERTO, aceptado] Identidad ownable débil: emojis sobre degradados en las 4 tarjetas del hero y chips de síntoma del mock con emojis de sistema mezclados. Es el techo del eje identidad (2/4). Fix: fotografía cenital real o set propio de ilustraciones.
-3. [PARCIAL] Apariencia de botón sin acción: chip "el Menú Calma" con borde/hairline (Solucion.tsx:74-78), cuadros 01-03 con relleno y borde de botón, pills oliva/blancas del mock. Fix: chip como etiqueta plana, numerales sin caja.
-4. [PARCIAL] Especificidad: "Una sola consulta con nutricionista cuesta más" sin cifra; "60 recetas" sin inventario verificable. Fix: cifra con fuente en FICHA-MERCADO o quitar el claim; confirmar el 60.
-
+1. [NUEVO] Sección "Así se ve por dentro": la primera captura va cortada con el marco del teléfono vacío (zona entre "Digestión ligera" y "Siguiente", ~300px de crema) y la siguiente asoma a la derecha. Fix: recortar la captura al contenido o ajustar altura del marco; el carrusel no muestra el menú con fotos, que es lo más vendedor: ponerlo como primera slide.
+2. [ABIERTO] Elementos con apariencia de botón sin acción (chip del mecanismo, 01-03). Fix: etiqueta plana y numerales sin caja.
+3. [ABIERTO] Especificidad: claim de nutricionista sin cifra con fuente; "60 recetas" sin inventario. Fix: cifra de FICHA-MERCADO o quitar; decir "60" solo si existen.
 ### MEDIO
-5. [NUEVO] Lógica de pago contradictoria. Hero y cierre dicen "Pago único de $14.99 · Garantía de 15 días"; la oferta dice "Pagas solo si te quedas con tu menú"; la Garantía promete "devolvemos todo tu pago". Si pagas solo al quedarte, ¿qué se reembolsa? Fix: una frase única repetida en hero, oferta, garantía, FAQ y PS ("Pruebas gratis hoy; si lo conservas pagas $14.99 una vez y tienes 15 días para pedir reembolso").
-6. [NUEVO] Mock del hero cortado a media tarjeta (fila 3-4, pill "Hinchazón" a medias) con vacío del marco debajo; parece recorte descuidado. Fix: cortar tras una fila completa o fundir a crema.
-7. [ABIERTO] Alineación de títulos: izquierda en Problema/Solución/FAQ, centro en App/Oferta/Garantía. Fix: una convención única.
-8. [NUEVO] H2 de Garantía empieza en minúscula "la Garantía Calma de 15 días" (page.tsx:105). Fix: capitalizar.
-
+4. [ABIERTO] Movimiento: hero sin stagger, precio sin conteo; hoy es lo que impide el 16/20 de craft. Fix: stagger 60ms en titular, subtítulo, CTA y captura; contar $14.99 al entrar en vista.
+5. [NUEVO/ABIERTO] Captura del hero cortada a media fila (Merienda/Cena) con corte brusco. Fix: fundido a crema o cortar tras fila completa.
+6. [ABIERTO] Alineación de títulos mixta. Fix: convención única.
+7. [NUEVO] Honestidad de la prueba: sin testimonios y fotos generadas con IA; mantener la leyenda "imagen ilustrativa" cerca de las fotos para no prometer resultado fotográfico.
 ### BAJO
-9. [ABIERTO] Movimiento: hero sin stagger, precio sin conteo, mock estático (reveal por sección, whileTap, acordeón y reduced-motion sí cumplen).
-10. [CASI CERRADO] Logo footer 20px/r6 vs header 24px/r8.
-11. [PARCIAL] FAQ sin objeción "ya dejé gluten y lácteos".
-12. [NUEVO] Candado en "15 días para decidir" sugiere seguridad de pago; usar reloj/calendario.
+8. FAQ sin objeción gluten/lácteos; candado donde va reloj; logo footer vs header.
 
 ## Gate de carga cognitiva
-Fallan 2 de 8 (elementos que parecen interactivos y no lo son; Big Idea en el límite de 3-4 líneas). Sin sobrecarga crítica.
+Falla 1-2 de 8 (elementos con aspecto interactivo). Sin sobrecarga crítica.
 
 ## CTA héroe vivo
-Pasa los 4 (contraste ~5.5:1, whileTap/hover, nunca disabled, 52px ancho completo; sticky 48px). Un solo tipo de acción repetido.
+Pasa los 4 (contraste ~5.5:1, tap definido, nunca disabled, 52px ancho completo). Texto de apoyo de pago consistente.
 
 ## Para llegar a LISTA
-- Usabilidad +5: arreglar 1, 3, 5, 6, 8 (criterios 2, 4, 8, 10 pueden pasar a 4).
-- Craft +2: sin fotografía o ilustración propia el techo ronda 15/20; el cierre real es el hallazgo 2, más stagger en hero y conteo del precio (9) y fix del recorte (6) para sumar en movimiento y encaje.
+- Craft +1: stagger del hero + conteo del precio (4) y arreglar los recortes (1 y 5).
+- Usabilidad +2: resolver 1 y 2 (criterios 4 y 8 a 4) y 3 (criterio 1/10).

@@ -111,7 +111,7 @@ export function AppPorDentro({
                       alt={f.alt ?? f.label}
                       width={250}
                       height={542}
-                      loading="lazy"
+                      loading="eager"
                       className="h-full w-full object-cover"
                     />
                   ) : (

@@ -71,11 +71,9 @@ export function Solucion({
 
         {/* El chip del mecanismo bautizado — hairline + <Accent> (55 §4) */}
         <motion.div variants={item} className="mt-4">
-          <Hairline surface="bg" className="w-fit">
-            <span className="block px-4 py-2 text-[15px] font-semibold">
-              <Accent>{mecanismo}</Accent>
-            </span>
-          </Hairline>
+          <p className="w-fit border-b-2 border-[var(--accent)] pb-1 text-[15px] font-semibold uppercase tracking-wide">
+            <Accent>{mecanismo}</Accent>
+          </p>
         </motion.div>
 
         <motion.p variants={item} className="mt-5 max-w-[620px] text-[17px] leading-relaxed text-[var(--text-secondary)] md:text-[18px]">
@@ -88,7 +86,7 @@ export function Solucion({
             <motion.li key={i} variants={item} className="flex items-start gap-4 md:flex-col">
               <span
                 aria-hidden="true"
-                className="flex size-11 shrink-0 items-center justify-center rounded-[var(--radius-button)] border border-[color-mix(in_oklab,var(--accent)_22%,transparent)] bg-[var(--chip-bg)] text-[17px] font-bold tabular-nums text-[var(--accent)]"
+                className="flex size-11 shrink-0 items-center justify-center text-[28px] font-bold tabular-nums text-[var(--accent)] [font-family:var(--font-display)]"
               >
                 {String(i + 1).padStart(2, '0')}
               </span>
