@@ -41,7 +41,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Modelo: freemium con compra única; se cobra el plan semanal completo, el filtro de despensa, las compras consolidadas y la guía meal prep
 - Gratis: ingresar síntoma + ver un menú diario de muestra
 - Trial: NINGUNO — el menú de muestra gratis hace de prueba · Garantía: 15 días, sin fijar fecha de inicio en el copy (FICHA-MERCADO §4)
-- Pricing: $7.99/mes · $44.99/año ($3.75/mes) — desvío anual ≈ -24% vs mediana (FICHA-MERCADO §1); ajustable por el usuario
+- Pricing (decisión del usuario 2026-10-31): PAGO ÚNICO $14.99 USD, sin suscripción, hasta probar cómo va. Plan B: $7.99/mes y $44.99/año del estudio. Pendiente definir qué incluye exactamente (acceso completo sin mensualidades; NO prometer "de por vida" hasta validar costos). Economía: LTV = $14.99 → priorizar tráfico orgánico; el costo por venta pagada debe quedar muy por debajo (comisión de Hotmart: verificar).
 - Venta: Hotmart (default del SO)
 
 ## Decisiones de producto del usuario (2026-10-31, nutricionista)
