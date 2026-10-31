@@ -77,3 +77,4 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Idea entrÃ³ con RESUMEN FINAL validado: no revalidar ni proponer alternativas.
 - PDF fuente: C:\Users\MISHELLE\Downloads\estudio de mercado, cliente ideal, razones .pdf
 
+

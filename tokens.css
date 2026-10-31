@@ -1,0 +1,24 @@
+/* Tokens de FICHA-ARTE.md (referencia del usuario). Única fuente de valores de color. */
+:root{
+  --bg:#F4F0E4;
+  --page:#E9E4D6;
+  --surface:#FDFBF6;
+  --white:#FFFFFF;
+  --sunken:#EAE5D4;
+  --ink:#23291F;
+  --ink2:#6B6F62;
+  --olive:#4F6F2B;
+  --olive-soft:#E2EAD3;
+  --olive-wash:#E4EBD6;
+  --terra:#C0583F;
+  --peach:#F8E1D6;
+  --peach-ink:#8A3B25;
+  --sky:#DCEBEF;
+  --sky-ink:#2D5560;
+  --info:#E3EDEA;
+  --mustard:#D9A03F;
+  --line:#E6E0CF;
+  --track:#D9D4C3;
+  --shadow:rgba(35,41,31,.07);
+  --r:18px;
+}
