@@ -1,80 +1,82 @@
-﻿# ESTADO â€” Cocina en Calma
-Ãšltima actualizaciÃ³n: 2026-10-30 | SesiÃ³n actual: 1
+﻿# ESTADO — Cocina en Calma
+Última actualización: 2026-10-30 | Sesión actual: 1
 
-â¸ï¸ CHECKPOINT â€” Ãšltima acciÃ³n completada: SO v6.10.0 instalado, git iniciado, idea validada (PDF) guardada aquÃ­ / Siguiente acciÃ³n exacta: pregunta de REFERENCIA VISUAL (PASO 0 del 54) â†’ luego FICHA-ARTE, FICHA-AVATAR (57), FICHA-MERCADO, FICHA-MODELO, ConstituciÃ³n del Producto (01), y Landing.
+⏸️ CHECKPOINT — Última acción completada: FICHA-ARTE (borrador), réplica fiel y tour de la app creados desde la referencia del usuario / Siguiente acción exacta: usuario aprueba el diseño → cerrar FICHA-ARTE → FICHA-AVATAR (57) y FICHA-MERCADO → completar FICHA-MODELO → Constitución del Producto (01) → Landing.
 
-## QuÃ© es esta app (3 lÃ­neas mÃ¡ximo)
-App que dice quÃ© comer cada dÃ­a segÃºn sÃ­ntomas digestivos (hinchazÃ³n, pesadez, fatiga) e ingredientes que ya hay en casa, y organiza la semana en una sola tarde de meal prep.
-Para mujeres 28-45 de LATAM / hispanas en EE.UU., profesionales o madres, NSE medio a medio-alto. SuscripciÃ³n freemium con trial.
+## Qué es esta app (3 líneas máximo)
+App que dice qué comer cada día según síntomas digestivos (hinchazón, pesadez, fatiga) e ingredientes que ya hay en casa, y organiza la semana en una sola tarde de meal prep.
+Para mujeres 28-45 de LATAM / hispanas en EE.UU., profesionales o madres, NSE medio a medio-alto. Suscripción freemium con trial.
 
 ## Promesa central
-"Esta app ayuda a mujeres profesionales y ocupadas a desinflamar su abdomen y recuperar su ropa favorita sin contar calorÃ­as, pesar gramos ni hacer dietas restrictivas, mediante menÃºs antiinflamatorios segÃºn su sÃ­ntoma y su despensa + meal prep semanal guiado."
-Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar un solo gramo ni contar una sola calorÃ­a."
+"Esta app ayuda a mujeres profesionales y ocupadas a desinflamar su abdomen y recuperar su ropa favorita sin contar calorías, pesar gramos ni hacer dietas restrictivas, mediante menús antiinflamatorios según su síntoma y su despensa + meal prep semanal guiado."
+Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar un solo gramo ni contar una sola caloría."
 
-## Reporte de validaciÃ³n (fuente: PDF del usuario "estudio de mercado, cliente ideal, razones", NO se revalida)
-- Veredicto del PDF: 88/100 â€” Oportunidad Muy Fuerte
+## Reporte de validación (fuente: PDF del usuario "estudio de mercado, cliente ideal, razones", NO se revalida)
+- Veredicto del PDF: 88/100 — Oportunidad Muy Fuerte
 - Nombre: Cocina en Calma (alt.: DesinflamaApp, MealPrep Antiinflamatorio)
-- Referencias: Fitia ($64-85K USD/mes Android LATAM, 1.43M MAU), Eat This Much (~$1M/aÃ±o, 4.7â˜…, 22K valoraciones), Mealime (cierre oct-2026 segÃºn PDF, 4.5M usuarios histÃ³ricos), Plan to Eat ($59/aÃ±o)
-- Oportunidad: Fitia = obsesiÃ³n por gramos; Eat This Much = repetitivo y listas caras; nadie combina sÃ­ntoma digestivo + despensa real + meal prep guiado
-- Precio de referencia del mercado: $24.99-$60 USD/aÃ±o
-- Keywords: dieta antiinflamatoria recetas Â· meal prep espaÃ±ol Â· que cocinar con lo que tengo Â· menu antiinflamatorio semanal
-- âš ï¸ Cifras del PDF sin enlace/fecha propia â†’ FICHA-MERCADO.md debe citar fuente y fecha antes de fijar precio/garantÃ­a (cierre de Mealime y cifras de Fitia: verificar).
+- Referencias: Fitia ($64-85K USD/mes Android LATAM, 1.43M MAU), Eat This Much (~$1M/año, 4.7★, 22K valoraciones), Mealime (cierre oct-2026 según PDF, 4.5M usuarios históricos), Plan to Eat ($59/año)
+- Oportunidad: Fitia = obsesión por gramos; Eat This Much = repetitivo y listas caras; nadie combina síntoma digestivo + despensa real + meal prep guiado
+- Precio de referencia del mercado: $24.99-$60 USD/año
+- Keywords: dieta antiinflamatoria recetas · meal prep español · que cocinar con lo que tengo · menu antiinflamatorio semanal
+- ⚠️ Cifras del PDF sin enlace/fecha propia → FICHA-MERCADO.md debe citar fuente y fecha antes de fijar precio/garantía (cierre de Mealime y cifras de Fitia: verificar).
 
-## DirecciÃ³n de Arte (SesiÃ³n 2 â€” NO cambiar sin justificaciÃ³n)
-- FICHA-ARTE.md: NO existe aÃºn
-- Â¿Referencia visual del usuario?: pendiente de preguntar
-- Resumen / personalidad / anti-repeticiÃ³n: pendiente
+## Dirección de Arte (Sesión 2 — NO cambiar sin justificación)
+- FICHA-ARTE.md: BORRADOR creado 2026-10-30 (aprobación del usuario pendiente)
+- ¿Referencia visual del usuario?: SÍ, 6 capturas en docs/revisiones/referencia-N.webp → CONTRATO (réplica fiel)
+- Resumen: fondo #F4F0E4 · acento #4F6F2B · Display Fraunces · Body Nunito · radio 18px · cálida/serena/cuidadora. Tokens en tokens.css
+- Contenido: el estilo manda la referencia; kcal/gramos salen del primer plano (la promesa es sin contar)
+- REGISTRO ANTI-REPETICIÓN: oliva+crema, Fraunces+Nunito → vetados para el próximo proyecto
 
-## Avatar y venta (fuente PDF; FICHA-AVATAR.md aÃºn por crear en formato SO)
-- FICHA-AVATAR.md: NO existe aÃºn (obligatoria antes de cualquier copy)
-- Avatar: Laura, 34, corporativa urbana; abdomen plano al despertar, "panza de embarazada" por la noche; fatiga de decisiÃ³n "Â¿quÃ© cocino hoy?"
-- Dolor #1: "Tengo panza de embarazada y ni siquiera estoy embarazada." Â· Deseo #1: despertar y acostarse con la panza plana y relajada
-- Dolores 2-5: no soporta pantallas/ropa ajustada Â· agua o manzana la infla Â· fatiga de cocinar Â· harta de pesar/contar calorÃ­as
-- Razones de compra (Jim Edwards): #1 escapar del dolor fÃ­sico/mental Â· #2 evitar esfuerzo Â· #3 ahorrar tiempo (tambiÃ©n ahorrar dinero, comodidad, salud, elogios, ser aceptada)
-- Objeciones: Â¿tengo que pesar? Â· Â¿recetas raras/caras? Â· ya dejÃ© gluten/lÃ¡cteos y seguÃ­ inflamada Â· no tengo tiempo para meal prep Â· apps que borro a los dÃ­as
-- Consciencia: el PDF dice DOS cosas (resumen: "consciente de la soluciÃ³n"; avatar: Problem-Aware). A resolver en 57.
-- Verbatims para copy: ver PDF (secciÃ³n "Lenguaje Literal del Cliente")
-- Propuesta ganadora (versiÃ³n A + B): ver Promesa central
+## Avatar y venta (fuente PDF; FICHA-AVATAR.md aún por crear en formato SO)
+- FICHA-AVATAR.md: NO existe aún (obligatoria antes de cualquier copy)
+- Avatar: Laura, 34, corporativa urbana; abdomen plano al despertar, "panza de embarazada" por la noche; fatiga de decisión "¿qué cocino hoy?"
+- Dolor #1: "Tengo panza de embarazada y ni siquiera estoy embarazada." · Deseo #1: despertar y acostarse con la panza plana y relajada
+- Dolores 2-5: no soporta pantalones/ropa ajustada · agua o manzana la infla · fatiga de cocinar · harta de pesar/contar calorías
+- Razones de compra (Jim Edwards): #1 escapar del dolor físico/mental · #2 evitar esfuerzo · #3 ahorrar tiempo (también ahorrar dinero, comodidad, salud, elogios, ser aceptada)
+- Objeciones: ¿tengo que pesar? · ¿recetas raras/caras? · ya dejé gluten/lácteos y seguí inflamada · no tengo tiempo para meal prep · apps que borro a los días
+- Consciencia: el PDF dice DOS cosas (resumen: "consciente de la solución"; avatar: Problem-Aware). A resolver en 57.
+- Verbatims para copy: ver PDF (sección "Lenguaje Literal del Cliente")
 
-## Estrategia de monetizaciÃ³n (propuesta del PDF; el modelo A-F de 02C lo decide el agente antes del paywall)
-- Modelo propuesto: Freemium; se cobra el plan semanal completo, el filtro de despensa, las compras consolidadas y la guÃ­a meal prep
-- Gratis: ingresar sÃ­ntoma + ver un menÃº diario de muestra
-- Trial: 7 dÃ­as (PDF pide tarjeta desde onboarding en anual) â†’ validar en 02C/FICHA-MERCADO (plazos que permite Hotmart)
-- Pricing propuesto: $7.99/mes Â· $44.99/aÃ±o ($3.75/mes) â€” ajustable por el usuario; validar con gate del 40
+## Estrategia de monetización (propuesta del PDF; el modelo A-F de 02C lo decide el agente antes del paywall)
+- Modelo propuesto: Freemium; se cobra el plan semanal completo, el filtro de despensa, las compras consolidadas y la guía meal prep
+- Gratis: ingresar síntoma + ver un menú diario de muestra
+- Trial: 7 días (PDF pide tarjeta desde onboarding en anual) → validar en 02C/FICHA-MERCADO (plazos que permite Hotmart)
+- Pricing propuesto: $7.99/mes · $44.99/año ($3.75/mes) — ajustable por el usuario; validar con gate del 40
 - Venta: Hotmart (default del SO)
 
-## GamificaciÃ³n y retenciÃ³n (se documenta en SesiÃ³n 4)
-- Bucle semanal del PDF: push domingo â†’ revisar menÃº â†’ lista de compras â†’ meal prep de ~90 min
-- Primera victoria <5 min: sÃ­ntoma + 3 ingredientes â†’ menÃº antiinflamatorio del dÃ­a
-- MitigaciÃ³n churn: rotaciÃ³n de especias/mÃ©todos de cocciÃ³n; mÃ³dulo "MenÃºs Express de 10 minutos"
-- Loop completo gatilloâ†’acciÃ³nâ†’recompensaâ†’inversiÃ³n + D1-D7: pendiente
+## Gamificación y retención (se documenta en Sesión 4)
+- Bucle semanal del PDF: push domingo → revisar menú → compras → meal prep de ~90 min
+- Primera victoria <5 min: síntoma + 3 ingredientes → menú antiinflamatorio del día
+- Mitigación churn: rotación de especias/métodos de cocción; módulo "Menús Express de 10 minutos"
+- Loop completo gatillo→acción→recompensa→inversión + D1-D7: pendiente
 
-## Secuencia maestra de construcciÃ³n (NO saltar)
+## Secuencia maestra de construcción (NO saltar)
 - Estado: pre-Landing (fichas pendientes)
-- Ruta: `/` â†’ `/onboarding` â†’ `/paywall` â†’ `/login` â†’ `/app`
+- Ruta: `/` → `/onboarding` → `/paywall` → `/login` → `/app`
 - Landing / Onboarding / Paywall / Login / App interna / Servicios externos: pendiente
 
 ## Puertas de etapa
 - Todas: no iniciadas. Servicios externos: bloqueados.
 
-## Decisiones tÃ©cnicas (NO re-discutir sin pedirlo el usuario)
+## Decisiones técnicas (NO re-discutir sin pedirlo el usuario)
 - Framework: pendiente (regla de 51/04)
-- MVP funciones nÃºcleo (PDF, en orden): 1) onboarding de sÃ­ntomas 2) selector tÃ¡ctil de ingredientes por categorÃ­as 3) menÃº diario de 4 comidas 4) guÃ­a paso a paso de meal prep con indicador de congelaciÃ³n 5) lista de compras automÃ¡tica por faltantes
-- NO construir: red social/foro, pedidos a supermercados, escÃ¡ner de cÃ³digos, chat con nutricionista en vivo, seguimiento de agua
+- MVP funciones núcleo (PDF, en orden): 1) onboarding de síntomas 2) selector táctil de ingredientes por categorías 3) menú diario de 4 comidas 4) guía paso a paso de meal prep con indicador de congelación 5) compras automáticas por faltantes
+- NO construir: red social/foro, pedidos a supermercados, escáner de códigos, chat con nutricionista en vivo, seguimiento de agua
 
-## Problemas conocidos âš ï¸
-- FICHA-MODELO: creada en BORRADOR (modelo: Fitia, eje: Ã¡ngulo sÃ­ntoma). Secciones 2-6 con NO ENCONTRADO: completar con investigaciÃ³n antes de la landing.
-- veredicto paywall: no aplica todavÃ­a â€” el paywall NO estÃ¡ construido (etapa no iniciada); el veredicto del revisor-visual se genera al construirlo.
-- Riesgo legal salud: deslinde obligatorio (orientaciÃ³n general, no sustituye mÃ©dico). No prometer curaciÃ³n ni "panza plana" garantizada.
+## Problemas conocidos ⚠️
+- FICHA-MODELO: creada en BORRADOR (modelo: Fitia, eje: ángulo síntoma). Secciones 2-6 con NO ENCONTRADO: completar con investigación antes de la landing.
+- veredicto paywall: no aplica todavía — el paywall NO está construido (etapa no iniciada); el veredicto del revisor-visual se genera al construirlo.
+- direcciones-abc (kit abc-v2): replica-fiel.html y vista-previa-app.html se escribieron a mano (HTML+CSS propio con tokens.css), NO desde plantillas-codigo/direcciones-abc/plantilla.html, así que no llevan data-kit="abc-v2". Pospuesto a propósito: son previsualizaciones de identidad, no la app. Se rehacen desde el kit si el usuario lo pide o antes de construir la landing. Fuente de verdad de estilo: FICHA-ARTE.md + tokens.css.
+- vista-previa: tour aprobado por el usuario = pendiente. Fotos de comida son placeholders (gradiente+emoji) hasta tener fotografía real o generada. Test de fidelidad contra la captura: pendiente.
+- Riesgo legal salud: deslinde obligatorio (orientación general, no sustituye médico). No prometer curación ni "panza plana" garantizada.
 - Claim "personalizado por nutricionistas / respaldo profesional": NO usar hasta tener un nutricionista real que lo respalde (gate 61).
 - Testimonios: no inventar; usar demo real + beta honesta.
 
 ## Pendientes del usuario
-- [ ] Responder la pregunta de referencia visual
-- [ ] (MÃ¡s adelante) cuentas: Hotmart, Supabase, Vercel, Resend, dominio
+- [ ] Opinar sobre réplica fiel y tour (me encanta / ajustar / repensar)
+- [ ] (Más adelante) cuentas: Hotmart, Supabase, Vercel, Resend, dominio
 
-## Notas para la prÃ³xima sesiÃ³n
-- Idea entrÃ³ con RESUMEN FINAL validado: no revalidar ni proponer alternativas.
+## Notas para la próxima sesión
+- Idea entró con RESUMEN FINAL validado: no revalidar ni proponer alternativas.
 - PDF fuente: C:\Users\MISHELLE\Downloads\estudio de mercado, cliente ideal, razones .pdf
-
-
+- Escribir archivos con herramienta Write/Edit (UTF-8); evitar Set-Content sin -Encoding en PowerShell 5.1 (corrompe tildes).
