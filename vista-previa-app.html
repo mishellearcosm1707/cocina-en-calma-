@@ -1,68 +1,88 @@
 ﻿<!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vista previa — Cocina en Calma</title>
-<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="estilo-cocina-en-calma.css"></head>
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="estilo-cocina-en-calma.css">
+<style>
+.scroll{overflow-y:auto;scrollbar-width:none}.scroll::-webkit-scrollbar{display:none}
+.fl{display:flex;gap:8px;overflow-x:auto;margin:14px -20px 0;padding:0 20px;scrollbar-width:none}
+.fl .chip{white-space:nowrap;margin:0;flex:none}
+.cnt{font-size:13px;color:var(--ink2);margin-top:10px}
+.day{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
+.day b{font-family:'Fraunces',serif;font-size:15px}.day span{display:block;color:var(--ink2)}
+.cta{position:absolute;bottom:0;left:0;right:0;padding:14px 20px 18px;background:var(--bg);box-shadow:0 -6px 14px var(--bg);display:flex;gap:10px}
+.shop{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:7px 0;border-bottom:1px solid var(--line)}.shop span{color:var(--ink2);text-align:right}
+</style></head>
 <body>
-<p class="cap">Tour de la app · 5 vistas por dentro con tu estilo</p>
-<div class="row">
-
-<div><p class="cap">1 · Onboarding: ¿cómo te sientes?</p><div class="phone"><div class="scroll">
- <div class="brand"><div class="leaf">🌿</div><div><b>Cocina en Calma</b><small>Cocina una vez, come bien toda la semana</small></div></div>
- <div class="prog"><div class="d"><i></i>Tu momento</div><div class="d"><i></i>Cómo te sientes</div><div><i></i>Lo que tienes</div></div>
- <h1>¿Cómo te sientes <em>hoy</em>?</h1><p class="sub">Elige lo que más te molesta. Armamos tu menú con eso, sin contar nada.</p>
- <div style="margin-top:18px"><span class="chip on">Hinchazón</span><span class="chip">Pesadez después de comer</span><span class="chip on">Digestión lenta</span><span class="chip">Cansancio de tarde</span><span class="chip">Gases</span><span class="chip">Reflujo</span></div>
- <div class="info"><b>Sin básculas ni calorías.</b> Usamos tazas, puños y unidades. Orientación general: no reemplaza a tu médico.</div>
- <div style="position:absolute;bottom:0;left:0;right:0;padding:14px 20px 18px;background:var(--bg);box-shadow:0 -6px 14px var(--bg);display:flex;gap:10px"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Siguiente</button></div>
-</div></div></div>
-
-<div><p class="cap">2 · ¿Qué tienes en casa?</p><div class="phone"><div class="scroll">
- <div class="brand"><div class="leaf">🌿</div><div><b>Cocina en Calma</b><small>Cocina una vez, come bien toda la semana</small></div></div>
- <div class="prog"><div class="d"><i></i>Tu momento</div><div class="d"><i></i>Cómo te sientes</div><div class="d"><i></i>Lo que tienes</div></div>
- <h1>¿Qué tienes en <em>casa</em>?</h1><p class="sub">Marca lo que tienes y armamos tus menús con eso.</p>
- <div class="input">Buscar ingrediente…</div>
- <div class="label">Proteínas</div><span class="chip">Atún en agua</span><span class="chip on">Huevos</span><span class="chip">Lenteja cocida</span><span class="chip on">Pechuga de pollo</span><span class="chip">Salmón</span>
- <div class="label">Lácteos</div><span class="chip">Leche de almendras</span><span class="chip on">Yogur griego natural</span>
- <div class="label">Cereales y tubérculos</div><span class="chip on">Arroz integral</span><span class="chip on">Avena</span><span class="chip">Camote</span><span class="chip on">Papa</span>
- <div style="position:absolute;bottom:0;left:0;right:0;padding:14px 20px 18px;background:var(--bg);box-shadow:0 -6px 14px var(--bg);display:flex;gap:10px"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Ver mi menú</button></div>
-</div></div></div>
-
-<div><p class="cap">3 · Hoy</p><div class="phone"><div class="scroll">
- <div style="display:flex;justify-content:space-between;align-items:baseline"><h1 style="font-size:28px">Tu menú de hoy</h1><span style="color:var(--olive);font-weight:700">Otro menú</span></div>
- <div class="grid">
-  <div class="card"><div class="ph" style="background:linear-gradient(135deg,#F6C9A0,#F0A77A)">🥣<span class="tag">DESAYUNO</span></div><div class="b"><h3>Avena nocturna con papaya y chía</h3><div class="meta">⏱ 5 min</div><div style="margin-top:6px"><span class="pill p-s">Hinchazón</span></div></div></div>
-  <div class="card"><div class="ph" style="background:linear-gradient(135deg,#F2D36B,#E5B53F)">🍲<span class="tag">ALMUERZO</span></div><div class="b"><h3>Crema de zapallo y cúrcuma con pollo</h3><div class="meta">⏱ 35 min</div><div style="margin-top:6px"><span class="pill p-s">Pesadez</span></div></div></div>
-  <div class="card"><div class="ph" style="background:linear-gradient(135deg,#D8B58A,#B98B5C)">🧁<span class="tag">MERIENDA</span></div><div class="b"><h3>Muffins de banano y avena</h3><div class="meta">⏱ 30 min</div><div style="margin-top:6px"><span class="pill p-c">Congelable</span></div></div></div>
-  <div class="card"><div class="ph" style="background:linear-gradient(135deg,#BFD99A,#8FB86B)">🥬<span class="tag">CENA</span></div><div class="b"><h3>Crema de zucchini con huevo poché</h3><div class="meta">⏱ 30 min</div><div style="margin-top:6px"><span class="pill p-s">Gases</span></div></div></div>
- </div>
- <div class="sum"><b>4 comidas</b> · pensadas para tu hinchazón de hoy</div>
- <div class="act"><div><b>Te faltan 3 ingredientes</b><span>Chía, Semillas de zapallo, Nueces</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Lo que tengo</span></div>
-</div><div class="tabs"><div class="on"><span>♡</span>Hoy</div><div><span>▦</span>Semana</div><div><span>▤</span>Recetas</div><div><span>🛒</span>Prep<i class="bd">8</i></div></div></div></div>
-
-<div><p class="cap">4 · Receta</p><div class="phone"><div class="scroll" style="padding-top:0">
- <div class="big" style="background:linear-gradient(135deg,#F6C9A0,#F0A77A)">🥞</div>
- <div class="sheet" style="margin-top:-18px;padding-top:18px;position:relative">
-  <div class="label" style="margin-top:0;color:var(--olive)">Desayuno</div>
-  <h1 style="font-size:28px">Tortitas de zapallo y avena</h1>
-  <div class="meta" style="margin-top:10px">⏱ 25 min <span class="pill p-c">Congelable 60 días</span><span class="pill p-s">Gases</span><span class="pill p-s">Hinchazón</span></div>
-  <div class="label">Ingredientes para tu porción</div>
-  <ul class="ing"><li>¾ taza de zapallo <small>(cocido)</small></li><li>⅓ taza de avena</li><li>1 huevo</li><li>1 pizca de canela</li><li>½ taza de yogur griego natural</li></ul>
-  <div class="label">Preparación</div><p>1. Cocina el zapallo y aplástalo.<br>2. Mezcla con la avena, el huevo y la canela.<br>3. Cocina tortitas en sartén antiadherente.</p>
- </div>
-</div></div></div>
-
-<div><p class="cap">5 · Meal prep y compras</p><div class="phone"><div class="scroll">
- <div class="brand"><div class="leaf">🌿</div><div><b>Cocina en Calma</b><small>Cocina una vez, come bien toda la semana</small></div></div>
- <h1>Meal prep y <em>compras</em></h1><p class="sub">Con lo que planificaste armamos tu sesión de cocina paso a paso.</p>
- <div class="label">Sesión de meal prep · aprox. 1 h 39 min</div>
- <div class="card" style="padding:6px 16px">
-  <div class="step"><div class="n">1</div><div><b>Organiza tu espacio</b><span>Saca tablas, cuchillos, ollas y recipientes. Prepara etiquetas.</span></div></div>
-  <div class="step"><div class="n">2</div><div><b>Lava y pica todo de una vez</b><span>Zapallo, zanahoria, zucchini, jengibre y espinaca.</span></div></div>
-  <div class="step"><div class="n">3</div><div><b>Enciende el horno primero</b><span>Mientras picas, hornea los muffins de banano y avena.</span></div></div>
-  <div class="step"><div class="n">4</div><div><b>Cocina las bases</b><span>Arroz integral: sirve para varias comidas.</span></div></div>
- </div>
-</div><div class="tabs"><div><span>♡</span>Hoy</div><div><span>▦</span>Semana</div><div><span>▤</span>Recetas</div><div class="on"><span>🛒</span>Prep<i class="bd">8</i></div></div></div></div>
-
-</div>
+<p class="cap">Tour de la app · 7 vistas por dentro con tu estilo (cada pantalla se desliza)</p>
+<div class="row" id="app"></div>
+<script>
+const ING={
+ 'Proteínas':['Pechuga de pollo*','Muslo de pollo','Pavo molido','Carne magra de res','Huevos*','Atún en agua','Pescado blanco*','Salmón','Camarones','Tofu'],
+ 'Legumbres':['Lenteja cocida','Garbanzo cocido','Frijol negro','Frijol pinto','Arvejas'],
+ 'Lácteos y alternativas':['Yogur griego natural*','Kéfir','Queso fresco','Leche de almendras','Leche de coco'],
+ 'Cereales y tubérculos':['Arroz integral*','Avena*','Quinoa','Papa*','Camote','Yuca','Tortilla de maíz','Pan integral','Fideos integrales','Plátano verde'],
+ 'Verduras':['Zapallo*','Zanahoria*','Zucchini*','Espinaca','Brócoli','Pepino','Apio','Betabel','Tomate','Coliflor','Lechuga','Pimentón','Cebolla','Repollo','Berenjena','Champiñones'],
+ 'Frutas':['Papaya','Piña','Banano*','Manzana','Pera','Kiwi','Arándanos','Fresas','Mango','Limón','Aguacate'],
+ 'Grasas y semillas':['Aceite de oliva*','Chía','Linaza','Semillas de zapallo','Nueces','Almendras','Mantequilla de maní'],
+ 'Especias y hierbas':['Jengibre*','Cúrcuma','Canela*','Comino','Hinojo','Menta','Perejil','Cilantro','Albahaca','Ajo','Orégano']
+};
+const REC=[
+ ['🥣','Avena nocturna con papaya y chía','Desayuno','5 min','Hinchazón','s','linear-gradient(135deg,#F6C9A0,#F0A77A)'],
+ ['🍲','Sopa de lenteja con jengibre','Almuerzo','35 min','Pesadez','s','linear-gradient(135deg,#F2D36B,#E5B53F)'],
+ ['🐟','Pescado al horno con hinojo y limón','Cena','25 min','Gases','s','linear-gradient(135deg,#C9DDE4,#9FC1CC)'],
+ ['🥗','Bowl de quinoa, pepino y menta','Almuerzo','20 min','Express','c','linear-gradient(135deg,#BFD99A,#8FB86B)'],
+ ['🥞','Tortitas de zapallo y avena','Desayuno','25 min','Congelable','c','linear-gradient(135deg,#F3CDA0,#E3A66C)'],
+ ['🍗','Pollo al cilantro con yuca','Almuerzo','40 min','Congelable','c','linear-gradient(135deg,#E8C38E,#CC9A5E)'],
+ ['🥘','Tofu salteado con brócoli','Cena','15 min','Digestión lenta','s','linear-gradient(135deg,#D7E3B4,#A9C27C)'],
+ ['🥤','Kéfir con piña y menta','Merienda','5 min','Hinchazón','s','linear-gradient(135deg,#F6E5A0,#EBCB5F)'],
+ ['🍠','Camote asado con garbanzos','Cena','30 min','Pesadez','s','linear-gradient(135deg,#F0B98D,#DB8F5A)'],
+ ['🍳','Omelette de espinaca y champiñones','Desayuno','10 min','Express','c','linear-gradient(135deg,#C8E0A8,#9BC271)'],
+ ['🥕','Crema de zanahoria y cúrcuma','Cena','30 min','Gases','s','linear-gradient(135deg,#F6BE86,#EE9A4F)'],
+ ['🌮','Tacos de lechuga con pavo','Cena','20 min','Express','c','linear-gradient(135deg,#CFE3B0,#A4C479)']
+];
+const tabs=a=>`<div class="tabs">${['♡|Hoy','▦|Semana','▤|Recetas','🛒|Prep'].map((t,i)=>{const[x,y]=t.split('|');return `<div class="${i===a?'on':''}"><span>${x}</span>${y}${i===3?'<i class="bd">8</i>':''}</div>`}).join('')}</div>`;
+const brand=`<div class="brand"><div class="leaf">🌿</div><div><b>Cocina en Calma</b><small>Cocina una vez, come bien toda la semana</small></div></div>`;
+const prog=n=>`<div class="prog">${['Tu momento','Cómo te sientes','Lo que tienes'].map((t,i)=>`<div class="${i<n?'d':''}"><i></i>${t}</div>`).join('')}</div>`;
+const card=r=>`<div class="card"><div class="ph" style="background:${r[6]}">${r[0]}<span class="tag">${r[2].toUpperCase()}</span></div><div class="b"><h3>${r[1]}</h3><div class="meta">⏱ ${r[3]}</div><div style="margin-top:6px"><span class="pill p-${r[5]}">${r[4]}</span></div></div></div>`;
+const ph=(cap,inner,t)=>`<div><p class="cap">${cap}</p><div class="phone"><div class="scroll">${inner}</div>${t||''}</div></div>`;
+let n=0;const ingHtml=Object.entries(ING).map(([k,v])=>`<div class="label">${k}</div>`+v.map(x=>{const on=x.endsWith('*');if(on)n++;return `<span class="chip ${on?'on':''}">${x.replace('*','')}</span>`}).join('')).join('');
+const total=Object.values(ING).flat().length;
+const S=[];
+S.push(ph('1 · Cómo te sientes',`${brand}${prog(2)}<h1>¿Cómo te sientes <em>hoy</em>?</h1><p class="sub">Elige lo que más te molesta. Armamos tu menú con eso, sin contar nada.</p>
+<div style="margin-top:18px"><span class="chip on">Hinchazón</span><span class="chip">Pesadez después de comer</span><span class="chip on">Digestión lenta</span><span class="chip">Cansancio de tarde</span><span class="chip">Gases</span><span class="chip">Reflujo</span><span class="chip">Estreñimiento</span><span class="chip">Antojos de dulce</span></div>
+<div class="label">¿Cuánto tiempo tienes para cocinar?</div><span class="chip">10 min</span><span class="chip on">20-30 min</span><span class="chip">Domingo de meal prep</span>
+<div class="label">¿Para cuántas personas?</div><span class="chip on">Solo yo</span><span class="chip">2</span><span class="chip">3-4</span>
+<div class="info"><b>Sin básculas ni calorías.</b> Usamos tazas, puños y unidades. Orientación general: no reemplaza a tu médico.</div><div style="height:90px"></div>`,
+`<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Siguiente</button></div>`));
+S.push(ph('2 · ¿Qué tienes en casa?',`${brand}${prog(3)}<h1>¿Qué tienes en <em>casa</em>?</h1><p class="sub">Marca lo que tienes y armamos tus menús con eso. Hay ${total} ingredientes: desliza.</p>
+<div class="input">🔍 Buscar ingrediente…</div><div class="cnt"><b>${n} marcados</b> · con esto ya salen 14 recetas</div>${ingHtml}<div style="height:90px"></div>`,
+`<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Ver mi menú</button></div>`));
+S.push(ph('3 · Hoy',`<div style="display:flex;justify-content:space-between;align-items:baseline"><h1 style="font-size:28px">Tu menú de hoy</h1><span style="color:var(--olive);font-weight:700">Otro menú</span></div>
+<p class="sub" style="font-size:14px">Para tu hinchazón de hoy, con lo que tienes en casa.</p>
+<div class="grid">${[REC[0],REC[1],REC[7],REC[2]].map((r,i)=>card([r[0],r[1],['Desayuno','Almuerzo','Merienda','Cena'][i],r[3],r[4],r[5],r[6]])).join('')}</div>
+<div class="sum"><b>4 comidas</b> · variadas, sin repetir el ingrediente protagonista</div>
+<div class="act"><div><b>Te faltan 3 ingredientes</b><span>Chía, Semillas de zapallo, Hinojo</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Lo que tengo</span></div>
+<div class="act"><div><b>¿Sin tiempo hoy?</b><span>Menú Express de 10 minutos</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Ver</span></div><div style="height:90px"></div>`,tabs(0)));
+S.push(ph('4 · Recetas (catálogo)',`<h1 style="font-size:28px">Recetas</h1><div class="input">🔍 Buscar por receta o ingrediente…</div>
+<div class="fl"><span class="chip on">Todas</span><span class="chip">Hinchazón</span><span class="chip">Gases</span><span class="chip">Pesadez</span><span class="chip">Digestión lenta</span><span class="chip">Congelable</span><span class="chip">Express 10 min</span><span class="chip">Con lo que tengo</span></div>
+<div class="cnt">48 recetas · ordenadas por lo que ya tienes</div><div class="grid">${REC.map(card).join('')}</div><div style="height:90px"></div>`,tabs(2)));
+S.push(ph('5 · Receta',`<div class="big" style="background:linear-gradient(135deg,#F3CDA0,#E3A66C)">🥞</div><div class="sheet" style="margin-top:-18px;padding-top:18px;position:relative">
+<div class="label" style="margin-top:0;color:var(--olive)">Desayuno</div><h1 style="font-size:28px">Tortitas de zapallo y avena</h1>
+<div class="meta" style="margin-top:10px">⏱ 25 min <span class="pill p-c">Congelable 60 días</span><span class="pill p-s">Gases</span><span class="pill p-s">Hinchazón</span></div>
+<div class="info" style="background:var(--olive-wash)"><b>Por qué suma:</b> el zapallo y la avena son suaves para la digestión; la canela aporta sabor sin azúcar.</div>
+<div class="label">Ingredientes para tu porción</div><ul class="ing"><li>¾ taza de zapallo <small>(cocido)</small></li><li>⅓ taza de avena</li><li>1 huevo</li><li>1 pizca de canela</li><li>½ taza de yogur griego natural</li></ul>
+<div class="label">Cámbialo por lo que tengas</div><span class="chip">Camote en vez de zapallo</span><span class="chip">Kéfir en vez de yogur</span>
+<div class="label">Preparación</div><p style="line-height:1.7">1. Cocina el zapallo y aplástalo.<br>2. Mezcla con la avena, el huevo y la canela.<br>3. Cocina tortitas en sartén antiadherente.</p><div style="height:20px"></div></div>`));
+S.push(ph('6 · Semana',`${brand}<h1>Tu <em>semana</em></h1><p class="sub">7 días distintos: cambian las especias y la forma de cocinar.</p><div class="label">Plan de la semana</div><div class="card" style="padding:4px 14px">
+${[['Lun','Avena y papaya · Sopa de lenteja · Kéfir y piña · Pescado al horno'],['Mar','Omelette de espinaca · Bowl de quinoa · Muffins de banano · Crema de zanahoria'],['Mié','Tortitas de zapallo · Pollo al cilantro y yuca · Yogur y fresas · Tacos de lechuga'],['Jue','Avena y papaya · Camote y garbanzos · Kéfir y menta · Tofu con brócoli'],['Vie','Omelette de champiñones · Sopa de lenteja · Muffins · Pescado al horno'],['Sáb','Tortitas de zapallo · Bowl de quinoa · Kéfir y piña · Crema de zucchini'],['Dom','Día de meal prep · 1 h 39 min · 5 recetas para congelar']].map(d=>`<div class="day"><b>${d[0]}</b><div><span>${d[1].split(' · ').join('</span><span>')}</span></div></div>`).join('')}</div><div style="height:90px"></div>`,tabs(1)));
+S.push(ph('7 · Meal prep y compras',`${brand}<h1>Meal prep y <em>compras</em></h1><p class="sub">Con lo que planificaste armamos tu sesión de cocina y tu lista de compras.</p>
+<div class="label">Sesión de meal prep · aprox. 1 h 39 min</div><div class="card" style="padding:6px 16px">
+<div class="step"><div class="n">1</div><div><b>Organiza tu espacio</b><span>Saca tablas, ollas y recipientes. Prepara etiquetas.</span></div></div>
+<div class="step"><div class="n">2</div><div><b>Lava y pica todo de una vez</b><span>Zapallo, zanahoria, zucchini, jengibre y espinaca.</span></div></div>
+<div class="step"><div class="n">3</div><div><b>Enciende el horno primero</b><span>Hornea el camote y los muffins mientras picas.</span></div></div>
+<div class="step"><div class="n">4</div><div><b>Cocina las bases</b><span>Arroz integral, quinoa y lentejas para varias comidas.</span></div></div></div>
+<div class="label">Compras · solo lo que te falta</div><div class="card" style="padding:6px 16px">
+<div class="shop"><b>Verduras</b><span>Hinojo · Betabel · Pepino</span></div><div class="shop"><b>Frutas</b><span>Papaya · Piña · Kiwi</span></div><div class="shop"><b>Semillas</b><span>Chía · Semillas de zapallo</span></div><div class="shop"><b>Proteínas</b><span>Pescado blanco · Tofu</span></div></div><div style="height:90px"></div>`,tabs(3)));
+document.getElementById('app').innerHTML=S.join('');
+</script>
 </body></html>
-
-
