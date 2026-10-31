@@ -30,10 +30,10 @@ export function GaleriaPlatos({ tituloMarked, kicker }: { tituloMarked?: string;
             <motion.li
               key={p.src}
               variants={item}
-              className="rounded-[var(--radius-card)] p-2 shadow-[var(--shadow-1)]"
+              className="min-w-0 rounded-[var(--radius-card)] p-2 shadow-[var(--shadow-1)]"
               style={{ background: p.fondo, transform: `rotate(${p.giro})` }}
             >
-              <img src={p.src} alt={p.nombre} loading="lazy" className="aspect-square w-full rounded-[calc(var(--radius-card)-6px)] object-cover" />
+              <img src={p.src} alt={p.nombre} loading="lazy" className="aspect-square w-full max-w-full rounded-[calc(var(--radius-card)-6px)] object-cover" />
               <p className="px-1 pb-1 pt-2 text-center text-[13px] font-semibold leading-tight text-[var(--text-primary)]">{p.nombre}</p>
             </motion.li>
           ))}
