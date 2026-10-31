@@ -54,7 +54,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - INICIO MÁS CÁLIDO (2026-10-31): el usuario sintió el inicio sombrío/triste → pantalla de bienvenida con gradiente durazno, tiras de fotos de comida en cada paso del onboarding, copy cercano ("¡Hola!", "sin pena, sin juicios"), emojis en síntomas, marco de teléfono claro. Titular de bienvenida suave ("Come rico y siéntete ligera"), sin promesa médica.
 - El usuario arma su semana completa (7 días × 4 comidas). Meal prep y compras se DESBLOQUEAN solo cuando los 7 días están armados.
 
-## Constitución del Producto (borrador 2026-10-31 — pendiente de OK del usuario)
+## Constitución del Producto (APROBADA por el usuario 2026-10-31)
 1. Usuaria: Laura (34), profesional o mamá, llega a la tarde-noche hinchada y agotada, sin saber qué cocinar.
 2. Problema: abdomen que se hincha durante el día + fatiga de decidir qué comer. Evita: pesar, contar calorías, dietas restrictivas, ingredientes raros.
 3. Promesa: "Esta app ayuda a mujeres ocupadas con hinchazón digestiva a sentirse más ligeras comiendo rico, sin pesar ni contar calorías, mediante menús antiinflamatorios armados con su síntoma, lo que tiene en casa y lo que su cuerpo necesita."

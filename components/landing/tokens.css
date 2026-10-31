@@ -1,0 +1,52 @@
+/* ============================================================================
+   KIT DE LANDING — tokens.css tematizado con FICHA-ARTE.md (referencia del usuario,
+   aprobada 2026-10-31). Único archivo de estilo del kit: ningún .tsx lleva hex propio.
+   Nota de contraste: text-secondary/tertiary se oscurecieron un tono respecto a la
+   captura para pasar AA (≥4.5:1) sobre --surface-2; el resto es fiel a la referencia.
+   ============================================================================ */
+
+:root {
+  /* ── SUPERFICIES ── */
+  --bg: #f4f0e4;
+  --surface: #fdfbf6;
+  --surface-2: #eae5d4;
+
+  /* ── TEXTO ── */
+  --text-primary: #23291f;
+  --text-secondary: #5e6355;
+  --text-tertiary: #5a5f50;
+
+  /* ── MARCA ── */
+  --accent: #4f6f2b;
+  --accent-2: #a64b33;
+  --accent-on-dark: #b9d48a; /* acento legible sobre el bloque invertido del CTA final (≥7:1 sobre --text-primary) */
+
+  /* ── FORMA ── */
+  --radius-card: 18px;
+  --radius-button: 16px;
+
+  /* ── TIPOGRAFÍA (next/font en app/layout.tsx define las variables) ── */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-nunito), 'Segoe UI', sans-serif;
+
+  /* ── SOMBRAS con el tinte del neutro de marca ── */
+  --shadow-1: 0 1px 2px rgb(35 41 31 / 0.06);
+  --shadow-2: 0 12px 32px -12px rgb(35 41 31 / 0.16);
+
+  /* ── DERIVADOS ── */
+  --chip-bg: color-mix(in oklab, var(--accent) 10%, transparent);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
