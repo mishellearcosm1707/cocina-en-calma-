@@ -406,6 +406,12 @@ export function Paywall({ fotos }: { fotos: string[] }) {
             >
               Ahora no, volver a mi menú de hoy
             </a>
+            <a
+              href="/login"
+              className="mt-1 flex h-11 items-center justify-center px-4 text-sm font-medium text-[var(--text-secondary)] underline underline-offset-4 [touch-action:manipulation]"
+            >
+              ¿Ya compraste? Entra a tu cuenta
+            </a>
           </motion.div>
         </motion.main>
 
