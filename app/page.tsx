@@ -30,7 +30,7 @@ export default function Landing() {
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
         socialProof={<span>Pruébalo gratis · $14.99 una sola vez si te quedas · 15 días de garantía</span>}
-        visual={<img src="/mocks/primer-menu.png" alt="Tu primer menú de hoy con 4 comidas y la barra 100% cubierto" width={250} height={518} className="mx-auto w-[250px] rounded-[30px] shadow-[var(--shadow-2)]" />}
+        visual={<img src="/mocks/real-menu.jpg" alt="Tu primer menú de hoy con 4 comidas y la barra 100% cubierto" width={250} height={518} className="mx-auto w-[250px] rounded-[30px] shadow-[var(--shadow-2)]" />}
       />
 
       <Problema
@@ -71,10 +71,10 @@ export default function Landing() {
       <AppPorDentro
         tituloMarked="Tu semana, [acento]ya resuelta[/acento]"
         frames={[
-          { label: 'Dinos cómo te sientes', nombrePantalla: 'Síntomas', src: '/mocks/sintomas.png', alt: 'Pantalla donde marcas cómo te sientes hoy' },
-          { label: 'Tu primer menú de hoy', nombrePantalla: 'Menú de hoy', src: '/mocks/primer-menu.png', alt: 'Tu menú de hoy con 4 comidas y la barra de cobertura' },
-          { label: 'Arma tu semana', nombrePantalla: 'Semana', src: '/mocks/semana.png', alt: 'Pantalla para armar los 7 días de tu semana' },
-          { label: 'Meal prep y compras', nombrePantalla: 'Prep', src: '/mocks/prep.png', alt: 'Pasos del meal prep y lista de compras' },
+          { label: 'Dinos cómo te sientes', nombrePantalla: 'Síntomas', src: '/mocks/real-sintomas.jpg', alt: 'Pantalla donde marcas cómo te sientes hoy' },
+          { label: 'Marca lo que tienes en casa', nombrePantalla: 'Ingredientes', src: '/mocks/real-ingredientes.jpg', alt: 'Pantalla donde marcas 3 ingredientes de tu cocina' },
+          { label: 'Sabe lo que necesita tu cuerpo', nombrePantalla: 'Tu cuerpo', src: '/mocks/real-cuerpo.jpg', alt: 'Pantalla con el reparto de tu día entre las 4 comidas' },
+          { label: 'Tu primer menú de hoy', nombrePantalla: 'Menú de hoy', src: '/mocks/real-menu.jpg', alt: 'Tu menú de hoy con 4 recetas y cuánto cubre de tu día' },
         ]}
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}

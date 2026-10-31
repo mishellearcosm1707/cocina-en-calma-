@@ -85,6 +85,8 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - NO construir: red social/foro, pedidos a supermercados, escáner de códigos, chat con nutricionista en vivo, seguimiento de agua
 
 ## Problemas conocidos ⚠️
+- fotos: 8 fotos de la Etapa 1 recibidas el 2026-10-31 (generadas por la usuaria con IA) e instaladas en public/recetas/{d01,a02,m01,c01,d02,a01,m02,c07}.jpg; m01 se recortó para quitar una tarjeta de ingredientes superpuesta. Landing e onboarding usan capturas REALES de la app (public/mocks/real-*.jpg). Quedan 52 recetas sin foto (color + emoji de apoyo). Re-revisión del revisor-visual de landing y onboarding en curso.
+
 - veredicto onboarding: 2ª revisión NECESITA CORRECCIÓN (29/40 · 14/20 · 14/20; 1ª fue 24/13/13), fidelidad FIEL. Corregido después: progreso en sessionStorage (sobrevive a recargar), consentimiento resumido con detalle plegable, placeholders/autoenfoque/Enter, texto neutro de género, celebración suave del menú. BLOQUEO para LISTA: fotos reales de comida (hoy color + emoji; la usuaria las entregará) — al llegar las 8 fotos de la Etapa 1, relanzar revisor-visual. Abiertos: validación de la nutricionista, consentimiento en servidor.
 - veredicto landing: ver docs/revisiones/landing-veredicto.md. Hallazgos abiertos: fotos de comida reales (hoy son emojis sobre degradado en hero y carrusel), cifra real para el ancla de la oferta (consulta de nutricionista), capturas reales de la app al cerrarla, chip del mecanismo parece botón.
 - audit-conversion.sh: 13 críticos mayormente falsos positivos por escanear comentarios/strings del propio kit (voseo "animate", hairlines y gradientes que sí existen en ui.tsx/Hero.tsx); se revisan con el revisor-visual.

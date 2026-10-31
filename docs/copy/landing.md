@@ -32,7 +32,7 @@ Nivel de consciencia del tráfico principal (TikTok/Reels orgánico): **2 — co
 
 ## 5. La app por dentro
 - Título: Tu semana, [acento]ya resuelta[/acento]
-- Frames: Dinos cómo te sientes (Síntomas) · Tu primer menú de hoy (Menú de hoy) · Arma tu semana (Semana) · Meal prep y compras (Prep)
+- Frames (capturas REALES de la app, 2026-10-31): Dinos cómo te sientes (Síntomas) · Marca lo que tienes en casa (Ingredientes) · Sabe lo que necesita tu cuerpo (Tu cuerpo) · Tu primer menú de hoy (Menú de hoy)
 
 ## 6. Oferta  (pago único — FICHA-MERCADO §1)
 - Título: Un solo pago. [acento]Sin mensualidades[/acento]
