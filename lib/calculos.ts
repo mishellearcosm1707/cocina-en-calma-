@@ -1,7 +1,9 @@
 import { COMIDAS, RECETAS, type Comida, type Receta, type Sintoma } from './recetas';
 
-// Fórmula de referencia: Mifflin-St Jeor × factor de actividad. Cálculo APROXIMADO y orientativo.
-// Pendiente de validación de la nutricionista del proyecto (ver ESTADO.md → Decisiones de producto).
+// Método aprobado por la nutricionista (2026-10-31) — fuentes y detalle en datos/metodo-y-fuentes.md:
+//  · Energía: Mifflin-St Jeor (1990) × factor de actividad. Solo "bajar" resta 10%; piso de seguridad 1200 kcal (mujer) / 1500 kcal (hombre).
+//  · Proteína: g/kg según actividad (RDA 0.8 g/kg, DRI 2005; FAO/OMS/UNU 2007: 0.83; AND/DC/ACSM 2016: 1.2–2.0 en deportistas).
+//  · Grasas 30% de la energía y carbohidratos por diferencia (ambos dentro de los AMDR del IOM); fibra 14 g/1000 kcal (DRI).
 
 export type Sexo = 'mujer' | 'hombre';
 export type Actividad = 'sedentaria' | 'ligera' | 'moderada' | 'alta';
@@ -24,6 +26,8 @@ export interface Requerimientos {
   fibra: number;
 }
 
+/** Gramos de proteína por kg de peso: base RDA (0.8) y +0.2 por escalón de actividad (valores a validar por la nutricionista). */
+const PROTEINA_G_KG: Record<Actividad, number> = { sedentaria: 0.8, ligera: 1.0, moderada: 1.2, alta: 1.4 };
 const FACTOR: Record<Actividad, number> = { sedentaria: 1.2, ligera: 1.375, moderada: 1.55, alta: 1.725 };
 const AJUSTE: Record<Objetivo, number> = { mantener: 1, bajar: 0.9, subir: 1.1 };
 const PISO_KCAL: Record<Sexo, number> = { mujer: 1200, hombre: 1500 };
@@ -31,7 +35,7 @@ const PISO_KCAL: Record<Sexo, number> = { mujer: 1200, hombre: 1500 };
 export function calcularRequerimientos(d: Datos): Requerimientos {
   const base = 10 * d.peso + 6.25 * d.talla - 5 * d.edad + (d.sexo === 'hombre' ? 5 : -161);
   const kcal = Math.max(PISO_KCAL[d.sexo], Math.round((base * FACTOR[d.actividad] * AJUSTE[d.objetivo]) / 10) * 10);
-  const proteina = Math.round(d.peso * 1.2);
+  const proteina = Math.round(d.peso * PROTEINA_G_KG[d.actividad]);
   const grasas = Math.round((kcal * 0.3) / 9);
   const carbohidratos = Math.max(0, Math.round((kcal - proteina * 4 - grasas * 9) / 4));
   const fibra = Math.round((kcal / 1000) * 14);

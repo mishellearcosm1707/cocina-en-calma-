@@ -549,7 +549,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                       ))}
                     </dl>
                     <p className="mt-3 text-sm text-[var(--text-secondary)]">
-                      Cálculo aproximado y orientativo: no reemplaza una consulta con tu profesional de la nutrición.
+                      Calculado con la fórmula de Mifflin-St Jeor. Es aproximado y orientativo: no reemplaza una consulta con tu profesional de la nutrición.
                     </p>
                   </details>
                 </div>
