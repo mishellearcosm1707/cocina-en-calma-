@@ -70,9 +70,9 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Loop completo gatillo→acción→recompensa→inversión + D1-D7: pendiente
 
 ## Secuencia maestra de construcción (NO saltar)
-- Estado: Landing en revisión (1ª revisión del revisor-visual: NECESITA CORRECCIÓN 30/40 · 14/20 · 15/20; ajustes aplicados, 2ª revisión en curso)
+- Estado: Onboarding construido y en revisión (revisor-visual en curso) · Landing con 2 revisiones (NECESITA CORRECCIÓN: falta fotografía real). Detalle landing:  (1ª revisión del revisor-visual: NECESITA CORRECCIÓN 30/40 · 14/20 · 15/20; ajustes aplicados, 2ª revisión en curso)
 - Ruta: `/` → `/onboarding` → `/paywall` → `/login` → `/app`
-- Landing: construida en Next 16 desde el kit (app/page.tsx, components/landing/), CTA → /onboarding (modelo 2) · Onboarding / Paywall / Login / App interna / Servicios externos: pendiente
+- Landing: construida en Next 16 desde el kit (app/page.tsx, components/landing/), CTA → /onboarding (modelo 2) · Onboarding: construido (components/onboarding/Flow.tsx, lib/calculos.ts, lib/recetas.ts; 6 pasos: consentimiento → datos → requerimientos → síntomas → 3 ingredientes → primer menú; cálculo local Mifflin-St Jeor; datos solo en memoria, sin backend) · Paywall (marcador /paywall) / Login / App interna / Servicios externos: pendiente
 - Proyecto de código en la raíz (Next 16.4 + Tailwind 4 + motion + lucide). Servidor local de revisión: npx next start -p 3100
 - DESVIACIONES del kit (justificadas): (1) OfertaUnica.tsx — el kit trae Oferta anual/mensual con trial; la decisión del usuario es pago único $14.99 sin trial. (2) FooterLegal con soporteEmail opcional — aún no hay correo de la empresa. (3) CtaFinal usa --accent-on-dark para que el acento se lea sobre el bloque invertido. (4) FooterLegal con anio fijo 2026 (new Date() no compila en client component prerenderizado).
 
@@ -85,6 +85,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - NO construir: red social/foro, pedidos a supermercados, escáner de códigos, chat con nutricionista en vivo, seguimiento de agua
 
 ## Problemas conocidos ⚠️
+- veredicto onboarding: ver docs/revisiones/onboarding-veredicto.md (en curso). Pendientes: fotos reales de recetas (hoy color + emoji), validación de la nutricionista de la fórmula y del banco de 60 recetas, registro de consentimiento en servidor (etapa de servicios), objetivo de peso solo "con calma" (±10%) y piso 1200/1500 kcal por seguridad.
 - veredicto landing: ver docs/revisiones/landing-veredicto.md. Hallazgos abiertos: fotos de comida reales (hoy son emojis sobre degradado en hero y carrusel), cifra real para el ancla de la oferta (consulta de nutricionista), capturas reales de la app al cerrarla, chip del mecanismo parece botón.
 - audit-conversion.sh: 13 críticos mayormente falsos positivos por escanear comentarios/strings del propio kit (voseo "animate", hairlines y gradientes que sí existen en ui.tsx/Hero.tsx); se revisan con el revisor-visual.
 - Legal (47): borradores en docs/legal/ (política de privacidad + consentimiento y deslinde). Responsable: Conexión Digital, Ecuador (LOPDP; autoridad: Superintendencia de Protección de Datos Personales — verificar con abogado). Pendientes: correo de contacto propio, ciudad/RUC, términos y política de reembolso, pantalla de consentimiento en la app, revisión de abogado local. Datos de salud = sensibles.

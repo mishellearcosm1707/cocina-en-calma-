@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Archivos del Sistema Operativo (plantillas y scripts de auditoría): no son código de la app.
+    "plantillas-codigo/**",
+    "scripts/**",
+    "docs/**",
   ]),
 ]);
 
