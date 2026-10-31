@@ -12,6 +12,7 @@ import { Lock, ShieldCheck } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Accent, Hairline, SectionShell, useReveal, VIEWPORT_ONCE } from './ui';
 import { MarkedCopy, warnCopy } from './MarkedCopy';
+import { Sello } from './Sello';
 
 export interface GarantiaProps {
   /** Nombre PROPIO ("la Garantía del Primer Día Claro") — se pinta en acento. */
@@ -42,20 +43,7 @@ export function Garantia({ nombre, condicionMarked, pisoLegal, icon: Icono = Shi
           {/* La card de garantía: uno de los 1-3 usos de hairline permitidos por vista */}
           <Hairline surface="surface" className="shadow-[var(--shadow-1)]">
             <div className="flex flex-col items-center gap-4 px-6 py-10 text-center">
-              <svg aria-hidden="true" viewBox="0 0 120 120" className="size-[112px]" style={{ transform: 'rotate(-8deg)' }}>
-                <defs>
-                  <path id="sello-circulo" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" />
-                </defs>
-                <circle cx="60" cy="60" r="56" fill="var(--accent)" />
-                <circle cx="60" cy="60" r="51" fill="none" stroke="var(--accent-on-dark)" strokeWidth="1.2" strokeDasharray="2 3" />
-                <text fill="var(--bg)" fontSize="9" fontWeight="700" style={{ fontFamily: 'var(--font-body)' }}>
-                  <textPath href="#sello-circulo" startOffset="0" textLength="272" lengthAdjust="spacing">GARANTÍA CALMA · 7 DÍAS · SIN PREGUNTAS ·</textPath>
-                </text>
-                <g transform="translate(44 44)" fill="none" stroke="var(--bg)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 2 L30 7 V17 C30 25 24 30 16 33 C8 30 2 25 2 17 V7 Z" />
-                  <path d="M10 17 l4 4 8 -8" />
-                </g>
-              </svg>
+              <Sello />
               <h2 className="text-balance text-[22px] font-bold leading-tight [font-family:var(--font-display)]">
                 <Accent>{nombre}</Accent>
               </h2>
