@@ -34,6 +34,8 @@ Podemos revelar datos si una autoridad competente lo exige conforme a la ley.
 Algunos de estos proveedores almacenan o procesan datos fuera de tu país, incluido Estados Unidos. Al aceptar esta política y la autorización de datos de salud, consientes esas transferencias, que se hacen bajo los términos y medidas de seguridad de cada proveedor. Hoy la app no envía tus datos a servicios de inteligencia artificial de terceros; si eso cambia, te avisaremos y pediremos tu autorización.
 
 ## 6. Cuánto tiempo los conservamos
+Mientras completas el recorrido de inicio, tu progreso se guarda de forma temporal en tu propio navegador (no en nuestros servidores) y se borra al cerrar la pestaña.
+
 Mientras tu cuenta esté activa. Si eliminas tu cuenta, borramos tus datos personales y de salud de nuestras bases en un máximo de [PENDIENTE: 30] días, salvo lo que la ley nos obligue a conservar (por ejemplo, registros de la compra, que también guarda Hotmart).
 
 ## 7. Tus derechos

@@ -1,62 +1,56 @@
-# VEREDICTO revisor-visual — onboarding
-Fecha: 2026-10-31 12:00
+# VEREDICTO revisor-visual — onboarding (2ª pasada, v2 de 9 pasos)
+Fecha: 2026-10-31 15:00
 Screenshot: docs/revisiones/onboarding-375.png
-Usabilidad: 24/40
-Craft: 13/20
-Copy: 13/20
-Copy (si vende): 13/20
+Usabilidad: 29/40
+Craft: 14/20
+Copy: 14/20
+Copy (si vende): 14/20
 Fidelidad (si hubo referencia): FIEL
 Veredicto: NECESITA CORRECCIÓN
-(Equivale a NO LISTA: usabilidad <36, craft <16, copy <16.)
+(Equivale a NO LISTA: usabilidad <36, craft <16, copy <16. Mejora clara frente a 24/13/13, pero no alcanza los umbrales.)
 
-Detalle usabilidad: h1:3 h2:2 h3:2 h4:3 h5:2 h6:3 h7:2 h8:2 h9:2 h10:3
-Detalle craft: jerarquía:3 profundidad:3 identidad:2 movimiento:2 encaje:3
-Detalle copy: idea:3 especificidad:2 emoción:3 oferta:2 acción:3
+Detalle usabilidad: h1:3 h2:3 h3:3 h4:3 h5:3 h6:3 h7:2 h8:3 h9:3 h10:3
+Detalle craft: jerarquía:3 profundidad:3 identidad:2 movimiento:3 encaje:3
+Detalle copy: idea:3 especificidad:2 emoción:3 oferta:2 acción:4 (sin ficha de avatar revisada en detalle; oferta/precio corresponden al paywall)
 
-Gate de carga cognitiva (fallas: 4 -> sobrecarga crítica en paso 2 y 5):
-- FALLA: paso 2 pide 6 datos + 4 niveles de actividad + 3 objetivos + caja de 7 líneas en una pantalla (por decisión de la usuaria, pero sigue siendo >5-7 campos).
-- FALLA: paso 5 muestra ~30 chips (decisión de >4 opciones); los últimos quedan cortados bajo el CTA.
-- FALLA: paso 1, bloque de consentimiento de 9 líneas (>3-4 líneas por bloque) y 4 casillas.
-- FALLA: paso 3 es pantalla pasiva, sin input; el "100%" no se gana su lugar.
+## Gate de carga cognitiva (1 falla: ya no es sobrecarga)
+- OK: una decisión por paso, ≤4 opciones (filtro 2, actividad 4, objetivo 3, síntomas 4), datos en 4 campos apilados.
+- OK: el "qué sigue" es obvio; ningún elemento interactivo muerto.
+- FALLA: consentimiento con 4 casillas y un bloque obligatorio de ~6 líneas (>3-4 líneas).
+- Borde: 18 chips en el paso 8 (>4 opciones; es multiselección de tarea y no desborda, pero sin agrupar).
 
 ## Fidelidad contra la referencia (0 de 6 fallos: FIEL)
-Modo claro cálido OK · acento oliva OK · display serif suave (Fraunces) + Nunito OK · radios cards/botones/chips dentro de ±4px OK · sombras sutiles OK · densidad: paso 2 es más denso que la referencia (observación, no fallo).
+Modo claro cálido, acento oliva, display Fraunces + Nunito, radios, sombras suaves y densidad coinciden con la referencia. Sin desvíos contra FICHA-ARTE. Error con --error de la ficha (corregido).
 
-## Estados
-- Vacío: CTA deshabilitado en pasos 1, 4, 5 (ver S1). Paso 2 sin placeholders ni valores por defecto.
-- Carga: no hay (cálculo local instantáneo; aceptable).
-- Éxito: paso 6 menú con barra de cobertura; sin celebración.
-- Error: solo de campo y solo tras tocar el CTA; mensajes en columnas de ~100px (se rompen en 3-4 líneas). Color de error usa --accent-2 (terracota) y no el semántico #B0432F de la ficha.
-- Deshabilitado: opacity-60 sin explicación de por qué.
-- Sin conexión: no aplica al cálculo, pero el menú/paywall sí lo necesitará; no hay estado.
+## Qué se corrigió de la 1ª pasada (verificado en código y capturas)
+- S1-1 CTA nace apagado: CORREGIDO (Flow.tsx:644 siempre vivo, aviso rojo en :632, whileTap).
+- S1-2 enlaces: PARCIAL. Ahora target=_blank y apuntan a aviso de salud + privacidad (:319-323); la persistencia SIGUE sin existir (solo useState).
+- S1-3 paso 2 sobrecargado y advertencia al final: CORREGIDO (filtro antes de datos, pasos separados, auto-avance).
+- S1-4 "100% cubierto" vacío: CORREGIDO (reparto por comida, números en "Ver mis números").
+- S2-5 errores en 3 columnas: CORREGIDO (campos apilados). Siguen siendo largos pero caben.
+- S2-6 jerga: CASI. "Ver mis números", "porción generosa" OK; persisten "kcal", "Energía/Proteína/Carbohidratos" dentro del desplegable (aceptable al ser opcional).
+- S2-7 30 chips: MEJORADO a 18, sin agrupar ni "ver más".
+- S2-8 emojis como foto: SIGUE (FotoReceta = color plano + emoji; en captura se ve de nivel placeholder: sartén, vaso, muslo). Aceptado como abierto documentado, pero impide LISTA en la pantalla de mayor valor percibido.
+- S2-9 consentimiento largo: PARCIAL (menos texto, pero la 2ª casilla sigue en ~6 líneas y las opcionales no se separan bajo "Opcional").
+- S3-10 movimiento: MEJORADO (conteo animado de cobertura, barras que se dibujan en el paso 6, stagger en el menú, transición entre pasos, whileTap). Sigue sin celebración al revelar el menú y sin stagger de entrada en los demás pasos.
+- S3-11/12/13 : "100%" quebrado eliminado; error con token correcto; botón atrás invisible en paso 1 sigue dejando hueco (menor).
 
-## Hallazgos
+## Hallazgos pendientes por severidad
 
 ### S1 — Críticos
-1. components/onboarding/Flow.tsx:533 (y :182) — CTA héroe nace deshabilitado al 60% de opacidad (consent, síntomas, ingredientes): incumple "CTA vivo". Fix: dejarlo habilitado y, al tocarlo sin cumplir, mostrar hint ("Marca las dos casillas obligatorias", "Elige al menos 1 síntoma", "Te faltan 2").
-2. Flow.tsx:268 y :272 — los enlaces de términos/privacidad navegan fuera del recorrido y los datos viven solo en memoria (:153-162): la usuaria pierde todo el progreso. Fix: target="_blank" rel="noopener" (o abrir en hoja) y persistir el estado en sessionStorage. Además "términos de uso" apunta a /aviso-salud (aviso de salud, no términos).
-3. Flow.tsx:297-348 — paso 2 con 6 campos + 7 opciones en una sola pantalla y la advertencia médica (embarazo, lactancia, diabetes, ERC, TCA) al final, bajo el scroll y después del CTA. Fix: mostrar la advertencia/casilla "ninguna de estas condiciones me aplica" ANTES de pedir los datos (también es riesgo legal), y dividir en 2 sub-pasos (cuerpo / actividad+objetivo) o al menos agrupar con encabezados y valores por defecto.
-4. Flow.tsx:360 — "100% cubierto con tus comidas" antes de elegir ninguna comida es un dato vacío, y luego el menú dice "Cubre 99%" (paso 6, :465): incoherencia que erosiona confianza. Fix: mostrar un dato real (ej. "Tu día pide ~1840 kcal" en lenguaje casero) o quitar la tarjeta; hacer coherentes los porcentajes.
+1. (viene de 1ª, S1-2) Flow.tsx:178-194 — todo el estado vive en memoria: recargar o volver desde /paywall borra los 9 pasos. Fix: persistir en sessionStorage y restaurar al montar.
 
 ### S2 — Altos
-5. Flow.tsx:316-319 — errores de campo en rejilla de 3 columnas: mensajes largos quedan en 4 líneas angostas. Fix: error corto ("18 a 99") o campos en 1 columna/2+1; ponerle placeholder y unidad.
-6. Flow.tsx:372, :489, :263/:279 — jerga: "Ver detalle técnico", "porción ×1.25", "requerimientos", "meal prep" (:507), "kcal" visible contra la promesa "sin contar calorías" (FICHA-ARTE). Fix: "Ver mis números", "porción y cuarto", "lo que necesita tu cuerpo", "guía de preparación semanal".
-7. Flow.tsx:424 — ~30 chips sin agrupar ni buscador; los últimos (Tofu, Papaya) quedan tapados por el CTA fijo. Fix: mostrar 12 más usados + "Ver más", o agrupar (proteínas / verduras / granos).
-8. components/onboarding/FotoReceta.tsx (usado en Flow.tsx:485) — "foto" = color plano + emoji grande (vaso rojo, muslo): son emojis como ícono, vetados, y es el momento de mayor valor percibido (menú). Fix: fotos reales de public/recetas/ antes de lanzar, o ilustración SVG de serie; no declarar LISTA con emojis.
-9. Flow.tsx:260-293 — consentimiento: 4 casillas con bloque legal de 9 líneas en tamaño 14px; "analítica" y "novedades" opcionales compiten con las obligatorias. Fix: resumir el texto visible (3 líneas) con "Leer completo" y separar opcionales bajo subtítulo "Opcional".
+2. (viene de 1ª, S2-8) components/onboarding/FotoReceta.tsx — "fotos" = fondo de color + emoji en el menú (paso 9). Fix: fotos reales de public/recetas/ o ilustración SVG de serie antes de lanzar; hasta entonces no LISTA.
+3. (viene de 1ª, S2-9) Flow.tsx:328-338 — casilla de salud de ~6 líneas y 2 opcionales mezcladas con las obligatorias. Fix: texto de 3 líneas + "Leer completo", y opcionales bajo subtítulo "Opcional".
+4. (nuevo) Flow.tsx:597 / paso 9 — el cierre promete "plan completo" pero no hay prueba ni número verificable (cuántas recetas, cuánto tiempo ahorra), y la cobertura "99%" no se explica. Fix: una línea concreta ("Más de N recetas…") trazada a FICHA-AVATAR y a datos reales.
 
 ### S3 — Medios
-10. Movimiento (Flow.tsx:233-239, :364, :468): sin conteo animado de números héroe (el 100% y 1840 aparecen estáticos), sin celebración al llegar al menú, el CTA del paso 6 (:521) es un <a> sin whileTap, stagger solo en el menú. Reduced-motion sí está manejado (useReducedMotion). Fix: conteo 0→n en el paso 3, whileTap en el CTA final, stagger de entrada en cada paso, micro-celebración suave al revelar el menú.
-11. Flow.tsx:360-361 — "100%" y su texto "cubierto con tus comidas" sobre la misma línea base quiebran y "comidas" cae a la 2ª línea desalineado. Fix: apilar el número y la etiqueta.
-12. Paso 1, botón atrás invisible (disabled:opacity-0, :221) deja un hueco; Flow.tsx:285-288 todo el onboarding usa 8+ tamaños de texto (xs/sm/base/lg/3xl/4xl): limitar a 3-4.
-13. Flow.tsx:142 y :139 — error con --accent-2 en vez del rojo semántico #B0432F de la ficha; contraste del terracota sobre crema a revisar (~4:1).
-14. Identidad: pese a seguir fielmente la referencia (contrato), no hay dispositivo ownable visible aparte de la palabra en acento; paleta crema+oliva queda cerca del veto "papel cálido + tinta verde" (se mitiga: fuentes Fraunces/Nunito, y viene de la referencia del usuario, no del ejemplo canónico). Sugerencia: un detalle firma (ilustración de serie, sello de hoja en progreso, tratamiento de foto).
-15. Flow.tsx:520-526 — destino /paywall es marcador; no hay backend ni persistencia: si la usuaria vuelve atrás desde el paywall pierde menú y datos.
-
-### Copy (trazabilidad parcial; FICHA-AVATAR no verificada en detalle)
-- Fuerte: "Cuéntanos sin pena... aquí no hay juicios" (emoción), "Marca 3 que tengas en casa" (acción clara), CTAs por beneficio.
-- Débil: sin prueba ni número verificable (el único número, 100%, es vacío); oferta/garantía/precio no aparecen aquí (corresponde al paywall); CTA "Armar mi semana completa" no está en 1ª persona del beneficio ("Armar MI semana" sí; ok); el paso 6 vende la semana pero no dice cuánto cuesta ni la garantía antes del salto.
-- Titulares con énfasis en acento: cumple (una palabra clave por título).
+5. (nuevo) Flow.tsx:120-137 — campos de edad/peso/talla sin placeholder, sin autoenfoque ni Enter para avanzar; h7 queda en 2. Fix: placeholder de ejemplo, autoFocus en el primero y onKeyDown Enter = siguiente.
+6. (nuevo) Pasos 4 y 5 (actividad, objetivo) — mitad inferior de la pantalla vacía y sin dato de apoyo; el paso 6 es pasivo. Fix: centrar verticalmente o añadir una línea de contexto por opción.
+7. (viene de 1ª, S3-14) Identidad: sin dispositivo ownable más allá de la palabra en acento y la paleta crema+oliva (cerca del veto "papel cálido + tinta verde", mitigado por venir de la referencia del usuario y usar Fraunces/Nunito). Fix: un detalle firma (sello de hoja en el progreso, ilustración de serie, tratamiento de foto).
+8. (nuevo) "Casi nada: paso el día sentada" asume género femenino aunque se ofrece "Hombre". Fix: "paso el día sentado/a" o redactar neutro ("Casi nada: mucho tiempo sentado/a").
+9. (viene de 1ª, S3-10) Sin celebración suave al revelar el primer menú (hito real).
 
 ## Verificado en código
-Heurística 3: hay "volver" por paso (Flow.tsx:216) y no hay destructivas; falta confirmación al abandonar el recorrido y persistencia. Heurística 7: defaults en actividad/objetivo/sexo (OK), sin default ni autoenfoque en campos numéricos, sin Enter para avanzar. aria-live presente en el contador de ingredientes (:445) y progressbar con aria.
+H3: hay "volver" por paso, enlaces legales en pestaña nueva, salida clara si el filtro aplica (Volver al inicio); no hay acciones destructivas; falta persistencia. H7: defaults en sexo; sin Enter ni autoenfoque. aria-live en aviso y contador de ingredientes; progressbar con aria; reduced-motion respetado en todas las animaciones. CTA vivo: contraste oliva/crema alto, h-14 (56px), ancho completo, whileTap, nunca disabled.

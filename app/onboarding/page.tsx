@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { Flow } from '@/components/onboarding/Flow';
+import { FlowCliente } from '@/components/onboarding/FlowCliente';
 
 export const metadata: Metadata = {
   title: 'Tu primer menú — Cocina en Calma',
@@ -13,5 +13,5 @@ export default function Onboarding() {
   const fotos = readdirSync(join(process.cwd(), 'public/recetas'))
     .filter((f) => f.endsWith('.jpg'))
     .map((f) => f.replace('.jpg', ''));
-  return <Flow fotos={fotos} />;
+  return <FlowCliente fotos={fotos} />;
 }

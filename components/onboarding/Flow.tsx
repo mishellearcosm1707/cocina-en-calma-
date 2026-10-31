@@ -29,7 +29,7 @@ const AUTO: Paso[] = ['filtro', 'actividad', 'objetivo'];
 
 const SINTOMAS: Sintoma[] = ['Hinchazón', 'Gases', 'Pesadez', 'Digestión lenta'];
 const ACTIVIDADES: { v: Actividad; t: string }[] = [
-  { v: 'sedentaria', t: 'Casi nada: paso el día sentada' },
+  { v: 'sedentaria', t: 'Casi nada: mi día es sedentario' },
   { v: 'ligera', t: 'Ligera: 1 a 3 días por semana' },
   { v: 'moderada', t: 'Moderada: 3 a 5 días por semana' },
   { v: 'alta', t: 'Alta: 6 a 7 días por semana' },
@@ -47,6 +47,30 @@ const CONDICIONES = [
 ];
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+const CLAVE = 'cec-onboarding-v1';
+
+interface Guardado {
+  idx: number;
+  c: { terminos: boolean; salud: boolean; novedades: boolean; analitica: boolean };
+  filtro: 'ok' | 'aplica' | null;
+  sexo: Sexo;
+  edad: string;
+  peso: string;
+  talla: string;
+  actividad: Actividad | null;
+  objetivo: Objetivo | null;
+  sintomas: Sintoma[];
+  ingredientes: string[];
+}
+
+/** Progreso de esta visita (se borra al cerrar la pestaña; nunca sale del navegador). */
+function leerGuardado(): Partial<Guardado> {
+  try {
+    return JSON.parse(window.sessionStorage.getItem(CLAVE) ?? '{}') as Partial<Guardado>;
+  } catch {
+    return {};
+  }
+}
 
 function Resaltada({ children }: { children: ReactNode }) {
   return <span className="text-[var(--accent)]">{children}</span>;
@@ -106,6 +130,9 @@ function Campo({
   error,
   min,
   max,
+  ejemplo,
+  alEnter,
+  autoFocus,
 }: {
   etiqueta: string;
   unidad: string;
@@ -114,6 +141,9 @@ function Campo({
   error?: string;
   min: number;
   max: number;
+  ejemplo: string;
+  alEnter: () => void;
+  autoFocus?: boolean;
 }) {
   const id = `campo-${etiqueta}`;
   return (
@@ -128,6 +158,9 @@ function Campo({
         min={min}
         max={max}
         value={valor}
+        placeholder={ejemplo}
+        autoFocus={autoFocus}
+        onKeyDown={(e) => e.key === 'Enter' && alEnter()}
         onChange={(e) => onChange(e.target.value)}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
@@ -175,23 +208,24 @@ function porcionTexto(p: number): string {
 
 export function Flow({ fotos = [] }: { fotos?: string[] }) {
   const reducir = useReducedMotion();
-  const [idx, setIdx] = useState(0);
+  const [ini] = useState(leerGuardado);
+  const [idx, setIdx] = useState(Math.min(ini.idx ?? 0, PASOS.length - 1));
   const [dir, setDir] = useState(1);
   const [bloqueo, setBloqueo] = useState(false);
   const [aviso, setAviso] = useState('');
   const paso = PASOS[idx];
 
-  const [c, setC] = useState({ terminos: false, salud: false, novedades: false, analitica: false });
-  const [filtro, setFiltro] = useState<'ok' | 'aplica' | null>(null);
-  const [sexo, setSexo] = useState<Sexo>('mujer');
-  const [edad, setEdad] = useState('');
-  const [peso, setPeso] = useState('');
-  const [talla, setTalla] = useState('');
-  const [actividad, setActividad] = useState<Actividad | null>(null);
-  const [objetivo, setObjetivo] = useState<Objetivo | null>(null);
+  const [c, setC] = useState(ini.c ?? { terminos: false, salud: false, novedades: false, analitica: false });
+  const [filtro, setFiltro] = useState<'ok' | 'aplica' | null>(ini.filtro ?? null);
+  const [sexo, setSexo] = useState<Sexo>(ini.sexo ?? 'mujer');
+  const [edad, setEdad] = useState(ini.edad ?? '');
+  const [peso, setPeso] = useState(ini.peso ?? '');
+  const [talla, setTalla] = useState(ini.talla ?? '');
+  const [actividad, setActividad] = useState<Actividad | null>(ini.actividad ?? null);
+  const [objetivo, setObjetivo] = useState<Objetivo | null>(ini.objetivo ?? null);
   const [intento, setIntento] = useState(false);
-  const [sintomas, setSintomas] = useState<Sintoma[]>([]);
-  const [ingredientes, setIngredientes] = useState<string[]>([]);
+  const [sintomas, setSintomas] = useState<Sintoma[]>(ini.sintomas ?? []);
+  const [ingredientes, setIngredientes] = useState<string[]>(ini.ingredientes ?? []);
 
   const errores = {
     edad: !(+edad >= 18 && +edad <= 99) ? 'Escribe una edad entre 18 y 99 años' : '',
@@ -209,6 +243,15 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
     () => (req ? generarMenu(sintomas, ingredientes, req.kcal) : null),
     [req, sintomas, ingredientes],
   );
+
+  useEffect(() => {
+    try {
+      const g: Guardado = { idx, c, filtro, sexo, edad, peso, talla, actividad, objetivo, sintomas, ingredientes };
+      window.sessionStorage.setItem(CLAVE, JSON.stringify(g));
+    } catch {
+      /* sin almacenamiento: el recorrido funciona igual, solo no recuerda al recargar */
+    }
+  }, [idx, c, filtro, sexo, edad, peso, talla, actividad, objetivo, sintomas, ingredientes]);
 
   function ir(delta: number) {
     setDir(delta);
@@ -326,10 +369,19 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                     . Tengo 18 años o más.
                   </Casilla>
                   <Casilla marcada={c.salud} onChange={(v) => setC({ ...c, salud: v })}>
-                    <b>Obligatoria.</b> Autorizo que usen mis datos de salud (sexo, edad, peso, talla, actividad y
-                    síntomas) para calcular mis requerimientos y sugerirme menús. Son datos sensibles, se guardan en
-                    servidores en el extranjero y puedo retirar mi permiso cuando quiera.
+                    <b>Obligatoria.</b> Autorizo el uso de mis datos de salud para calcular mis requerimientos y sugerirme
+                    menús. Puedo retirar mi permiso cuando quiera.
                   </Casilla>
+                  <details className="px-1 text-sm text-[var(--text-secondary)]">
+                    <summary className="min-h-11 cursor-pointer py-2 font-semibold text-[var(--accent)]">
+                      Qué datos son y dónde se guardan
+                    </summary>
+                    <p className="pb-2 leading-snug">
+                      Sexo, edad, peso, talla, actividad física y síntomas digestivos. Son datos sensibles y se guardan en
+                      servidores de proveedores en el extranjero. Los usamos solo para armar tus menús y no los vendemos.
+                    </p>
+                  </details>
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-[var(--text-secondary)]">Opcionales</p>
                   <Casilla marcada={c.novedades} onChange={(v) => setC({ ...c, novedades: v })}>
                     Quiero recibir novedades y recetas por correo.
                   </Casilla>
@@ -400,9 +452,9 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                     </Opcion>
                   </div>
                 </fieldset>
-                <Campo etiqueta="Edad" unidad="años" valor={edad} onChange={setEdad} min={18} max={99} error={intento ? errores.edad : ''} />
-                <Campo etiqueta="Peso" unidad="kg" valor={peso} onChange={setPeso} min={30} max={250} error={intento ? errores.peso : ''} />
-                <Campo etiqueta="Talla" unidad="cm" valor={talla} onChange={setTalla} min={120} max={220} error={intento ? errores.talla : ''} />
+                <Campo ejemplo="Ej. 34" alEnter={siguiente} autoFocus etiqueta="Edad" unidad="años" valor={edad} onChange={setEdad} min={18} max={99} error={intento ? errores.edad : ''} />
+                <Campo ejemplo="Ej. 62" alEnter={siguiente} etiqueta="Peso" unidad="kg" valor={peso} onChange={setPeso} min={30} max={250} error={intento ? errores.peso : ''} />
+                <Campo ejemplo="Ej. 160" alEnter={siguiente} etiqueta="Talla" unidad="cm" valor={talla} onChange={setTalla} min={120} max={220} error={intento ? errores.talla : ''} />
               </div>
             )}
 
@@ -564,7 +616,15 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
             {paso === 'menu' && menu && (
               <div className="flex flex-col gap-5">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-[var(--accent)]">
+                  <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[var(--accent)]">
+                    <motion.span
+                      initial={{ scale: reducir ? 1 : 0.4, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: 'spring', stiffness: 260, damping: 18, delay: 0.15 }}
+                      className="flex size-6 items-center justify-center rounded-full bg-[var(--accent)]"
+                    >
+                      <Check size={14} strokeWidth={3} color="var(--bg)" aria-hidden="true" />
+                    </motion.span>
                     Listo en menos de 5 minutos
                   </p>
                   <h1 className="mt-2 text-balance text-3xl font-bold leading-tight [font-family:var(--font-display)]">
