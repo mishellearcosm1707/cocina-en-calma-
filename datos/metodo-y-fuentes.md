@@ -15,17 +15,22 @@ Estado: método APROBADO por la nutricionista el 2026-10-31 en lo de energía; f
 
 Ejemplo (mujer, 34 años, 62 kg, 160 cm, actividad ligera, mantener): ≈1770 kcal · 62 g proteína · 59 g grasas · 248 g carbohidratos · 25 g fibra.
 
-## 2. Valor nutricional de las recetas (CALCULADO con tabla, 2026-10-31)
-Tabla usada: **USDA FoodData Central, SR Legacy (abril 2018)** — https://fdc.nal.usda.gov (descargada el 2026-10-31, datos por 100 g). 80 alimentos del mapa verificados contra su descripción exacta.
-Proceso (reproducible): `node herramientas/nutricion/calcular.mjs <carpeta-usda>`
-1. Cada ingrediente de cada receta se asocia a un alimento de la tabla (`herramientas/nutricion/mapa.mjs`).
-2. La medida casera (taza, cda, palma, unidad…) se convierte a gramos con equivalencias documentadas en ese mismo archivo (USDA cuando existe; estimación marcada si no).
-3. Energía, proteína, carbohidratos, grasas y fibra = valores por 100 g × gramos ÷ 100, sumados por receta. El valor de la primera versión (estimado por IA) queda en `estimado_ia`.
-Salidas: `datos/recetas.json` (v0.2), `datos/alimentos-usda.json` (nutrientes por 100 g y código FDC de cada alimento), `datos/nutricion-por-ingrediente.csv` (gramos y aporte de CADA ingrediente, para revisión).
-Resultado: promedio por porción 318 kcal (antes, por estimación de IA: 381). Medias: desayuno 295 · almuerzo 459 · merienda 188 · cena 329 kcal.
+## 2. Valor nutricional de las recetas (CALCULADO con tablas, 2026-10-31)
+**Fuente principal: INCAP/OPS, Tabla de Composición de Alimentos de Centroamérica**, 2.ª ed. (3.ª reimpresión, 2012; Menchú y Méndez), Primera Sección, valores por 100 g de porción comestible. **Respaldo: USDA FoodData Central, SR Legacy (abril 2018)**, solo para los alimentos que el INCAP no trae.
+Proceso (reproducible): `node herramientas/nutricion/calcular.mjs <carpeta-usda> <texto-incap.txt>`
+1. Cada ingrediente se asocia a un alimento de la tabla INCAP (código) o, si no existe, de la USDA (`herramientas/nutricion/mapa.mjs`).
+2. La medida casera (taza, cda, palma, unidad…) se convierte a gramos con equivalencias documentadas en ese archivo.
+3. Energía, proteína, carbohidratos, grasas y fibra = valor por 100 g × gramos ÷ 100, sumado por receta. Los valores de la primera versión (estimados por IA) quedan en `estimado_ia`.
+Salidas: `datos/recetas.json` (v0.3), `datos/alimentos.json` (alimento, fuente y código usados), `datos/nutricion-por-ingrediente.csv` (fuente, código, gramos y aporte de CADA ingrediente, para revisión).
+Resultado: 200 de 283 ingredientes salieron de la tabla INCAP y 83 de la USDA. Promedio por porción: 315 kcal (la estimación inicial de IA era 381). Medias: desayuno 297 · almuerzo 456 · merienda 184 · cena 324 kcal.
+Diferencias INCAP vs USDA en el mismo alimento (kcal/100 g): atún en agua 128 vs 86 · queso blanco fresco semidescremado 173 vs queso fresco 299 · zapallo 30 vs 20 (cocido) · camote cocido 76 vs 90 · camarón cocido 99 vs 119.
+
+### Cómo se leyó la tabla INCAP
+El PDF concatena las columnas sin separador; `herramientas/nutricion/incap.mjs` las separa y resuelve la unión energía/proteína con la regla de Atwater (kcal ≈ 4·P + 4·C + 9·G). Se leyeron 1.392 alimentos y los usados se revisaron a mano. La columna de fibra de dos filas mal leídas (>40 g) se descarta.
 
 ### Límites y proxies a revisar por la nutricionista
-- Sin cocción/absorción de aceite más allá de lo escrito en la receta; pesos de alimentos cocidos tomados de la tabla "cooked".
-- Proxies: yuca (la tabla trae solo cruda) · tortilla integral → tortilla de harina · queso fresco → "Cheese, fresh, queso fresco" · caldo de verduras → "Soup, vegetable broth" · yogur griego natural = sin grasa (supuesto) · pescado blanco = tilapia cruda · pavo molido cocido.
-- Equivalencias estimadas (no USDA): berenjena mediana 300 g · zapallo 190 g por taza · palma de proteína 100 g (130 g tofu) · camarón mediano 7 g.
-- Tablas regionales para contrastar alimentos locales (INCAP, ICBF, BEDCA, tablas nacionales de Ecuador): pendiente, a elección de la nutricionista.
+- El INCAP no trae (se usa USDA): tofu, kéfir, yogur griego, pavo molido, quinoa, hummus, hinojo, arándanos, dátil medjool, chía, linaza, aceite de oliva, leche de almendras, cúrcuma, pimienta, palomitas sin sal, lenteja y garbanzo cocidos, frijol negro cocido, arroz integral cocido, fideo integral cocido, filete de atún fresco.
+- Valores crudos usados para recetas cocidas (INCAP solo trae la forma cruda): yuca raíz, zapallo/ayote amarillo, zucchini, repollo, huevo (también para huevo cocido). Efecto pequeño salvo en la yuca.
+- Supuestos: queso fresco = queso blanco fresco de leche semidescremada · pescado blanco = tilapia cruda · tortilla integral = tortilla de harina · yogur griego sin grasa.
+- Equivalencias estimadas (no tabuladas): berenjena mediana 300 g · zapallo 190 g por taza · palma de proteína 100 g (130 g de tofu) · camarón mediano 7 g.
+- La tabla INCAP no se redistribuye: se citan sus códigos y se usan los valores para calcular. El PDF consultado es una copia alojada por la UNAM (portalacademico.cch.unam.mx); la edición oficial se obtiene en INCAP (www.incap.int).

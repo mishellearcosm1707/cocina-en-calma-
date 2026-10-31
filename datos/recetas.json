@@ -1,7 +1,7 @@
 {
-  "version": "0.2-borrador",
+  "version": "0.3-borrador",
   "fecha": "2026-10-31",
-  "estado": "BORRADOR. Kcal y macros por porción CALCULADOS ingrediente por ingrediente con la tabla USDA FoodData Central (SR Legacy 2018-04) y equivalencias de medidas caseras documentadas en herramientas/nutricion/mapa.mjs. Pendiente de validación por la nutricionista (ver datos/metodo-y-fuentes.md). Los valores de la primera versión (estimados por IA) se conservan en `estimado_ia`.",
+  "estado": "BORRADOR. Kcal y macros por porción CALCULADOS ingrediente por ingrediente con la tabla INCAP/OPS de Centroamérica (fuente principal) y USDA FoodData Central (respaldo cuando el INCAP no trae el alimento), con equivalencias de medidas caseras documentadas en herramientas/nutricion/mapa.mjs. Pendiente de validación por la nutricionista (ver datos/metodo-y-fuentes.md). Los valores de la primera versión (estimados por IA) se conservan en `estimado_ia`.",
   "criterio": "Base antiinflamatoria del estudio: pescados grasos, aceite de oliva, legumbres, avena, tubérculos, verduras cocidas y de hoja, frutas, nueces y semillas, cúrcuma con pimienta, jengibre y hierbas digestivas. Sin ultraprocesados, sin azúcar añadida, sin pesaje. Cebolla y ajo evitados o mínimos (revisar FODMAP con la nutricionista).",
   "claves": {
     "sintomas": [
@@ -32,8 +32,8 @@
         "vegetariano"
       ],
       "kcal": 340,
-      "prot": 21,
-      "carb": 49,
+      "prot": 23,
+      "carb": 47,
       "gras": 7,
       "fibra": 10,
       "porque": "Avena y chía aportan fibra suave; la papaya es una fruta fácil de digerir.",
@@ -60,38 +60,44 @@
       "ingredientes_g": [
         {
           "texto": "½ taza de avena",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 40.5
         },
         {
           "texto": "½ taza de yogur griego natural",
+          "fuente": "USDA",
+          "codigo": 170894,
           "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 170894,
           "gramos": 122.5
         },
         {
           "texto": "¼ taza de leche de almendras",
-          "alimento": "Nuts, almonds",
-          "fdc_id": 170567,
+          "fuente": "INCAP",
+          "codigo": "10001",
+          "alimento": "ALMENDRA, SECA",
           "gramos": 0.3
         },
         {
           "texto": "1 cda de chía",
+          "fuente": "USDA",
+          "codigo": 170554,
           "alimento": "Seeds, chia seeds, dried",
-          "fdc_id": 170554,
           "gramos": 12
         },
         {
           "texto": "½ taza de papaya en cubos",
-          "alimento": "Potatoes, boiled, cooked in skin, flesh, without salt",
-          "fdc_id": 170438,
+          "fuente": "INCAP",
+          "codigo": "11128",
+          "alimento": "PAPAS C/CÁSCARA, COCIDAS S/SAL",
           "gramos": 60
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         }
       ]
@@ -110,11 +116,11 @@
         "vegetariano"
       ],
       "congelable_dias": 60,
-      "kcal": 275,
-      "prot": 23,
-      "carb": 30,
-      "gras": 7,
-      "fibra": 5,
+      "kcal": 295,
+      "prot": 24,
+      "carb": 34,
+      "gras": 8,
+      "fibra": 4,
       "porque": "El zapallo cocido y la avena son suaves para el intestino; la canela da sabor sin azúcar.",
       "ing": [
         "¾ taza de zapallo cocido",
@@ -138,32 +144,37 @@
       "ingredientes_g": [
         {
           "texto": "¾ taza de zapallo cocido",
-          "alimento": "Pumpkin, cooked, boiled, drained, without salt",
-          "fdc_id": 168449,
+          "fuente": "INCAP",
+          "codigo": "11020",
+          "alimento": "AYOTE/GUICOY/ZAPALLO/CALABAZA, AMARILLO/MADURO",
           "gramos": 142.5
         },
         {
           "texto": "⅓ taza de avena",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 27
         },
         {
           "texto": "1 huevo",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 50
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         },
         {
           "texto": "½ taza de yogur griego natural",
+          "fuente": "USDA",
+          "codigo": 170894,
           "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 170894,
           "gramos": 122.5
         }
       ]
@@ -181,9 +192,9 @@
         "vegetariano"
       ],
       "kcal": 270,
-      "prot": 18,
-      "carb": 15,
-      "gras": 15,
+      "prot": 17,
+      "carb": 16,
+      "gras": 16,
       "fibra": 3,
       "porque": "Proteína completa con verduras cocidas, ligera para la mañana.",
       "ing": [
@@ -208,32 +219,37 @@
       "ingredientes_g": [
         {
           "texto": "2 huevos",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 100
         },
         {
           "texto": "1 taza de espinaca",
-          "alimento": "Spinach, raw",
-          "fdc_id": 168462,
+          "fuente": "INCAP",
+          "codigo": "11083",
+          "alimento": "ESPINACA CRUDA",
           "gramos": 30
         },
         {
           "texto": "½ taza de champiñones laminados",
-          "alimento": "Mushrooms, white, raw",
-          "fdc_id": 169251,
+          "fuente": "INCAP",
+          "codigo": "11095",
+          "alimento": "HONGOS CRUDOS",
           "gramos": 35
         },
         {
           "texto": "1 cdta de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 4.5
         },
         {
           "texto": "1 rebanada de pan integral",
-          "alimento": "Bread, whole-wheat, commercially prepared",
-          "fdc_id": 172688,
+          "fuente": "INCAP",
+          "codigo": "14040",
+          "alimento": "PAN INTEGRAL, DE RODAJA O CUADRADO, SUAVE",
           "gramos": 28
         }
       ]
@@ -255,7 +271,7 @@
       ],
       "kcal": 265,
       "prot": 7,
-      "carb": 29,
+      "carb": 30,
       "gras": 15,
       "fibra": 15,
       "porque": "La chía hidratada aporta fibra y omega-3 de origen vegetal.",
@@ -281,32 +297,37 @@
       "ingredientes_g": [
         {
           "texto": "3 cdas de chía",
+          "fuente": "USDA",
+          "codigo": 170554,
           "alimento": "Seeds, chia seeds, dried",
-          "fdc_id": 170554,
           "gramos": 36
         },
         {
           "texto": "1 taza de leche de almendras",
-          "alimento": "Nuts, almonds",
-          "fdc_id": 170567,
+          "fuente": "INCAP",
+          "codigo": "10001",
+          "alimento": "ALMENDRA, SECA",
           "gramos": 1.2
         },
         {
           "texto": "½ taza de mango en cubos",
-          "alimento": "Mangos, raw",
-          "fdc_id": 169910,
+          "fuente": "INCAP",
+          "codigo": "12080",
+          "alimento": "MANGO MADURO",
           "gramos": 82.5
         },
         {
           "texto": "1 cda de coco rallado",
+          "fuente": "USDA",
+          "codigo": 170170,
           "alimento": "Nuts, coconut meat, dried (desiccated), not sweetened",
-          "fdc_id": 170170,
           "gramos": 5
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         }
       ]
@@ -350,26 +371,30 @@
       "ingredientes_g": [
         {
           "texto": "1 taza de yogur griego natural",
+          "fuente": "USDA",
+          "codigo": 170894,
           "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 170894,
           "gramos": 245
         },
         {
           "texto": "½ taza de arándanos",
+          "fuente": "USDA",
+          "codigo": 171711,
           "alimento": "Blueberries, raw",
-          "fdc_id": 171711,
           "gramos": 74
         },
         {
           "texto": "1 cda de linaza molida",
+          "fuente": "USDA",
+          "codigo": 169414,
           "alimento": "Seeds, flaxseed",
-          "fdc_id": 169414,
           "gramos": 7
         },
         {
           "texto": "6 mitades de nuez",
-          "alimento": "Nuts, walnuts, english",
-          "fdc_id": 170187,
+          "fuente": "INCAP",
+          "codigo": "10012",
+          "alimento": "NUEZ DE NOGAL, SECA",
           "gramos": 15
         }
       ]
@@ -387,8 +412,8 @@
         "vegetariano"
       ],
       "congelable_dias": 60,
-      "kcal": 405,
-      "prot": 19,
+      "kcal": 410,
+      "prot": 21,
       "carb": 55,
       "gras": 13,
       "fibra": 7,
@@ -413,26 +438,30 @@
       "ingredientes_g": [
         {
           "texto": "1 banano maduro",
-          "alimento": "Bananas, raw",
-          "fdc_id": 173944,
+          "fuente": "INCAP",
+          "codigo": "12010",
+          "alimento": "BANANO/GUINEO, MADURO",
           "gramos": 118
         },
         {
           "texto": "½ taza de avena",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 40.5
         },
         {
           "texto": "2 huevos",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 100
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         }
       ]
@@ -450,10 +479,10 @@
         "vegetariano",
         "sin_lacteos"
       ],
-      "kcal": 310,
-      "prot": 8,
-      "carb": 55,
-      "gras": 8,
+      "kcal": 315,
+      "prot": 10,
+      "carb": 54,
+      "gras": 9,
       "fibra": 10,
       "porque": "La manzana cocida y la avena tibia son suaves para el estómago.",
       "ing": [
@@ -478,32 +507,37 @@
       "ingredientes_g": [
         {
           "texto": "½ taza de avena",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 40.5
         },
         {
           "texto": "1 taza de leche de almendras",
-          "alimento": "Nuts, almonds",
-          "fdc_id": 170567,
+          "fuente": "INCAP",
+          "codigo": "10001",
+          "alimento": "ALMENDRA, SECA",
           "gramos": 1.2
         },
         {
           "texto": "1 manzana en cubos",
-          "alimento": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 171688,
+          "fuente": "INCAP",
+          "codigo": "12086",
+          "alimento": "MANZANA, FRUTA IMPORTADA, C/CÁSCARA",
           "gramos": 182
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         },
         {
           "texto": "8 almendras picadas",
-          "alimento": "Nuts, almonds",
-          "fdc_id": 170567,
+          "fuente": "INCAP",
+          "codigo": "10001",
+          "alimento": "ALMENDRA, SECA",
           "gramos": 9.6
         }
       ]
@@ -522,8 +556,8 @@
         "sin_lacteos"
       ],
       "kcal": 345,
-      "prot": 14,
-      "carb": 22,
+      "prot": 13,
+      "carb": 24,
       "gras": 24,
       "fibra": 9,
       "porque": "Grasas buenas del aguacate y proteína del huevo, saciante sin pesadez.",
@@ -549,32 +583,37 @@
       "ingredientes_g": [
         {
           "texto": "1 rebanada de pan integral",
-          "alimento": "Bread, whole-wheat, commercially prepared",
-          "fdc_id": 172688,
+          "fuente": "INCAP",
+          "codigo": "14040",
+          "alimento": "PAN INTEGRAL, DE RODAJA O CUADRADO, SUAVE",
           "gramos": 28
         },
         {
           "texto": "½ aguacate",
-          "alimento": "Avocados, raw, all commercial varieties",
-          "fdc_id": 171705,
+          "fuente": "INCAP",
+          "codigo": "11005",
+          "alimento": "AGUACATE",
           "gramos": 100
         },
         {
           "texto": "1 huevo",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 50
         },
         {
           "texto": "unas gotas de limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 3
         },
         {
           "texto": "1 cda de semillas de zapallo",
-          "alimento": "Seeds, pumpkin and squash seed kernels, dried",
-          "fdc_id": 170556,
+          "fuente": "INCAP",
+          "codigo": "10015",
+          "alimento": "SEMILLA DE AYOTE, CRUDA",
           "gramos": 8
         }
       ]
@@ -592,7 +631,7 @@
         "express",
         "vegetariano"
       ],
-      "kcal": 235,
+      "kcal": 230,
       "prot": 13,
       "carb": 34,
       "gras": 6,
@@ -619,32 +658,37 @@
       "ingredientes_g": [
         {
           "texto": "1 taza de espinaca",
-          "alimento": "Spinach, raw",
-          "fdc_id": 168462,
+          "fuente": "INCAP",
+          "codigo": "11083",
+          "alimento": "ESPINACA CRUDA",
           "gramos": 30
         },
         {
           "texto": "¾ taza de piña",
-          "alimento": "Pineapple, raw, all varieties",
-          "fdc_id": 169124,
+          "fuente": "INCAP",
+          "codigo": "12159",
+          "alimento": "PIÑA, TODA VARIEDAD",
           "gramos": 123.8
         },
         {
           "texto": "1 taza de kéfir",
+          "fuente": "USDA",
+          "codigo": 170904,
           "alimento": "Kefir, lowfat, plain, LIFEWAY",
-          "fdc_id": 170904,
           "gramos": 243
         },
         {
           "texto": "1 cdta de jengibre rallado",
-          "alimento": "Ginger root, raw",
-          "fdc_id": 169231,
+          "fuente": "INCAP",
+          "codigo": "11087",
+          "alimento": "GENGIBRE O JENGIBRE",
           "gramos": 2
         },
         {
           "texto": "1 cda de chía",
+          "fuente": "USDA",
+          "codigo": 170554,
           "alimento": "Seeds, chia seeds, dried",
-          "fdc_id": 170554,
           "gramos": 12
         }
       ]
@@ -662,8 +706,8 @@
         "vegetariano"
       ],
       "congelable_dias": 60,
-      "kcal": 265,
-      "prot": 12,
+      "kcal": 270,
+      "prot": 13,
       "carb": 26,
       "gras": 13,
       "fibra": 5,
@@ -689,32 +733,37 @@
       "ingredientes_g": [
         {
           "texto": "½ taza de zanahoria rallada",
-          "alimento": "Carrots, raw",
-          "fdc_id": 170393,
+          "fuente": "INCAP",
+          "codigo": "11170",
+          "alimento": "ZANAHORIA S/CÁSCARA, CRUDA",
           "gramos": 64
         },
         {
           "texto": "⅓ taza de avena",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 27
         },
         {
           "texto": "1 huevo",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 50
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         },
         {
           "texto": "4 mitades de nuez",
-          "alimento": "Nuts, walnuts, english",
-          "fdc_id": 170187,
+          "fuente": "INCAP",
+          "codigo": "10012",
+          "alimento": "NUEZ DE NOGAL, SECA",
           "gramos": 10
         }
       ]
@@ -732,7 +781,7 @@
         "vegetariano",
         "sin_lacteos"
       ],
-      "kcal": 250,
+      "kcal": 255,
       "prot": 15,
       "carb": 15,
       "gras": 15,
@@ -761,38 +810,44 @@
       "ingredientes_g": [
         {
           "texto": "2 huevos",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 100
         },
         {
           "texto": "½ taza de zucchini picado",
-          "alimento": "Squash, summer, zucchini, includes skin, raw",
-          "fdc_id": 169291,
+          "fuente": "INCAP",
+          "codigo": "11155",
+          "alimento": "SUCHINI CRUDO",
           "gramos": 62
         },
         {
           "texto": "1 pizca de cúrcuma",
+          "fuente": "USDA",
+          "codigo": 172231,
           "alimento": "Spices, turmeric, ground",
-          "fdc_id": 172231,
           "gramos": 0.4
         },
         {
           "texto": "1 pizca de pimienta negra",
+          "fuente": "USDA",
+          "codigo": 170931,
           "alimento": "Spices, pepper, black",
-          "fdc_id": 170931,
           "gramos": 0.4
         },
         {
           "texto": "1 cdta de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 4.5
         },
         {
           "texto": "1 tortilla de maíz",
-          "alimento": "Tortillas, ready-to-bake or -fry, corn",
-          "fdc_id": 175036,
+          "fuente": "INCAP",
+          "codigo": "14048",
+          "alimento": "TORTILLA DE MAÍZ AMARILLO, C/CAL",
           "gramos": 26
         }
       ]
@@ -812,7 +867,7 @@
       ],
       "kcal": 325,
       "prot": 8,
-      "carb": 58,
+      "carb": 59,
       "gras": 8,
       "fibra": 10,
       "porque": "Quinoa sin gluten con fruta cocida, un desayuno tibio y fácil de digerir.",
@@ -838,32 +893,37 @@
       "ingredientes_g": [
         {
           "texto": "¾ taza de quinoa cocida",
+          "fuente": "USDA",
+          "codigo": 168917,
           "alimento": "Quinoa, cooked",
-          "fdc_id": 168917,
           "gramos": 138.8
         },
         {
           "texto": "1 taza de leche de almendras",
-          "alimento": "Nuts, almonds",
-          "fdc_id": 170567,
+          "fuente": "INCAP",
+          "codigo": "10001",
+          "alimento": "ALMENDRA, SECA",
           "gramos": 1.2
         },
         {
           "texto": "1 pera en cubos",
-          "alimento": "Pears, raw",
-          "fdc_id": 169118,
+          "fuente": "INCAP",
+          "codigo": "12120",
+          "alimento": "PERA FRUTA IMPORTADA, S/CÁSCARA",
           "gramos": 178
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         },
         {
           "texto": "1 cda de nueces",
-          "alimento": "Nuts, walnuts, english",
-          "fdc_id": 170187,
+          "fuente": "INCAP",
+          "codigo": "10012",
+          "alimento": "NUEZ DE NOGAL, SECA",
           "gramos": 7.5
         }
       ]
@@ -883,11 +943,11 @@
         "sin_gluten"
       ],
       "congelable_dias": 60,
-      "kcal": 250,
-      "prot": 15,
-      "carb": 16,
-      "gras": 14,
-      "fibra": 3,
+      "kcal": 245,
+      "prot": 14,
+      "carb": 14,
+      "gras": 15,
+      "fibra": 2,
       "porque": "Camote y espinaca aportan fibra y minerales con proteína de huevo.",
       "ing": [
         "½ taza de camote cocido",
@@ -911,32 +971,37 @@
       "ingredientes_g": [
         {
           "texto": "½ taza de camote cocido",
-          "alimento": "Sweet potato, cooked, baked in skin, flesh, without salt",
-          "fdc_id": 168483,
+          "fuente": "INCAP",
+          "codigo": "11034",
+          "alimento": "CAMOTE/BATATA ANARANJADO COCIDO, S/CÁSCARA S/SAL",
           "gramos": 66.5
         },
         {
           "texto": "2 huevos",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 100
         },
         {
           "texto": "1 taza de espinaca",
-          "alimento": "Spinach, raw",
-          "fdc_id": 168462,
+          "fuente": "INCAP",
+          "codigo": "11083",
+          "alimento": "ESPINACA CRUDA",
           "gramos": 30
         },
         {
           "texto": "1 cda de perejil picado",
-          "alimento": "Parsley, fresh",
-          "fdc_id": 170416,
+          "fuente": "INCAP",
+          "codigo": "11140",
+          "alimento": "PEREJIL, FRESCO",
           "gramos": 3.8
         },
         {
           "texto": "1 cdta de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 4.5
         }
       ]
@@ -954,11 +1019,11 @@
         "express",
         "vegetariano"
       ],
-      "kcal": 270,
-      "prot": 11,
-      "carb": 46,
+      "kcal": 260,
+      "prot": 13,
+      "carb": 42,
       "gras": 6,
-      "fibra": 6,
+      "fibra": 8,
       "porque": "El kéfir aporta fermentados, la papaya y la linaza ayudan al tránsito.",
       "ing": [
         "1 taza de papaya",
@@ -980,26 +1045,30 @@
       "ingredientes_g": [
         {
           "texto": "1 taza de papaya",
-          "alimento": "Potatoes, boiled, cooked in skin, flesh, without salt",
-          "fdc_id": 170438,
+          "fuente": "INCAP",
+          "codigo": "11128",
+          "alimento": "PAPAS C/CÁSCARA, COCIDAS S/SAL",
           "gramos": 120
         },
         {
           "texto": "½ taza de kéfir",
+          "fuente": "USDA",
+          "codigo": 170904,
           "alimento": "Kefir, lowfat, plain, LIFEWAY",
-          "fdc_id": 170904,
           "gramos": 121.5
         },
         {
           "texto": "1 cda de linaza molida",
+          "fuente": "USDA",
+          "codigo": 169414,
           "alimento": "Seeds, flaxseed",
-          "fdc_id": 169414,
           "gramos": 7
         },
         {
           "texto": "¼ taza de avena en hojuelas",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 20.3
         }
       ]
@@ -1015,11 +1084,11 @@
       "tags": [
         "vegetariano"
       ],
-      "kcal": 300,
-      "prot": 19,
-      "carb": 39,
-      "gras": 8,
-      "fibra": 6,
+      "kcal": 305,
+      "prot": 20,
+      "carb": 38,
+      "gras": 9,
+      "fibra": 7,
       "porque": "Masa de avena sin harinas refinadas ni azúcar.",
       "ing": [
         "½ taza de avena molida",
@@ -1043,32 +1112,37 @@
       "ingredientes_g": [
         {
           "texto": "½ taza de avena molida",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 40.5
         },
         {
           "texto": "1 huevo",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 50
         },
         {
           "texto": "½ taza de leche de almendras",
-          "alimento": "Nuts, almonds",
-          "fdc_id": 170567,
+          "fuente": "INCAP",
+          "codigo": "10001",
+          "alimento": "ALMENDRA, SECA",
           "gramos": 0.6
         },
         {
           "texto": "¾ taza de fresas",
-          "alimento": "Strawberries, raw",
-          "fdc_id": 167762,
+          "fuente": "INCAP",
+          "codigo": "12042",
+          "alimento": "FRESA O FRUTILLA",
           "gramos": 114
         },
         {
           "texto": "¼ taza de yogur griego natural",
+          "fuente": "USDA",
+          "codigo": 170894,
           "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 170894,
           "gramos": 61.3
         }
       ]
@@ -1119,44 +1193,51 @@
       "ingredientes_g": [
         {
           "texto": "¾ taza de lenteja cocida",
+          "fuente": "USDA",
+          "codigo": 172421,
           "alimento": "Lentils, mature seeds, cooked, boiled, without salt",
-          "fdc_id": 172421,
           "gramos": 148.5
         },
         {
           "texto": "1 zanahoria picada",
-          "alimento": "Carrots, raw",
-          "fdc_id": 170393,
+          "fuente": "INCAP",
+          "codigo": "11170",
+          "alimento": "ZANAHORIA S/CÁSCARA, CRUDA",
           "gramos": 61
         },
         {
           "texto": "1 cdta de jengibre rallado",
-          "alimento": "Ginger root, raw",
-          "fdc_id": 169231,
+          "fuente": "INCAP",
+          "codigo": "11087",
+          "alimento": "GENGIBRE O JENGIBRE",
           "gramos": 2
         },
         {
           "texto": "1 pizca de comino",
-          "alimento": "Spices, cumin seed",
-          "fdc_id": 170923,
+          "fuente": "INCAP",
+          "codigo": "22009",
+          "alimento": "COMINOS, SEMILLAS",
           "gramos": 0.4
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         },
         {
           "texto": "1 taza de caldo de verduras",
+          "fuente": "USDA",
+          "codigo": 171583,
           "alimento": "Soup, vegetable broth, ready to serve",
-          "fdc_id": 171583,
           "gramos": 240
         },
         {
           "texto": "¾ taza de arroz integral cocido",
+          "fuente": "USDA",
+          "codigo": 169704,
           "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 169704,
           "gramos": 146.3
         }
       ]
@@ -1174,10 +1255,10 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 480,
-      "prot": 38,
-      "carb": 37,
-      "gras": 20,
+      "kcal": 460,
+      "prot": 36,
+      "carb": 35,
+      "gras": 19,
       "fibra": 5,
       "porque": "Plato fresco con proteína magra y hierbas digestivas.",
       "ing": [
@@ -1203,38 +1284,44 @@
       "ingredientes_g": [
         {
           "texto": "¾ taza de quinoa cocida",
+          "fuente": "USDA",
+          "codigo": 168917,
           "alimento": "Quinoa, cooked",
-          "fdc_id": 168917,
           "gramos": 138.8
         },
         {
           "texto": "1 palma de pechuga de pollo cocida",
-          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
-          "fdc_id": 171477,
+          "fuente": "INCAP",
+          "codigo": "3039",
+          "alimento": "POLLO, PECHUGA S/PIEL, COCIDA",
           "gramos": 100
         },
         {
           "texto": "½ pepino en cubos",
-          "alimento": "Cucumber, with peel, raw",
-          "fdc_id": 168409,
+          "fuente": "INCAP",
+          "codigo": "11138",
+          "alimento": "PEPINO/COJOMBRO DE ENSALADA",
           "gramos": 150
         },
         {
           "texto": "1 cda de menta picada",
-          "alimento": "Spearmint, fresh",
-          "fdc_id": 173475,
+          "fuente": "INCAP",
+          "codigo": "11092",
+          "alimento": "HIERBABUENA",
           "gramos": 1.7
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         },
         {
           "texto": "jugo de ½ limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 24
         }
       ]
@@ -1253,10 +1340,10 @@
         "sin_gluten"
       ],
       "congelable_dias": 60,
-      "kcal": 570,
-      "prot": 34,
-      "carb": 69,
-      "gras": 18,
+      "kcal": 560,
+      "prot": 32,
+      "carb": 70,
+      "gras": 17,
       "fibra": 5,
       "porque": "Cilantro, limón y yuca cocida: sabor fuerte, digestión tranquila.",
       "ing": [
@@ -1282,38 +1369,44 @@
       "ingredientes_g": [
         {
           "texto": "1 filete de pollo (1 palma)",
-          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
-          "fdc_id": 171477,
+          "fuente": "INCAP",
+          "codigo": "3039",
+          "alimento": "POLLO, PECHUGA S/PIEL, COCIDA",
           "gramos": 100
         },
         {
           "texto": "¾ taza de yuca cocida",
-          "alimento": "Cassava, raw",
-          "fdc_id": 169985,
+          "fuente": "INCAP",
+          "codigo": "11167",
+          "alimento": "YUCA O MANDIOCA, RAÍZ",
           "gramos": 154.5
         },
         {
           "texto": "2 cdas de cilantro",
-          "alimento": "Coriander (cilantro) leaves, raw",
-          "fdc_id": 169997,
+          "fuente": "INCAP",
+          "codigo": "11040",
+          "alimento": "CILANTRO/CULANTRO",
           "gramos": 2
         },
         {
           "texto": "jugo de 1 limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 48
         },
         {
           "texto": "½ taza de zanahoria cocida",
-          "alimento": "Carrots, cooked, boiled, drained, without salt",
-          "fdc_id": 170394,
+          "fuente": "INCAP",
+          "codigo": "11171",
+          "alimento": "ZANAHORIA S/CÁSCARA, COCIDA S/SAL, ESCURRIDA",
           "gramos": 78
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         }
       ]
@@ -1331,7 +1424,7 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 520,
+      "kcal": 525,
       "prot": 18,
       "carb": 79,
       "gras": 17,
@@ -1359,32 +1452,37 @@
       "ingredientes_g": [
         {
           "texto": "¾ taza de arroz integral cocido",
+          "fuente": "USDA",
+          "codigo": 169704,
           "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 169704,
           "gramos": 146.3
         },
         {
           "texto": "¾ taza de frijol negro cocido",
+          "fuente": "USDA",
+          "codigo": 173735,
           "alimento": "Beans, black, mature seeds, cooked, boiled, without salt",
-          "fdc_id": 173735,
           "gramos": 129
         },
         {
           "texto": "½ aguacate",
-          "alimento": "Avocados, raw, all commercial varieties",
-          "fdc_id": 171705,
+          "fuente": "INCAP",
+          "codigo": "11005",
+          "alimento": "AGUACATE",
           "gramos": 100
         },
         {
           "texto": "½ tomate picado",
-          "alimento": "Tomatoes, red, ripe, raw, year round average",
-          "fdc_id": 170457,
+          "fuente": "INCAP",
+          "codigo": "11157",
+          "alimento": "TOMATE ROJO",
           "gramos": 61.5
         },
         {
           "texto": "1 cda de cilantro",
-          "alimento": "Coriander (cilantro) leaves, raw",
-          "fdc_id": 169997,
+          "fuente": "INCAP",
+          "codigo": "11040",
+          "alimento": "CILANTRO/CULANTRO",
           "gramos": 1
         }
       ]
@@ -1400,9 +1498,9 @@
       "tags": [
         "express"
       ],
-      "kcal": 420,
-      "prot": 44,
-      "carb": 41,
+      "kcal": 400,
+      "prot": 41,
+      "carb": 39,
       "gras": 8,
       "fibra": 3,
       "porque": "Almuerzo fresco, sin salsas industriales.",
@@ -1428,32 +1526,37 @@
       "ingredientes_g": [
         {
           "texto": "1 tortilla integral grande",
+          "fuente": "USDA",
+          "codigo": 173242,
           "alimento": "Tortillas, ready-to-bake or -fry, flour, without added calcium",
-          "fdc_id": 173242,
           "gramos": 60
         },
         {
           "texto": "1 palma de pollo desmenuzado",
-          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
-          "fdc_id": 171477,
+          "fuente": "INCAP",
+          "codigo": "3039",
+          "alimento": "POLLO, PECHUGA S/PIEL, COCIDA",
           "gramos": 100
         },
         {
           "texto": "½ pepino en tiras",
-          "alimento": "Cucumber, with peel, raw",
-          "fdc_id": 168409,
+          "fuente": "INCAP",
+          "codigo": "11138",
+          "alimento": "PEPINO/COJOMBRO DE ENSALADA",
           "gramos": 150
         },
         {
           "texto": "¼ taza de yogur griego natural",
+          "fuente": "USDA",
+          "codigo": 170894,
           "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 170894,
           "gramos": 61.3
         },
         {
           "texto": "1 cda de menta picada",
-          "alimento": "Spearmint, fresh",
-          "fdc_id": 173475,
+          "fuente": "INCAP",
+          "codigo": "11092",
+          "alimento": "HIERBABUENA",
           "gramos": 1.7
         }
       ]
@@ -1470,11 +1573,11 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 545,
-      "prot": 31,
-      "carb": 40,
-      "gras": 30,
-      "fibra": 10,
+      "kcal": 495,
+      "prot": 30,
+      "carb": 36,
+      "gras": 27,
+      "fibra": 8,
       "porque": "El salmón aporta omega-3, base de la nutrición antiinflamatoria.",
       "ing": [
         "1 filete de salmón (1 palma)",
@@ -1498,32 +1601,37 @@
       "ingredientes_g": [
         {
           "texto": "1 filete de salmón (1 palma)",
-          "alimento": "Fish, salmon, Atlantic, farmed, raw",
-          "fdc_id": 175167,
+          "fuente": "INCAP",
+          "codigo": "8059",
+          "alimento": "PESCADO CARNE, SALMÓN",
           "gramos": 120
         },
         {
           "texto": "1 camote mediano",
-          "alimento": "Sweet potato, cooked, baked in skin, flesh, without salt",
-          "fdc_id": 168483,
+          "fuente": "INCAP",
+          "codigo": "11034",
+          "alimento": "CAMOTE/BATATA ANARANJADO COCIDO, S/CÁSCARA S/SAL",
           "gramos": 130
         },
         {
           "texto": "1 taza de brócoli",
-          "alimento": "Broccoli, cooked, boiled, drained, without salt",
-          "fdc_id": 169967,
+          "fuente": "INCAP",
+          "codigo": "11028",
+          "alimento": "BROCOLI/BRECOL COCIDO S/SAL, ESCURRIDO",
           "gramos": 156
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         },
         {
           "texto": "jugo de ½ limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 24
         }
       ]
@@ -1541,11 +1649,11 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 415,
-      "prot": 16,
-      "carb": 47,
+      "kcal": 435,
+      "prot": 15,
+      "carb": 53,
       "gras": 21,
-      "fibra": 13,
+      "fibra": 11,
       "porque": "Legumbre y verdura asada con semillas, saciante y ligera.",
       "ing": [
         "¾ taza de garbanzos cocidos",
@@ -1570,38 +1678,44 @@
       "ingredientes_g": [
         {
           "texto": "¾ taza de garbanzos cocidos",
+          "fuente": "USDA",
+          "codigo": 173757,
           "alimento": "Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt",
-          "fdc_id": 173757,
           "gramos": 123
         },
         {
           "texto": "1 taza de zapallo asado",
-          "alimento": "Pumpkin, cooked, boiled, drained, without salt",
-          "fdc_id": 168449,
+          "fuente": "INCAP",
+          "codigo": "11020",
+          "alimento": "AYOTE/GUICOY/ZAPALLO/CALABAZA, AMARILLO/MADURO",
           "gramos": 190
         },
         {
           "texto": "1 taza de espinaca",
-          "alimento": "Spinach, raw",
-          "fdc_id": 168462,
+          "fuente": "INCAP",
+          "codigo": "11083",
+          "alimento": "ESPINACA CRUDA",
           "gramos": 30
         },
         {
           "texto": "1 cda de semillas de zapallo",
-          "alimento": "Seeds, pumpkin and squash seed kernels, dried",
-          "fdc_id": 170556,
+          "fuente": "INCAP",
+          "codigo": "10015",
+          "alimento": "SEMILLA DE AYOTE, CRUDA",
           "gramos": 8
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         },
         {
           "texto": "jugo de ½ limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 24
         }
       ]
@@ -1621,7 +1735,7 @@
       "congelable_dias": 90,
       "kcal": 435,
       "prot": 34,
-      "carb": 47,
+      "carb": 48,
       "gras": 13,
       "fibra": 5,
       "porque": "Proteína magra con verdura cocida y arroz integral.",
@@ -1648,38 +1762,44 @@
       "ingredientes_g": [
         {
           "texto": "1 palma de pavo molido",
+          "fuente": "USDA",
+          "codigo": 171506,
           "alimento": "Turkey, Ground, cooked",
-          "fdc_id": 171506,
           "gramos": 100
         },
         {
           "texto": "1 cda de avena",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 5
         },
         {
           "texto": "1 cda de perejil",
-          "alimento": "Parsley, fresh",
-          "fdc_id": 170416,
+          "fuente": "INCAP",
+          "codigo": "11140",
+          "alimento": "PEREJIL, FRESCO",
           "gramos": 3.8
         },
         {
           "texto": "1 taza de zucchini",
-          "alimento": "Squash, summer, zucchini, includes skin, raw",
-          "fdc_id": 169291,
+          "fuente": "INCAP",
+          "codigo": "11155",
+          "alimento": "SUCHINI CRUDO",
           "gramos": 124
         },
         {
           "texto": "¾ taza de arroz integral cocido",
+          "fuente": "USDA",
+          "codigo": 169704,
           "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 169704,
           "gramos": 146.3
         },
         {
           "texto": "½ tomate rallado",
-          "alimento": "Tomatoes, red, ripe, raw, year round average",
-          "fdc_id": 170457,
+          "fuente": "INCAP",
+          "codigo": "11157",
+          "alimento": "TOMATE ROJO",
           "gramos": 61.5
         }
       ]
@@ -1698,11 +1818,11 @@
         "sin_gluten"
       ],
       "congelable_dias": 90,
-      "kcal": 280,
-      "prot": 36,
-      "carb": 17,
-      "gras": 8,
-      "fibra": 4,
+      "kcal": 290,
+      "prot": 33,
+      "carb": 26,
+      "gras": 7,
+      "fibra": 3,
       "porque": "Zapallo, jengibre y cúrcuma con pimienta, una crema reconfortante.",
       "ing": [
         "1½ tazas de zapallo",
@@ -1727,38 +1847,44 @@
       "ingredientes_g": [
         {
           "texto": "1½ tazas de zapallo",
-          "alimento": "Pumpkin, cooked, boiled, drained, without salt",
-          "fdc_id": 168449,
+          "fuente": "INCAP",
+          "codigo": "11020",
+          "alimento": "AYOTE/GUICOY/ZAPALLO/CALABAZA, AMARILLO/MADURO",
           "gramos": 285
         },
         {
           "texto": "1 cdta de cúrcuma",
+          "fuente": "USDA",
+          "codigo": 172231,
           "alimento": "Spices, turmeric, ground",
-          "fdc_id": 172231,
           "gramos": 3
         },
         {
           "texto": "1 cdta de jengibre rallado",
-          "alimento": "Ginger root, raw",
-          "fdc_id": 169231,
+          "fuente": "INCAP",
+          "codigo": "11087",
+          "alimento": "GENGIBRE O JENGIBRE",
           "gramos": 2
         },
         {
           "texto": "1 pizca de pimienta negra",
+          "fuente": "USDA",
+          "codigo": 170931,
           "alimento": "Spices, pepper, black",
-          "fdc_id": 170931,
           "gramos": 0.4
         },
         {
           "texto": "1 palma de pollo desmenuzado",
-          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
-          "fdc_id": 171477,
+          "fuente": "INCAP",
+          "codigo": "3039",
+          "alimento": "POLLO, PECHUGA S/PIEL, COCIDA",
           "gramos": 100
         },
         {
           "texto": "1 cda de semillas de zapallo",
-          "alimento": "Seeds, pumpkin and squash seed kernels, dried",
-          "fdc_id": 170556,
+          "fuente": "INCAP",
+          "codigo": "10015",
+          "alimento": "SEMILLA DE AYOTE, CRUDA",
           "gramos": 8
         }
       ]
@@ -1775,11 +1901,11 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 355,
-      "prot": 30,
-      "carb": 38,
-      "gras": 11,
-      "fibra": 9,
+      "kcal": 350,
+      "prot": 29,
+      "carb": 39,
+      "gras": 10,
+      "fibra": 8,
       "porque": "Pescado blanco ligero con repollo fresco y limón.",
       "ing": [
         "3 tortillas pequeñas de maíz",
@@ -1803,32 +1929,37 @@
       "ingredientes_g": [
         {
           "texto": "3 tortillas pequeñas de maíz",
-          "alimento": "Tortillas, ready-to-bake or -fry, corn",
-          "fdc_id": 175036,
+          "fuente": "INCAP",
+          "codigo": "14048",
+          "alimento": "TORTILLA DE MAÍZ AMARILLO, C/CAL",
           "gramos": 60
         },
         {
           "texto": "1 filete de pescado blanco",
-          "alimento": "Fish, tilapia, raw",
-          "fdc_id": 175176,
+          "fuente": "INCAP",
+          "codigo": "8056",
+          "alimento": "PESCADO CARNE, TILAPIA, CRUDA",
           "gramos": 120
         },
         {
           "texto": "1 taza de repollo fino",
-          "alimento": "Cabbage, raw",
-          "fdc_id": 169975,
+          "fuente": "INCAP",
+          "codigo": "11150",
+          "alimento": "REPOLLO/COL COMUN, CRUDO",
           "gramos": 70
         },
         {
           "texto": "¼ aguacate",
-          "alimento": "Avocados, raw, all commercial varieties",
-          "fdc_id": 171705,
+          "fuente": "INCAP",
+          "codigo": "11005",
+          "alimento": "AGUACATE",
           "gramos": 50
         },
         {
           "texto": "jugo de 1 limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 48
         }
       ]
@@ -1845,10 +1976,10 @@
         "express",
         "sin_lacteos"
       ],
-      "kcal": 445,
-      "prot": 32,
+      "kcal": 490,
+      "prot": 36,
       "carb": 46,
-      "gras": 17,
+      "gras": 19,
       "fibra": 7,
       "porque": "Pasta integral con verdura y proteína magra en pocos minutos.",
       "ing": [
@@ -1873,32 +2004,37 @@
       "ingredientes_g": [
         {
           "texto": "1 taza de fideos integrales cocidos",
+          "fuente": "USDA",
+          "codigo": 168910,
           "alimento": "Pasta, whole-wheat, cooked (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 168910,
           "gramos": 140
         },
         {
           "texto": "1 lata de atún en agua escurrido",
-          "alimento": "Fish, tuna, light, canned in water, drained solids (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 173709,
+          "fuente": "INCAP",
+          "codigo": "8020",
+          "alimento": "PESCADO CARNE, ATÚN ENLATADO C/AGUA, SÓLIDOS",
           "gramos": 112
         },
         {
           "texto": "1 taza de zucchini",
-          "alimento": "Squash, summer, zucchini, includes skin, raw",
-          "fdc_id": 169291,
+          "fuente": "INCAP",
+          "codigo": "11155",
+          "alimento": "SUCHINI CRUDO",
           "gramos": 124
         },
         {
           "texto": "1 cda de albahaca",
-          "alimento": "Basil, fresh",
-          "fdc_id": 172232,
+          "fuente": "INCAP",
+          "codigo": "22002",
+          "alimento": "ALBAHACA, FRESCA",
           "gramos": 1.5
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         }
       ]
@@ -1919,11 +2055,11 @@
         "sin_gluten"
       ],
       "congelable_dias": 90,
-      "kcal": 620,
-      "prot": 18,
-      "carb": 78,
-      "gras": 29,
-      "fibra": 13,
+      "kcal": 660,
+      "prot": 19,
+      "carb": 81,
+      "gras": 32,
+      "fibra": 16,
       "porque": "Cúrcuma y comino con leche de coco, sabor intenso y digestión amable.",
       "ing": [
         "¾ taza de garbanzos cocidos",
@@ -1948,38 +2084,44 @@
       "ingredientes_g": [
         {
           "texto": "¾ taza de garbanzos cocidos",
+          "fuente": "USDA",
+          "codigo": 173757,
           "alimento": "Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt",
-          "fdc_id": 173757,
           "gramos": 123
         },
         {
           "texto": "1 taza de espinaca",
-          "alimento": "Spinach, raw",
-          "fdc_id": 168462,
+          "fuente": "INCAP",
+          "codigo": "11083",
+          "alimento": "ESPINACA CRUDA",
           "gramos": 30
         },
         {
           "texto": "½ taza de leche de coco",
-          "alimento": "Nuts, coconut milk, canned (liquid expressed from grated meat and water)",
-          "fdc_id": 170173,
+          "fuente": "INCAP",
+          "codigo": "12024",
+          "alimento": "COCO, LECHE 1A. EXTRACCIÓN",
           "gramos": 113
         },
         {
           "texto": "1 cdta de cúrcuma",
+          "fuente": "USDA",
+          "codigo": 172231,
           "alimento": "Spices, turmeric, ground",
-          "fdc_id": 172231,
           "gramos": 3
         },
         {
           "texto": "1 pizca de comino",
-          "alimento": "Spices, cumin seed",
-          "fdc_id": 170923,
+          "fuente": "INCAP",
+          "codigo": "22009",
+          "alimento": "COMINOS, SEMILLAS",
           "gramos": 0.4
         },
         {
           "texto": "¾ taza de arroz integral cocido",
+          "fuente": "USDA",
+          "codigo": 169704,
           "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 169704,
           "gramos": 146.3
         }
       ]
@@ -1996,11 +2138,11 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 455,
-      "prot": 36,
-      "carb": 39,
-      "gras": 19,
-      "fibra": 12,
+      "kcal": 425,
+      "prot": 33,
+      "carb": 35,
+      "gras": 18,
+      "fibra": 11,
       "porque": "Plato completo con carbohidrato de absorción lenta.",
       "ing": [
         "1 camote mediano asado",
@@ -2024,32 +2166,37 @@
       "ingredientes_g": [
         {
           "texto": "1 camote mediano asado",
-          "alimento": "Sweet potato, cooked, baked in skin, flesh, without salt",
-          "fdc_id": 168483,
+          "fuente": "INCAP",
+          "codigo": "11034",
+          "alimento": "CAMOTE/BATATA ANARANJADO COCIDO, S/CÁSCARA S/SAL",
           "gramos": 130
         },
         {
           "texto": "1 palma de pollo a la plancha",
-          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
-          "fdc_id": 171477,
+          "fuente": "INCAP",
+          "codigo": "3039",
+          "alimento": "POLLO, PECHUGA S/PIEL, COCIDA",
           "gramos": 100
         },
         {
           "texto": "½ aguacate",
-          "alimento": "Avocados, raw, all commercial varieties",
-          "fdc_id": 171705,
+          "fuente": "INCAP",
+          "codigo": "11005",
+          "alimento": "AGUACATE",
           "gramos": 100
         },
         {
           "texto": "1 taza de lechuga",
-          "alimento": "Lettuce, cos or romaine, raw",
-          "fdc_id": 169247,
+          "fuente": "INCAP",
+          "codigo": "11179",
+          "alimento": "LECHUGA ROMANA",
           "gramos": 47
         },
         {
           "texto": "jugo de ½ limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 24
         }
       ]
@@ -2069,8 +2216,8 @@
         "sin_gluten"
       ],
       "congelable_dias": 90,
-      "kcal": 390,
-      "prot": 36,
+      "kcal": 375,
+      "prot": 34,
       "carb": 47,
       "gras": 5,
       "fibra": 5,
@@ -2098,38 +2245,44 @@
       "ingredientes_g": [
         {
           "texto": "1 palma de pollo",
-          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
-          "fdc_id": 171477,
+          "fuente": "INCAP",
+          "codigo": "3039",
+          "alimento": "POLLO, PECHUGA S/PIEL, COCIDA",
           "gramos": 100
         },
         {
           "texto": "1 zanahoria",
-          "alimento": "Carrots, raw",
-          "fdc_id": 170393,
+          "fuente": "INCAP",
+          "codigo": "11170",
+          "alimento": "ZANAHORIA S/CÁSCARA, CRUDA",
           "gramos": 61
         },
         {
           "texto": "1 tallo de apio",
-          "alimento": "Celery, raw",
-          "fdc_id": 169988,
+          "fuente": "INCAP",
+          "codigo": "11010",
+          "alimento": "APIO, TALLOS",
           "gramos": 40
         },
         {
           "texto": "1 cdta de jengibre rallado",
-          "alimento": "Ginger root, raw",
-          "fdc_id": 169231,
+          "fuente": "INCAP",
+          "codigo": "11087",
+          "alimento": "GENGIBRE O JENGIBRE",
           "gramos": 2
         },
         {
           "texto": "1 taza de caldo",
+          "fuente": "USDA",
+          "codigo": 171583,
           "alimento": "Soup, vegetable broth, ready to serve",
-          "fdc_id": 171583,
           "gramos": 240
         },
         {
           "texto": "¾ taza de arroz integral cocido",
+          "fuente": "USDA",
+          "codigo": 169704,
           "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 169704,
           "gramos": 146.3
         }
       ]
@@ -2147,9 +2300,9 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 440,
+      "kcal": 435,
       "prot": 17,
-      "carb": 62,
+      "carb": 60,
       "gras": 15,
       "fibra": 14,
       "porque": "Proteína vegetal completa y mucha fibra, con pepino fresco.",
@@ -2176,38 +2329,44 @@
       "ingredientes_g": [
         {
           "texto": "¾ taza de lenteja cocida",
+          "fuente": "USDA",
+          "codigo": 172421,
           "alimento": "Lentils, mature seeds, cooked, boiled, without salt",
-          "fdc_id": 172421,
           "gramos": 148.5
         },
         {
           "texto": "½ taza de arroz integral cocido",
+          "fuente": "USDA",
+          "codigo": 169704,
           "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 169704,
           "gramos": 97.5
         },
         {
           "texto": "½ pepino en rodajas",
-          "alimento": "Cucumber, with peel, raw",
-          "fdc_id": 168409,
+          "fuente": "INCAP",
+          "codigo": "11138",
+          "alimento": "PEPINO/COJOMBRO DE ENSALADA",
           "gramos": 150
         },
         {
           "texto": "1 pizca de comino",
-          "alimento": "Spices, cumin seed",
-          "fdc_id": 170923,
+          "fuente": "INCAP",
+          "codigo": "22009",
+          "alimento": "COMINOS, SEMILLAS",
           "gramos": 0.4
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         },
         {
           "texto": "jugo de ½ limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 24
         }
       ]
@@ -2224,11 +2383,11 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 385,
-      "prot": 28,
-      "carb": 36,
+      "kcal": 375,
+      "prot": 29,
+      "carb": 33,
       "gras": 16,
-      "fibra": 6,
+      "fibra": 8,
       "porque": "El hinojo es una hierba tradicional para la digestión; pescado ligero para la noche.",
       "ing": [
         "1 filete de pescado blanco",
@@ -2252,32 +2411,37 @@
       "ingredientes_g": [
         {
           "texto": "1 filete de pescado blanco",
-          "alimento": "Fish, tilapia, raw",
-          "fdc_id": 175176,
+          "fuente": "INCAP",
+          "codigo": "8056",
+          "alimento": "PESCADO CARNE, TILAPIA, CRUDA",
           "gramos": 120
         },
         {
           "texto": "½ bulbo de hinojo en láminas",
+          "fuente": "USDA",
+          "codigo": 169385,
           "alimento": "Fennel, bulb, raw",
-          "fdc_id": 169385,
           "gramos": 115
         },
         {
           "texto": "jugo de 1 limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 48
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         },
         {
           "texto": "1 papa pequeña cocida",
-          "alimento": "Potatoes, boiled, cooked in skin, flesh, without salt",
-          "fdc_id": 170438,
+          "fuente": "INCAP",
+          "codigo": "11128",
+          "alimento": "PAPAS C/CÁSCARA, COCIDAS S/SAL",
           "gramos": 120
         }
       ]
@@ -2323,32 +2487,37 @@
       "ingredientes_g": [
         {
           "texto": "1 palma grande de tofu en cubos",
+          "fuente": "USDA",
+          "codigo": 172475,
           "alimento": "Tofu, raw, firm, prepared with calcium sulfate",
-          "fdc_id": 172475,
           "gramos": 130
         },
         {
           "texto": "1½ tazas de brócoli",
-          "alimento": "Broccoli, cooked, boiled, drained, without salt",
-          "fdc_id": 169967,
+          "fuente": "INCAP",
+          "codigo": "11028",
+          "alimento": "BROCOLI/BRECOL COCIDO S/SAL, ESCURRIDO",
           "gramos": 234
         },
         {
           "texto": "1 cdta de jengibre rallado",
-          "alimento": "Ginger root, raw",
-          "fdc_id": 169231,
+          "fuente": "INCAP",
+          "codigo": "11087",
+          "alimento": "GENGIBRE O JENGIBRE",
           "gramos": 2
         },
         {
           "texto": "1 cda de aceite",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         },
         {
           "texto": "½ taza de arroz integral cocido",
+          "fuente": "USDA",
+          "codigo": 169704,
           "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 169704,
           "gramos": 97.5
         }
       ]
@@ -2366,11 +2535,11 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 375,
-      "prot": 10,
-      "carb": 50,
+      "kcal": 355,
+      "prot": 9,
+      "carb": 46,
       "gras": 16,
-      "fibra": 11,
+      "fibra": 10,
       "porque": "Plato vegetal saciante con fibra y especias suaves.",
       "ing": [
         "1 camote mediano",
@@ -2394,32 +2563,37 @@
       "ingredientes_g": [
         {
           "texto": "1 camote mediano",
-          "alimento": "Sweet potato, cooked, baked in skin, flesh, without salt",
-          "fdc_id": 168483,
+          "fuente": "INCAP",
+          "codigo": "11034",
+          "alimento": "CAMOTE/BATATA ANARANJADO COCIDO, S/CÁSCARA S/SAL",
           "gramos": 130
         },
         {
           "texto": "½ taza de garbanzos cocidos",
+          "fuente": "USDA",
+          "codigo": 173757,
           "alimento": "Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt",
-          "fdc_id": 173757,
           "gramos": 82
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         },
         {
           "texto": "1 pizca de comino",
-          "alimento": "Spices, cumin seed",
-          "fdc_id": 170923,
+          "fuente": "INCAP",
+          "codigo": "22009",
+          "alimento": "COMINOS, SEMILLAS",
           "gramos": 0.4
         },
         {
           "texto": "1 cda de perejil",
-          "alimento": "Parsley, fresh",
-          "fdc_id": 170416,
+          "fuente": "INCAP",
+          "codigo": "11140",
+          "alimento": "PEREJIL, FRESCO",
           "gramos": 3.8
         }
       ]
@@ -2440,11 +2614,11 @@
         "sin_gluten"
       ],
       "congelable_dias": 90,
-      "kcal": 250,
-      "prot": 6,
-      "carb": 24,
-      "gras": 17,
-      "fibra": 8,
+      "kcal": 265,
+      "prot": 5,
+      "carb": 26,
+      "gras": 18,
+      "fibra": 9,
       "porque": "Crema tibia y suave con cúrcuma y jengibre.",
       "ing": [
         "1½ tazas de zanahoria",
@@ -2468,32 +2642,37 @@
       "ingredientes_g": [
         {
           "texto": "1½ tazas de zanahoria",
-          "alimento": "Carrots, cooked, boiled, drained, without salt",
-          "fdc_id": 170394,
+          "fuente": "INCAP",
+          "codigo": "11171",
+          "alimento": "ZANAHORIA S/CÁSCARA, COCIDA S/SAL, ESCURRIDA",
           "gramos": 234
         },
         {
           "texto": "1 cdta de cúrcuma",
+          "fuente": "USDA",
+          "codigo": 172231,
           "alimento": "Spices, turmeric, ground",
-          "fdc_id": 172231,
           "gramos": 3
         },
         {
           "texto": "1 cdta de jengibre rallado",
-          "alimento": "Ginger root, raw",
-          "fdc_id": 169231,
+          "fuente": "INCAP",
+          "codigo": "11087",
+          "alimento": "GENGIBRE O JENGIBRE",
           "gramos": 2
         },
         {
           "texto": "¼ taza de leche de coco",
-          "alimento": "Nuts, coconut milk, canned (liquid expressed from grated meat and water)",
-          "fdc_id": 170173,
+          "fuente": "INCAP",
+          "codigo": "12024",
+          "alimento": "COCO, LECHE 1A. EXTRACCIÓN",
           "gramos": 56.5
         },
         {
           "texto": "1 cda de semillas de zapallo",
-          "alimento": "Seeds, pumpkin and squash seed kernels, dried",
-          "fdc_id": 170556,
+          "fuente": "INCAP",
+          "codigo": "10015",
+          "alimento": "SEMILLA DE AYOTE, CRUDA",
           "gramos": 8
         }
       ]
@@ -2539,32 +2718,37 @@
       "ingredientes_g": [
         {
           "texto": "3 hojas grandes de lechuga",
-          "alimento": "Lettuce, cos or romaine, raw",
-          "fdc_id": 169247,
+          "fuente": "INCAP",
+          "codigo": "11179",
+          "alimento": "LECHUGA ROMANA",
           "gramos": 60
         },
         {
           "texto": "1 palma de pavo molido",
+          "fuente": "USDA",
+          "codigo": 171506,
           "alimento": "Turkey, Ground, cooked",
-          "fdc_id": 171506,
           "gramos": 100
         },
         {
           "texto": "½ tomate picado",
-          "alimento": "Tomatoes, red, ripe, raw, year round average",
-          "fdc_id": 170457,
+          "fuente": "INCAP",
+          "codigo": "11157",
+          "alimento": "TOMATE ROJO",
           "gramos": 61.5
         },
         {
           "texto": "¼ aguacate",
-          "alimento": "Avocados, raw, all commercial varieties",
-          "fdc_id": 171705,
+          "fuente": "INCAP",
+          "codigo": "11005",
+          "alimento": "AGUACATE",
           "gramos": 50
         },
         {
           "texto": "1 cda de cilantro",
-          "alimento": "Coriander (cilantro) leaves, raw",
-          "fdc_id": 169997,
+          "fuente": "INCAP",
+          "codigo": "11040",
+          "alimento": "CILANTRO/CULANTRO",
           "gramos": 1
         }
       ]
@@ -2582,9 +2766,9 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 245,
-      "prot": 18,
-      "carb": 10,
+      "kcal": 230,
+      "prot": 17,
+      "carb": 11,
       "gras": 15,
       "fibra": 2,
       "porque": "Cena rápida, ligera y baja en carbohidratos.",
@@ -2610,32 +2794,37 @@
       "ingredientes_g": [
         {
           "texto": "10 camarones medianos",
-          "alimento": "Crustaceans, shrimp, mixed species, cooked, moist heat (may contain additives to retain moisture)",
-          "fdc_id": 171971,
+          "fuente": "INCAP",
+          "codigo": "8053",
+          "alimento": "CAMARÓN, COCIDO",
           "gramos": 70
         },
         {
           "texto": "1½ tazas de zucchini en tiras",
-          "alimento": "Squash, summer, zucchini, includes skin, raw",
-          "fdc_id": 169291,
+          "fuente": "INCAP",
+          "codigo": "11155",
+          "alimento": "SUCHINI CRUDO",
           "gramos": 186
         },
         {
           "texto": "jugo de 1 limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 48
         },
         {
           "texto": "1 cda de perejil",
-          "alimento": "Parsley, fresh",
-          "fdc_id": 170416,
+          "fuente": "INCAP",
+          "codigo": "11140",
+          "alimento": "PEREJIL, FRESCO",
           "gramos": 3.8
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         }
       ]
@@ -2655,7 +2844,7 @@
       ],
       "kcal": 245,
       "prot": 10,
-      "carb": 10,
+      "carb": 11,
       "gras": 19,
       "fibra": 3,
       "porque": "Verde, suave y tibia; el huevo suma proteína.",
@@ -2681,32 +2870,37 @@
       "ingredientes_g": [
         {
           "texto": "2 tazas de zucchini",
-          "alimento": "Squash, summer, zucchini, includes skin, raw",
-          "fdc_id": 169291,
+          "fuente": "INCAP",
+          "codigo": "11155",
+          "alimento": "SUCHINI CRUDO",
           "gramos": 248
         },
         {
           "texto": "1 taza de caldo de verduras",
+          "fuente": "USDA",
+          "codigo": 171583,
           "alimento": "Soup, vegetable broth, ready to serve",
-          "fdc_id": 171583,
           "gramos": 240
         },
         {
           "texto": "1 cda de albahaca",
-          "alimento": "Basil, fresh",
-          "fdc_id": 172232,
+          "fuente": "INCAP",
+          "codigo": "22002",
+          "alimento": "ALBAHACA, FRESCA",
           "gramos": 1.5
         },
         {
           "texto": "1 huevo",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 50
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         }
       ]
@@ -2723,10 +2917,10 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 430,
-      "prot": 32,
-      "carb": 26,
-      "gras": 23,
+      "kcal": 400,
+      "prot": 31,
+      "carb": 27,
+      "gras": 19,
       "fibra": 5,
       "porque": "Omega-3 del salmón con quinoa sin gluten.",
       "ing": [
@@ -2750,32 +2944,37 @@
       "ingredientes_g": [
         {
           "texto": "1 filete de salmón",
-          "alimento": "Fish, salmon, Atlantic, farmed, raw",
-          "fdc_id": 175167,
+          "fuente": "INCAP",
+          "codigo": "8059",
+          "alimento": "PESCADO CARNE, SALMÓN",
           "gramos": 120
         },
         {
           "texto": "8 espárragos",
-          "alimento": "Asparagus, cooked, boiled, drained",
-          "fdc_id": 168390,
+          "fuente": "INCAP",
+          "codigo": "11081",
+          "alimento": "ESPARRAGO COCIDO S/SAL, ESCURRIDO",
           "gramos": 120
         },
         {
           "texto": "½ taza de quinoa cocida",
+          "fuente": "USDA",
+          "codigo": 168917,
           "alimento": "Quinoa, cooked",
-          "fdc_id": 168917,
           "gramos": 92.5
         },
         {
           "texto": "jugo de ½ limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 24
         },
         {
           "texto": "1 cdta de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 4.5
         }
       ]
@@ -2794,10 +2993,10 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 290,
+      "kcal": 295,
       "prot": 14,
-      "carb": 6,
-      "gras": 23,
+      "carb": 7,
+      "gras": 24,
       "fibra": 2,
       "porque": "Cena ligera con proteína y verduras cocidas.",
       "ing": [
@@ -2822,32 +3021,37 @@
       "ingredientes_g": [
         {
           "texto": "2 huevos",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 100
         },
         {
           "texto": "½ taza de zucchini picado",
-          "alimento": "Squash, summer, zucchini, includes skin, raw",
-          "fdc_id": 169291,
+          "fuente": "INCAP",
+          "codigo": "11155",
+          "alimento": "SUCHINI CRUDO",
           "gramos": 62
         },
         {
           "texto": "¼ de pimentón",
-          "alimento": "Peppers, sweet, red, raw",
-          "fdc_id": 170108,
+          "fuente": "INCAP",
+          "codigo": "11058",
+          "alimento": "CHILE DULCE/PIMIENTO ROJO, FRESCO",
           "gramos": 37.5
         },
         {
           "texto": "1 taza de lechuga",
-          "alimento": "Lettuce, cos or romaine, raw",
-          "fdc_id": 169247,
+          "fuente": "INCAP",
+          "codigo": "11179",
+          "alimento": "LECHUGA ROMANA",
           "gramos": 47
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         }
       ]
@@ -2866,11 +3070,11 @@
         "sin_gluten"
       ],
       "congelable_dias": 60,
-      "kcal": 345,
-      "prot": 33,
-      "carb": 15,
+      "kcal": 360,
+      "prot": 31,
+      "carb": 22,
       "gras": 17,
-      "fibra": 4,
+      "fibra": 2,
       "porque": "Plato sencillo de horno con hierbas aromáticas.",
       "ing": [
         "1 muslo o filete de pollo (1 palma)",
@@ -2892,26 +3096,30 @@
       "ingredientes_g": [
         {
           "texto": "1 muslo o filete de pollo (1 palma)",
-          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
-          "fdc_id": 171477,
+          "fuente": "INCAP",
+          "codigo": "3039",
+          "alimento": "POLLO, PECHUGA S/PIEL, COCIDA",
           "gramos": 100
         },
         {
           "texto": "1½ tazas de zapallo en cubos",
-          "alimento": "Pumpkin, cooked, boiled, drained, without salt",
-          "fdc_id": 168449,
+          "fuente": "INCAP",
+          "codigo": "11020",
+          "alimento": "AYOTE/GUICOY/ZAPALLO/CALABAZA, AMARILLO/MADURO",
           "gramos": 285
         },
         {
           "texto": "1 ramita de romero",
-          "alimento": "Rosemary, fresh",
-          "fdc_id": 173473,
+          "fuente": "INCAP",
+          "codigo": "22020",
+          "alimento": "ROMERO, FRESCO",
           "gramos": 3
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         }
       ]
@@ -2931,11 +3139,11 @@
         "sin_gluten"
       ],
       "congelable_dias": 90,
-      "kcal": 220,
+      "kcal": 215,
       "prot": 14,
-      "carb": 41,
+      "carb": 40,
       "gras": 1,
-      "fibra": 14,
+      "fibra": 13,
       "porque": "Sopa de legumbres con verduras y comino, rica en fibra.",
       "ing": [
         "¾ taza de frijol cocido",
@@ -2960,38 +3168,44 @@
       "ingredientes_g": [
         {
           "texto": "¾ taza de frijol cocido",
-          "alimento": "Beans, black, mature seeds, cooked, boiled, without salt",
-          "fdc_id": 173735,
+          "fuente": "INCAP",
+          "codigo": "9035",
+          "alimento": "FRIJOL ROJO, COCIDO S/SAL",
           "gramos": 129
         },
         {
           "texto": "1 zanahoria",
-          "alimento": "Carrots, raw",
-          "fdc_id": 170393,
+          "fuente": "INCAP",
+          "codigo": "11170",
+          "alimento": "ZANAHORIA S/CÁSCARA, CRUDA",
           "gramos": 61
         },
         {
           "texto": "1 tallo de apio",
-          "alimento": "Celery, raw",
-          "fdc_id": 169988,
+          "fuente": "INCAP",
+          "codigo": "11010",
+          "alimento": "APIO, TALLOS",
           "gramos": 40
         },
         {
           "texto": "1 taza de espinaca",
-          "alimento": "Spinach, raw",
-          "fdc_id": 168462,
+          "fuente": "INCAP",
+          "codigo": "11083",
+          "alimento": "ESPINACA CRUDA",
           "gramos": 30
         },
         {
           "texto": "1 pizca de comino",
-          "alimento": "Spices, cumin seed",
-          "fdc_id": 170923,
+          "fuente": "INCAP",
+          "codigo": "22009",
+          "alimento": "COMINOS, SEMILLAS",
           "gramos": 0.4
         },
         {
           "texto": "1 taza de caldo",
+          "fuente": "USDA",
+          "codigo": 171583,
           "alimento": "Soup, vegetable broth, ready to serve",
-          "fdc_id": 171583,
           "gramos": 240
         }
       ]
@@ -3013,7 +3227,7 @@
       "prot": 13,
       "carb": 40,
       "gras": 15,
-      "fibra": 18,
+      "fibra": 19,
       "porque": "Verdura asada con legumbre, saciante y ligera.",
       "ing": [
         "1 berenjena mediana",
@@ -3037,32 +3251,37 @@
       "ingredientes_g": [
         {
           "texto": "1 berenjena mediana",
-          "alimento": "Eggplant, raw",
-          "fdc_id": 169228,
+          "fuente": "INCAP",
+          "codigo": "11023",
+          "alimento": "BERENJENA CRUDA",
           "gramos": 300
         },
         {
           "texto": "½ taza de lentejas cocidas",
+          "fuente": "USDA",
+          "codigo": 172421,
           "alimento": "Lentils, mature seeds, cooked, boiled, without salt",
-          "fdc_id": 172421,
           "gramos": 99
         },
         {
           "texto": "½ tomate picado",
-          "alimento": "Tomatoes, red, ripe, raw, year round average",
-          "fdc_id": 170457,
+          "fuente": "INCAP",
+          "codigo": "11157",
+          "alimento": "TOMATE ROJO",
           "gramos": 61.5
         },
         {
           "texto": "1 cda de perejil",
-          "alimento": "Parsley, fresh",
-          "fdc_id": 170416,
+          "fuente": "INCAP",
+          "codigo": "11140",
+          "alimento": "PEREJIL, FRESCO",
           "gramos": 3.8
         },
         {
           "texto": "1 cda de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 13.5
         }
       ]
@@ -3080,10 +3299,10 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 320,
+      "kcal": 315,
       "prot": 32,
-      "carb": 16,
-      "gras": 15,
+      "carb": 14,
+      "gras": 16,
       "fibra": 8,
       "porque": "Cena fresca, alta en proteína y grasas buenas.",
       "ing": [
@@ -3108,32 +3327,37 @@
       "ingredientes_g": [
         {
           "texto": "1 filete de atún",
+          "fuente": "USDA",
+          "codigo": 175159,
           "alimento": "Fish, tuna, fresh, yellowfin, raw",
-          "fdc_id": 175159,
           "gramos": 120
         },
         {
           "texto": "½ pepino",
-          "alimento": "Cucumber, with peel, raw",
-          "fdc_id": 168409,
+          "fuente": "INCAP",
+          "codigo": "11138",
+          "alimento": "PEPINO/COJOMBRO DE ENSALADA",
           "gramos": 150
         },
         {
           "texto": "½ aguacate",
-          "alimento": "Avocados, raw, all commercial varieties",
-          "fdc_id": 171705,
+          "fuente": "INCAP",
+          "codigo": "11005",
+          "alimento": "AGUACATE",
           "gramos": 100
         },
         {
           "texto": "1 cda de menta",
-          "alimento": "Spearmint, fresh",
-          "fdc_id": 173475,
+          "fuente": "INCAP",
+          "codigo": "11092",
+          "alimento": "HIERBABUENA",
           "gramos": 1.7
         },
         {
           "texto": "jugo de ½ limón",
-          "alimento": "Lemon juice, raw",
-          "fdc_id": 167747,
+          "fuente": "INCAP",
+          "codigo": "12074",
+          "alimento": "LIMÓN AGRIO, JUGO",
           "gramos": 24
         }
       ]
@@ -3150,10 +3374,10 @@
         "express",
         "sin_lacteos"
       ],
-      "kcal": 345,
+      "kcal": 335,
       "prot": 34,
       "carb": 34,
-      "gras": 8,
+      "gras": 6,
       "fibra": 5,
       "porque": "Salteado ligero con jengibre y verduras cocidas.",
       "ing": [
@@ -3179,38 +3403,44 @@
       "ingredientes_g": [
         {
           "texto": "1 palma de pavo en tiras",
-          "alimento": "Turkey, whole, breast, meat only, cooked, roasted",
-          "fdc_id": 171496,
+          "fuente": "INCAP",
+          "codigo": "3010",
+          "alimento": "PAVO, PECHUGA S/PIEL, HORNEADA",
           "gramos": 100
         },
         {
           "texto": "1½ tazas de repollo",
-          "alimento": "Cabbage, raw",
-          "fdc_id": 169975,
+          "fuente": "INCAP",
+          "codigo": "11150",
+          "alimento": "REPOLLO/COL COMUN, CRUDO",
           "gramos": 105
         },
         {
           "texto": "½ zanahoria en tiras",
-          "alimento": "Carrots, raw",
-          "fdc_id": 170393,
+          "fuente": "INCAP",
+          "codigo": "11170",
+          "alimento": "ZANAHORIA S/CÁSCARA, CRUDA",
           "gramos": 30.5
         },
         {
           "texto": "1 cdta de jengibre rallado",
-          "alimento": "Ginger root, raw",
-          "fdc_id": 169231,
+          "fuente": "INCAP",
+          "codigo": "11087",
+          "alimento": "GENGIBRE O JENGIBRE",
           "gramos": 2
         },
         {
           "texto": "½ taza de arroz integral cocido",
+          "fuente": "USDA",
+          "codigo": 169704,
           "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 169704,
           "gramos": 97.5
         },
         {
           "texto": "1 cdta de aceite",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 4.5
         }
       ]
@@ -3229,11 +3459,11 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 345,
+      "kcal": 335,
       "prot": 18,
-      "carb": 45,
+      "carb": 44,
       "gras": 11,
-      "fibra": 11,
+      "fibra": 9,
       "porque": "Cena rápida con proteína vegetal y animal, sin harina de trigo.",
       "ing": [
         "2 tortillas de maíz",
@@ -3257,32 +3487,37 @@
       "ingredientes_g": [
         {
           "texto": "2 tortillas de maíz",
-          "alimento": "Tortillas, ready-to-bake or -fry, corn",
-          "fdc_id": 175036,
+          "fuente": "INCAP",
+          "codigo": "14048",
+          "alimento": "TORTILLA DE MAÍZ AMARILLO, C/CAL",
           "gramos": 52
         },
         {
           "texto": "1 huevo",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 50
         },
         {
           "texto": "½ taza de frijol cocido",
-          "alimento": "Beans, black, mature seeds, cooked, boiled, without salt",
-          "fdc_id": 173735,
+          "fuente": "INCAP",
+          "codigo": "9035",
+          "alimento": "FRIJOL ROJO, COCIDO S/SAL",
           "gramos": 86
         },
         {
           "texto": "1 taza de espinaca",
-          "alimento": "Spinach, raw",
-          "fdc_id": 168462,
+          "fuente": "INCAP",
+          "codigo": "11083",
+          "alimento": "ESPINACA CRUDA",
           "gramos": 30
         },
         {
           "texto": "1 cdta de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 4.5
         }
       ]
@@ -3301,7 +3536,7 @@
       ],
       "kcal": 145,
       "prot": 10,
-      "carb": 23,
+      "carb": 22,
       "gras": 3,
       "fibra": 1,
       "porque": "El kéfir es un fermentado; la piña y la menta lo hacen refrescante.",
@@ -3323,20 +3558,23 @@
       "ingredientes_g": [
         {
           "texto": "1 taza de kéfir",
+          "fuente": "USDA",
+          "codigo": 170904,
           "alimento": "Kefir, lowfat, plain, LIFEWAY",
-          "fdc_id": 170904,
           "gramos": 243
         },
         {
           "texto": "½ taza de piña",
-          "alimento": "Pineapple, raw, all varieties",
-          "fdc_id": 169124,
+          "fuente": "INCAP",
+          "codigo": "12159",
+          "alimento": "PIÑA, TODA VARIEDAD",
           "gramos": 82.5
         },
         {
           "texto": "1 cda de menta",
-          "alimento": "Spearmint, fresh",
-          "fdc_id": 173475,
+          "fuente": "INCAP",
+          "codigo": "11092",
+          "alimento": "HIERBABUENA",
           "gramos": 1.7
         }
       ]
@@ -3354,8 +3592,8 @@
         "vegetariano"
       ],
       "congelable_dias": 60,
-      "kcal": 280,
-      "prot": 11,
+      "kcal": 285,
+      "prot": 12,
       "carb": 46,
       "gras": 7,
       "fibra": 6,
@@ -3380,26 +3618,30 @@
       "ingredientes_g": [
         {
           "texto": "1 banano maduro",
-          "alimento": "Bananas, raw",
-          "fdc_id": 173944,
+          "fuente": "INCAP",
+          "codigo": "12010",
+          "alimento": "BANANO/GUINEO, MADURO",
           "gramos": 118
         },
         {
           "texto": "⅓ taza de avena",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 27
         },
         {
           "texto": "1 huevo",
-          "alimento": "Egg, whole, raw, fresh",
-          "fdc_id": 171287,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 50
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         }
       ]
@@ -3422,7 +3664,7 @@
       "prot": 3,
       "carb": 28,
       "gras": 10,
-      "fibra": 6,
+      "fibra": 5,
       "porque": "La fruta cocida es más suave para la digestión.",
       "ing": [
         "1 manzana",
@@ -3443,20 +3685,23 @@
       "ingredientes_g": [
         {
           "texto": "1 manzana",
-          "alimento": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 171688,
+          "fuente": "INCAP",
+          "codigo": "12086",
+          "alimento": "MANZANA, FRUTA IMPORTADA, C/CÁSCARA",
           "gramos": 182
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         },
         {
           "texto": "6 mitades de nuez",
-          "alimento": "Nuts, walnuts, english",
-          "fdc_id": 170187,
+          "fuente": "INCAP",
+          "codigo": "10012",
+          "alimento": "NUEZ DE NOGAL, SECA",
           "gramos": 15
         }
       ]
@@ -3474,9 +3719,9 @@
         "vegetariano",
         "sin_lacteos"
       ],
-      "kcal": 155,
+      "kcal": 150,
       "prot": 5,
-      "carb": 18,
+      "carb": 16,
       "gras": 8,
       "fibra": 5,
       "porque": "Snack saciante con garbanzo y verduras crudas crujientes.",
@@ -3498,20 +3743,23 @@
       "ingredientes_g": [
         {
           "texto": "3 cdas de hummus",
+          "fuente": "USDA",
+          "codigo": 174289,
           "alimento": "Hummus, commercial",
-          "fdc_id": 174289,
           "gramos": 45
         },
         {
           "texto": "1 zanahoria en palitos",
-          "alimento": "Carrots, raw",
-          "fdc_id": 170393,
+          "fuente": "INCAP",
+          "codigo": "11170",
+          "alimento": "ZANAHORIA S/CÁSCARA, CRUDA",
           "gramos": 61
         },
         {
           "texto": "½ pepino en palitos",
-          "alimento": "Cucumber, with peel, raw",
-          "fdc_id": 168409,
+          "fuente": "INCAP",
+          "codigo": "11138",
+          "alimento": "PEPINO/COJOMBRO DE ENSALADA",
           "gramos": 150
         }
       ]
@@ -3553,20 +3801,23 @@
       "ingredientes_g": [
         {
           "texto": "1 taza de yogur griego natural",
+          "fuente": "USDA",
+          "codigo": 170894,
           "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 170894,
           "gramos": 245
         },
         {
           "texto": "1 cda de linaza molida",
+          "fuente": "USDA",
+          "codigo": 169414,
           "alimento": "Seeds, flaxseed",
-          "fdc_id": 169414,
           "gramos": 7
         },
         {
           "texto": "½ taza de fresas",
-          "alimento": "Strawberries, raw",
-          "fdc_id": 167762,
+          "fuente": "INCAP",
+          "codigo": "12042",
+          "alimento": "FRESA O FRUTILLA",
           "gramos": 76
         }
       ]
@@ -3588,7 +3839,7 @@
       "kcal": 185,
       "prot": 4,
       "carb": 30,
-      "gras": 7,
+      "gras": 8,
       "fibra": 7,
       "porque": "Grasas buenas y fibra, fácil de llevar.",
       "ing": [
@@ -3608,14 +3859,16 @@
       "ingredientes_g": [
         {
           "texto": "12 almendras",
-          "alimento": "Nuts, almonds",
-          "fdc_id": 170567,
+          "fuente": "INCAP",
+          "codigo": "10001",
+          "alimento": "ALMENDRA, SECA",
           "gramos": 14.4
         },
         {
           "texto": "1 pera mediana",
-          "alimento": "Pears, raw",
-          "fdc_id": 169118,
+          "fuente": "INCAP",
+          "codigo": "12120",
+          "alimento": "PERA FRUTA IMPORTADA, S/CÁSCARA",
           "gramos": 178
         }
       ]
@@ -3634,11 +3887,11 @@
         "sin_lacteos"
       ],
       "congelable_dias": 60,
-      "kcal": 235,
-      "prot": 5,
-      "carb": 44,
+      "kcal": 240,
+      "prot": 6,
+      "carb": 43,
       "gras": 7,
-      "fibra": 4,
+      "fibra": 5,
       "porque": "Solo avena y fruta, sin azúcar.",
       "ing": [
         "½ plátano maduro",
@@ -3660,26 +3913,30 @@
       "ingredientes_g": [
         {
           "texto": "½ plátano maduro",
-          "alimento": "Plantains, yellow, raw",
-          "fdc_id": 169130,
+          "fuente": "INCAP",
+          "codigo": "12130",
+          "alimento": "PLÁTANO MADURO",
           "gramos": 89.5
         },
         {
           "texto": "¼ taza de avena",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 20.3
         },
         {
           "texto": "1 cda de nueces picadas",
-          "alimento": "Nuts, walnuts, english",
-          "fdc_id": 170187,
+          "fuente": "INCAP",
+          "codigo": "10012",
+          "alimento": "NUEZ DE NOGAL, SECA",
           "gramos": 7.5
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         }
       ]
@@ -3698,11 +3955,11 @@
         "vegetariano",
         "sin_lacteos"
       ],
-      "kcal": 170,
-      "prot": 4,
-      "carb": 30,
+      "kcal": 155,
+      "prot": 6,
+      "carb": 26,
       "gras": 4,
-      "fibra": 6,
+      "fibra": 8,
       "porque": "Ligero y refrescante, con papaya y jengibre.",
       "ing": [
         "1 taza de papaya",
@@ -3723,26 +3980,30 @@
       "ingredientes_g": [
         {
           "texto": "1 taza de papaya",
-          "alimento": "Potatoes, boiled, cooked in skin, flesh, without salt",
-          "fdc_id": 170438,
+          "fuente": "INCAP",
+          "codigo": "11128",
+          "alimento": "PAPAS C/CÁSCARA, COCIDAS S/SAL",
           "gramos": 120
         },
         {
           "texto": "½ taza de leche de almendras",
-          "alimento": "Nuts, almonds",
-          "fdc_id": 170567,
+          "fuente": "INCAP",
+          "codigo": "10001",
+          "alimento": "ALMENDRA, SECA",
           "gramos": 0.6
         },
         {
           "texto": "1 cda de chía",
+          "fuente": "USDA",
+          "codigo": 170554,
           "alimento": "Seeds, chia seeds, dried",
-          "fdc_id": 170554,
           "gramos": 12
         },
         {
           "texto": "1 cdta de jengibre rallado",
-          "alimento": "Ginger root, raw",
-          "fdc_id": 169231,
+          "fuente": "INCAP",
+          "codigo": "11087",
+          "alimento": "GENGIBRE O JENGIBRE",
           "gramos": 2
         }
       ]
@@ -3786,20 +4047,23 @@
       "ingredientes_g": [
         {
           "texto": "1 huevo cocido",
-          "alimento": "Egg, whole, cooked, hard-boiled",
-          "fdc_id": 173424,
+          "fuente": "INCAP",
+          "codigo": "2002",
+          "alimento": "HUEVO DE GALLINA, ENTERO, CRUDO",
           "gramos": 50
         },
         {
           "texto": "½ tomate",
-          "alimento": "Tomatoes, red, ripe, raw, year round average",
-          "fdc_id": 170457,
+          "fuente": "INCAP",
+          "codigo": "11157",
+          "alimento": "TOMATE ROJO",
           "gramos": 61.5
         },
         {
           "texto": "1 pizca de orégano",
-          "alimento": "Spices, oregano, dried",
-          "fdc_id": 171328,
+          "fuente": "INCAP",
+          "codigo": "22017",
+          "alimento": "OREGANO, SECO",
           "gramos": 0.4
         }
       ]
@@ -3819,7 +4083,7 @@
       ],
       "congelable_dias": 60,
       "kcal": 320,
-      "prot": 6,
+      "prot": 7,
       "carb": 69,
       "gras": 6,
       "fibra": 9,
@@ -3844,26 +4108,30 @@
       "ingredientes_g": [
         {
           "texto": "3 dátiles",
+          "fuente": "USDA",
+          "codigo": 168191,
           "alimento": "Dates, medjool",
-          "fdc_id": 168191,
           "gramos": 72
         },
         {
           "texto": "3 cdas de avena",
-          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
-          "fdc_id": 173904,
+          "fuente": "INCAP",
+          "codigo": "13008",
+          "alimento": "AVENA EN HOJUELAS S/FORTIFICAR (MOSH)",
           "gramos": 15
         },
         {
           "texto": "1 cda de cacao puro",
+          "fuente": "USDA",
+          "codigo": 169593,
           "alimento": "Cocoa, dry powder, unsweetened",
-          "fdc_id": 169593,
           "gramos": 5.4
         },
         {
           "texto": "1 cda de almendras picadas",
-          "alimento": "Nuts, almonds",
-          "fdc_id": 170567,
+          "fuente": "INCAP",
+          "codigo": "10001",
+          "alimento": "ALMENDRA, SECA",
           "gramos": 9
         }
       ]
@@ -3906,20 +4174,23 @@
       "ingredientes_g": [
         {
           "texto": "2 tazas de palomitas naturales",
+          "fuente": "USDA",
+          "codigo": 167959,
           "alimento": "Snacks, popcorn, air-popped",
-          "fdc_id": 167959,
           "gramos": 16
         },
         {
           "texto": "1 cdta de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 4.5
         },
         {
           "texto": "1 pizca de cúrcuma",
+          "fuente": "USDA",
+          "codigo": 172231,
           "alimento": "Spices, turmeric, ground",
-          "fdc_id": 172231,
           "gramos": 0.4
         }
       ]
@@ -3937,11 +4208,11 @@
         "sin_lacteos",
         "sin_gluten"
       ],
-      "kcal": 130,
-      "prot": 2,
-      "carb": 21,
+      "kcal": 115,
+      "prot": 1,
+      "carb": 18,
       "gras": 5,
-      "fibra": 4,
+      "fibra": 3,
       "porque": "Snack crujiente sin frituras.",
       "ing": [
         "1 camote pequeño en láminas",
@@ -3962,20 +4233,23 @@
       "ingredientes_g": [
         {
           "texto": "1 camote pequeño en láminas",
-          "alimento": "Sweet potato, cooked, baked in skin, flesh, without salt",
-          "fdc_id": 168483,
+          "fuente": "INCAP",
+          "codigo": "11034",
+          "alimento": "CAMOTE/BATATA ANARANJADO COCIDO, S/CÁSCARA S/SAL",
           "gramos": 100
         },
         {
           "texto": "1 cdta de aceite de oliva",
+          "fuente": "USDA",
+          "codigo": 171413,
           "alimento": "Oil, olive, salad or cooking",
-          "fdc_id": 171413,
           "gramos": 4.5
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         }
       ]
@@ -3994,10 +4268,10 @@
         "sin_gluten"
       ],
       "kcal": 195,
-      "prot": 22,
+      "prot": 21,
       "carb": 18,
       "gras": 5,
-      "fibra": 3,
+      "fibra": 2,
       "porque": "El kiwi y el yogur son aliados clásicos del tránsito intestinal.",
       "ing": [
         "¾ taza de yogur griego natural",
@@ -4017,20 +4291,23 @@
       "ingredientes_g": [
         {
           "texto": "¾ taza de yogur griego natural",
+          "fuente": "USDA",
+          "codigo": 170894,
           "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
-          "fdc_id": 170894,
           "gramos": 183.8
         },
         {
           "texto": "1 kiwi",
-          "alimento": "Kiwifruit, green, raw",
-          "fdc_id": 168153,
+          "fuente": "INCAP",
+          "codigo": "12069",
+          "alimento": "KIWI, FRUTA FRESCA",
           "gramos": 69
         },
         {
           "texto": "1 cda de semillas de zapallo",
-          "alimento": "Seeds, pumpkin and squash seed kernels, dried",
-          "fdc_id": 170556,
+          "fuente": "INCAP",
+          "codigo": "10015",
+          "alimento": "SEMILLA DE AYOTE, CRUDA",
           "gramos": 8
         }
       ]
@@ -4074,20 +4351,23 @@
       "ingredientes_g": [
         {
           "texto": "½ aguacate",
-          "alimento": "Avocados, raw, all commercial varieties",
-          "fdc_id": 171705,
+          "fuente": "INCAP",
+          "codigo": "11005",
+          "alimento": "AGUACATE",
           "gramos": 100
         },
         {
           "texto": "½ banano maduro",
-          "alimento": "Bananas, raw",
-          "fdc_id": 173944,
+          "fuente": "INCAP",
+          "codigo": "12010",
+          "alimento": "BANANO/GUINEO, MADURO",
           "gramos": 59
         },
         {
           "texto": "1 cda de cacao puro",
+          "fuente": "USDA",
+          "codigo": 169593,
           "alimento": "Cocoa, dry powder, unsweetened",
-          "fdc_id": 169593,
           "gramos": 5.4
         }
       ]
@@ -4105,10 +4385,10 @@
         "vegetariano",
         "sin_gluten"
       ],
-      "kcal": 185,
-      "prot": 6,
+      "kcal": 155,
+      "prot": 8,
       "carb": 28,
-      "gras": 7,
+      "gras": 2,
       "fibra": 6,
       "porque": "Combinación suave de fruta y lácteo fresco.",
       "ing": [
@@ -4130,24 +4410,30 @@
       "ingredientes_g": [
         {
           "texto": "1 pera",
-          "alimento": "Pears, raw",
-          "fdc_id": 169118,
+          "fuente": "INCAP",
+          "codigo": "12120",
+          "alimento": "PERA FRUTA IMPORTADA, S/CÁSCARA",
           "gramos": 178
         },
         {
           "texto": "2 cdas de queso fresco",
-          "alimento": "Cheese, fresh, queso fresco",
-          "fdc_id": 172223,
+          "fuente": "INCAP",
+          "codigo": "1030",
+          "alimento": "QUESO BLANCO FRESCO, LECHE SEMIDESCREMADA",
           "gramos": 28
         },
         {
           "texto": "1 pizca de canela",
-          "alimento": "Spices, cinnamon, ground",
-          "fdc_id": 171320,
+          "fuente": "INCAP",
+          "codigo": "22005",
+          "alimento": "CANELA, MOLIDA",
           "gramos": 0.4
         }
       ]
     }
   ],
-  "fuente_nutricion": "USDA FoodData Central, SR Legacy (abril 2018) — https://fdc.nal.usda.gov"
+  "fuente_nutricion": {
+    "INCAP": "INCAP/OPS, Tabla de Composición de Alimentos de Centroamérica, 2.ª ed. (3.ª reimpresión, 2012), Primera Sección, por 100 g de porción comestible",
+    "USDA": "USDA FoodData Central, SR Legacy (abril 2018) — https://fdc.nal.usda.gov"
+  }
 }
