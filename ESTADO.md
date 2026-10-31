@@ -37,7 +37,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Propuesta ganadora (versión A + B): ver Promesa central
 
 ## Estrategia de monetización (propuesta del PDF; el modelo A-F de 02C lo decide el agente antes del paywall)
-- Modelo propuesto: Freemium con paywall en plan semanal completo, filtro de despensa, lista de compras y guía meal prep
+- Modelo propuesto: Freemium; se cobra el plan semanal completo, el filtro de despensa, las compras consolidadas y la guía meal prep
 - Gratis: ingresar síntoma + ver un menú diario de muestra
 - Trial: 7 días (PDF pide tarjeta desde onboarding en anual) → validar en 02C/FICHA-MERCADO (plazos que permite Hotmart)
 - Pricing propuesto: $7.99/mes · $44.99/año ($3.75/mes) — ajustable por el usuario; validar con gate del 40
@@ -63,6 +63,8 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - NO construir: red social/foro, pedidos a supermercados, escáner de códigos, chat con nutricionista en vivo, seguimiento de agua
 
 ## Problemas conocidos ⚠️
+- FICHA-MODELO: pospuesto — aún no se construye nada; se elige la app modelo (candidata: Eat This Much / Fitia, por revenue del PDF) y se crea FICHA-MODELO.md ANTES de la landing.
+- veredicto paywall: no aplica todavía — el paywall NO está construido (etapa no iniciada); el veredicto del revisor-visual se genera al construirlo.
 - Riesgo legal salud: deslinde obligatorio (orientación general, no sustituye médico). No prometer curación ni "panza plana" garantizada.
 - Claim "personalizado por nutricionistas / respaldo profesional": NO usar hasta tener un nutricionista real que lo respalde (gate 61).
 - Testimonios: no inventar; usar demo real + beta honesta.
