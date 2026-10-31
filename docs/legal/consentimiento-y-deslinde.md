@@ -35,8 +35,9 @@ Tabla `consentimientos` (una fila por decisión, solo se agregan filas, no se ed
 - Ajustes: "Mis datos" (descargar), "Retirar permisos", "Eliminar mi cuenta"
 
 ## E. Pendientes antes de publicar
-- [ ] Datos del responsable (nombre o razón social, país, correo) → completar [PENDIENTE] en la política
+- [x] Responsable: Conexión Digital, Ecuador (dado por el usuario 2026-10-31)
+- [ ] Correo de contacto de privacidad (crear uno propio de la empresa, no personal), ciudad/dirección y RUC → completar [PENDIENTE] en la política
 - [ ] Términos de Servicio y Política de Reembolso (alineada a Hotmart: garantía de 15 días) — por redactar
 - [ ] Confirmar proveedores y regiones de servidor; decidir si se activa analítica
-- [ ] Revisión de abogado local
+- [ ] Revisión de abogado en Ecuador (ver docs/legal/brief-para-abogado.md)
 - [ ] Construir la pantalla de consentimiento (hoy no está en la vista previa)

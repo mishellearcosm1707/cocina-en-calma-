@@ -74,7 +74,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - NO construir: red social/foro, pedidos a supermercados, escáner de códigos, chat con nutricionista en vivo, seguimiento de agua
 
 ## Problemas conocidos ⚠️
-- Legal (47): borradores en docs/legal/ (política de privacidad + consentimiento y deslinde). Pendientes: datos del responsable, términos y política de reembolso, pantalla de consentimiento en la app, revisión de abogado local. Datos de salud = sensibles.
+- Legal (47): borradores en docs/legal/ (política de privacidad + consentimiento y deslinde). Responsable: Conexión Digital, Ecuador (LOPDP; autoridad: Superintendencia de Protección de Datos Personales — verificar con abogado). Pendientes: correo de contacto propio, ciudad/RUC, términos y política de reembolso, pantalla de consentimiento en la app, revisión de abogado local. Datos de salud = sensibles.
 - FICHA-MODELO: creada en BORRADOR (modelo: Fitia, eje: ángulo síntoma). Secciones 2-6 con NO ENCONTRADO: completar con investigación antes de la landing.
 - veredicto paywall: no aplica todavía — el paywall NO está construido (etapa no iniciada); el veredicto del revisor-visual se genera al construirlo.
 - direcciones-abc (kit abc-v2): replica-fiel.html y vista-previa-app.html se escribieron a mano (HTML+CSS propio con tokens.css), NO desde plantillas-codigo/direcciones-abc/plantilla.html, así que no llevan data-kit="abc-v2". Pospuesto a propósito: son previsualizaciones de identidad, no la app. Se rehacen desde el kit si el usuario lo pide o antes de construir la landing. Fuente de verdad de estilo: FICHA-ARTE.md + tokens.css.

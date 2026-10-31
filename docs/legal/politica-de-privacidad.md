@@ -1,11 +1,11 @@
 # Política de Privacidad y Aviso de Privacidad — Cocina en Calma
 
-> **NOTAS INTERNAS (borrar antes de publicar):** borrador v0.1 del 2026-10-31 redactado por IA según `47-LEGAL-FISCAL-Y-PRIVACIDAD.md`. Falta: (1) los DATOS DEL RESPONSABLE marcados [PENDIENTE]; (2) confirmar proveedores finales y regiones de servidor; (3) revisión de un abogado de protección de datos local, porque la app trata datos de salud (sensibles). No publicar con corchetes [PENDIENTE] sin completar.
+> **NOTAS INTERNAS (borrar antes de publicar):** borrador v0.1 del 2026-10-31 redactado por IA según `47-LEGAL-FISCAL-Y-PRIVACIDAD.md`. Falta: (1) los datos del responsable aún marcados [PENDIENTE] (correo de privacidad, ciudad/dirección, RUC si aplica); (2) confirmar proveedores finales y regiones de servidor; (3) revisión de un abogado de protección de datos local, porque la app trata datos de salud (sensibles). No publicar con corchetes [PENDIENTE] sin completar.
 
 **Versión 0.1 · Última actualización: 31 de octubre de 2026**
 
 ## 1. Quién es responsable de tus datos
-[PENDIENTE: nombre o razón social], con domicilio en [PENDIENTE: país y ciudad] ("nosotros"), es responsable del tratamiento de tus datos personales en la app Cocina en Calma. Contacto de privacidad: [PENDIENTE: correo].
+**Conexión Digital**, con domicilio en Ecuador ([PENDIENTE: ciudad y dirección]) ("nosotros"), es responsable del tratamiento de tus datos personales en la app Cocina en Calma, conforme a la Ley Orgánica de Protección de Datos Personales de Ecuador y, cuando corresponda, a las leyes de protección de datos de tu país. Contacto de privacidad: [PENDIENTE: correo].
 
 ## 2. Qué datos recopilamos
 - **Cuenta:** tu correo electrónico y, si quieres, tu nombre.
@@ -37,7 +37,7 @@ Algunos de estos proveedores almacenan o procesan datos fuera de tu país, inclu
 Mientras tu cuenta esté activa. Si eliminas tu cuenta, borramos tus datos personales y de salud de nuestras bases en un máximo de [PENDIENTE: 30] días, salvo lo que la ley nos obligue a conservar (por ejemplo, registros de la compra, que también guarda Hotmart).
 
 ## 7. Tus derechos
-Puedes acceder a tus datos, rectificarlos, cancelarlos o eliminarlos, oponerte a su uso, pedir su portabilidad y **retirar tu autorización en cualquier momento** (esto no afecta lo ya tratado antes del retiro). Puedes borrar tu cuenta y todos tus datos desde la app (Ajustes > Eliminar mi cuenta) o escribiendo a [PENDIENTE: correo]. Responderemos en un plazo máximo de [PENDIENTE: 20] días hábiles. Si sientes que no atendimos tu solicitud, puedes acudir a la autoridad de protección de datos de tu país (por ejemplo, INAI en México, SIC en Colombia, AAIP en Argentina, la Agencia de Protección de Datos Personales en Chile, o la autoridad de tu país en la Unión Europea).
+Puedes acceder a tus datos, rectificarlos, cancelarlos o eliminarlos, oponerte a su uso, pedir su portabilidad y **retirar tu autorización en cualquier momento** (esto no afecta lo ya tratado antes del retiro). Puedes borrar tu cuenta y todos tus datos desde la app (Ajustes > Eliminar mi cuenta) o escribiendo a [PENDIENTE: correo]. Responderemos en un plazo máximo de [PENDIENTE: 20] días hábiles. Si sientes que no atendimos tu solicitud, puedes acudir a la autoridad de protección de datos de tu país (en Ecuador, la Superintendencia de Protección de Datos Personales; por ejemplo, también INAI en México, SIC en Colombia, AAIP en Argentina, la Agencia de Protección de Datos Personales en Chile, o la autoridad de tu país en la Unión Europea).
 
 ## 8. Seguridad
 Usamos conexiones cifradas, acceso restringido y aislamiento entre cuentas para que nadie más pueda ver tus datos. Ningún sistema es infalible; si ocurre un incidente que te afecte, te lo informaremos.
