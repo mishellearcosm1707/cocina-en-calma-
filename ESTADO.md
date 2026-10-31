@@ -44,6 +44,13 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Pricing propuesto: $7.99/mes · $44.99/año ($3.75/mes) — ajustable por el usuario; validar con gate del 40
 - Venta: Hotmart (default del SO)
 
+## Decisiones de producto del usuario (2026-10-31, nutricionista)
+- La creadora de la app es NUTRICIONISTA (dato del usuario). El claim "diseñado/revisado por nutricionista" solo se usa con nombre y credencial confirmados por ella (gate 61).
+- Onboarding pide: sexo, edad, peso, talla, actividad física, objetivo → la app calcula requerimientos diarios (Mifflin-St Jeor × factor de actividad; ejemplo mujer 30a/65kg/160cm/ligera = 1,840 kcal, coincide con la referencia). Fórmula y macros a validar por la nutricionista antes de construir.
+- Las recetas se sugieren y eligen para completar el requerimiento del día; el usuario ve una barra de cobertura (% del día), no un contador de calorías.
+- Catálogo amplio: el usuario ELIGE entre muchas recetas por comida (objetivo ≥20 opciones por tipo de comida), con filtros por síntoma, tiempo, "con lo que tengo".
+- El usuario arma su semana completa (7 días × 4 comidas). Meal prep y compras se DESBLOQUEAN solo cuando los 7 días están armados.
+
 ## Gamificación y retención (se documenta en Sesión 4)
 - Bucle semanal del PDF: push domingo → revisar menú → compras → meal prep de ~90 min
 - Primera victoria <5 min: síntoma + 3 ingredientes → menú antiinflamatorio del día

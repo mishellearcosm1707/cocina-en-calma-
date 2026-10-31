@@ -11,9 +11,21 @@
 .day b{font-family:'Fraunces',serif;font-size:15px}.day span{display:block;color:var(--ink2)}
 .cta{position:absolute;bottom:0;left:0;right:0;padding:14px 20px 18px;background:var(--bg);box-shadow:0 -6px 14px var(--bg);display:flex;gap:10px}
 .shop{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:7px 0;border-bottom:1px solid var(--line)}.shop span{color:var(--ink2);text-align:right}
+select,.fld{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:400 16px 'Nunito',sans-serif;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fl2{font-size:13px;color:var(--ink2);margin:12px 0 5px}
+.bar{height:10px;border-radius:99px;background:var(--track);overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:var(--olive);border-radius:99px}
+.mac{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}.mac b{display:block;font-size:18px;letter-spacing:0;text-transform:none;color:var(--ink);font-family:'Fraunces',serif}
+.days{display:flex;gap:6px;margin:14px 0 4px}.days div{flex:1;height:34px;line-height:20px;text-align:center;font-size:12px;padding:7px 0;border-radius:12px;background:var(--surface);border:1px solid var(--line);color:var(--ink2)}.days .ok{background:var(--olive-soft);color:var(--olive);font-weight:700;border-color:transparent}.days .now{background:var(--olive);color:var(--white);font-weight:700;border-color:transparent}
+.slot{display:flex;gap:12px;align-items:center;background:var(--surface);border-radius:var(--r);padding:10px;margin-top:10px;box-shadow:0 2px 10px var(--shadow)}
+.th{flex:none;width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font-size:28px}
+.slot b{display:block;font-size:15px;line-height:1.2}.slot small{color:var(--ink2);font-size:12px}
+.sm{flex:none;margin-left:auto;background:var(--olive);color:var(--white);border:0;border-radius:12px;padding:9px 13px;font:700 13px 'Nunito'}
+.sm.o{background:transparent;color:var(--olive);border:1.5px solid var(--olive)}
+.pct{display:inline-block;background:var(--olive-wash);color:var(--olive);border-radius:99px;font-size:12px;font-weight:700;padding:2px 8px;margin-top:4px}
+.lock{background:var(--sunken);border-radius:var(--r);padding:16px;margin-top:14px;text-align:center}.lock b{display:block;font-size:17px;margin:4px 0}
 </style></head>
 <body>
-<p class="cap">Tour de la app · 7 vistas por dentro con tu estilo (cada pantalla se desliza)</p>
+<p class="cap">Tour de la app · 10 vistas con tu estilo (cada pantalla se desliza)</p>
 <div class="row" id="app"></div>
 <script>
 const ING={
@@ -26,56 +38,82 @@ const ING={
  'Grasas y semillas':['Aceite de oliva*','Chía','Linaza','Semillas de zapallo','Nueces','Almendras','Mantequilla de maní'],
  'Especias y hierbas':['Jengibre*','Cúrcuma','Canela*','Comino','Hinojo','Menta','Perejil','Cilantro','Albahaca','Ajo','Orégano']
 };
+// [emoji,nombre,comida,tiempo,síntoma,tipo,gradiente,% del día]
 const REC=[
- ['🥣','Avena nocturna con papaya y chía','Desayuno','5 min','Hinchazón','s','linear-gradient(135deg,#F6C9A0,#F0A77A)'],
- ['🍲','Sopa de lenteja con jengibre','Almuerzo','35 min','Pesadez','s','linear-gradient(135deg,#F2D36B,#E5B53F)'],
- ['🐟','Pescado al horno con hinojo y limón','Cena','25 min','Gases','s','linear-gradient(135deg,#C9DDE4,#9FC1CC)'],
- ['🥗','Bowl de quinoa, pepino y menta','Almuerzo','20 min','Express','c','linear-gradient(135deg,#BFD99A,#8FB86B)'],
- ['🥞','Tortitas de zapallo y avena','Desayuno','25 min','Congelable','c','linear-gradient(135deg,#F3CDA0,#E3A66C)'],
- ['🍗','Pollo al cilantro con yuca','Almuerzo','40 min','Congelable','c','linear-gradient(135deg,#E8C38E,#CC9A5E)'],
- ['🥘','Tofu salteado con brócoli','Cena','15 min','Digestión lenta','s','linear-gradient(135deg,#D7E3B4,#A9C27C)'],
- ['🥤','Kéfir con piña y menta','Merienda','5 min','Hinchazón','s','linear-gradient(135deg,#F6E5A0,#EBCB5F)'],
- ['🍠','Camote asado con garbanzos','Cena','30 min','Pesadez','s','linear-gradient(135deg,#F0B98D,#DB8F5A)'],
- ['🍳','Omelette de espinaca y champiñones','Desayuno','10 min','Express','c','linear-gradient(135deg,#C8E0A8,#9BC271)'],
- ['🥕','Crema de zanahoria y cúrcuma','Cena','30 min','Gases','s','linear-gradient(135deg,#F6BE86,#EE9A4F)'],
- ['🌮','Tacos de lechuga con pavo','Cena','20 min','Express','c','linear-gradient(135deg,#CFE3B0,#A4C479)']
+ ['🥣','Avena nocturna con papaya y chía','Desayuno','5 min','Hinchazón','s','linear-gradient(135deg,#F6C9A0,#F0A77A)',22],
+ ['🥞','Tortitas de zapallo y avena','Desayuno','25 min','Congelable','c','linear-gradient(135deg,#F3CDA0,#E3A66C)',18],
+ ['🍳','Omelette de espinaca y champiñones','Desayuno','10 min','Express','c','linear-gradient(135deg,#C8E0A8,#9BC271)',17],
+ ['🥤','Kéfir con piña y menta','Merienda','5 min','Hinchazón','s','linear-gradient(135deg,#F6E5A0,#EBCB5F)',9],
+ ['🍲','Sopa de lenteja con jengibre','Almuerzo','35 min','Pesadez','s','linear-gradient(135deg,#F2D36B,#E5B53F)',31],
+ ['🥗','Bowl de quinoa, pepino y menta','Almuerzo','20 min','Express','c','linear-gradient(135deg,#BFD99A,#8FB86B)',29],
+ ['🍗','Pollo al cilantro con yuca','Almuerzo','40 min','Congelable','c','linear-gradient(135deg,#E8C38E,#CC9A5E)',33],
+ ['🍛','Arroz integral con frijol y aguacate','Almuerzo','30 min','Digestión lenta','s','linear-gradient(135deg,#E9D6A6,#CDB06A)',30],
+ ['🐟','Pescado al horno con hinojo y limón','Cena','25 min','Gases','s','linear-gradient(135deg,#C9DDE4,#9FC1CC)',24],
+ ['🥘','Tofu salteado con brócoli','Cena','15 min','Digestión lenta','s','linear-gradient(135deg,#D7E3B4,#A9C27C)',21],
+ ['🍠','Camote asado con garbanzos','Cena','30 min','Pesadez','s','linear-gradient(135deg,#F0B98D,#DB8F5A)',26],
+ ['🥕','Crema de zanahoria y cúrcuma','Cena','30 min','Gases','s','linear-gradient(135deg,#F6BE86,#EE9A4F)',16],
+ ['🌮','Tacos de lechuga con pavo','Cena','20 min','Express','c','linear-gradient(135deg,#CFE3B0,#A4C479)',22],
+ ['🍤','Camarones al ajo con zucchini','Cena','15 min','Express','c','linear-gradient(135deg,#F6C7A6,#E99A72)',20],
+ ['🥙','Wrap de pollo, pepino y yogur','Almuerzo','15 min','Express','c','linear-gradient(135deg,#EAD9AE,#D2B46F)',28],
+ ['🍎','Manzana asada con canela y nueces','Merienda','15 min','Pesadez','s','linear-gradient(135deg,#F1C7A5,#DB9C6B)',10]
 ];
-const tabs=a=>`<div class="tabs">${['♡|Hoy','▦|Semana','▤|Recetas','🛒|Prep'].map((t,i)=>{const[x,y]=t.split('|');return `<div class="${i===a?'on':''}"><span>${x}</span>${y}${i===3?'<i class="bd">8</i>':''}</div>`}).join('')}</div>`;
+const tabs=(a,lock)=>`<div class="tabs">${['♡|Hoy','▦|Semana','▤|Recetas',(lock?'🔒':'🛒')+'|Prep'].map((t,i)=>{const[x,y]=t.split('|');return `<div class="${i===a?'on':''}"><span>${x}</span>${y}${(i===3&&!lock)?'<i class="bd">8</i>':''}</div>`}).join('')}</div>`;
 const brand=`<div class="brand"><div class="leaf">🌿</div><div><b>Cocina en Calma</b><small>Cocina una vez, come bien toda la semana</small></div></div>`;
-const prog=n=>`<div class="prog">${['Tu momento','Cómo te sientes','Lo que tienes'].map((t,i)=>`<div class="${i<n?'d':''}"><i></i>${t}</div>`).join('')}</div>`;
+const prog=n=>`<div class="prog">${['Tus datos','Cómo te sientes','Lo que tienes'].map((t,i)=>`<div class="${i<n?'d':''}"><i></i>${t}</div>`).join('')}</div>`;
 const card=r=>`<div class="card"><div class="ph" style="background:${r[6]}">${r[0]}<span class="tag">${r[2].toUpperCase()}</span></div><div class="b"><h3>${r[1]}</h3><div class="meta">⏱ ${r[3]}</div><div style="margin-top:6px"><span class="pill p-${r[5]}">${r[4]}</span></div></div></div>`;
+const row=(r,btn)=>`<div class="slot"><div class="th" style="background:${r[6]}">${r[0]}</div><div><b>${r[1]}</b><small>⏱ ${r[3]} · ${r[4]}</small><br><span class="pct">${r[7]}% de tu día</span></div><button class="sm ${btn==='Elegir'?'':'o'}">${btn}</button></div>`;
 const ph=(cap,inner,t)=>`<div><p class="cap">${cap}</p><div class="phone"><div class="scroll">${inner}</div>${t||''}</div></div>`;
 let n=0;const ingHtml=Object.entries(ING).map(([k,v])=>`<div class="label">${k}</div>`+v.map(x=>{const on=x.endsWith('*');if(on)n++;return `<span class="chip ${on?'on':''}">${x.replace('*','')}</span>`}).join('')).join('');
 const total=Object.values(ING).flat().length;
+const wk=(k)=>`<div class="days">${['L','M','X','J','V','S','D'].map((d,i)=>`<div class="${i<k?'ok':i===k?'now':''}">${d}${i<k?' ✓':''}</div>`).join('')}</div>`;
 const S=[];
-S.push(ph('1 · Cómo te sientes',`${brand}${prog(2)}<h1>¿Cómo te sientes <em>hoy</em>?</h1><p class="sub">Elige lo que más te molesta. Armamos tu menú con eso, sin contar nada.</p>
+S.push(ph('1 · Tus datos',`${brand}${prog(1)}<h1>Empecemos por <em>ti</em></h1><p class="sub">Con estos datos calculamos cuánto necesita tu cuerpo cada día.</p>
+<div class="two"><div><div class="fl2">Sexo</div><select><option>Mujer</option></select></div><div><div class="fl2">Edad</div><div class="fld">30</div></div>
+<div><div class="fl2">Peso (kg)</div><div class="fld">65</div></div><div><div class="fl2">Talla (cm)</div><div class="fld">160</div></div></div>
+<div class="fl2">Actividad física</div><select><option>Ligera (1–3 días por semana)</option></select>
+<div class="fl2">Objetivo</div><select><option>Mantener mi peso</option></select>
+<div class="info"><b>¿Para qué te pedimos esto?</b> Para que tus menús cubran lo que tu cuerpo necesita. Es un cálculo aproximado: te orienta y no reemplaza una consulta con un profesional de la nutrición. Tus datos se guardan solo en tu cuenta.</div><div style="height:90px"></div>`,
+`<div class="cta"><button class="btn">Calcular lo que necesito</button></div>`));
+S.push(ph('2 · Tus requerimientos',`${brand}${prog(1)}<h1>Esto necesita tu <em>cuerpo</em></h1><p class="sub">Por día, según tus datos. La app hace las cuentas; tú solo eliges qué comer.</p>
+<div class="card" style="padding:16px;margin-top:16px"><div class="label" style="margin-top:0">Energía diaria</div><div style="font-family:'Fraunces',serif;font-size:36px;font-weight:600">1,840 <small style="font-size:15px;font-family:Nunito;color:var(--ink2)">kcal</small></div>
+<div class="mac"><div>Proteína<b>85 g</b></div><div>Carbohid.<b>230 g</b></div><div>Grasas<b>60 g</b></div><div>Fibra<b>25 g</b></div></div></div>
+<div class="info" style="background:var(--olive-wash)"><b>Cómo lo usamos:</b> cada receta que eliges suma a tu día. Verás una barra de cuánto llevas cubierto, no un contador de calorías.</div>
+<div class="info"><b>Ejemplo:</b> mujer, 30 años, 65 kg, 160 cm, actividad ligera. Fórmula de referencia revisada por la nutricionista del proyecto.</div><div style="height:90px"></div>`,
+`<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Siguiente</button></div>`));
+S.push(ph('3 · Cómo te sientes',`${brand}${prog(2)}<h1>¿Cómo te sientes <em>hoy</em>?</h1><p class="sub">Elige lo que más te molesta. Ajustamos las recetas que te sugerimos.</p>
 <div style="margin-top:18px"><span class="chip on">Hinchazón</span><span class="chip">Pesadez después de comer</span><span class="chip on">Digestión lenta</span><span class="chip">Cansancio de tarde</span><span class="chip">Gases</span><span class="chip">Reflujo</span><span class="chip">Estreñimiento</span><span class="chip">Antojos de dulce</span></div>
 <div class="label">¿Cuánto tiempo tienes para cocinar?</div><span class="chip">10 min</span><span class="chip on">20-30 min</span><span class="chip">Domingo de meal prep</span>
 <div class="label">¿Para cuántas personas?</div><span class="chip on">Solo yo</span><span class="chip">2</span><span class="chip">3-4</span>
-<div class="info"><b>Sin básculas ni calorías.</b> Usamos tazas, puños y unidades. Orientación general: no reemplaza a tu médico.</div><div style="height:90px"></div>`,
+<div class="info"><b>Sin básculas.</b> Usamos tazas, puños y unidades. Orientación general: no reemplaza a tu médico.</div><div style="height:90px"></div>`,
 `<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Siguiente</button></div>`));
-S.push(ph('2 · ¿Qué tienes en casa?',`${brand}${prog(3)}<h1>¿Qué tienes en <em>casa</em>?</h1><p class="sub">Marca lo que tienes y armamos tus menús con eso. Hay ${total} ingredientes: desliza.</p>
-<div class="input">🔍 Buscar ingrediente…</div><div class="cnt"><b>${n} marcados</b> · con esto ya salen 14 recetas</div>${ingHtml}<div style="height:90px"></div>`,
-`<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Ver mi menú</button></div>`));
-S.push(ph('3 · Hoy',`<div style="display:flex;justify-content:space-between;align-items:baseline"><h1 style="font-size:28px">Tu menú de hoy</h1><span style="color:var(--olive);font-weight:700">Otro menú</span></div>
-<p class="sub" style="font-size:14px">Para tu hinchazón de hoy, con lo que tienes en casa.</p>
-<div class="grid">${[REC[0],REC[1],REC[7],REC[2]].map((r,i)=>card([r[0],r[1],['Desayuno','Almuerzo','Merienda','Cena'][i],r[3],r[4],r[5],r[6]])).join('')}</div>
-<div class="sum"><b>4 comidas</b> · variadas, sin repetir el ingrediente protagonista</div>
-<div class="act"><div><b>Te faltan 3 ingredientes</b><span>Chía, Semillas de zapallo, Hinojo</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Lo que tengo</span></div>
-<div class="act"><div><b>¿Sin tiempo hoy?</b><span>Menú Express de 10 minutos</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Ver</span></div><div style="height:90px"></div>`,tabs(0)));
-S.push(ph('4 · Recetas (catálogo)',`<h1 style="font-size:28px">Recetas</h1><div class="input">🔍 Buscar por receta o ingrediente…</div>
-<div class="fl"><span class="chip on">Todas</span><span class="chip">Hinchazón</span><span class="chip">Gases</span><span class="chip">Pesadez</span><span class="chip">Digestión lenta</span><span class="chip">Congelable</span><span class="chip">Express 10 min</span><span class="chip">Con lo que tengo</span></div>
-<div class="cnt">48 recetas · ordenadas por lo que ya tienes</div><div class="grid">${REC.map(card).join('')}</div><div style="height:90px"></div>`,tabs(2)));
-S.push(ph('5 · Receta',`<div class="big" style="background:linear-gradient(135deg,#F3CDA0,#E3A66C)">🥞</div><div class="sheet" style="margin-top:-18px;padding-top:18px;position:relative">
-<div class="label" style="margin-top:0;color:var(--olive)">Desayuno</div><h1 style="font-size:28px">Tortitas de zapallo y avena</h1>
+S.push(ph('4 · ¿Qué tienes en casa?',`${brand}${prog(3)}<h1>¿Qué tienes en <em>casa</em>?</h1><p class="sub">Marca lo que tienes y priorizamos recetas con eso. Hay ${total} ingredientes: desliza.</p>
+<div class="input">🔍 Buscar ingrediente…</div><div class="cnt"><b>${n} marcados</b> · con esto ya salen 16 recetas</div>${ingHtml}<div style="height:90px"></div>`,
+`<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Armar mi semana</button></div>`));
+S.push(ph('5 · Arma tu semana',`<h1 style="font-size:28px">Arma tu <em>semana</em></h1><p class="sub" style="font-size:14px">Elige tus 4 comidas de cada día. Al completar los 7 días se abre tu meal prep.</p>${wk(2)}
+<div class="label">Miércoles</div>${row(REC[1],'Cambiar')}${row(REC[7],'Cambiar')}
+<div class="slot"><div class="th" style="background:var(--sunken)">＋</div><div><b>Merienda</b><small>Elige entre 6 opciones</small></div><button class="sm">Elegir</button></div>
+<div class="slot"><div class="th" style="background:var(--sunken)">＋</div><div><b>Cena</b><small>Elige entre 22 opciones</small></div><button class="sm">Elegir</button></div>
+<div class="sum" style="margin-top:14px"><b>Cubres 48% de tu día.</b> Con una merienda y una cena de estas llegas al 100%:<div class="bar"><i style="width:48%"></i></div></div>
+<div class="act"><div><b>Sugerido para completar</b><span>Kéfir con piña y menta + Pescado al horno</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Usar</span></div><div style="height:90px"></div>`,tabs(1,true)));
+S.push(ph('6 · Elegir receta (muchas opciones)',`<div style="display:flex;justify-content:space-between;align-items:baseline"><h1 style="font-size:26px">Elige tu cena</h1><span style="color:var(--ink2);font-size:14px">Cerrar</span></div>
+<div class="input">🔍 Buscar por receta o ingrediente…</div>
+<div class="fl"><span class="chip on">Para completar mi día</span><span class="chip">Hinchazón</span><span class="chip">Gases</span><span class="chip">Pesadez</span><span class="chip">Congelable</span><span class="chip">Express 10 min</span><span class="chip">Con lo que tengo</span><span class="chip">Sin lácteos</span><span class="chip">Vegetariano</span></div>
+<div class="cnt">22 cenas · ordenadas por lo que mejor completa tu día</div>${[REC[8],REC[9],REC[10],REC[12],REC[13],REC[11]].map(r=>row(r,'Elegir')).join('')}<div style="height:90px"></div>`,`<div class="cta"><button class="btn2">Ver las 22 cenas</button></div>`));
+S.push(ph('7 · Semana (avance)',`${brand}<h1>Tu <em>semana</em></h1><p class="sub">Llevas 5 de 7 días armados.</p>${wk(5)}
+<div class="card" style="padding:4px 14px;margin-top:10px">${[['Lun','100% cubierto','✓'],['Mar','100% cubierto','✓'],['Mié','98% cubierto','✓'],['Jue','101% cubierto','✓'],['Vie','100% cubierto','✓'],['Sáb','Falta armar','＋'],['Dom','Falta armar','＋']].map(d=>`<div class="day"><b>${d[0]}</b><div style="display:flex;justify-content:space-between"><span>${d[1]}</span><span style="color:var(--olive);font-weight:700">${d[2]}</span></div></div>`).join('')}</div>
+<div class="lock">🔒<b>Meal prep y compras</b><span style="color:var(--ink2);font-size:14px">Se abre cuando armes los 7 días. Te faltan 2.</span></div><div style="height:90px"></div>`,tabs(1,true)));
+S.push(ph('8 · Hoy',`<div style="display:flex;justify-content:space-between;align-items:baseline"><h1 style="font-size:28px">Tu menú de hoy</h1><span style="color:var(--olive);font-weight:700">Cambiar</span></div>
+<div class="sum" style="margin-top:12px"><b>Hoy cubres 100% de lo que necesitas</b><div class="bar"><i style="width:100%"></i></div></div>
+<div class="grid">${[REC[0],REC[5],REC[3],REC[8]].map(card).join('')}</div>
+<div class="act"><div><b>Te faltan 3 ingredientes</b><span>Chía, Semillas de zapallo, Hinojo</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Lo que tengo</span></div><div style="height:90px"></div>`,tabs(0)));
+S.push(ph('9 · Receta',`<div class="big" style="background:linear-gradient(135deg,#F3CDA0,#E3A66C)">🥞</div><div class="sheet" style="margin-top:-18px;padding-top:18px;position:relative">
+<div class="label" style="margin-top:0;color:var(--olive)">Desayuno · 18% de tu día</div><h1 style="font-size:28px">Tortitas de zapallo y avena</h1>
 <div class="meta" style="margin-top:10px">⏱ 25 min <span class="pill p-c">Congelable 60 días</span><span class="pill p-s">Gases</span><span class="pill p-s">Hinchazón</span></div>
-<div class="info" style="background:var(--olive-wash)"><b>Por qué suma:</b> el zapallo y la avena son suaves para la digestión; la canela aporta sabor sin azúcar.</div>
+<div class="card" style="padding:12px 14px;margin-top:14px"><div class="mac" style="margin-top:0"><div>Energía<b>329</b></div><div>Prot.<b>25 g</b></div><div>Carb.<b>36 g</b></div><div>Grasas<b>10 g</b></div></div></div>
 <div class="label">Ingredientes para tu porción</div><ul class="ing"><li>¾ taza de zapallo <small>(cocido)</small></li><li>⅓ taza de avena</li><li>1 huevo</li><li>1 pizca de canela</li><li>½ taza de yogur griego natural</li></ul>
 <div class="label">Cámbialo por lo que tengas</div><span class="chip">Camote en vez de zapallo</span><span class="chip">Kéfir en vez de yogur</span>
 <div class="label">Preparación</div><p style="line-height:1.7">1. Cocina el zapallo y aplástalo.<br>2. Mezcla con la avena, el huevo y la canela.<br>3. Cocina tortitas en sartén antiadherente.</p><div style="height:20px"></div></div>`));
-S.push(ph('6 · Semana',`${brand}<h1>Tu <em>semana</em></h1><p class="sub">7 días distintos: cambian las especias y la forma de cocinar.</p><div class="label">Plan de la semana</div><div class="card" style="padding:4px 14px">
-${[['Lun','Avena y papaya · Sopa de lenteja · Kéfir y piña · Pescado al horno'],['Mar','Omelette de espinaca · Bowl de quinoa · Muffins de banano · Crema de zanahoria'],['Mié','Tortitas de zapallo · Pollo al cilantro y yuca · Yogur y fresas · Tacos de lechuga'],['Jue','Avena y papaya · Camote y garbanzos · Kéfir y menta · Tofu con brócoli'],['Vie','Omelette de champiñones · Sopa de lenteja · Muffins · Pescado al horno'],['Sáb','Tortitas de zapallo · Bowl de quinoa · Kéfir y piña · Crema de zucchini'],['Dom','Día de meal prep · 1 h 39 min · 5 recetas para congelar']].map(d=>`<div class="day"><b>${d[0]}</b><div><span>${d[1].split(' · ').join('</span><span>')}</span></div></div>`).join('')}</div><div style="height:90px"></div>`,tabs(1)));
-S.push(ph('7 · Meal prep y compras',`${brand}<h1>Meal prep y <em>compras</em></h1><p class="sub">Con lo que planificaste armamos tu sesión de cocina y tu lista de compras.</p>
+S.push(ph('10 · Meal prep y compras (desbloqueado)',`${brand}<h1>Meal prep y <em>compras</em></h1><p class="sub">Tu semana completa: armamos tu sesión de cocina y tu lista de compras.</p>
 <div class="label">Sesión de meal prep · aprox. 1 h 39 min</div><div class="card" style="padding:6px 16px">
 <div class="step"><div class="n">1</div><div><b>Organiza tu espacio</b><span>Saca tablas, ollas y recipientes. Prepara etiquetas.</span></div></div>
 <div class="step"><div class="n">2</div><div><b>Lava y pica todo de una vez</b><span>Zapallo, zanahoria, zucchini, jengibre y espinaca.</span></div></div>
