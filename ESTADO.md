@@ -51,6 +51,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Catálogo amplio: el usuario ELIGE entre muchas recetas por comida (objetivo ≥20 opciones por tipo de comida), con filtros por síntoma, tiempo, "con lo que tengo".
 - BANCO DE RECETAS: datos/recetas.json v0.1 (60 recetas: 15 por tipo de comida, generadas por IA con base antiinflamatoria del estudio). Valores nutricionales ESTIMADOS, pendientes de validación de la nutricionista; objetivo ≥20 por tipo en la siguiente ronda. Fuente única para la app.
 - AJUSTES DE FIDELIDAD AL ESTUDIO (2026-10-31, aprobados): primera victoria <5 min (3 ingredientes → menú de hoy de muestra gratis); kcal/macros en segundo plano (barra de cobertura + detalle técnico desplegable); módulo Menús Express 10 min en Hoy; chequeo diario de síntomas que ajusta el menú de mañana (bucle de retención). Regla del usuario: NO alejarse del estudio.
+- INICIO MÁS CÁLIDO (2026-10-31): el usuario sintió el inicio sombrío/triste → pantalla de bienvenida con gradiente durazno, tiras de fotos de comida en cada paso del onboarding, copy cercano ("¡Hola!", "sin pena, sin juicios"), emojis en síntomas, marco de teléfono claro. Titular de bienvenida suave ("Come rico y siéntete ligera"), sin promesa médica.
 - El usuario arma su semana completa (7 días × 4 comidas). Meal prep y compras se DESBLOQUEAN solo cuando los 7 días están armados.
 
 ## Gamificación y retención (se documenta en Sesión 4)

@@ -22,10 +22,17 @@ select,.fld{width:100%;background:var(--surface);border:1px solid var(--line);bo
 .sm{flex:none;margin-left:auto;background:var(--olive);color:var(--white);border:0;border-radius:12px;padding:9px 13px;font:700 13px 'Nunito'}
 .sm.o{background:transparent;color:var(--olive);border:1.5px solid var(--olive)}
 .pct{display:inline-block;background:var(--olive-wash);color:var(--olive);border-radius:99px;font-size:12px;font-weight:700;padding:2px 8px;margin-top:4px}
+.phone{border-color:var(--white);box-shadow:0 18px 44px var(--shadow),0 0 0 1px var(--line)}
+.strip{display:flex;gap:8px;margin:2px -4px 16px}.strip div{flex:1;height:62px;border-radius:16px;display:grid;place-items:center;font-size:30px;box-shadow:0 3px 10px var(--shadow)}
+.strip div:nth-child(odd){transform:rotate(-3deg)}.strip div:nth-child(even){transform:rotate(3deg) translateY(4px)}
+.welcome{background:linear-gradient(160deg,var(--peach),var(--olive-wash) 70%);margin:-46px -20px 0;padding:56px 20px 22px;border-radius:0 0 32px 32px}
+.collage{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.collage div{height:84px;border-radius:20px;display:grid;place-items:center;font-size:38px;box-shadow:0 4px 12px var(--shadow)}
+.collage div:nth-child(2){transform:translateY(10px)}
+.perk{display:flex;gap:12px;align-items:center;margin-top:14px;font-weight:600}.perk i{font-style:normal;width:40px;height:40px;border-radius:14px;background:var(--surface);display:grid;place-items:center;font-size:20px;box-shadow:0 2px 8px var(--shadow)}
 .lock{background:var(--sunken);border-radius:var(--r);padding:16px;margin-top:14px;text-align:center}.lock b{display:block;font-size:17px;margin:4px 0}
 </style></head>
 <body>
-<p class="cap">Tour de la app · 12 vistas con tu estilo (cada pantalla se desliza)</p>
+<p class="cap">Tour de la app · 13 vistas con tu estilo (cada pantalla se desliza)</p>
 <div class="row" id="app"></div>
 <script>
 const ING={
@@ -62,12 +69,18 @@ const brand=`<div class="brand"><div class="leaf">🌿</div><div><b>Cocina en Ca
 const prog=n=>`<div class="prog">${['Tus datos','Cómo te sientes','Lo que tienes'].map((t,i)=>`<div class="${i<n?'d':''}"><i></i>${t}</div>`).join('')}</div>`;
 const card=r=>`<div class="card"><div class="ph" style="background:${r[6]}">${r[0]}<span class="tag">${r[2].toUpperCase()}</span></div><div class="b"><h3>${r[1]}</h3><div class="meta">⏱ ${r[3]}</div><div style="margin-top:6px"><span class="pill p-${r[5]}">${r[4]}</span></div></div></div>`;
 const row=(r,btn)=>`<div class="slot"><div class="th" style="background:${r[6]}">${r[0]}</div><div><b>${r[1]}</b><small>⏱ ${r[3]} · ${r[4]}</small><br><span class="pct">${r[7]}% de tu día</span></div><button class="sm ${btn==='Elegir'?'':'o'}">${btn}</button></div>`;
-const ph=(cap,inner,t)=>`<div><p class="cap">${cap}</p><div class="phone"><div class="scroll">${inner}</div>${t||''}</div></div>`;
+let pn=0;const strip=`<div class="strip"><div style="background:linear-gradient(135deg,#F6C9A0,#F0A77A)">🍳</div><div style="background:linear-gradient(135deg,#BFD99A,#8FB86B)">🥗</div><div style="background:linear-gradient(135deg,#F6E5A0,#EBCB5F)">🍓</div><div style="background:linear-gradient(135deg,#F0B98D,#DB8F5A)">🍠</div></div>`;
+const ph=(cap,inner,t)=>`<div><p class="cap">${++pn} · ${cap.replace(/^\d+ · /,'')}</p><div class="phone"><div class="scroll">${inner}</div>${t||''}</div></div>`;
 let n=0;const ingHtml=Object.entries(ING).map(([k,v])=>`<div class="label">${k}</div>`+v.map(x=>{const on=x.endsWith('*');if(on)n++;return `<span class="chip ${on?'on':''}">${x.replace('*','')}</span>`}).join('')).join('');
 const total=Object.values(ING).flat().length;
 const wk=(k)=>`<div class="days">${['L','M','X','J','V','S','D'].map((d,i)=>`<div class="${i<k?'ok':i===k?'now':''}">${d}${i<k?' ✓':''}</div>`).join('')}</div>`;
 const S=[];
-S.push(ph('1 · Tus datos',`${brand}${prog(1)}<h1>Empecemos por <em>ti</em></h1><p class="sub">Con estos datos calculamos cuánto necesita tu cuerpo cada día.</p>
+S.push(ph('Bienvenida',`<div class="welcome"><div class="brand"><div class="leaf">🌿</div><div><b>Cocina en Calma</b><small>Cocina una vez, come bien toda la semana</small></div></div>
+<h1 style="margin-top:14px">Come rico y siéntete <em>ligera</em> 🌿</h1><p class="sub">Menús antiinflamatorios con lo que ya tienes en casa. Sin básculas y sin contar calorías.</p>
+<div class="collage"><div style="background:linear-gradient(135deg,#F6C9A0,#F0A77A)">🥣</div><div style="background:linear-gradient(135deg,#BFD99A,#8FB86B)">🥗</div><div style="background:linear-gradient(135deg,#F2D36B,#E5B53F)">🍲</div></div></div>
+<div style="padding-top:18px"><div class="perk"><i>🌱</i>Tu menú según cómo te sientes</div><div class="perk"><i>🍳</i>Cocinas una vez, comes toda la semana</div><div class="perk"><i>🛒</i>Compras justas, sin desperdicio</div></div><div style="height:100px"></div>`,
+`<div class="cta" style="flex-direction:column;gap:8px"><button class="btn">Empezar mi menú</button><div style="text-align:center;color:var(--ink2);font-size:14px">Ya tengo cuenta · Iniciar sesión</div></div>`));
+S.push(ph('Tus datos',`${brand}${strip}${prog(1)}<h1>¡Hola! Empecemos por <em>ti</em></h1><p class="sub">Con 6 datos calculamos cuánto necesita tu cuerpo. Es rápido, lo prometemos.</p>
 <div class="two"><div><div class="fl2">Sexo</div><select><option>Mujer</option></select></div><div><div class="fl2">Edad</div><div class="fld">30</div></div>
 <div><div class="fl2">Peso (kg)</div><div class="fld">65</div></div><div><div class="fl2">Talla (cm)</div><div class="fld">160</div></div></div>
 <div class="fl2">Actividad física</div><select><option>Ligera (1–3 días por semana)</option></select>
@@ -80,13 +93,13 @@ S.push(ph('2 · Tus requerimientos',`${brand}${prog(1)}<h1>Esto necesita tu <em>
 <div class="info" style="background:var(--olive-wash)"><b>Cómo lo usamos:</b> cada receta que eliges suma a tu día. Verás una barra de cuánto llevas cubierto, no un contador de calorías.</div>
 <div class="info"><b>Ejemplo:</b> mujer, 30 años, 65 kg, 160 cm, actividad ligera. Fórmula de referencia revisada por la nutricionista del proyecto.</div><div style="height:90px"></div>`,
 `<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Siguiente</button></div>`));
-S.push(ph('3 · Cómo te sientes',`${brand}${prog(2)}<h1>¿Cómo te sientes <em>hoy</em>?</h1><p class="sub">Elige lo que más te molesta. Ajustamos las recetas que te sugerimos.</p>
-<div style="margin-top:18px"><span class="chip on">Hinchazón</span><span class="chip">Pesadez después de comer</span><span class="chip on">Digestión lenta</span><span class="chip">Cansancio de tarde</span><span class="chip">Gases</span><span class="chip">Reflujo</span><span class="chip">Estreñimiento</span><span class="chip">Antojos de dulce</span></div>
+S.push(ph('3 · Cómo te sientes',`${brand}${strip}${prog(2)}<h1>¿Cómo te sientes <em>hoy</em>?</h1><p class="sub">Cuéntanos sin pena. Aquí no hay juicios: solo comida rica que te cuida.</p>
+<div style="margin-top:18px"><span class="chip on">🎈 Hinchazón</span><span class="chip">😮‍💨 Pesadez después de comer</span><span class="chip on">🐢 Digestión lenta</span><span class="chip">😴 Cansancio de tarde</span><span class="chip">💨 Gases</span><span class="chip">🔥 Reflujo</span><span class="chip">🌀 Estreñimiento</span><span class="chip">🍫 Antojos de dulce</span></div>
 <div class="label">¿Cuánto tiempo tienes para cocinar?</div><span class="chip">10 min</span><span class="chip on">20-30 min</span><span class="chip">Domingo de meal prep</span>
 <div class="label">¿Para cuántas personas?</div><span class="chip on">Solo yo</span><span class="chip">2</span><span class="chip">3-4</span>
 <div class="info"><b>Sin básculas.</b> Usamos tazas, puños y unidades. Orientación general: no reemplaza a tu médico.</div><div style="height:90px"></div>`,
 `<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Siguiente</button></div>`));
-S.push(ph('4 · ¿Qué tienes en casa?',`${brand}${prog(3)}<h1>Marca <em>3</em> que tengas en casa</h1><p class="sub">Con eso armamos tu primer menú en segundos. Después puedes sumar más.</p>
+S.push(ph('4 · ¿Qué tienes en casa?',`${brand}${strip}${prog(3)}<h1>¡Casi listo! Marca <em>3</em> que tengas en casa</h1><p class="sub">Con eso armamos tu primer menú en segundos. Después puedes sumar más.</p>
 <div style="margin-top:18px"><span class="chip on">Pechuga de pollo</span><span class="chip on">Huevos</span><span class="chip on">Arroz integral</span><span class="chip">Avena</span><span class="chip">Zapallo</span><span class="chip">Zanahoria</span><span class="chip">Papa</span><span class="chip">Banano</span><span class="chip">Yogur griego</span><span class="chip">Lenteja</span><span class="chip">Espinaca</span><span class="chip">Camote</span></div>
 <div class="cnt"><b>3 de 3</b> ✓ · con esto ya salen 16 recetas</div>
 <div class="act"><div><b>Ver los ${total} ingredientes</b><span>Proteínas, verduras, frutas, especias…</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Ver</span></div><div style="height:90px"></div>`,
