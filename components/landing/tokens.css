@@ -19,6 +19,7 @@
   /* ── MARCA ── */
   --accent: #4f6f2b;
   --accent-2: #a64b33;
+  --error: #b0432f; /* semántico de error de la FICHA-ARTE */
   --accent-on-dark: #b9d48a; /* acento legible sobre el bloque invertido del CTA final (≥7:1 sobre --text-primary) */
 
   /* ── FORMA ── */

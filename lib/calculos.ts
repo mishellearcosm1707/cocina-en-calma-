@@ -50,20 +50,14 @@ export const INGREDIENTES_RAPIDOS: { etiqueta: string; clave: RegExp }[] = [
   { etiqueta: 'Camote', clave: /camote/i },
   { etiqueta: 'Banano', clave: /banano|plátano/i },
   { etiqueta: 'Yogur griego', clave: /yogur/i },
-  { etiqueta: 'Kéfir', clave: /kéfir/i },
   { etiqueta: 'Lenteja', clave: /lenteja/i },
   { etiqueta: 'Garbanzo', clave: /garbanzo/i },
-  { etiqueta: 'Frijol', clave: /frijol/i },
-  { etiqueta: 'Quinoa', clave: /quinoa/i },
   { etiqueta: 'Espinaca', clave: /espinaca/i },
   { etiqueta: 'Brócoli', clave: /brócoli/i },
   { etiqueta: 'Zucchini', clave: /zucchini/i },
   { etiqueta: 'Pepino', clave: /pepino/i },
   { etiqueta: 'Aguacate', clave: /aguacate/i },
   { etiqueta: 'Pescado blanco', clave: /pescado/i },
-  { etiqueta: 'Atún en agua', clave: /atún/i },
-  { etiqueta: 'Tofu', clave: /tofu/i },
-  { etiqueta: 'Papaya', clave: /papaya/i },
 ];
 
 export interface ItemMenu {
@@ -80,7 +74,7 @@ export interface MenuDia {
   faltantes: string[];
 }
 
-const REPARTO: Record<Comida, number> = { Desayuno: 0.25, Almuerzo: 0.33, Merienda: 0.12, Cena: 0.3 };
+export const REPARTO: Record<Comida, number> = { Desayuno: 0.25, Almuerzo: 0.33, Merienda: 0.12, Cena: 0.3 };
 
 /** Elige 1 receta por comida: prioriza síntoma + ingredientes que la usuaria tiene, y ajusta la porción. */
 export function generarMenu(sintomas: Sintoma[], ingredientes: string[], kcalObjetivo: number): MenuDia {
