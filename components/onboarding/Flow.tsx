@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { ArrowLeft, BatteryLow, Check, Leaf, Scale, Sunset, type LucideIcon } from 'lucide-react';
 import {
   calcularRequerimientos,
+  etiquetaPerfil,
   generarMenu,
   INGREDIENTES_RAPIDOS,
   REPARTO,
@@ -35,6 +36,7 @@ type Paso =
   | 'actividad'
   | 'objetivo'
   | 'cuerpo'
+  | 'nombre'
   | 'ingredientes'
   | 'armando'
   | 'menu';
@@ -48,6 +50,7 @@ const PASOS: Paso[] = [
   'actividad',
   'objetivo',
   'cuerpo',
+  'nombre',
   'ingredientes',
   'armando',
   'menu',
@@ -63,7 +66,7 @@ const DOLORES: { v: Dolor; t: string; icono: LucideIcon }[] = [
   { v: 'bascula', t: 'Estoy harta de pesar la comida y contar calorías', icono: Scale },
 ];
 const RITMOS: { v: Ritmo; t: string; nota: string }[] = [
-  { v: 'prep', t: 'Cocino todo en una tarde a la semana', nota: 'Meal prep: recetas que se guardan bien' },
+  { v: 'prep', t: 'Cocino todo en una tarde a la semana', nota: 'Preparación de una tarde: recetas que se guardan bien' },
   { v: 'diaria', t: 'Tengo 20 a 30 minutos al día', nota: 'Recetas de cocina corta y diaria' },
   { v: 'express', t: 'Lo menos posible: casi sin cocinar', nota: 'Recetas express de 15 minutos o menos' },
 ];
@@ -110,6 +113,7 @@ interface Guardado {
   ingredientes: string[];
   dolores: Dolor[];
   ritmo: Ritmo | null;
+  nombre: string;
 }
 
 /** Progreso de esta visita (se borra al cerrar la pestaña; nunca sale del navegador). */
@@ -334,6 +338,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
   const [ingredientes, setIngredientes] = useState<string[]>(ini.ingredientes ?? []);
   const [dolores, setDolores] = useState<Dolor[]>(ini.dolores ?? []);
   const [verMas, setVerMas] = useState(false);
+  const [nombre, setNombre] = useState(ini.nombre ?? '');
   const [ritmo, setRitmo] = useState<Ritmo | null>(ini.ritmo ?? null);
 
   const errores = {
@@ -355,12 +360,12 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
 
   useEffect(() => {
     try {
-      const g: Guardado = { idx, c, filtro, sexo, edad, peso, talla, actividad, objetivo, sintomas, ingredientes, dolores, ritmo };
+      const g: Guardado = { idx, c, filtro, sexo, edad, peso, talla, actividad, objetivo, sintomas, ingredientes, dolores, ritmo, nombre };
       window.sessionStorage.setItem(CLAVE, JSON.stringify(g));
     } catch {
       /* sin almacenamiento: el recorrido funciona igual, solo no recuerda al recargar */
     }
-  }, [idx, c, filtro, sexo, edad, peso, talla, actividad, objetivo, sintomas, ingredientes, dolores, ritmo]);
+  }, [idx, c, filtro, sexo, edad, peso, talla, actividad, objetivo, sintomas, ingredientes, dolores, ritmo, nombre]);
 
   function ir(delta: number) {
     setDir(delta);
@@ -558,7 +563,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                 frases={[
                   `Cruzando lo que sientes (${sintomas.join(' y ').toLowerCase() || 'tu síntoma'}) con tus ingredientes…`,
                   'Calculando lo que necesita tu cuerpo…',
-                  `Armando tu menú de hoy a tu ritmo${ritmo === 'prep' ? ' de meal prep' : ''}…`,
+                  `Armando tu menú de hoy a tu ritmo${ritmo === 'prep' ? ' de una tarde' : ''}…`,
                 ]}
               />
             )}
@@ -653,7 +658,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   ¡Hola! Empecemos por <Resaltada>ti</Resaltada>
                 </Titulo>
                 <p className="text-base text-[var(--text-secondary)]">
-                  Con estos datos calculamos cuánto necesita tu cuerpo. Es rápido.
+                  Con esto calculamos cuánto necesita tu cuerpo y armamos tu menú de hoy en un par de minutos.
                 </p>
                 <fieldset>
                   <legend className="mb-2 text-sm text-[var(--text-secondary)]">Sexo (lo pide la fórmula)</legend>
@@ -731,7 +736,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                           <motion.div
                             className="h-full rounded-full bg-[var(--accent)]"
                             initial={{ width: 0 }}
-                            animate={{ width: `${Math.min(100, REPARTO[comida] * 300)}%` }}
+                            animate={{ width: `${Math.round(REPARTO[comida] * 100)}%` }}
                             transition={{ duration: reducir ? 0 : 0.7, delay: reducir ? 0 : 0.08 * n, ease: EASE }}
                           />
                         </div>
@@ -790,6 +795,36 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
               </div>
             )}
 
+            {paso === 'nombre' && (
+              <div className="flex flex-col gap-5">
+                <Titulo>
+                  ¿Cómo te <Resaltada>llamas</Resaltada>?
+                </Titulo>
+                <p className="text-base text-[var(--text-secondary)]">
+                  Para que tu Menú Calma sea tuyo de verdad. Es opcional.
+                </p>
+                <div>
+                  <label htmlFor="campo-nombre" className="mb-2 block text-sm text-[var(--text-secondary)]">
+                    Tu nombre
+                  </label>
+                  <input
+                    id="campo-nombre"
+                    type="text"
+                    autoComplete="given-name"
+                    maxLength={24}
+                    value={nombre}
+                    placeholder="Ej. Laura"
+                    onChange={(e) => setNombre(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && ir(1)}
+                    className="h-14 w-full rounded-[var(--radius-button)] border border-[var(--surface-2)] bg-[var(--surface)] px-4 text-base text-[var(--text-primary)] outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+                  />
+                </div>
+                <p className="rounded-[var(--radius-card)] bg-[var(--chip-bg)] p-4 text-sm leading-snug">
+                  <b>Se queda en tu celular.</b> Solo lo usamos para escribir tu nombre en tu menú y en tu plan.
+                </p>
+              </div>
+            )}
+
             {paso === 'ingredientes' && (
               <div className="flex flex-col gap-5">
                 <Titulo>
@@ -798,6 +833,21 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                 <p className="text-base text-[var(--text-secondary)]">
                   Con eso armamos tu primer menú en segundos. Después puedes sumar más.
                 </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAviso('');
+                    setIngredientes(
+                      Array.from(new Set([...ingredientes, 'Pechuga de pollo', 'Zapallo', 'Avena'])).slice(
+                        0,
+                        Math.max(3, ingredientes.length),
+                      ),
+                    );
+                  }}
+                  className="min-h-12 self-start rounded-[var(--radius-button)] border border-[var(--accent)] px-5 text-base font-semibold text-[var(--accent)]"
+                >
+                  Elige por mí
+                </button>
                 <div className="flex flex-col gap-5">
                   {GRUPOS_INGREDIENTES.map((g) => (
                     <div key={g.titulo}>
@@ -866,7 +916,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   </h1>
                   {ritmo && (
                     <p className="mt-2 text-base text-[var(--text-secondary)]">
-                      A tu ritmo: {RITMOS.find((x) => x.v === ritmo)?.nota.toLowerCase()}.
+                      {nombre.trim() ? `${nombre.trim()}, tu perfil: ` : 'Tu perfil: '}<b>{etiquetaPerfil(ritmo)}</b>. {RITMOS.find((x) => x.v === ritmo)?.nota}.
                     </p>
                   )}
                 </div>
@@ -923,8 +973,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   ))}
                 </ul>
                 <div className="rounded-[var(--radius-card)] border border-[var(--surface-2)] bg-[var(--surface)] p-4 text-sm leading-snug">
-                  <b>Este es tu menú de muestra gratis.</b> Con tu plan completo eliges entre {RECETAS.length} recetas, armas
-                  toda la semana, ves tus compras y cocinas todo en una tarde.
+                  <b>Este es tu menú de hoy, gratis.</b> Con tu plan completo armas toda la semana con {RECETAS.length} recetas, ves tus compras y cocinas todo en una tarde. <b>Pago único de $14.99</b> y 7 días de garantía.
                 </div>
                 <p className="text-sm text-[var(--text-secondary)]">
                   Orientación nutricional general. No reemplaza a tu médico o nutricionista.
@@ -949,7 +998,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
               href="/paywall"
               className="flex h-14 w-full items-center justify-center rounded-[var(--radius-button)] bg-[var(--accent)] text-base font-bold text-[var(--bg)] shadow-[var(--shadow-2)]"
             >
-              Armar mi semana completa
+              Ver mi semana completa
             </motion.a>
           ) : (
             <motion.button
@@ -959,6 +1008,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
               className="h-14 w-full rounded-[var(--radius-button)] bg-[var(--accent)] text-base font-bold text-[var(--bg)] shadow-[var(--shadow-2)]"
             >
               {(paso === 'consent' || paso === 'gancho') && 'Continuar'}
+              {paso === 'nombre' && (nombre.trim() ? 'Continuar' : 'Seguir sin nombre')}
               {paso === 'datos' && 'Siguiente'}
               {paso === 'cuerpo' && 'Siguiente'}
               {paso === 'sintomas' && 'Siguiente'}

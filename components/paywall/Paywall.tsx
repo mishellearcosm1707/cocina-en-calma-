@@ -9,7 +9,7 @@
 import { useEffect, useState } from 'react';
 import { animate, AnimatePresence, motion, MotionConfig, useReducedMotion } from 'motion/react';
 import { Apple, BadgeCheck, Check, ChevronDown, Coffee, Leaf, Loader2, Lock, Moon, Soup, X, type LucideIcon } from 'lucide-react';
-import { calcularRequerimientos, generarMenu, type Actividad, type Objetivo, type Sexo } from '@/lib/calculos';
+import { calcularRequerimientos, etiquetaPerfil, generarMenu, type Actividad, type Objetivo, type Ritmo, type Sexo } from '@/lib/calculos';
 import { Sello } from '@/components/landing/Sello';
 import type { Comida, Receta, Sintoma } from '@/lib/recetas';
 
@@ -32,6 +32,8 @@ interface Guardado {
   sintomas: Sintoma[];
   ingredientes: string[];
   dolores: ('panza' | 'cansancio' | 'bascula')[];
+  ritmo: Ritmo | null;
+  nombre: string;
 }
 
 function leer(): Partial<Guardado> {
@@ -85,7 +87,7 @@ const PREGUNTAS = [
 
 const BENEFICIOS = [
   'Tus 7 días con 4 comidas, ajustados a tu síntoma',
-  'Meal prep de una sola tarde y lista de compras',
+  'Preparación de una sola tarde y lista de compras',
   '60 recetas antiinflamatorias con ingredientes de casa',
   'Chequeo diario que ajusta tu menú de mañana',
 ];
@@ -112,15 +114,24 @@ export function Paywall({ fotos }: { fotos: string[] }) {
         objetivo: g.objetivo as Objetivo,
       }).kcal
     : 1800;
-  const menu = generarMenu(sintomas, ingredientes, kcal, fotos);
+  const ritmo = g.ritmo ?? null;
+  const nombre = (g.nombre ?? '').trim();
+  const menu = generarMenu(sintomas, ingredientes, kcal, fotos, ritmo);
+  // Costo hundido VISIBLE (regla a de la escalera): todo lo que la persona ya puso en su Menú Calma.
+  const respuestas = (datosOk ? 6 : 0) + dolores.length + sintomas.length + (ritmo ? 1 : 0) + ingredientes.length;
 
   const fuerte = 'font-semibold text-[var(--text-primary)]';
   const susSintomas = sintomas.slice(0, 2).map((s) => s.toLowerCase()).join(' y ');
-  const subtitulo = (
-    <>
-      Armada para <b className={fuerte}>{susSintomas || 'tu síntoma'}</b> y con lo que ya tienes en casa.
-    </>
-  );
+  const subtitulo =
+    respuestas > 0 ? (
+      <>
+        Hecho con tus <b className={fuerte}>{respuestas} respuestas</b>: {susSintomas || 'tu síntoma'}, tu ritmo y lo que ya tienes en casa.
+      </>
+    ) : (
+      <>
+        Armado para <b className={fuerte}>tu síntoma</b> y con lo que ya tienes en casa.
+      </>
+    );
 
   function desbloquear() {
     if (cargando) return;
@@ -176,9 +187,23 @@ export function Paywall({ fotos }: { fotos: string[] }) {
           </motion.div>
 
           <motion.p
+            variants={APARECE}
+            className="mt-1 flex items-center gap-2 text-sm font-semibold text-[var(--accent)]"
+          >
+            <motion.span
+              initial={{ scale: 0.3, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.35, type: 'spring', stiffness: 300, damping: 15 }}
+              className="flex size-6 items-center justify-center rounded-full bg-[var(--accent)]"
+            >
+              <Check size={14} strokeWidth={3} color="var(--bg)" aria-hidden="true" />
+            </motion.span>
+            Tu menú del lunes está listo
+          </motion.p>
+          <motion.p
             variants={ENTRA}
             transition={{ duration: 0.45, ease: EASE }}
-            className="mt-2 text-sm font-semibold uppercase tracking-wider text-[var(--accent-2)]"
+            className="mt-3 text-sm font-semibold uppercase tracking-wider text-[var(--accent-2)]"
           >
             {LINEA_DOLOR[dolores[0] ?? 'panza']}
           </motion.p>
@@ -187,7 +212,7 @@ export function Paywall({ fotos }: { fotos: string[] }) {
             transition={{ duration: 0.45, ease: EASE }}
             className="mt-2 text-balance text-3xl font-bold leading-[1.1] text-[var(--text-primary)] [font-family:var(--font-display)]"
           >
-            Tu Menú Calma de{' '}
+            {nombre ? `${nombre}, tu` : 'Tu'} Menú Calma de{' '}
             <span className="text-[var(--accent)] [background-image:linear-gradient(transparent_62%,var(--mustard-soft)_62%)]">
               toda la semana
             </span>
@@ -199,6 +224,14 @@ export function Paywall({ fotos }: { fotos: string[] }) {
           >
             {subtitulo}
           </motion.p>
+          {ritmo && (
+            <motion.p
+              variants={APARECE}
+              className="mt-3 inline-flex w-fit items-center rounded-full bg-[var(--olive-wash)] px-3 py-1 text-sm font-semibold text-[var(--accent)]"
+            >
+              Tu perfil: {etiquetaPerfil(ritmo)}
+            </motion.p>
+          )}
 
           {/* Visual del valor: la semana con el lunes ya armado y 6 días bloqueados (pérdida honesta) */}
           <motion.section
@@ -256,7 +289,7 @@ export function Paywall({ fotos }: { fotos: string[] }) {
                 <Lock size={18} color="var(--peach-ink)" />
               </span>
               <p className="text-sm leading-snug text-[var(--text-primary)]">
-                <b className="font-semibold">Martes a domingo</b> se arman al desbloquear, con tu meal prep y tu lista
+                <b className="font-semibold">Martes a domingo</b> se arman al desbloquear, con tu preparación de una tarde y tu lista
                 de compras.
               </p>
             </div>
@@ -316,7 +349,7 @@ export function Paywall({ fotos }: { fotos: string[] }) {
                 <Sello tamano={96} giro={-8} fuente={13} texto="GARANTÍA CALMA · 7 DÍAS ·" />
               </motion.span>
               <p>
-                <b className={fuerte}>Garantía Calma de 7 días:</b> si no te convence, pides tu reembolso en Hotmart.
+                <b className={fuerte}>Garantía Calma de 7 días:</b> si no te convence, lo pides desde tu compra en Hotmart y te devuelven todo.
               </p>
             </div>
             <p className="flex items-start gap-3">

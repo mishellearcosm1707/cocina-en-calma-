@@ -85,6 +85,13 @@ export const REPARTO: Record<Comida, number> = { Desayuno: 0.25, Almuerzo: 0.33,
 /** Mientras solo 8 de 60 recetas tengan foto real, el primer menú usa solo recetas con foto (bajar a 1 cuando haya más). */
 const BONO_FOTO = 20;
 
+/** Etiqueta positiva de identidad según el ritmo de cocina (labeling effect: el pago confirma una identidad ya entregada). */
+export function etiquetaPerfil(ritmo: Ritmo | null): string {
+  if (ritmo === 'prep') return 'Cocinera de una tarde';
+  if (ritmo === 'express') return 'Cocinera express';
+  return 'Cocinera de 20 minutos';
+}
+
 /** El ritmo de cocina empuja recetas: express → ≤15 min · diaria → ≤30 min · meal prep → las que se congelan. */
 function bonoRitmo(r: Receta, ritmo: Ritmo | null): number {
   if (ritmo === 'express') return r.min <= 15 ? 2 : 0;
