@@ -1,7 +1,7 @@
 # FICHA DE AVATAR — Cocina en Calma
 (Fuente: estudio del usuario, PDF "estudio de mercado, cliente ideal, razones", 2026-10-30. Sin enlaces por frase: citadas como "comunidades de usuarios del estudio".)
 
-- Estado: BORRADOR — pendiente de tu OK (18 frases literales con fuente del estudio; al aprobarla pasa a APROBADA y se deriva el copy)
+- Estado: APROBADA por el usuario el 2026-10-31 (18 frases literales con fuente del estudio + 3 razones de compra). Ya se puede derivar copy de venta.
 
 ## El avatar (cliente ideal — UNA persona concreta)
 - Nombre/arquetipo: Laura · Edad: 34 · Situación: profesional corporativa urbana (o mamá que gestiona el hogar) · País(es): México, Colombia, Argentina, Chile, España y hispanas en EE.UU.
@@ -39,6 +39,13 @@ Otro: "Ponerme mis vestidos y jeans ajustados sin acomplejarme."
 - "Literalmente, hasta un vaso de agua me infla la panza." · "Estoy cansada de las cuentas, las calorías y la dichosa báscula de cocina." · "Los pantalones en el trabajo me aprietan la panza y me están hartando."
 - "Llego a la casa exhausta del trabajo y me da dolor de cabeza pensar qué cocinar hoy." · "Siento el estómago tan duro y apretado que no puedo ni pararme derecha." · "Me da pánico y me siento como una basura cuando me paso de comida el fin de semana." · "Solo quiero poder comer tranquila sin sentirme culpable ni terminar inflamada."
 
+## Razones de compra (Jim Edwards, del estudio — las 3 dominantes)
+1. ESCAPAR DEL DOLOR físico y mental (razón #1, visceral): abdomen duro, ropa que aprieta, ansiedad por pesar, culpa → hero y agitación de la landing. Titular base: "Si todos los días terminas con la panza hinchada, dura y pesada después de comer, el problema no eres tú: es lo que cocinas sin un método antiinflamatorio real."
+2. EVITAR ESFUERZO (razón operativa): sin báscula, sin contar, sin escribir ingredientes a mano; todo con toques y listas automáticas → onboarding, paywall y FAQ. Titular base: "Olvídate de pesar cada gramo: la app arma tu menú antiinflamatorio y tu lista de compras en un solo clic."
+3. AHORRAR TIEMPO (razón PRÁCTICA / logística): una sola tarde de meal prep de unos 90 minutos resuelve la semana y acaba la parálisis nocturna de "¿qué cocino hoy?" → sección de solución, módulo Menús Express de 10 min, paywall (desbloquea la semana y el meal prep). Titular base: "Cocina toda tu semana en una sola tarde, usa lo que ya tienes en tu nevera y deja de perder horas pensando qué cenar."
+- Secundarias: ahorrar dinero (compras justas, menos desperdicio) · comodidad (plan hecho) · salud/ligereza · ser admirada por lucir su ropa · sentirse aceptada. No aplican: ganar dinero, subir de estatus.
+- Orden de uso en el copy: dolor → esfuerzo → tiempo (la razón práctica cierra la venta con el "cómo lo vivo cada semana").
+
 ## Consciencia y sofisticación (Schwartz)
 - Dominante: Problem-Aware (reconoce síntomas y que lo que hace no funciona; ignora que exista un método antiinflamatorio automatizado sin conteo). Resuelve la contradicción del estudio: es "consciente de la solución" solo respecto a las apps de calorías.
   → Hero: identificación con el síntoma + demo del resultado; después el mecanismo
@@ -61,4 +68,4 @@ Otro: "Ponerme mis vestidos y jeans ajustados sin acomplejarme."
 ## Cierre
 - INVENTARIO DE PRUEBA DÍA-1: la creadora es nutricionista (credencial y nombre por confirmar) · demo grabable (recorrido de la app) · sin testimonios ni betas contactables todavía
 - ¿Entrevistas del 44?: NO
-- Fecha de cierre: 2026-10-31 · Aprobada por el usuario: NO (pendiente)
+- Fecha de cierre: 2026-10-31 · Aprobada por el usuario: SÍ (2026-10-31)

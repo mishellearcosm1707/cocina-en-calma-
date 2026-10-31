@@ -1,7 +1,7 @@
 ﻿# ESTADO — Cocina en Calma
 Última actualización: 2026-10-30 | Sesión actual: 1
 
-⏸️ CHECKPOINT — Última acción completada: diseño aprobado (FICHA-ARTE) y FICHA-AVATAR en borrador / Siguiente acción exacta: usuario aprueba FICHA-AVATAR → FICHA-MERCADO (investigación web con fuente y fecha) → completar FICHA-MODELO → Constitución del Producto (01) → Landing.
+⏸️ CHECKPOINT — Última acción completada: diseño aprobado (FICHA-ARTE) y FICHA-AVATAR en borrador / Siguiente acción exacta: FICHA-MERCADO (investigación web con fuente y fecha) → completar FICHA-MODELO → Constitución del Producto (01) → Landing.
 
 ## Qué es esta app (3 líneas máximo)
 App que dice qué comer cada día según síntomas digestivos (hinchazón, pesadez, fatiga) e ingredientes que ya hay en casa, y organiza la semana en una sola tarde de meal prep.
@@ -28,7 +28,7 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - REGISTRO ANTI-REPETICIÓN: oliva+crema, Fraunces+Nunito → vetados para el próximo proyecto
 
 ## Avatar y venta (fuente PDF; FICHA-AVATAR.md aún por crear en formato SO)
-- FICHA-AVATAR.md: BORRADOR creada 2026-10-31 desde el estudio (falta OK del usuario; al aprobarla se puede derivar copy)
+- FICHA-AVATAR.md: APROBADA por el usuario 2026-10-31 (incluye las 3 razones de compra: dolor, esfuerzo y la razón práctica = ahorrar tiempo)
 - Avatar: Laura, 34, corporativa urbana; abdomen plano al despertar, "panza de embarazada" por la noche; fatiga de decisión "¿qué cocino hoy?"
 - Dolor #1: "Tengo panza de embarazada y ni siquiera estoy embarazada." · Deseo #1: despertar y acostarse con la panza plana y relajada
 - Dolores 2-5: no soporta pantalones/ropa ajustada · agua o manzana la infla · fatiga de cocinar · harta de pesar/contar calorías
