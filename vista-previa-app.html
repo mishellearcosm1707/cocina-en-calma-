@@ -25,7 +25,7 @@ select,.fld{width:100%;background:var(--surface);border:1px solid var(--line);bo
 .lock{background:var(--sunken);border-radius:var(--r);padding:16px;margin-top:14px;text-align:center}.lock b{display:block;font-size:17px;margin:4px 0}
 </style></head>
 <body>
-<p class="cap">Tour de la app · 10 vistas con tu estilo (cada pantalla se desliza)</p>
+<p class="cap">Tour de la app · 12 vistas con tu estilo (cada pantalla se desliza)</p>
 <div class="row" id="app"></div>
 <script>
 const ING={
@@ -75,8 +75,8 @@ S.push(ph('1 · Tus datos',`${brand}${prog(1)}<h1>Empecemos por <em>ti</em></h1>
 <div class="info"><b>¿Para qué te pedimos esto?</b> Para que tus menús cubran lo que tu cuerpo necesita. Es un cálculo aproximado: te orienta y no reemplaza una consulta con un profesional de la nutrición. Tus datos se guardan solo en tu cuenta.</div><div style="height:90px"></div>`,
 `<div class="cta"><button class="btn">Calcular lo que necesito</button></div>`));
 S.push(ph('2 · Tus requerimientos',`${brand}${prog(1)}<h1>Esto necesita tu <em>cuerpo</em></h1><p class="sub">Por día, según tus datos. La app hace las cuentas; tú solo eliges qué comer.</p>
-<div class="card" style="padding:16px;margin-top:16px"><div class="label" style="margin-top:0">Energía diaria</div><div style="font-family:'Fraunces',serif;font-size:36px;font-weight:600">1,840 <small style="font-size:15px;font-family:Nunito;color:var(--ink2)">kcal</small></div>
-<div class="mac"><div>Proteína<b>85 g</b></div><div>Carbohid.<b>230 g</b></div><div>Grasas<b>60 g</b></div><div>Fibra<b>25 g</b></div></div></div>
+<div class="card" style="padding:16px;margin-top:16px"><div class="label" style="margin-top:0">Tu meta de cada día</div><div style="font-family:'Fraunces',serif;font-size:34px;font-weight:600">100% <small style="font-size:15px;font-family:Nunito;color:var(--ink2)">cubierto con tus comidas</small></div><div class="bar"><i style="width:100%"></i></div><details style="margin-top:14px"><summary style="color:var(--olive);font-weight:700">Ver detalle técnico</summary><div class="label">Energía diaria · 1,840 kcal</div>
+<div class="mac"><div>Proteína<b>85 g</b></div><div>Carbohid.<b>230 g</b></div><div>Grasas<b>60 g</b></div><div>Fibra<b>25 g</b></div></div></details></div>
 <div class="info" style="background:var(--olive-wash)"><b>Cómo lo usamos:</b> cada receta que eliges suma a tu día. Verás una barra de cuánto llevas cubierto, no un contador de calorías.</div>
 <div class="info"><b>Ejemplo:</b> mujer, 30 años, 65 kg, 160 cm, actividad ligera. Fórmula de referencia revisada por la nutricionista del proyecto.</div><div style="height:90px"></div>`,
 `<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Siguiente</button></div>`));
@@ -86,34 +86,48 @@ S.push(ph('3 · Cómo te sientes',`${brand}${prog(2)}<h1>¿Cómo te sientes <em>
 <div class="label">¿Para cuántas personas?</div><span class="chip on">Solo yo</span><span class="chip">2</span><span class="chip">3-4</span>
 <div class="info"><b>Sin básculas.</b> Usamos tazas, puños y unidades. Orientación general: no reemplaza a tu médico.</div><div style="height:90px"></div>`,
 `<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Siguiente</button></div>`));
-S.push(ph('4 · ¿Qué tienes en casa?',`${brand}${prog(3)}<h1>¿Qué tienes en <em>casa</em>?</h1><p class="sub">Marca lo que tienes y priorizamos recetas con eso. Hay ${total} ingredientes: desliza.</p>
-<div class="input">🔍 Buscar ingrediente…</div><div class="cnt"><b>${n} marcados</b> · con esto ya salen 16 recetas</div>${ingHtml}<div style="height:90px"></div>`,
-`<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Armar mi semana</button></div>`));
-S.push(ph('5 · Arma tu semana',`<h1 style="font-size:28px">Arma tu <em>semana</em></h1><p class="sub" style="font-size:14px">Elige tus 4 comidas de cada día. Al completar los 7 días se abre tu meal prep.</p>${wk(2)}
+S.push(ph('4 · ¿Qué tienes en casa?',`${brand}${prog(3)}<h1>Marca <em>3</em> que tengas en casa</h1><p class="sub">Con eso armamos tu primer menú en segundos. Después puedes sumar más.</p>
+<div style="margin-top:18px"><span class="chip on">Pechuga de pollo</span><span class="chip on">Huevos</span><span class="chip on">Arroz integral</span><span class="chip">Avena</span><span class="chip">Zapallo</span><span class="chip">Zanahoria</span><span class="chip">Papa</span><span class="chip">Banano</span><span class="chip">Yogur griego</span><span class="chip">Lenteja</span><span class="chip">Espinaca</span><span class="chip">Camote</span></div>
+<div class="cnt"><b>3 de 3</b> ✓ · con esto ya salen 16 recetas</div>
+<div class="act"><div><b>Ver los ${total} ingredientes</b><span>Proteínas, verduras, frutas, especias…</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Ver</span></div><div style="height:90px"></div>`,
+`<div class="cta"><button class="btn2" style="width:34%">Atrás</button><button class="btn">Ver mi primer menú</button></div>`));
+S.push(ph('5 · Tu primer menú (primera victoria)',`<div class="label" style="margin-top:0;color:var(--olive)">Listo en menos de 5 minutos</div><h1 style="font-size:28px">Tu menú de hoy para la <em>hinchazón</em></h1>
+<div class="sum" style="margin-top:12px"><b>Cubre 100% de lo que necesitas hoy</b><div class="bar"><i style="width:100%"></i></div></div>
+<div class="grid">${[REC[0],REC[5],REC[3],REC[8]].map(card).join('')}</div>
+<div class="info"><b>Menú de muestra gratis.</b> Con tu plan completo armas toda la semana, filtras por lo que tienes, ves las compras y la guía de meal prep.</div><div style="height:90px"></div>`,
+`<div class="cta"><button class="btn">Armar mi semana completa</button></div>`));
+S.push(ph('6 · Arma tu semana',`<h1 style="font-size:28px">Arma tu <em>semana</em></h1><p class="sub" style="font-size:14px">Elige tus 4 comidas de cada día. Al completar los 7 días se abre tu meal prep.</p>${wk(2)}
 <div class="label">Miércoles</div>${row(REC[1],'Cambiar')}${row(REC[7],'Cambiar')}
 <div class="slot"><div class="th" style="background:var(--sunken)">＋</div><div><b>Merienda</b><small>Elige entre 15 opciones</small></div><button class="sm">Elegir</button></div>
 <div class="slot"><div class="th" style="background:var(--sunken)">＋</div><div><b>Cena</b><small>Elige entre 15 opciones</small></div><button class="sm">Elegir</button></div>
 <div class="sum" style="margin-top:14px"><b>Cubres 48% de tu día.</b> Con una merienda y una cena de estas llegas al 100%:<div class="bar"><i style="width:48%"></i></div></div>
 <div class="act"><div><b>Sugerido para completar</b><span>Kéfir con piña y menta + Pescado al horno</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Usar</span></div><div style="height:90px"></div>`,tabs(1,true)));
-S.push(ph('6 · Elegir receta (muchas opciones)',`<div style="display:flex;justify-content:space-between;align-items:baseline"><h1 style="font-size:26px">Elige tu cena</h1><span style="color:var(--ink2);font-size:14px">Cerrar</span></div>
+S.push(ph('7 · Elegir receta (muchas opciones)',`<div style="display:flex;justify-content:space-between;align-items:baseline"><h1 style="font-size:26px">Elige tu cena</h1><span style="color:var(--ink2);font-size:14px">Cerrar</span></div>
 <div class="input">🔍 Buscar por receta o ingrediente…</div>
 <div class="fl"><span class="chip on">Para completar mi día</span><span class="chip">Hinchazón</span><span class="chip">Gases</span><span class="chip">Pesadez</span><span class="chip">Congelable</span><span class="chip">Express 10 min</span><span class="chip">Con lo que tengo</span><span class="chip">Sin lácteos</span><span class="chip">Vegetariano</span></div>
 <div class="cnt">15 cenas · ordenadas por lo que mejor completa tu día</div>${[REC[8],REC[9],REC[10],REC[12],REC[13],REC[11]].map(r=>row(r,'Elegir')).join('')}<div style="height:90px"></div>`,`<div class="cta"><button class="btn2">Ver las 15 cenas</button></div>`));
-S.push(ph('7 · Semana (avance)',`${brand}<h1>Tu <em>semana</em></h1><p class="sub">Llevas 5 de 7 días armados.</p>${wk(5)}
+S.push(ph('8 · Semana (avance)',`${brand}<h1>Tu <em>semana</em></h1><p class="sub">Llevas 5 de 7 días armados.</p>${wk(5)}
 <div class="card" style="padding:4px 14px;margin-top:10px">${[['Lun','100% cubierto','✓'],['Mar','100% cubierto','✓'],['Mié','98% cubierto','✓'],['Jue','101% cubierto','✓'],['Vie','100% cubierto','✓'],['Sáb','Falta armar','＋'],['Dom','Falta armar','＋']].map(d=>`<div class="day"><b>${d[0]}</b><div style="display:flex;justify-content:space-between"><span>${d[1]}</span><span style="color:var(--olive);font-weight:700">${d[2]}</span></div></div>`).join('')}</div>
 <div class="lock">🔒<b>Meal prep y compras</b><span style="color:var(--ink2);font-size:14px">Se abre cuando armes los 7 días. Te faltan 2.</span></div><div style="height:90px"></div>`,tabs(1,true)));
-S.push(ph('8 · Hoy',`<div style="display:flex;justify-content:space-between;align-items:baseline"><h1 style="font-size:28px">Tu menú de hoy</h1><span style="color:var(--olive);font-weight:700">Cambiar</span></div>
+S.push(ph('9 · Hoy',`<div style="display:flex;justify-content:space-between;align-items:baseline"><h1 style="font-size:28px">Tu menú de hoy</h1><span style="color:var(--olive);font-weight:700">Cambiar</span></div>
 <div class="sum" style="margin-top:12px"><b>Hoy cubres 100% de lo que necesitas</b><div class="bar"><i style="width:100%"></i></div></div>
 <div class="grid">${[REC[0],REC[5],REC[3],REC[8]].map(card).join('')}</div>
-<div class="act"><div><b>Te faltan 3 ingredientes</b><span>Chía, Semillas de zapallo, Hinojo</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Lo que tengo</span></div><div style="height:90px"></div>`,tabs(0)));
-S.push(ph('9 · Receta',`<div class="big" style="background:linear-gradient(135deg,#F3CDA0,#E3A66C)">🥞</div><div class="sheet" style="margin-top:-18px;padding-top:18px;position:relative">
+<div class="act"><div><b>Te faltan 3 ingredientes</b><span>Chía, Semillas de zapallo, Hinojo</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Lo que tengo</span></div>
+<div class="label">¿Sin tiempo hoy? Menús Express de 10 minutos</div>${[REC[2],REC[3],REC[13]].map(r=>row(r,'Elegir')).join('')}
+<div class="act" style="background:var(--olive-wash)"><div><b>¿Cómo terminó tu abdomen hoy?</b><span>Cuéntanos y ajustamos tu menú de mañana</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Responder</span></div><div style="height:90px"></div>`,tabs(0)));
+S.push(ph('10 · Chequeo diario (retención)',`<div class="label" style="margin-top:0;color:var(--olive)">Cierre del día</div><h1 style="font-size:28px">¿Cómo terminó tu <em>abdomen</em> hoy?</h1><p class="sub">Toma 10 segundos y cambia lo que te sugerimos mañana.</p>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px;text-align:center;font-size:12px"><div class="card" style="padding:12px 4px"><div style="font-size:28px">😌</div>Plano</div><div class="card" style="padding:12px 4px"><div style="font-size:28px">🙂</div>Un poco hinchada</div><div class="card" style="padding:12px 4px;outline:2px solid var(--olive)"><div style="font-size:28px">😕</div>Hinchada</div><div class="card" style="padding:12px 4px"><div style="font-size:28px">😣</div>Muy hinchada</div></div>
+<div class="label">¿Cuándo empezó?</div><span class="chip">Mañana</span><span class="chip on">Después de almorzar</span><span class="chip">Noche</span>
+<div class="sum" style="margin-top:16px"><b>Mañana ajustamos tu menú:</b> priorizamos comidas tibias y suaves en el almuerzo, con jengibre y hinojo.</div>
+<div class="act"><div><b>Tu semana de síntomas</b><span>Hinchazón más baja los días con cena ligera</span></div><span class="chip" style="margin:0;color:var(--olive);font-weight:700">Ver</span></div><div style="height:90px"></div>`,`<div class="cta"><button class="btn">Guardar y ver mañana</button></div>`));
+S.push(ph('11 · Receta',`<div class="big" style="background:linear-gradient(135deg,#F3CDA0,#E3A66C)">🥞</div><div class="sheet" style="margin-top:-18px;padding-top:18px;position:relative">
 <div class="label" style="margin-top:0;color:var(--olive)">Desayuno · 18% de tu día</div><h1 style="font-size:28px">Tortitas de zapallo y avena</h1>
 <div class="meta" style="margin-top:10px">⏱ 25 min <span class="pill p-c">Congelable 60 días</span><span class="pill p-s">Gases</span><span class="pill p-s">Hinchazón</span></div>
-<div class="card" style="padding:12px 14px;margin-top:14px"><div class="mac" style="margin-top:0"><div>Energía<b>329</b></div><div>Prot.<b>25 g</b></div><div>Carb.<b>36 g</b></div><div>Grasas<b>10 g</b></div></div></div>
+<details class="card" style="padding:12px 14px;margin-top:14px"><summary style="font-weight:700;color:var(--olive)">Ver aporte nutricional · 18% de tu día</summary><div class="mac"><div>Energía<b>329</b></div><div>Prot.<b>25 g</b></div><div>Carb.<b>36 g</b></div><div>Grasas<b>10 g</b></div></div></details>
 <div class="label">Ingredientes para tu porción</div><ul class="ing"><li>¾ taza de zapallo <small>(cocido)</small></li><li>⅓ taza de avena</li><li>1 huevo</li><li>1 pizca de canela</li><li>½ taza de yogur griego natural</li></ul>
 <div class="label">Cámbialo por lo que tengas</div><span class="chip">Camote en vez de zapallo</span><span class="chip">Kéfir en vez de yogur</span>
 <div class="label">Preparación</div><p style="line-height:1.7">1. Cocina el zapallo y aplástalo.<br>2. Mezcla con la avena, el huevo y la canela.<br>3. Cocina tortitas en sartén antiadherente.</p><div style="height:20px"></div></div>`));
-S.push(ph('10 · Meal prep y compras (desbloqueado)',`${brand}<h1>Meal prep y <em>compras</em></h1><p class="sub">Tu semana completa: armamos tu sesión de cocina y tu lista de compras.</p>
+S.push(ph('12 · Meal prep y compras (desbloqueado)',`${brand}<h1>Meal prep y <em>compras</em></h1><p class="sub">Tu semana completa: armamos tu sesión de cocina y tu lista de compras.</p>
 <div class="label">Sesión de meal prep · aprox. 1 h 39 min</div><div class="card" style="padding:6px 16px">
 <div class="step"><div class="n">1</div><div><b>Organiza tu espacio</b><span>Saca tablas, ollas y recipientes. Prepara etiquetas.</span></div></div>
 <div class="step"><div class="n">2</div><div><b>Lava y pica todo de una vez</b><span>Zapallo, zanahoria, zucchini, jengibre y espinaca.</span></div></div>
