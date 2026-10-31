@@ -15,9 +15,17 @@ Estado: método APROBADO por la nutricionista el 2026-10-31 en lo de energía; f
 
 Ejemplo (mujer, 34 años, 62 kg, 160 cm, actividad ligera, mantener): ≈1770 kcal · 62 g proteína · 59 g grasas · 248 g carbohidratos · 25 g fibra.
 
-## 2. Valor nutricional de las recetas (PENDIENTE)
-Hoy las kcal y macros de `datos/recetas.json` son ESTIMACIONES hechas con IA. Plan: calcularlos ingrediente por ingrediente con una tabla de composición de alimentos y pasar las medidas caseras (taza, cucharada, palma) a gramos con equivalencias documentadas.
-Fuentes candidatas (la nutricionista elige la principal):
-- USDA FoodData Central (SR Legacy / Foundation Foods): la más completa y consultable; datos por 100 g. https://fdc.nal.usda.gov
-- Tablas regionales: INCAP (Centroamérica), ICBF (Colombia), BEDCA (España), tablas nacionales de Ecuador, FAO/INFOODS (bases regionales). Se usan para contrastar los alimentos locales (yuca, zapallo, plátano verde, etc.).
-Regla: cada ingrediente lleva su fuente, código y fecha de consulta; si falta un dato, se escribe NO ENCONTRADO.
+## 2. Valor nutricional de las recetas (CALCULADO con tabla, 2026-10-31)
+Tabla usada: **USDA FoodData Central, SR Legacy (abril 2018)** — https://fdc.nal.usda.gov (descargada el 2026-10-31, datos por 100 g). 80 alimentos del mapa verificados contra su descripción exacta.
+Proceso (reproducible): `node herramientas/nutricion/calcular.mjs <carpeta-usda>`
+1. Cada ingrediente de cada receta se asocia a un alimento de la tabla (`herramientas/nutricion/mapa.mjs`).
+2. La medida casera (taza, cda, palma, unidad…) se convierte a gramos con equivalencias documentadas en ese mismo archivo (USDA cuando existe; estimación marcada si no).
+3. Energía, proteína, carbohidratos, grasas y fibra = valores por 100 g × gramos ÷ 100, sumados por receta. El valor de la primera versión (estimado por IA) queda en `estimado_ia`.
+Salidas: `datos/recetas.json` (v0.2), `datos/alimentos-usda.json` (nutrientes por 100 g y código FDC de cada alimento), `datos/nutricion-por-ingrediente.csv` (gramos y aporte de CADA ingrediente, para revisión).
+Resultado: promedio por porción 318 kcal (antes, por estimación de IA: 381). Medias: desayuno 295 · almuerzo 459 · merienda 188 · cena 329 kcal.
+
+### Límites y proxies a revisar por la nutricionista
+- Sin cocción/absorción de aceite más allá de lo escrito en la receta; pesos de alimentos cocidos tomados de la tabla "cooked".
+- Proxies: yuca (la tabla trae solo cruda) · tortilla integral → tortilla de harina · queso fresco → "Cheese, fresh, queso fresco" · caldo de verduras → "Soup, vegetable broth" · yogur griego natural = sin grasa (supuesto) · pescado blanco = tilapia cruda · pavo molido cocido.
+- Equivalencias estimadas (no USDA): berenjena mediana 300 g · zapallo 190 g por taza · palma de proteína 100 g (130 g tofu) · camarón mediano 7 g.
+- Tablas regionales para contrastar alimentos locales (INCAP, ICBF, BEDCA, tablas nacionales de Ecuador): pendiente, a elección de la nutricionista.

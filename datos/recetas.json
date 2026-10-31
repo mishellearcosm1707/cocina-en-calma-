@@ -1,72 +1,4153 @@
 {
-  "version": "0.1-borrador",
+  "version": "0.2-borrador",
   "fecha": "2026-10-31",
-  "estado": "BORRADOR generado por IA. Valores nutricionales ESTIMADOS por porción (kcal, g). Pendiente de validación por la nutricionista antes de publicar. Medidas caseras (taza, cda, palma, puño): sin básculas.",
+  "estado": "BORRADOR. Kcal y macros por porción CALCULADOS ingrediente por ingrediente con la tabla USDA FoodData Central (SR Legacy 2018-04) y equivalencias de medidas caseras documentadas en herramientas/nutricion/mapa.mjs. Pendiente de validación por la nutricionista (ver datos/metodo-y-fuentes.md). Los valores de la primera versión (estimados por IA) se conservan en `estimado_ia`.",
   "criterio": "Base antiinflamatoria del estudio: pescados grasos, aceite de oliva, legumbres, avena, tubérculos, verduras cocidas y de hoja, frutas, nueces y semillas, cúrcuma con pimienta, jengibre y hierbas digestivas. Sin ultraprocesados, sin azúcar añadida, sin pesaje. Cebolla y ajo evitados o mínimos (revisar FODMAP con la nutricionista).",
-  "claves": { "sintomas": ["Hinchazón", "Gases", "Pesadez", "Digestión lenta"], "tags": ["congelable", "express", "vegetariano", "sin_lacteos", "sin_gluten"] },
+  "claves": {
+    "sintomas": [
+      "Hinchazón",
+      "Gases",
+      "Pesadez",
+      "Digestión lenta"
+    ],
+    "tags": [
+      "congelable",
+      "express",
+      "vegetariano",
+      "sin_lacteos",
+      "sin_gluten"
+    ]
+  },
   "recetas": [
-    {"id":"d01","nombre":"Avena nocturna con papaya y chía","comida":"Desayuno","min":5,"sintomas":["Hinchazón"],"tags":["express","vegetariano"],"kcal":380,"prot":18,"carb":52,"gras":11,"fibra":10,"porque":"Avena y chía aportan fibra suave; la papaya es una fruta fácil de digerir.","ing":["½ taza de avena","½ taza de yogur griego natural","¼ taza de leche de almendras","1 cda de chía","½ taza de papaya en cubos","1 pizca de canela"],"pasos":["Mezcla la avena, el yogur, la leche y la chía en un frasco.","Refrigera toda la noche.","Al servir, agrega la papaya y la canela."]},
-    {"id":"d02","nombre":"Tortitas de zapallo y avena","comida":"Desayuno","min":25,"sintomas":["Gases","Hinchazón"],"tags":["congelable","vegetariano"],"congelable_dias":60,"kcal":329,"prot":25,"carb":36,"gras":10,"fibra":5,"porque":"El zapallo cocido y la avena son suaves para el intestino; la canela da sabor sin azúcar.","ing":["¾ taza de zapallo cocido","⅓ taza de avena","1 huevo","1 pizca de canela","½ taza de yogur griego natural"],"pasos":["Cocina el zapallo y aplástalo.","Mezcla con la avena, el huevo y la canela.","Cocina tortitas en sartén antiadherente y sirve con el yogur."]},
-    {"id":"d03","nombre":"Omelette de espinaca y champiñones","comida":"Desayuno","min":10,"sintomas":["Digestión lenta"],"tags":["express","vegetariano"],"kcal":340,"prot":24,"carb":18,"gras":19,"fibra":4,"porque":"Proteína completa con verduras cocidas, ligera para la mañana.","ing":["2 huevos","1 taza de espinaca","½ taza de champiñones laminados","1 cdta de aceite de oliva","1 rebanada de pan integral"],"pasos":["Saltea los champiñones y la espinaca en el aceite 3 minutos.","Vierte los huevos batidos y cocina tapado 3 minutos.","Dobla y sirve con el pan tostado."]},
-    {"id":"d04","nombre":"Pudín de chía con mango y coco","comida":"Desayuno","min":5,"sintomas":["Hinchazón","Digestión lenta"],"tags":["express","vegetariano","sin_lacteos","sin_gluten"],"kcal":310,"prot":9,"carb":34,"gras":15,"fibra":13,"porque":"La chía hidratada aporta fibra y omega-3 de origen vegetal.","ing":["3 cdas de chía","1 taza de leche de almendras","½ taza de mango en cubos","1 cda de coco rallado","1 pizca de canela"],"pasos":["Mezcla la chía con la leche y la canela.","Refrigera mínimo 2 horas o toda la noche.","Sirve con el mango y el coco."]},
-    {"id":"d05","nombre":"Bowl de yogur con arándanos, linaza y nueces","comida":"Desayuno","min":5,"sintomas":["Hinchazón"],"tags":["express","vegetariano","sin_gluten"],"kcal":330,"prot":22,"carb":22,"gras":17,"fibra":4,"porque":"Los arándanos aportan antioxidantes; la linaza molida, fibra y omega-3.","ing":["1 taza de yogur griego natural","½ taza de arándanos","1 cda de linaza molida","6 mitades de nuez"],"pasos":["Sirve el yogur en un bowl.","Agrega los arándanos, la linaza y las nueces picadas."]},
-    {"id":"d06","nombre":"Panqueques de banano y avena","comida":"Desayuno","min":15,"sintomas":["Pesadez"],"tags":["congelable","vegetariano"],"congelable_dias":60,"kcal":390,"prot":19,"carb":52,"gras":12,"fibra":6,"porque":"Endulzados solo con banano maduro, sin azúcar añadida.","ing":["1 banano maduro","½ taza de avena","2 huevos","1 pizca de canela"],"pasos":["Licúa todo hasta tener una mezcla homogénea.","Cocina porciones pequeñas en sartén antiadherente 2 minutos por lado."]},
-    {"id":"d07","nombre":"Avena caliente con manzana y canela","comida":"Desayuno","min":10,"sintomas":["Hinchazón","Gases"],"tags":["vegetariano","sin_lacteos"],"kcal":370,"prot":11,"carb":58,"gras":12,"fibra":9,"porque":"La manzana cocida y la avena tibia son suaves para el estómago.","ing":["½ taza de avena","1 taza de leche de almendras","1 manzana en cubos","1 pizca de canela","8 almendras picadas"],"pasos":["Cocina la avena con la leche 5 minutos.","Agrega la manzana y la canela 2 minutos más.","Sirve con las almendras."]},
-    {"id":"d08","nombre":"Tostada de aguacate con huevo poché","comida":"Desayuno","min":10,"sintomas":["Digestión lenta"],"tags":["express","vegetariano","sin_lacteos"],"kcal":360,"prot":14,"carb":26,"gras":23,"fibra":9,"porque":"Grasas buenas del aguacate y proteína del huevo, saciante sin pesadez.","ing":["1 rebanada de pan integral","½ aguacate","1 huevo","unas gotas de limón","1 cda de semillas de zapallo"],"pasos":["Tuesta el pan y unta el aguacate con limón.","Cocina el huevo poché 3 minutos en agua caliente.","Coloca el huevo encima y las semillas."]},
-    {"id":"d09","nombre":"Smoothie verde de piña, espinaca y jengibre","comida":"Desayuno","min":5,"sintomas":["Hinchazón","Pesadez"],"tags":["express","vegetariano"],"kcal":290,"prot":12,"carb":44,"gras":7,"fibra":6,"porque":"Jengibre y piña son ingredientes tradicionalmente usados para sentirse más ligera.","ing":["1 taza de espinaca","¾ taza de piña","1 taza de kéfir","1 cdta de jengibre rallado","1 cda de chía"],"pasos":["Licúa todo con 3 cubos de hielo.","Sirve de inmediato."]},
-    {"id":"d10","nombre":"Muffins de zanahoria y avena (2 unidades)","comida":"Desayuno","min":30,"sintomas":["Gases"],"tags":["congelable","vegetariano"],"congelable_dias":60,"kcal":330,"prot":11,"carb":38,"gras":15,"fibra":5,"porque":"Zanahoria y avena aportan fibra suave sin azúcar refinada.","ing":["½ taza de zanahoria rallada","⅓ taza de avena","1 huevo","1 pizca de canela","4 mitades de nuez"],"pasos":["Mezcla todo.","Reparte en 2 moldes y hornea a 180 °C por 20 minutos."]},
-    {"id":"d11","nombre":"Huevos revueltos con zucchini y cúrcuma","comida":"Desayuno","min":10,"sintomas":["Pesadez"],"tags":["express","vegetariano","sin_lacteos"],"kcal":330,"prot":20,"carb":22,"gras":17,"fibra":3,"porque":"La cúrcuma con pimienta negra es base de la cocina antiinflamatoria.","ing":["2 huevos","½ taza de zucchini picado","1 pizca de cúrcuma","1 pizca de pimienta negra","1 cdta de aceite de oliva","1 tortilla de maíz"],"pasos":["Saltea el zucchini 3 minutos.","Agrega los huevos batidos con cúrcuma y pimienta.","Sirve con la tortilla caliente."]},
-    {"id":"d12","nombre":"Quinoa caliente con pera y canela","comida":"Desayuno","min":10,"sintomas":["Hinchazón"],"tags":["vegetariano","sin_lacteos","sin_gluten"],"kcal":360,"prot":10,"carb":58,"gras":11,"fibra":8,"porque":"Quinoa sin gluten con fruta cocida, un desayuno tibio y fácil de digerir.","ing":["¾ taza de quinoa cocida","1 taza de leche de almendras","1 pera en cubos","1 pizca de canela","1 cda de nueces"],"pasos":["Calienta la quinoa con la leche 5 minutos.","Agrega la pera y la canela.","Sirve con las nueces."]},
-    {"id":"d13","nombre":"Frittata de camote y espinaca","comida":"Desayuno","min":25,"sintomas":["Digestión lenta"],"tags":["congelable","vegetariano","sin_lacteos","sin_gluten"],"congelable_dias":60,"kcal":340,"prot":19,"carb":26,"gras":17,"fibra":4,"porque":"Camote y espinaca aportan fibra y minerales con proteína de huevo.","ing":["½ taza de camote cocido","2 huevos","1 taza de espinaca","1 cda de perejil picado","1 cdta de aceite de oliva"],"pasos":["Saltea la espinaca en el aceite.","Mezcla con el camote en cubos y los huevos batidos.","Hornea a 180 °C por 15 minutos o cocina tapado a fuego bajo."]},
-    {"id":"d14","nombre":"Bowl de papaya y kéfir","comida":"Desayuno","min":5,"sintomas":["Hinchazón","Digestión lenta"],"tags":["express","vegetariano"],"kcal":300,"prot":11,"carb":46,"gras":8,"fibra":7,"porque":"El kéfir aporta fermentados, la papaya y la linaza ayudan al tránsito.","ing":["1 taza de papaya","½ taza de kéfir","1 cda de linaza molida","¼ taza de avena en hojuelas"],"pasos":["Sirve el kéfir en un bowl.","Agrega la papaya, la avena y la linaza."]},
-    {"id":"d15","nombre":"Crepas de avena con fresas y yogur","comida":"Desayuno","min":15,"sintomas":["Pesadez"],"tags":["vegetariano"],"kcal":340,"prot":16,"carb":44,"gras":11,"fibra":6,"porque":"Masa de avena sin harinas refinadas ni azúcar.","ing":["½ taza de avena molida","1 huevo","½ taza de leche de almendras","¾ taza de fresas","¼ taza de yogur griego natural"],"pasos":["Mezcla la avena, el huevo y la leche.","Cocina 2 crepas finas en sartén.","Rellena con las fresas y el yogur."]},
-
-    {"id":"a01","nombre":"Sopa de lenteja con jengibre y zanahoria","comida":"Almuerzo","min":35,"sintomas":["Pesadez","Digestión lenta"],"tags":["congelable","vegetariano","sin_lacteos","sin_gluten"],"congelable_dias":90,"kcal":560,"prot":29,"carb":82,"gras":12,"fibra":18,"porque":"Legumbres cocidas con jengibre y especias digestivas.","ing":["¾ taza de lenteja cocida","1 zanahoria picada","1 cdta de jengibre rallado","1 pizca de comino","1 cda de aceite de oliva","1 taza de caldo de verduras","¾ taza de arroz integral cocido"],"pasos":["Sofríe la zanahoria y el jengibre 3 minutos.","Agrega la lenteja, el caldo y el comino y cocina 15 minutos.","Sirve con el arroz."]},
-    {"id":"a02","nombre":"Bowl de quinoa, pollo, pepino y menta","comida":"Almuerzo","min":20,"sintomas":["Hinchazón"],"tags":["express","sin_lacteos","sin_gluten"],"kcal":590,"prot":42,"carb":55,"gras":21,"fibra":8,"porque":"Plato fresco con proteína magra y hierbas digestivas.","ing":["¾ taza de quinoa cocida","1 palma de pechuga de pollo cocida","½ pepino en cubos","1 cda de menta picada","1 cda de aceite de oliva","jugo de ½ limón"],"pasos":["Cocina y desmenuza el pollo.","Mezcla con la quinoa, el pepino y la menta.","Aliña con el aceite y el limón."]},
-    {"id":"a03","nombre":"Pollo al cilantro con yuca","comida":"Almuerzo","min":40,"sintomas":["Pesadez"],"tags":["congelable","sin_lacteos","sin_gluten"],"congelable_dias":60,"kcal":620,"prot":45,"carb":60,"gras":20,"fibra":6,"porque":"Cilantro, limón y yuca cocida: sabor fuerte, digestión tranquila.","ing":["1 filete de pollo (1 palma)","¾ taza de yuca cocida","2 cdas de cilantro","jugo de 1 limón","½ taza de zanahoria cocida","1 cda de aceite de oliva"],"pasos":["Marina el pollo con cilantro y limón 10 minutos.","Dóralo en sartén con el aceite 6 minutos por lado.","Sirve con la yuca y la zanahoria."]},
-    {"id":"a04","nombre":"Arroz integral con frijol y aguacate","comida":"Almuerzo","min":30,"sintomas":["Digestión lenta"],"tags":["vegetariano","sin_lacteos","sin_gluten"],"kcal":610,"prot":22,"carb":90,"gras":19,"fibra":22,"porque":"Combinación completa de proteínas vegetales y grasas buenas.","ing":["¾ taza de arroz integral cocido","¾ taza de frijol negro cocido","½ aguacate","½ tomate picado","1 cda de cilantro"],"pasos":["Calienta el frijol con una pizca de comino.","Sirve sobre el arroz.","Termina con el aguacate, el tomate y el cilantro."]},
-    {"id":"a05","nombre":"Wrap de pollo, pepino y yogur","comida":"Almuerzo","min":15,"sintomas":["Hinchazón"],"tags":["express"],"kcal":520,"prot":38,"carb":48,"gras":19,"fibra":7,"porque":"Almuerzo fresco, sin salsas industriales.","ing":["1 tortilla integral grande","1 palma de pollo desmenuzado","½ pepino en tiras","¼ taza de yogur griego natural","1 cda de menta picada"],"pasos":["Mezcla el yogur con la menta.","Rellena la tortilla con el pollo, el pepino y el yogur.","Enrolla y corta a la mitad."]},
-    {"id":"a06","nombre":"Salmón al horno con camote y brócoli","comida":"Almuerzo","min":30,"sintomas":["Pesadez"],"tags":["sin_lacteos","sin_gluten"],"kcal":640,"prot":38,"carb":52,"gras":30,"fibra":9,"porque":"El salmón aporta omega-3, base de la nutrición antiinflamatoria.","ing":["1 filete de salmón (1 palma)","1 camote mediano","1 taza de brócoli","1 cda de aceite de oliva","jugo de ½ limón"],"pasos":["Hornea el camote en cubos 15 minutos a 200 °C.","Agrega el salmón y el brócoli con el aceite y hornea 12 minutos más.","Termina con limón."]},
-    {"id":"a07","nombre":"Ensalada tibia de garbanzos y zapallo","comida":"Almuerzo","min":30,"sintomas":["Digestión lenta"],"tags":["vegetariano","sin_lacteos","sin_gluten"],"kcal":580,"prot":22,"carb":70,"gras":25,"fibra":16,"porque":"Legumbre y verdura asada con semillas, saciante y ligera.","ing":["¾ taza de garbanzos cocidos","1 taza de zapallo asado","1 taza de espinaca","1 cda de semillas de zapallo","1 cda de aceite de oliva","jugo de ½ limón"],"pasos":["Asa el zapallo 20 minutos a 200 °C.","Mezcla tibio con los garbanzos y la espinaca.","Aliña con aceite, limón y semillas."]},
-    {"id":"a08","nombre":"Albóndigas de pavo con zucchini y arroz","comida":"Almuerzo","min":35,"sintomas":["Pesadez"],"tags":["congelable","sin_lacteos"],"congelable_dias":90,"kcal":580,"prot":38,"carb":58,"gras":20,"fibra":7,"porque":"Proteína magra con verdura cocida y arroz integral.","ing":["1 palma de pavo molido","1 cda de avena","1 cda de perejil","1 taza de zucchini","¾ taza de arroz integral cocido","½ tomate rallado"],"pasos":["Mezcla el pavo con la avena y el perejil; forma 3 bolitas.","Cocínalas en el tomate rallado 12 minutos con tapa.","Sirve con el zucchini salteado y el arroz."]},
-    {"id":"a09","nombre":"Crema de zapallo y cúrcuma con pollo","comida":"Almuerzo","min":35,"sintomas":["Gases","Hinchazón"],"tags":["congelable","sin_gluten"],"congelable_dias":90,"kcal":520,"prot":36,"carb":42,"gras":18,"fibra":7,"porque":"Zapallo, jengibre y cúrcuma con pimienta, una crema reconfortante.","ing":["1½ tazas de zapallo","1 cdta de cúrcuma","1 cdta de jengibre rallado","1 pizca de pimienta negra","1 palma de pollo desmenuzado","1 cda de semillas de zapallo"],"pasos":["Cocina el zapallo con jengibre y cúrcuma 15 minutos.","Licúa hasta que quede cremosa.","Sirve con el pollo y las semillas."]},
-    {"id":"a10","nombre":"Tacos de maíz con pescado y repollo","comida":"Almuerzo","min":25,"sintomas":["Hinchazón"],"tags":["sin_lacteos","sin_gluten"],"kcal":560,"prot":36,"carb":60,"gras":18,"fibra":9,"porque":"Pescado blanco ligero con repollo fresco y limón.","ing":["3 tortillas pequeñas de maíz","1 filete de pescado blanco","1 taza de repollo fino","¼ aguacate","jugo de 1 limón"],"pasos":["Cocina el pescado a la plancha 3 minutos por lado y desmenúzalo.","Calienta las tortillas.","Arma los tacos con el repollo, el aguacate y el limón."]},
-    {"id":"a11","nombre":"Pasta integral con zucchini y atún","comida":"Almuerzo","min":20,"sintomas":["Digestión lenta"],"tags":["express","sin_lacteos"],"kcal":590,"prot":38,"carb":68,"gras":17,"fibra":9,"porque":"Pasta integral con verdura y proteína magra en pocos minutos.","ing":["1 taza de fideos integrales cocidos","1 lata de atún en agua escurrido","1 taza de zucchini","1 cda de albahaca","1 cda de aceite de oliva"],"pasos":["Saltea el zucchini 4 minutos en el aceite.","Agrega la pasta y el atún y calienta.","Termina con albahaca."]},
-    {"id":"a12","nombre":"Curry suave de garbanzos y espinaca","comida":"Almuerzo","min":30,"sintomas":["Gases","Pesadez"],"tags":["congelable","vegetariano","sin_lacteos","sin_gluten"],"congelable_dias":90,"kcal":640,"prot":20,"carb":84,"gras":26,"fibra":16,"porque":"Cúrcuma y comino con leche de coco, sabor intenso y digestión amable.","ing":["¾ taza de garbanzos cocidos","1 taza de espinaca","½ taza de leche de coco","1 cdta de cúrcuma","1 pizca de comino","¾ taza de arroz integral cocido"],"pasos":["Calienta la leche de coco con las especias 3 minutos.","Agrega los garbanzos y la espinaca 5 minutos.","Sirve sobre el arroz."]},
-    {"id":"a13","nombre":"Bowl de camote, pollo y aguacate","comida":"Almuerzo","min":30,"sintomas":["Hinchazón"],"tags":["sin_lacteos","sin_gluten"],"kcal":600,"prot":40,"carb":55,"gras":24,"fibra":11,"porque":"Plato completo con carbohidrato de absorción lenta.","ing":["1 camote mediano asado","1 palma de pollo a la plancha","½ aguacate","1 taza de lechuga","jugo de ½ limón"],"pasos":["Asa el camote en cubos 20 minutos.","Arma el bowl con la lechuga, el pollo y el aguacate.","Aliña con limón."]},
-    {"id":"a14","nombre":"Sopa de pollo con verduras y jengibre","comida":"Almuerzo","min":35,"sintomas":["Pesadez","Gases"],"tags":["congelable","sin_lacteos","sin_gluten"],"congelable_dias":90,"kcal":480,"prot":36,"carb":50,"gras":14,"fibra":6,"porque":"Caldo caliente con verduras cocidas y jengibre, ligero y reconfortante.","ing":["1 palma de pollo","1 zanahoria","1 tallo de apio","1 cdta de jengibre rallado","1 taza de caldo","¾ taza de arroz integral cocido"],"pasos":["Hierve el pollo con las verduras y el jengibre 20 minutos.","Desmenuza el pollo y devuélvelo al caldo.","Sirve con el arroz."]},
-    {"id":"a15","nombre":"Lentejas con arroz y ensalada de pepino","comida":"Almuerzo","min":30,"sintomas":["Digestión lenta"],"tags":["vegetariano","sin_lacteos","sin_gluten"],"kcal":570,"prot":25,"carb":88,"gras":12,"fibra":18,"porque":"Proteína vegetal completa y mucha fibra, con pepino fresco.","ing":["¾ taza de lenteja cocida","½ taza de arroz integral cocido","½ pepino en rodajas","1 pizca de comino","1 cda de aceite de oliva","jugo de ½ limón"],"pasos":["Calienta la lenteja con comino.","Sirve con el arroz.","Acompaña con pepino aliñado con aceite y limón."]},
-
-    {"id":"c01","nombre":"Pescado al horno con hinojo y limón","comida":"Cena","min":25,"sintomas":["Gases"],"tags":["sin_lacteos","sin_gluten"],"kcal":430,"prot":36,"carb":32,"gras":16,"fibra":5,"porque":"El hinojo es una hierba tradicional para la digestión; pescado ligero para la noche.","ing":["1 filete de pescado blanco","½ bulbo de hinojo en láminas","jugo de 1 limón","1 cda de aceite de oliva","1 papa pequeña cocida"],"pasos":["Coloca el hinojo y el pescado en una bandeja con aceite y limón.","Hornea 15 minutos a 190 °C.","Sirve con la papa."]},
-    {"id":"c02","nombre":"Tofu salteado con brócoli y arroz","comida":"Cena","min":15,"sintomas":["Digestión lenta"],"tags":["express","vegetariano","sin_lacteos"],"kcal":470,"prot":25,"carb":50,"gras":20,"fibra":8,"porque":"Proteína vegetal ligera con verdura al vapor y jengibre.","ing":["1 palma grande de tofu en cubos","1½ tazas de brócoli","1 cdta de jengibre rallado","1 cda de aceite","½ taza de arroz integral cocido"],"pasos":["Dora el tofu en el aceite 5 minutos.","Agrega el brócoli y el jengibre con 2 cdas de agua, tapa 4 minutos.","Sirve con el arroz."]},
-    {"id":"c03","nombre":"Camote asado con garbanzos","comida":"Cena","min":30,"sintomas":["Pesadez"],"tags":["vegetariano","sin_lacteos","sin_gluten"],"kcal":480,"prot":18,"carb":68,"gras":16,"fibra":14,"porque":"Plato vegetal saciante con fibra y especias suaves.","ing":["1 camote mediano","½ taza de garbanzos cocidos","1 cda de aceite de oliva","1 pizca de comino","1 cda de perejil"],"pasos":["Hornea el camote partido 25 minutos a 200 °C.","Saltea los garbanzos con comino.","Rellena el camote y termina con perejil."]},
-    {"id":"c04","nombre":"Crema de zanahoria y cúrcuma","comida":"Cena","min":30,"sintomas":["Gases","Hinchazón"],"tags":["congelable","vegetariano","sin_lacteos","sin_gluten"],"congelable_dias":90,"kcal":330,"prot":6,"carb":40,"gras":16,"fibra":8,"porque":"Crema tibia y suave con cúrcuma y jengibre.","ing":["1½ tazas de zanahoria","1 cdta de cúrcuma","1 cdta de jengibre rallado","¼ taza de leche de coco","1 cda de semillas de zapallo"],"pasos":["Cocina la zanahoria con las especias 20 minutos.","Licúa con la leche de coco.","Sirve con las semillas."]},
-    {"id":"c05","nombre":"Tacos de lechuga con pavo","comida":"Cena","min":20,"sintomas":["Pesadez"],"tags":["express","sin_lacteos","sin_gluten"],"kcal":380,"prot":32,"carb":12,"gras":22,"fibra":5,"porque":"Cena fresca sin harinas, con proteína magra.","ing":["3 hojas grandes de lechuga","1 palma de pavo molido","½ tomate picado","¼ aguacate","1 cda de cilantro"],"pasos":["Cocina el pavo con una pizca de comino 8 minutos.","Rellena las hojas de lechuga.","Termina con tomate, aguacate y cilantro."]},
-    {"id":"c06","nombre":"Camarones al limón con zucchini","comida":"Cena","min":15,"sintomas":["Hinchazón"],"tags":["express","sin_lacteos","sin_gluten"],"kcal":350,"prot":32,"carb":10,"gras":20,"fibra":3,"porque":"Cena rápida, ligera y baja en carbohidratos.","ing":["10 camarones medianos","1½ tazas de zucchini en tiras","jugo de 1 limón","1 cda de perejil","1 cda de aceite de oliva"],"pasos":["Saltea los camarones 2 minutos por lado.","Agrega el zucchini 2 minutos.","Termina con limón y perejil."]},
-    {"id":"c07","nombre":"Crema de zucchini con huevo poché","comida":"Cena","min":30,"sintomas":["Gases"],"tags":["vegetariano","sin_lacteos","sin_gluten"],"kcal":360,"prot":16,"carb":20,"gras":20,"fibra":5,"porque":"Verde, suave y tibia; el huevo suma proteína.","ing":["2 tazas de zucchini","1 taza de caldo de verduras","1 cda de albahaca","1 huevo","1 cda de aceite de oliva"],"pasos":["Cocina el zucchini en el caldo 12 minutos.","Licúa con la albahaca y el aceite.","Sirve con el huevo poché encima."]},
-    {"id":"c08","nombre":"Salmón con espárragos y quinoa","comida":"Cena","min":25,"sintomas":["Pesadez"],"tags":["sin_lacteos","sin_gluten"],"kcal":520,"prot":36,"carb":32,"gras":27,"fibra":6,"porque":"Omega-3 del salmón con quinoa sin gluten.","ing":["1 filete de salmón","8 espárragos","½ taza de quinoa cocida","jugo de ½ limón","1 cdta de aceite de oliva"],"pasos":["Hornea el salmón y los espárragos 12 minutos a 200 °C.","Sirve con la quinoa y el limón."]},
-    {"id":"c09","nombre":"Omelette de verduras con ensalada","comida":"Cena","min":15,"sintomas":["Digestión lenta"],"tags":["express","vegetariano","sin_lacteos","sin_gluten"],"kcal":380,"prot":22,"carb":14,"gras":26,"fibra":4,"porque":"Cena ligera con proteína y verduras cocidas.","ing":["2 huevos","½ taza de zucchini picado","¼ de pimentón","1 taza de lechuga","1 cda de aceite de oliva"],"pasos":["Saltea el zucchini y el pimentón 3 minutos.","Agrega los huevos y cocina tapado.","Sirve con la lechuga aliñada."]},
-    {"id":"c10","nombre":"Pollo al horno con zapallo y romero","comida":"Cena","min":40,"sintomas":["Pesadez"],"tags":["congelable","sin_lacteos","sin_gluten"],"congelable_dias":60,"kcal":460,"prot":42,"carb":28,"gras":20,"fibra":5,"porque":"Plato sencillo de horno con hierbas aromáticas.","ing":["1 muslo o filete de pollo (1 palma)","1½ tazas de zapallo en cubos","1 ramita de romero","1 cda de aceite de oliva"],"pasos":["Coloca todo en una bandeja con el aceite y el romero.","Hornea 30 minutos a 200 °C."]},
-    {"id":"c11","nombre":"Sopa de frijol y verduras","comida":"Cena","min":30,"sintomas":["Digestión lenta"],"tags":["congelable","vegetariano","sin_lacteos","sin_gluten"],"congelable_dias":90,"kcal":420,"prot":20,"carb":62,"gras":10,"fibra":18,"porque":"Sopa de legumbres con verduras y comino, rica en fibra.","ing":["¾ taza de frijol cocido","1 zanahoria","1 tallo de apio","1 taza de espinaca","1 pizca de comino","1 taza de caldo"],"pasos":["Cocina la zanahoria y el apio en el caldo 10 minutos.","Agrega el frijol y el comino 5 minutos.","Suma la espinaca al final."]},
-    {"id":"c12","nombre":"Berenjena rellena de lentejas","comida":"Cena","min":40,"sintomas":["Pesadez"],"tags":["vegetariano","sin_lacteos","sin_gluten"],"kcal":430,"prot":19,"carb":56,"gras":15,"fibra":17,"porque":"Verdura asada con legumbre, saciante y ligera.","ing":["1 berenjena mediana","½ taza de lentejas cocidas","½ tomate picado","1 cda de perejil","1 cda de aceite de oliva"],"pasos":["Hornea la berenjena partida 25 minutos a 200 °C.","Mezcla la pulpa con las lentejas, el tomate y el perejil.","Rellena y hornea 5 minutos más."]},
-    {"id":"c13","nombre":"Atún sellado con ensalada de pepino y aguacate","comida":"Cena","min":15,"sintomas":["Hinchazón"],"tags":["express","sin_lacteos","sin_gluten"],"kcal":440,"prot":38,"carb":12,"gras":27,"fibra":6,"porque":"Cena fresca, alta en proteína y grasas buenas.","ing":["1 filete de atún","½ pepino","½ aguacate","1 cda de menta","jugo de ½ limón"],"pasos":["Sella el atún 1 minuto por lado.","Mezcla el pepino y el aguacate con la menta y el limón.","Sirve juntos."]},
-    {"id":"c14","nombre":"Salteado de pavo, repollo y jengibre","comida":"Cena","min":20,"sintomas":["Gases"],"tags":["express","sin_lacteos"],"kcal":460,"prot":36,"carb":46,"gras":14,"fibra":6,"porque":"Salteado ligero con jengibre y verduras cocidas.","ing":["1 palma de pavo en tiras","1½ tazas de repollo","½ zanahoria en tiras","1 cdta de jengibre rallado","½ taza de arroz integral cocido","1 cdta de aceite"],"pasos":["Saltea el pavo con el jengibre 5 minutos.","Agrega el repollo y la zanahoria 4 minutos.","Sirve con el arroz."]},
-    {"id":"c15","nombre":"Tortilla de maíz con huevo, espinaca y frijol","comida":"Cena","min":15,"sintomas":["Digestión lenta"],"tags":["express","vegetariano","sin_lacteos","sin_gluten"],"kcal":400,"prot":20,"carb":50,"gras":13,"fibra":12,"porque":"Cena rápida con proteína vegetal y animal, sin harina de trigo.","ing":["2 tortillas de maíz","1 huevo","½ taza de frijol cocido","1 taza de espinaca","1 cdta de aceite de oliva"],"pasos":["Saltea la espinaca y el frijol 3 minutos.","Cocina el huevo.","Arma las tortillas con todo."]},
-
-    {"id":"m01","nombre":"Kéfir con piña y menta","comida":"Merienda","min":5,"sintomas":["Hinchazón"],"tags":["express","vegetariano"],"kcal":170,"prot":9,"carb":24,"gras":4,"fibra":1,"porque":"El kéfir es un fermentado; la piña y la menta lo hacen refrescante.","ing":["1 taza de kéfir","½ taza de piña","1 cda de menta"],"pasos":["Licúa todo y sirve frío."]},
-    {"id":"m02","nombre":"Muffins de banano y avena (2 unidades)","comida":"Merienda","min":30,"sintomas":["Pesadez"],"tags":["congelable","vegetariano"],"congelable_dias":60,"kcal":250,"prot":8,"carb":40,"gras":7,"fibra":5,"porque":"Sin azúcar añadida, endulzados con banano maduro.","ing":["1 banano maduro","⅓ taza de avena","1 huevo","1 pizca de canela"],"pasos":["Mezcla todo.","Reparte en 2 moldes y hornea 20 minutos a 180 °C."]},
-    {"id":"m03","nombre":"Manzana asada con canela y nueces","comida":"Merienda","min":15,"sintomas":["Pesadez","Hinchazón"],"tags":["vegetariano","sin_lacteos","sin_gluten"],"kcal":200,"prot":3,"carb":32,"gras":9,"fibra":6,"porque":"La fruta cocida es más suave para la digestión.","ing":["1 manzana","1 pizca de canela","6 mitades de nuez"],"pasos":["Corta la manzana en gajos y hornea 12 minutos a 190 °C con la canela.","Sirve con las nueces picadas."]},
-    {"id":"m04","nombre":"Hummus con palitos de zanahoria y pepino","comida":"Merienda","min":5,"sintomas":["Digestión lenta"],"tags":["express","vegetariano","sin_lacteos"],"kcal":190,"prot":6,"carb":20,"gras":10,"fibra":6,"porque":"Snack saciante con garbanzo y verduras crudas crujientes.","ing":["3 cdas de hummus","1 zanahoria en palitos","½ pepino en palitos"],"pasos":["Sirve las verduras con el hummus."]},
-    {"id":"m05","nombre":"Yogur con linaza y fresas","comida":"Merienda","min":5,"sintomas":["Hinchazón"],"tags":["express","vegetariano","sin_gluten"],"kcal":200,"prot":20,"carb":14,"gras":7,"fibra":4,"porque":"Proteína con fibra suave de la linaza.","ing":["1 taza de yogur griego natural","1 cda de linaza molida","½ taza de fresas"],"pasos":["Mezcla todo en un bowl."]},
-    {"id":"m06","nombre":"Almendras y una pera","comida":"Merienda","min":2,"sintomas":["Digestión lenta"],"tags":["express","vegetariano","sin_lacteos","sin_gluten"],"kcal":220,"prot":6,"carb":30,"gras":10,"fibra":7,"porque":"Grasas buenas y fibra, fácil de llevar.","ing":["12 almendras","1 pera mediana"],"pasos":["Come la pera con las almendras."]},
-    {"id":"m07","nombre":"Galletas de avena y plátano (2 unidades)","comida":"Merienda","min":25,"sintomas":["Gases"],"tags":["congelable","vegetariano","sin_lacteos"],"congelable_dias":60,"kcal":190,"prot":5,"carb":30,"gras":6,"fibra":4,"porque":"Solo avena y fruta, sin azúcar.","ing":["½ plátano maduro","¼ taza de avena","1 cda de nueces picadas","1 pizca de canela"],"pasos":["Machaca el plátano y mezcla con el resto.","Forma 2 galletas y hornea 15 minutos a 180 °C."]},
-    {"id":"m08","nombre":"Batido de papaya, chía y jengibre","comida":"Merienda","min":5,"sintomas":["Hinchazón","Digestión lenta"],"tags":["express","vegetariano","sin_lacteos"],"kcal":150,"prot":3,"carb":28,"gras":3,"fibra":6,"porque":"Ligero y refrescante, con papaya y jengibre.","ing":["1 taza de papaya","½ taza de leche de almendras","1 cda de chía","1 cdta de jengibre rallado"],"pasos":["Licúa todo con hielo y sirve."]},
-    {"id":"m09","nombre":"Huevo cocido con tomate y orégano","comida":"Merienda","min":10,"sintomas":["Pesadez"],"tags":["express","vegetariano","sin_lacteos","sin_gluten"],"kcal":130,"prot":8,"carb":4,"gras":9,"fibra":1,"porque":"Merienda de proteína sencilla y saciante.","ing":["1 huevo cocido","½ tomate","1 pizca de orégano"],"pasos":["Hierve el huevo 9 minutos.","Sirve con el tomate en rodajas y orégano."]},
-    {"id":"m10","nombre":"Bolitas de dátil, avena y cacao (3 unidades)","comida":"Merienda","min":15,"sintomas":["Pesadez"],"tags":["congelable","vegetariano","sin_lacteos"],"congelable_dias":60,"kcal":200,"prot":4,"carb":32,"gras":7,"fibra":5,"porque":"Para el antojo de dulce con ingredientes enteros.","ing":["3 dátiles","3 cdas de avena","1 cda de cacao puro","1 cda de almendras picadas"],"pasos":["Tritura todo hasta formar una pasta.","Forma 3 bolitas y refrigera."]},
-    {"id":"m11","nombre":"Palomitas con cúrcuma y aceite de oliva","comida":"Merienda","min":8,"sintomas":["Digestión lenta"],"tags":["express","vegetariano","sin_lacteos","sin_gluten"],"kcal":130,"prot":3,"carb":20,"gras":5,"fibra":4,"porque":"Cereal integral crujiente con cúrcuma.","ing":["2 tazas de palomitas naturales","1 cdta de aceite de oliva","1 pizca de cúrcuma"],"pasos":["Mezcla las palomitas con el aceite y la cúrcuma."]},
-    {"id":"m12","nombre":"Chips de camote al horno","comida":"Merienda","min":30,"sintomas":["Gases"],"tags":["vegetariano","sin_lacteos","sin_gluten"],"kcal":180,"prot":3,"carb":34,"gras":4,"fibra":5,"porque":"Snack crujiente sin frituras.","ing":["1 camote pequeño en láminas","1 cdta de aceite de oliva","1 pizca de canela"],"pasos":["Mezcla las láminas con aceite y canela.","Hornea 20 minutos a 190 °C girando una vez."]},
-    {"id":"m13","nombre":"Yogur con kiwi y semillas de zapallo","comida":"Merienda","min":5,"sintomas":["Digestión lenta"],"tags":["express","vegetariano","sin_gluten"],"kcal":190,"prot":17,"carb":18,"gras":7,"fibra":4,"porque":"El kiwi y el yogur son aliados clásicos del tránsito intestinal.","ing":["¾ taza de yogur griego natural","1 kiwi","1 cda de semillas de zapallo"],"pasos":["Sirve el yogur con el kiwi picado y las semillas."]},
-    {"id":"m14","nombre":"Mousse de aguacate y cacao","comida":"Merienda","min":5,"sintomas":["Pesadez"],"tags":["express","vegetariano","sin_lacteos","sin_gluten"],"kcal":210,"prot":4,"carb":26,"gras":12,"fibra":9,"porque":"Postre cremoso sin lácteos ni azúcar refinada.","ing":["½ aguacate","½ banano maduro","1 cda de cacao puro"],"pasos":["Licúa todo hasta que quede cremoso.","Refrigera 15 minutos."]},
-    {"id":"m15","nombre":"Pera con queso fresco y canela","comida":"Merienda","min":5,"sintomas":["Hinchazón"],"tags":["express","vegetariano","sin_gluten"],"kcal":170,"prot":6,"carb":28,"gras":4,"fibra":6,"porque":"Combinación suave de fruta y lácteo fresco.","ing":["1 pera","2 cdas de queso fresco","1 pizca de canela"],"pasos":["Corta la pera en gajos.","Sirve con el queso y la canela."]}
-  ]
+    {
+      "id": "d01",
+      "nombre": "Avena nocturna con papaya y chía",
+      "comida": "Desayuno",
+      "min": 5,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "express",
+        "vegetariano"
+      ],
+      "kcal": 340,
+      "prot": 21,
+      "carb": 49,
+      "gras": 7,
+      "fibra": 10,
+      "porque": "Avena y chía aportan fibra suave; la papaya es una fruta fácil de digerir.",
+      "ing": [
+        "½ taza de avena",
+        "½ taza de yogur griego natural",
+        "¼ taza de leche de almendras",
+        "1 cda de chía",
+        "½ taza de papaya en cubos",
+        "1 pizca de canela"
+      ],
+      "pasos": [
+        "Mezcla la avena, el yogur, la leche y la chía en un frasco.",
+        "Refrigera toda la noche.",
+        "Al servir, agrega la papaya y la canela."
+      ],
+      "estimado_ia": {
+        "kcal": 380,
+        "prot": 18,
+        "carb": 52,
+        "gras": 11,
+        "fibra": 10
+      },
+      "ingredientes_g": [
+        {
+          "texto": "½ taza de avena",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 40.5
+        },
+        {
+          "texto": "½ taza de yogur griego natural",
+          "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 170894,
+          "gramos": 122.5
+        },
+        {
+          "texto": "¼ taza de leche de almendras",
+          "alimento": "Nuts, almonds",
+          "fdc_id": 170567,
+          "gramos": 0.3
+        },
+        {
+          "texto": "1 cda de chía",
+          "alimento": "Seeds, chia seeds, dried",
+          "fdc_id": 170554,
+          "gramos": 12
+        },
+        {
+          "texto": "½ taza de papaya en cubos",
+          "alimento": "Potatoes, boiled, cooked in skin, flesh, without salt",
+          "fdc_id": 170438,
+          "gramos": 60
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        }
+      ]
+    },
+    {
+      "id": "d02",
+      "nombre": "Tortitas de zapallo y avena",
+      "comida": "Desayuno",
+      "min": 25,
+      "sintomas": [
+        "Gases",
+        "Hinchazón"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano"
+      ],
+      "congelable_dias": 60,
+      "kcal": 275,
+      "prot": 23,
+      "carb": 30,
+      "gras": 7,
+      "fibra": 5,
+      "porque": "El zapallo cocido y la avena son suaves para el intestino; la canela da sabor sin azúcar.",
+      "ing": [
+        "¾ taza de zapallo cocido",
+        "⅓ taza de avena",
+        "1 huevo",
+        "1 pizca de canela",
+        "½ taza de yogur griego natural"
+      ],
+      "pasos": [
+        "Cocina el zapallo y aplástalo.",
+        "Mezcla con la avena, el huevo y la canela.",
+        "Cocina tortitas en sartén antiadherente y sirve con el yogur."
+      ],
+      "estimado_ia": {
+        "kcal": 329,
+        "prot": 25,
+        "carb": 36,
+        "gras": 10,
+        "fibra": 5
+      },
+      "ingredientes_g": [
+        {
+          "texto": "¾ taza de zapallo cocido",
+          "alimento": "Pumpkin, cooked, boiled, drained, without salt",
+          "fdc_id": 168449,
+          "gramos": 142.5
+        },
+        {
+          "texto": "⅓ taza de avena",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 27
+        },
+        {
+          "texto": "1 huevo",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 50
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        },
+        {
+          "texto": "½ taza de yogur griego natural",
+          "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 170894,
+          "gramos": 122.5
+        }
+      ]
+    },
+    {
+      "id": "d03",
+      "nombre": "Omelette de espinaca y champiñones",
+      "comida": "Desayuno",
+      "min": 10,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano"
+      ],
+      "kcal": 270,
+      "prot": 18,
+      "carb": 15,
+      "gras": 15,
+      "fibra": 3,
+      "porque": "Proteína completa con verduras cocidas, ligera para la mañana.",
+      "ing": [
+        "2 huevos",
+        "1 taza de espinaca",
+        "½ taza de champiñones laminados",
+        "1 cdta de aceite de oliva",
+        "1 rebanada de pan integral"
+      ],
+      "pasos": [
+        "Saltea los champiñones y la espinaca en el aceite 3 minutos.",
+        "Vierte los huevos batidos y cocina tapado 3 minutos.",
+        "Dobla y sirve con el pan tostado."
+      ],
+      "estimado_ia": {
+        "kcal": 340,
+        "prot": 24,
+        "carb": 18,
+        "gras": 19,
+        "fibra": 4
+      },
+      "ingredientes_g": [
+        {
+          "texto": "2 huevos",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 100
+        },
+        {
+          "texto": "1 taza de espinaca",
+          "alimento": "Spinach, raw",
+          "fdc_id": 168462,
+          "gramos": 30
+        },
+        {
+          "texto": "½ taza de champiñones laminados",
+          "alimento": "Mushrooms, white, raw",
+          "fdc_id": 169251,
+          "gramos": 35
+        },
+        {
+          "texto": "1 cdta de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 4.5
+        },
+        {
+          "texto": "1 rebanada de pan integral",
+          "alimento": "Bread, whole-wheat, commercially prepared",
+          "fdc_id": 172688,
+          "gramos": 28
+        }
+      ]
+    },
+    {
+      "id": "d04",
+      "nombre": "Pudín de chía con mango y coco",
+      "comida": "Desayuno",
+      "min": 5,
+      "sintomas": [
+        "Hinchazón",
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 265,
+      "prot": 7,
+      "carb": 29,
+      "gras": 15,
+      "fibra": 15,
+      "porque": "La chía hidratada aporta fibra y omega-3 de origen vegetal.",
+      "ing": [
+        "3 cdas de chía",
+        "1 taza de leche de almendras",
+        "½ taza de mango en cubos",
+        "1 cda de coco rallado",
+        "1 pizca de canela"
+      ],
+      "pasos": [
+        "Mezcla la chía con la leche y la canela.",
+        "Refrigera mínimo 2 horas o toda la noche.",
+        "Sirve con el mango y el coco."
+      ],
+      "estimado_ia": {
+        "kcal": 310,
+        "prot": 9,
+        "carb": 34,
+        "gras": 15,
+        "fibra": 13
+      },
+      "ingredientes_g": [
+        {
+          "texto": "3 cdas de chía",
+          "alimento": "Seeds, chia seeds, dried",
+          "fdc_id": 170554,
+          "gramos": 36
+        },
+        {
+          "texto": "1 taza de leche de almendras",
+          "alimento": "Nuts, almonds",
+          "fdc_id": 170567,
+          "gramos": 1.2
+        },
+        {
+          "texto": "½ taza de mango en cubos",
+          "alimento": "Mangos, raw",
+          "fdc_id": 169910,
+          "gramos": 82.5
+        },
+        {
+          "texto": "1 cda de coco rallado",
+          "alimento": "Nuts, coconut meat, dried (desiccated), not sweetened",
+          "fdc_id": 170170,
+          "gramos": 5
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        }
+      ]
+    },
+    {
+      "id": "d05",
+      "nombre": "Bowl de yogur con arándanos, linaza y nueces",
+      "comida": "Desayuno",
+      "min": 5,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_gluten"
+      ],
+      "kcal": 320,
+      "prot": 29,
+      "carb": 24,
+      "gras": 14,
+      "fibra": 5,
+      "porque": "Los arándanos aportan antioxidantes; la linaza molida, fibra y omega-3.",
+      "ing": [
+        "1 taza de yogur griego natural",
+        "½ taza de arándanos",
+        "1 cda de linaza molida",
+        "6 mitades de nuez"
+      ],
+      "pasos": [
+        "Sirve el yogur en un bowl.",
+        "Agrega los arándanos, la linaza y las nueces picadas."
+      ],
+      "estimado_ia": {
+        "kcal": 330,
+        "prot": 22,
+        "carb": 22,
+        "gras": 17,
+        "fibra": 4
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 taza de yogur griego natural",
+          "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 170894,
+          "gramos": 245
+        },
+        {
+          "texto": "½ taza de arándanos",
+          "alimento": "Blueberries, raw",
+          "fdc_id": 171711,
+          "gramos": 74
+        },
+        {
+          "texto": "1 cda de linaza molida",
+          "alimento": "Seeds, flaxseed",
+          "fdc_id": 169414,
+          "gramos": 7
+        },
+        {
+          "texto": "6 mitades de nuez",
+          "alimento": "Nuts, walnuts, english",
+          "fdc_id": 170187,
+          "gramos": 15
+        }
+      ]
+    },
+    {
+      "id": "d06",
+      "nombre": "Panqueques de banano y avena",
+      "comida": "Desayuno",
+      "min": 15,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano"
+      ],
+      "congelable_dias": 60,
+      "kcal": 405,
+      "prot": 19,
+      "carb": 55,
+      "gras": 13,
+      "fibra": 7,
+      "porque": "Endulzados solo con banano maduro, sin azúcar añadida.",
+      "ing": [
+        "1 banano maduro",
+        "½ taza de avena",
+        "2 huevos",
+        "1 pizca de canela"
+      ],
+      "pasos": [
+        "Licúa todo hasta tener una mezcla homogénea.",
+        "Cocina porciones pequeñas en sartén antiadherente 2 minutos por lado."
+      ],
+      "estimado_ia": {
+        "kcal": 390,
+        "prot": 19,
+        "carb": 52,
+        "gras": 12,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 banano maduro",
+          "alimento": "Bananas, raw",
+          "fdc_id": 173944,
+          "gramos": 118
+        },
+        {
+          "texto": "½ taza de avena",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 40.5
+        },
+        {
+          "texto": "2 huevos",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 100
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        }
+      ]
+    },
+    {
+      "id": "d07",
+      "nombre": "Avena caliente con manzana y canela",
+      "comida": "Desayuno",
+      "min": 10,
+      "sintomas": [
+        "Hinchazón",
+        "Gases"
+      ],
+      "tags": [
+        "vegetariano",
+        "sin_lacteos"
+      ],
+      "kcal": 310,
+      "prot": 8,
+      "carb": 55,
+      "gras": 8,
+      "fibra": 10,
+      "porque": "La manzana cocida y la avena tibia son suaves para el estómago.",
+      "ing": [
+        "½ taza de avena",
+        "1 taza de leche de almendras",
+        "1 manzana en cubos",
+        "1 pizca de canela",
+        "8 almendras picadas"
+      ],
+      "pasos": [
+        "Cocina la avena con la leche 5 minutos.",
+        "Agrega la manzana y la canela 2 minutos más.",
+        "Sirve con las almendras."
+      ],
+      "estimado_ia": {
+        "kcal": 370,
+        "prot": 11,
+        "carb": 58,
+        "gras": 12,
+        "fibra": 9
+      },
+      "ingredientes_g": [
+        {
+          "texto": "½ taza de avena",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 40.5
+        },
+        {
+          "texto": "1 taza de leche de almendras",
+          "alimento": "Nuts, almonds",
+          "fdc_id": 170567,
+          "gramos": 1.2
+        },
+        {
+          "texto": "1 manzana en cubos",
+          "alimento": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 171688,
+          "gramos": 182
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        },
+        {
+          "texto": "8 almendras picadas",
+          "alimento": "Nuts, almonds",
+          "fdc_id": 170567,
+          "gramos": 9.6
+        }
+      ]
+    },
+    {
+      "id": "d08",
+      "nombre": "Tostada de aguacate con huevo poché",
+      "comida": "Desayuno",
+      "min": 10,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos"
+      ],
+      "kcal": 345,
+      "prot": 14,
+      "carb": 22,
+      "gras": 24,
+      "fibra": 9,
+      "porque": "Grasas buenas del aguacate y proteína del huevo, saciante sin pesadez.",
+      "ing": [
+        "1 rebanada de pan integral",
+        "½ aguacate",
+        "1 huevo",
+        "unas gotas de limón",
+        "1 cda de semillas de zapallo"
+      ],
+      "pasos": [
+        "Tuesta el pan y unta el aguacate con limón.",
+        "Cocina el huevo poché 3 minutos en agua caliente.",
+        "Coloca el huevo encima y las semillas."
+      ],
+      "estimado_ia": {
+        "kcal": 360,
+        "prot": 14,
+        "carb": 26,
+        "gras": 23,
+        "fibra": 9
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 rebanada de pan integral",
+          "alimento": "Bread, whole-wheat, commercially prepared",
+          "fdc_id": 172688,
+          "gramos": 28
+        },
+        {
+          "texto": "½ aguacate",
+          "alimento": "Avocados, raw, all commercial varieties",
+          "fdc_id": 171705,
+          "gramos": 100
+        },
+        {
+          "texto": "1 huevo",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 50
+        },
+        {
+          "texto": "unas gotas de limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 3
+        },
+        {
+          "texto": "1 cda de semillas de zapallo",
+          "alimento": "Seeds, pumpkin and squash seed kernels, dried",
+          "fdc_id": 170556,
+          "gramos": 8
+        }
+      ]
+    },
+    {
+      "id": "d09",
+      "nombre": "Smoothie verde de piña, espinaca y jengibre",
+      "comida": "Desayuno",
+      "min": 5,
+      "sintomas": [
+        "Hinchazón",
+        "Pesadez"
+      ],
+      "tags": [
+        "express",
+        "vegetariano"
+      ],
+      "kcal": 235,
+      "prot": 13,
+      "carb": 34,
+      "gras": 6,
+      "fibra": 7,
+      "porque": "Jengibre y piña son ingredientes tradicionalmente usados para sentirse más ligera.",
+      "ing": [
+        "1 taza de espinaca",
+        "¾ taza de piña",
+        "1 taza de kéfir",
+        "1 cdta de jengibre rallado",
+        "1 cda de chía"
+      ],
+      "pasos": [
+        "Licúa todo con 3 cubos de hielo.",
+        "Sirve de inmediato."
+      ],
+      "estimado_ia": {
+        "kcal": 290,
+        "prot": 12,
+        "carb": 44,
+        "gras": 7,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 taza de espinaca",
+          "alimento": "Spinach, raw",
+          "fdc_id": 168462,
+          "gramos": 30
+        },
+        {
+          "texto": "¾ taza de piña",
+          "alimento": "Pineapple, raw, all varieties",
+          "fdc_id": 169124,
+          "gramos": 123.8
+        },
+        {
+          "texto": "1 taza de kéfir",
+          "alimento": "Kefir, lowfat, plain, LIFEWAY",
+          "fdc_id": 170904,
+          "gramos": 243
+        },
+        {
+          "texto": "1 cdta de jengibre rallado",
+          "alimento": "Ginger root, raw",
+          "fdc_id": 169231,
+          "gramos": 2
+        },
+        {
+          "texto": "1 cda de chía",
+          "alimento": "Seeds, chia seeds, dried",
+          "fdc_id": 170554,
+          "gramos": 12
+        }
+      ]
+    },
+    {
+      "id": "d10",
+      "nombre": "Muffins de zanahoria y avena (2 unidades)",
+      "comida": "Desayuno",
+      "min": 30,
+      "sintomas": [
+        "Gases"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano"
+      ],
+      "congelable_dias": 60,
+      "kcal": 265,
+      "prot": 12,
+      "carb": 26,
+      "gras": 13,
+      "fibra": 5,
+      "porque": "Zanahoria y avena aportan fibra suave sin azúcar refinada.",
+      "ing": [
+        "½ taza de zanahoria rallada",
+        "⅓ taza de avena",
+        "1 huevo",
+        "1 pizca de canela",
+        "4 mitades de nuez"
+      ],
+      "pasos": [
+        "Mezcla todo.",
+        "Reparte en 2 moldes y hornea a 180 °C por 20 minutos."
+      ],
+      "estimado_ia": {
+        "kcal": 330,
+        "prot": 11,
+        "carb": 38,
+        "gras": 15,
+        "fibra": 5
+      },
+      "ingredientes_g": [
+        {
+          "texto": "½ taza de zanahoria rallada",
+          "alimento": "Carrots, raw",
+          "fdc_id": 170393,
+          "gramos": 64
+        },
+        {
+          "texto": "⅓ taza de avena",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 27
+        },
+        {
+          "texto": "1 huevo",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 50
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        },
+        {
+          "texto": "4 mitades de nuez",
+          "alimento": "Nuts, walnuts, english",
+          "fdc_id": 170187,
+          "gramos": 10
+        }
+      ]
+    },
+    {
+      "id": "d11",
+      "nombre": "Huevos revueltos con zucchini y cúrcuma",
+      "comida": "Desayuno",
+      "min": 10,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos"
+      ],
+      "kcal": 250,
+      "prot": 15,
+      "carb": 15,
+      "gras": 15,
+      "fibra": 2,
+      "porque": "La cúrcuma con pimienta negra es base de la cocina antiinflamatoria.",
+      "ing": [
+        "2 huevos",
+        "½ taza de zucchini picado",
+        "1 pizca de cúrcuma",
+        "1 pizca de pimienta negra",
+        "1 cdta de aceite de oliva",
+        "1 tortilla de maíz"
+      ],
+      "pasos": [
+        "Saltea el zucchini 3 minutos.",
+        "Agrega los huevos batidos con cúrcuma y pimienta.",
+        "Sirve con la tortilla caliente."
+      ],
+      "estimado_ia": {
+        "kcal": 330,
+        "prot": 20,
+        "carb": 22,
+        "gras": 17,
+        "fibra": 3
+      },
+      "ingredientes_g": [
+        {
+          "texto": "2 huevos",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 100
+        },
+        {
+          "texto": "½ taza de zucchini picado",
+          "alimento": "Squash, summer, zucchini, includes skin, raw",
+          "fdc_id": 169291,
+          "gramos": 62
+        },
+        {
+          "texto": "1 pizca de cúrcuma",
+          "alimento": "Spices, turmeric, ground",
+          "fdc_id": 172231,
+          "gramos": 0.4
+        },
+        {
+          "texto": "1 pizca de pimienta negra",
+          "alimento": "Spices, pepper, black",
+          "fdc_id": 170931,
+          "gramos": 0.4
+        },
+        {
+          "texto": "1 cdta de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 4.5
+        },
+        {
+          "texto": "1 tortilla de maíz",
+          "alimento": "Tortillas, ready-to-bake or -fry, corn",
+          "fdc_id": 175036,
+          "gramos": 26
+        }
+      ]
+    },
+    {
+      "id": "d12",
+      "nombre": "Quinoa caliente con pera y canela",
+      "comida": "Desayuno",
+      "min": 10,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 325,
+      "prot": 8,
+      "carb": 58,
+      "gras": 8,
+      "fibra": 10,
+      "porque": "Quinoa sin gluten con fruta cocida, un desayuno tibio y fácil de digerir.",
+      "ing": [
+        "¾ taza de quinoa cocida",
+        "1 taza de leche de almendras",
+        "1 pera en cubos",
+        "1 pizca de canela",
+        "1 cda de nueces"
+      ],
+      "pasos": [
+        "Calienta la quinoa con la leche 5 minutos.",
+        "Agrega la pera y la canela.",
+        "Sirve con las nueces."
+      ],
+      "estimado_ia": {
+        "kcal": 360,
+        "prot": 10,
+        "carb": 58,
+        "gras": 11,
+        "fibra": 8
+      },
+      "ingredientes_g": [
+        {
+          "texto": "¾ taza de quinoa cocida",
+          "alimento": "Quinoa, cooked",
+          "fdc_id": 168917,
+          "gramos": 138.8
+        },
+        {
+          "texto": "1 taza de leche de almendras",
+          "alimento": "Nuts, almonds",
+          "fdc_id": 170567,
+          "gramos": 1.2
+        },
+        {
+          "texto": "1 pera en cubos",
+          "alimento": "Pears, raw",
+          "fdc_id": 169118,
+          "gramos": 178
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        },
+        {
+          "texto": "1 cda de nueces",
+          "alimento": "Nuts, walnuts, english",
+          "fdc_id": 170187,
+          "gramos": 7.5
+        }
+      ]
+    },
+    {
+      "id": "d13",
+      "nombre": "Frittata de camote y espinaca",
+      "comida": "Desayuno",
+      "min": 25,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "congelable_dias": 60,
+      "kcal": 250,
+      "prot": 15,
+      "carb": 16,
+      "gras": 14,
+      "fibra": 3,
+      "porque": "Camote y espinaca aportan fibra y minerales con proteína de huevo.",
+      "ing": [
+        "½ taza de camote cocido",
+        "2 huevos",
+        "1 taza de espinaca",
+        "1 cda de perejil picado",
+        "1 cdta de aceite de oliva"
+      ],
+      "pasos": [
+        "Saltea la espinaca en el aceite.",
+        "Mezcla con el camote en cubos y los huevos batidos.",
+        "Hornea a 180 °C por 15 minutos o cocina tapado a fuego bajo."
+      ],
+      "estimado_ia": {
+        "kcal": 340,
+        "prot": 19,
+        "carb": 26,
+        "gras": 17,
+        "fibra": 4
+      },
+      "ingredientes_g": [
+        {
+          "texto": "½ taza de camote cocido",
+          "alimento": "Sweet potato, cooked, baked in skin, flesh, without salt",
+          "fdc_id": 168483,
+          "gramos": 66.5
+        },
+        {
+          "texto": "2 huevos",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 100
+        },
+        {
+          "texto": "1 taza de espinaca",
+          "alimento": "Spinach, raw",
+          "fdc_id": 168462,
+          "gramos": 30
+        },
+        {
+          "texto": "1 cda de perejil picado",
+          "alimento": "Parsley, fresh",
+          "fdc_id": 170416,
+          "gramos": 3.8
+        },
+        {
+          "texto": "1 cdta de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 4.5
+        }
+      ]
+    },
+    {
+      "id": "d14",
+      "nombre": "Bowl de papaya y kéfir",
+      "comida": "Desayuno",
+      "min": 5,
+      "sintomas": [
+        "Hinchazón",
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano"
+      ],
+      "kcal": 270,
+      "prot": 11,
+      "carb": 46,
+      "gras": 6,
+      "fibra": 6,
+      "porque": "El kéfir aporta fermentados, la papaya y la linaza ayudan al tránsito.",
+      "ing": [
+        "1 taza de papaya",
+        "½ taza de kéfir",
+        "1 cda de linaza molida",
+        "¼ taza de avena en hojuelas"
+      ],
+      "pasos": [
+        "Sirve el kéfir en un bowl.",
+        "Agrega la papaya, la avena y la linaza."
+      ],
+      "estimado_ia": {
+        "kcal": 300,
+        "prot": 11,
+        "carb": 46,
+        "gras": 8,
+        "fibra": 7
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 taza de papaya",
+          "alimento": "Potatoes, boiled, cooked in skin, flesh, without salt",
+          "fdc_id": 170438,
+          "gramos": 120
+        },
+        {
+          "texto": "½ taza de kéfir",
+          "alimento": "Kefir, lowfat, plain, LIFEWAY",
+          "fdc_id": 170904,
+          "gramos": 121.5
+        },
+        {
+          "texto": "1 cda de linaza molida",
+          "alimento": "Seeds, flaxseed",
+          "fdc_id": 169414,
+          "gramos": 7
+        },
+        {
+          "texto": "¼ taza de avena en hojuelas",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 20.3
+        }
+      ]
+    },
+    {
+      "id": "d15",
+      "nombre": "Crepas de avena con fresas y yogur",
+      "comida": "Desayuno",
+      "min": 15,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "vegetariano"
+      ],
+      "kcal": 300,
+      "prot": 19,
+      "carb": 39,
+      "gras": 8,
+      "fibra": 6,
+      "porque": "Masa de avena sin harinas refinadas ni azúcar.",
+      "ing": [
+        "½ taza de avena molida",
+        "1 huevo",
+        "½ taza de leche de almendras",
+        "¾ taza de fresas",
+        "¼ taza de yogur griego natural"
+      ],
+      "pasos": [
+        "Mezcla la avena, el huevo y la leche.",
+        "Cocina 2 crepas finas en sartén.",
+        "Rellena con las fresas y el yogur."
+      ],
+      "estimado_ia": {
+        "kcal": 340,
+        "prot": 16,
+        "carb": 44,
+        "gras": 11,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "½ taza de avena molida",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 40.5
+        },
+        {
+          "texto": "1 huevo",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 50
+        },
+        {
+          "texto": "½ taza de leche de almendras",
+          "alimento": "Nuts, almonds",
+          "fdc_id": 170567,
+          "gramos": 0.6
+        },
+        {
+          "texto": "¾ taza de fresas",
+          "alimento": "Strawberries, raw",
+          "fdc_id": 167762,
+          "gramos": 114
+        },
+        {
+          "texto": "¼ taza de yogur griego natural",
+          "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 170894,
+          "gramos": 61.3
+        }
+      ]
+    },
+    {
+      "id": "a01",
+      "nombre": "Sopa de lenteja con jengibre y zanahoria",
+      "comida": "Almuerzo",
+      "min": 35,
+      "sintomas": [
+        "Pesadez",
+        "Digestión lenta"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "congelable_dias": 90,
+      "kcal": 510,
+      "prot": 19,
+      "carb": 76,
+      "gras": 16,
+      "fibra": 16,
+      "porque": "Legumbres cocidas con jengibre y especias digestivas.",
+      "ing": [
+        "¾ taza de lenteja cocida",
+        "1 zanahoria picada",
+        "1 cdta de jengibre rallado",
+        "1 pizca de comino",
+        "1 cda de aceite de oliva",
+        "1 taza de caldo de verduras",
+        "¾ taza de arroz integral cocido"
+      ],
+      "pasos": [
+        "Sofríe la zanahoria y el jengibre 3 minutos.",
+        "Agrega la lenteja, el caldo y el comino y cocina 15 minutos.",
+        "Sirve con el arroz."
+      ],
+      "estimado_ia": {
+        "kcal": 560,
+        "prot": 29,
+        "carb": 82,
+        "gras": 12,
+        "fibra": 18
+      },
+      "ingredientes_g": [
+        {
+          "texto": "¾ taza de lenteja cocida",
+          "alimento": "Lentils, mature seeds, cooked, boiled, without salt",
+          "fdc_id": 172421,
+          "gramos": 148.5
+        },
+        {
+          "texto": "1 zanahoria picada",
+          "alimento": "Carrots, raw",
+          "fdc_id": 170393,
+          "gramos": 61
+        },
+        {
+          "texto": "1 cdta de jengibre rallado",
+          "alimento": "Ginger root, raw",
+          "fdc_id": 169231,
+          "gramos": 2
+        },
+        {
+          "texto": "1 pizca de comino",
+          "alimento": "Spices, cumin seed",
+          "fdc_id": 170923,
+          "gramos": 0.4
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        },
+        {
+          "texto": "1 taza de caldo de verduras",
+          "alimento": "Soup, vegetable broth, ready to serve",
+          "fdc_id": 171583,
+          "gramos": 240
+        },
+        {
+          "texto": "¾ taza de arroz integral cocido",
+          "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 169704,
+          "gramos": 146.3
+        }
+      ]
+    },
+    {
+      "id": "a02",
+      "nombre": "Bowl de quinoa, pollo, pepino y menta",
+      "comida": "Almuerzo",
+      "min": 20,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "express",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 480,
+      "prot": 38,
+      "carb": 37,
+      "gras": 20,
+      "fibra": 5,
+      "porque": "Plato fresco con proteína magra y hierbas digestivas.",
+      "ing": [
+        "¾ taza de quinoa cocida",
+        "1 palma de pechuga de pollo cocida",
+        "½ pepino en cubos",
+        "1 cda de menta picada",
+        "1 cda de aceite de oliva",
+        "jugo de ½ limón"
+      ],
+      "pasos": [
+        "Cocina y desmenuza el pollo.",
+        "Mezcla con la quinoa, el pepino y la menta.",
+        "Aliña con el aceite y el limón."
+      ],
+      "estimado_ia": {
+        "kcal": 590,
+        "prot": 42,
+        "carb": 55,
+        "gras": 21,
+        "fibra": 8
+      },
+      "ingredientes_g": [
+        {
+          "texto": "¾ taza de quinoa cocida",
+          "alimento": "Quinoa, cooked",
+          "fdc_id": 168917,
+          "gramos": 138.8
+        },
+        {
+          "texto": "1 palma de pechuga de pollo cocida",
+          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+          "fdc_id": 171477,
+          "gramos": 100
+        },
+        {
+          "texto": "½ pepino en cubos",
+          "alimento": "Cucumber, with peel, raw",
+          "fdc_id": 168409,
+          "gramos": 150
+        },
+        {
+          "texto": "1 cda de menta picada",
+          "alimento": "Spearmint, fresh",
+          "fdc_id": 173475,
+          "gramos": 1.7
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        },
+        {
+          "texto": "jugo de ½ limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 24
+        }
+      ]
+    },
+    {
+      "id": "a03",
+      "nombre": "Pollo al cilantro con yuca",
+      "comida": "Almuerzo",
+      "min": 40,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "congelable",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "congelable_dias": 60,
+      "kcal": 570,
+      "prot": 34,
+      "carb": 69,
+      "gras": 18,
+      "fibra": 5,
+      "porque": "Cilantro, limón y yuca cocida: sabor fuerte, digestión tranquila.",
+      "ing": [
+        "1 filete de pollo (1 palma)",
+        "¾ taza de yuca cocida",
+        "2 cdas de cilantro",
+        "jugo de 1 limón",
+        "½ taza de zanahoria cocida",
+        "1 cda de aceite de oliva"
+      ],
+      "pasos": [
+        "Marina el pollo con cilantro y limón 10 minutos.",
+        "Dóralo en sartén con el aceite 6 minutos por lado.",
+        "Sirve con la yuca y la zanahoria."
+      ],
+      "estimado_ia": {
+        "kcal": 620,
+        "prot": 45,
+        "carb": 60,
+        "gras": 20,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 filete de pollo (1 palma)",
+          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+          "fdc_id": 171477,
+          "gramos": 100
+        },
+        {
+          "texto": "¾ taza de yuca cocida",
+          "alimento": "Cassava, raw",
+          "fdc_id": 169985,
+          "gramos": 154.5
+        },
+        {
+          "texto": "2 cdas de cilantro",
+          "alimento": "Coriander (cilantro) leaves, raw",
+          "fdc_id": 169997,
+          "gramos": 2
+        },
+        {
+          "texto": "jugo de 1 limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 48
+        },
+        {
+          "texto": "½ taza de zanahoria cocida",
+          "alimento": "Carrots, cooked, boiled, drained, without salt",
+          "fdc_id": 170394,
+          "gramos": 78
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        }
+      ]
+    },
+    {
+      "id": "a04",
+      "nombre": "Arroz integral con frijol y aguacate",
+      "comida": "Almuerzo",
+      "min": 30,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 520,
+      "prot": 18,
+      "carb": 79,
+      "gras": 17,
+      "fibra": 21,
+      "porque": "Combinación completa de proteínas vegetales y grasas buenas.",
+      "ing": [
+        "¾ taza de arroz integral cocido",
+        "¾ taza de frijol negro cocido",
+        "½ aguacate",
+        "½ tomate picado",
+        "1 cda de cilantro"
+      ],
+      "pasos": [
+        "Calienta el frijol con una pizca de comino.",
+        "Sirve sobre el arroz.",
+        "Termina con el aguacate, el tomate y el cilantro."
+      ],
+      "estimado_ia": {
+        "kcal": 610,
+        "prot": 22,
+        "carb": 90,
+        "gras": 19,
+        "fibra": 22
+      },
+      "ingredientes_g": [
+        {
+          "texto": "¾ taza de arroz integral cocido",
+          "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 169704,
+          "gramos": 146.3
+        },
+        {
+          "texto": "¾ taza de frijol negro cocido",
+          "alimento": "Beans, black, mature seeds, cooked, boiled, without salt",
+          "fdc_id": 173735,
+          "gramos": 129
+        },
+        {
+          "texto": "½ aguacate",
+          "alimento": "Avocados, raw, all commercial varieties",
+          "fdc_id": 171705,
+          "gramos": 100
+        },
+        {
+          "texto": "½ tomate picado",
+          "alimento": "Tomatoes, red, ripe, raw, year round average",
+          "fdc_id": 170457,
+          "gramos": 61.5
+        },
+        {
+          "texto": "1 cda de cilantro",
+          "alimento": "Coriander (cilantro) leaves, raw",
+          "fdc_id": 169997,
+          "gramos": 1
+        }
+      ]
+    },
+    {
+      "id": "a05",
+      "nombre": "Wrap de pollo, pepino y yogur",
+      "comida": "Almuerzo",
+      "min": 15,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "express"
+      ],
+      "kcal": 420,
+      "prot": 44,
+      "carb": 41,
+      "gras": 8,
+      "fibra": 3,
+      "porque": "Almuerzo fresco, sin salsas industriales.",
+      "ing": [
+        "1 tortilla integral grande",
+        "1 palma de pollo desmenuzado",
+        "½ pepino en tiras",
+        "¼ taza de yogur griego natural",
+        "1 cda de menta picada"
+      ],
+      "pasos": [
+        "Mezcla el yogur con la menta.",
+        "Rellena la tortilla con el pollo, el pepino y el yogur.",
+        "Enrolla y corta a la mitad."
+      ],
+      "estimado_ia": {
+        "kcal": 520,
+        "prot": 38,
+        "carb": 48,
+        "gras": 19,
+        "fibra": 7
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 tortilla integral grande",
+          "alimento": "Tortillas, ready-to-bake or -fry, flour, without added calcium",
+          "fdc_id": 173242,
+          "gramos": 60
+        },
+        {
+          "texto": "1 palma de pollo desmenuzado",
+          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+          "fdc_id": 171477,
+          "gramos": 100
+        },
+        {
+          "texto": "½ pepino en tiras",
+          "alimento": "Cucumber, with peel, raw",
+          "fdc_id": 168409,
+          "gramos": 150
+        },
+        {
+          "texto": "¼ taza de yogur griego natural",
+          "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 170894,
+          "gramos": 61.3
+        },
+        {
+          "texto": "1 cda de menta picada",
+          "alimento": "Spearmint, fresh",
+          "fdc_id": 173475,
+          "gramos": 1.7
+        }
+      ]
+    },
+    {
+      "id": "a06",
+      "nombre": "Salmón al horno con camote y brócoli",
+      "comida": "Almuerzo",
+      "min": 30,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 545,
+      "prot": 31,
+      "carb": 40,
+      "gras": 30,
+      "fibra": 10,
+      "porque": "El salmón aporta omega-3, base de la nutrición antiinflamatoria.",
+      "ing": [
+        "1 filete de salmón (1 palma)",
+        "1 camote mediano",
+        "1 taza de brócoli",
+        "1 cda de aceite de oliva",
+        "jugo de ½ limón"
+      ],
+      "pasos": [
+        "Hornea el camote en cubos 15 minutos a 200 °C.",
+        "Agrega el salmón y el brócoli con el aceite y hornea 12 minutos más.",
+        "Termina con limón."
+      ],
+      "estimado_ia": {
+        "kcal": 640,
+        "prot": 38,
+        "carb": 52,
+        "gras": 30,
+        "fibra": 9
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 filete de salmón (1 palma)",
+          "alimento": "Fish, salmon, Atlantic, farmed, raw",
+          "fdc_id": 175167,
+          "gramos": 120
+        },
+        {
+          "texto": "1 camote mediano",
+          "alimento": "Sweet potato, cooked, baked in skin, flesh, without salt",
+          "fdc_id": 168483,
+          "gramos": 130
+        },
+        {
+          "texto": "1 taza de brócoli",
+          "alimento": "Broccoli, cooked, boiled, drained, without salt",
+          "fdc_id": 169967,
+          "gramos": 156
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        },
+        {
+          "texto": "jugo de ½ limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 24
+        }
+      ]
+    },
+    {
+      "id": "a07",
+      "nombre": "Ensalada tibia de garbanzos y zapallo",
+      "comida": "Almuerzo",
+      "min": 30,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 415,
+      "prot": 16,
+      "carb": 47,
+      "gras": 21,
+      "fibra": 13,
+      "porque": "Legumbre y verdura asada con semillas, saciante y ligera.",
+      "ing": [
+        "¾ taza de garbanzos cocidos",
+        "1 taza de zapallo asado",
+        "1 taza de espinaca",
+        "1 cda de semillas de zapallo",
+        "1 cda de aceite de oliva",
+        "jugo de ½ limón"
+      ],
+      "pasos": [
+        "Asa el zapallo 20 minutos a 200 °C.",
+        "Mezcla tibio con los garbanzos y la espinaca.",
+        "Aliña con aceite, limón y semillas."
+      ],
+      "estimado_ia": {
+        "kcal": 580,
+        "prot": 22,
+        "carb": 70,
+        "gras": 25,
+        "fibra": 16
+      },
+      "ingredientes_g": [
+        {
+          "texto": "¾ taza de garbanzos cocidos",
+          "alimento": "Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt",
+          "fdc_id": 173757,
+          "gramos": 123
+        },
+        {
+          "texto": "1 taza de zapallo asado",
+          "alimento": "Pumpkin, cooked, boiled, drained, without salt",
+          "fdc_id": 168449,
+          "gramos": 190
+        },
+        {
+          "texto": "1 taza de espinaca",
+          "alimento": "Spinach, raw",
+          "fdc_id": 168462,
+          "gramos": 30
+        },
+        {
+          "texto": "1 cda de semillas de zapallo",
+          "alimento": "Seeds, pumpkin and squash seed kernels, dried",
+          "fdc_id": 170556,
+          "gramos": 8
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        },
+        {
+          "texto": "jugo de ½ limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 24
+        }
+      ]
+    },
+    {
+      "id": "a08",
+      "nombre": "Albóndigas de pavo con zucchini y arroz",
+      "comida": "Almuerzo",
+      "min": 35,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "congelable",
+        "sin_lacteos"
+      ],
+      "congelable_dias": 90,
+      "kcal": 435,
+      "prot": 34,
+      "carb": 47,
+      "gras": 13,
+      "fibra": 5,
+      "porque": "Proteína magra con verdura cocida y arroz integral.",
+      "ing": [
+        "1 palma de pavo molido",
+        "1 cda de avena",
+        "1 cda de perejil",
+        "1 taza de zucchini",
+        "¾ taza de arroz integral cocido",
+        "½ tomate rallado"
+      ],
+      "pasos": [
+        "Mezcla el pavo con la avena y el perejil; forma 3 bolitas.",
+        "Cocínalas en el tomate rallado 12 minutos con tapa.",
+        "Sirve con el zucchini salteado y el arroz."
+      ],
+      "estimado_ia": {
+        "kcal": 580,
+        "prot": 38,
+        "carb": 58,
+        "gras": 20,
+        "fibra": 7
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 palma de pavo molido",
+          "alimento": "Turkey, Ground, cooked",
+          "fdc_id": 171506,
+          "gramos": 100
+        },
+        {
+          "texto": "1 cda de avena",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 5
+        },
+        {
+          "texto": "1 cda de perejil",
+          "alimento": "Parsley, fresh",
+          "fdc_id": 170416,
+          "gramos": 3.8
+        },
+        {
+          "texto": "1 taza de zucchini",
+          "alimento": "Squash, summer, zucchini, includes skin, raw",
+          "fdc_id": 169291,
+          "gramos": 124
+        },
+        {
+          "texto": "¾ taza de arroz integral cocido",
+          "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 169704,
+          "gramos": 146.3
+        },
+        {
+          "texto": "½ tomate rallado",
+          "alimento": "Tomatoes, red, ripe, raw, year round average",
+          "fdc_id": 170457,
+          "gramos": 61.5
+        }
+      ]
+    },
+    {
+      "id": "a09",
+      "nombre": "Crema de zapallo y cúrcuma con pollo",
+      "comida": "Almuerzo",
+      "min": 35,
+      "sintomas": [
+        "Gases",
+        "Hinchazón"
+      ],
+      "tags": [
+        "congelable",
+        "sin_gluten"
+      ],
+      "congelable_dias": 90,
+      "kcal": 280,
+      "prot": 36,
+      "carb": 17,
+      "gras": 8,
+      "fibra": 4,
+      "porque": "Zapallo, jengibre y cúrcuma con pimienta, una crema reconfortante.",
+      "ing": [
+        "1½ tazas de zapallo",
+        "1 cdta de cúrcuma",
+        "1 cdta de jengibre rallado",
+        "1 pizca de pimienta negra",
+        "1 palma de pollo desmenuzado",
+        "1 cda de semillas de zapallo"
+      ],
+      "pasos": [
+        "Cocina el zapallo con jengibre y cúrcuma 15 minutos.",
+        "Licúa hasta que quede cremosa.",
+        "Sirve con el pollo y las semillas."
+      ],
+      "estimado_ia": {
+        "kcal": 520,
+        "prot": 36,
+        "carb": 42,
+        "gras": 18,
+        "fibra": 7
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1½ tazas de zapallo",
+          "alimento": "Pumpkin, cooked, boiled, drained, without salt",
+          "fdc_id": 168449,
+          "gramos": 285
+        },
+        {
+          "texto": "1 cdta de cúrcuma",
+          "alimento": "Spices, turmeric, ground",
+          "fdc_id": 172231,
+          "gramos": 3
+        },
+        {
+          "texto": "1 cdta de jengibre rallado",
+          "alimento": "Ginger root, raw",
+          "fdc_id": 169231,
+          "gramos": 2
+        },
+        {
+          "texto": "1 pizca de pimienta negra",
+          "alimento": "Spices, pepper, black",
+          "fdc_id": 170931,
+          "gramos": 0.4
+        },
+        {
+          "texto": "1 palma de pollo desmenuzado",
+          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+          "fdc_id": 171477,
+          "gramos": 100
+        },
+        {
+          "texto": "1 cda de semillas de zapallo",
+          "alimento": "Seeds, pumpkin and squash seed kernels, dried",
+          "fdc_id": 170556,
+          "gramos": 8
+        }
+      ]
+    },
+    {
+      "id": "a10",
+      "nombre": "Tacos de maíz con pescado y repollo",
+      "comida": "Almuerzo",
+      "min": 25,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 355,
+      "prot": 30,
+      "carb": 38,
+      "gras": 11,
+      "fibra": 9,
+      "porque": "Pescado blanco ligero con repollo fresco y limón.",
+      "ing": [
+        "3 tortillas pequeñas de maíz",
+        "1 filete de pescado blanco",
+        "1 taza de repollo fino",
+        "¼ aguacate",
+        "jugo de 1 limón"
+      ],
+      "pasos": [
+        "Cocina el pescado a la plancha 3 minutos por lado y desmenúzalo.",
+        "Calienta las tortillas.",
+        "Arma los tacos con el repollo, el aguacate y el limón."
+      ],
+      "estimado_ia": {
+        "kcal": 560,
+        "prot": 36,
+        "carb": 60,
+        "gras": 18,
+        "fibra": 9
+      },
+      "ingredientes_g": [
+        {
+          "texto": "3 tortillas pequeñas de maíz",
+          "alimento": "Tortillas, ready-to-bake or -fry, corn",
+          "fdc_id": 175036,
+          "gramos": 60
+        },
+        {
+          "texto": "1 filete de pescado blanco",
+          "alimento": "Fish, tilapia, raw",
+          "fdc_id": 175176,
+          "gramos": 120
+        },
+        {
+          "texto": "1 taza de repollo fino",
+          "alimento": "Cabbage, raw",
+          "fdc_id": 169975,
+          "gramos": 70
+        },
+        {
+          "texto": "¼ aguacate",
+          "alimento": "Avocados, raw, all commercial varieties",
+          "fdc_id": 171705,
+          "gramos": 50
+        },
+        {
+          "texto": "jugo de 1 limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 48
+        }
+      ]
+    },
+    {
+      "id": "a11",
+      "nombre": "Pasta integral con zucchini y atún",
+      "comida": "Almuerzo",
+      "min": 20,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "sin_lacteos"
+      ],
+      "kcal": 445,
+      "prot": 32,
+      "carb": 46,
+      "gras": 17,
+      "fibra": 7,
+      "porque": "Pasta integral con verdura y proteína magra en pocos minutos.",
+      "ing": [
+        "1 taza de fideos integrales cocidos",
+        "1 lata de atún en agua escurrido",
+        "1 taza de zucchini",
+        "1 cda de albahaca",
+        "1 cda de aceite de oliva"
+      ],
+      "pasos": [
+        "Saltea el zucchini 4 minutos en el aceite.",
+        "Agrega la pasta y el atún y calienta.",
+        "Termina con albahaca."
+      ],
+      "estimado_ia": {
+        "kcal": 590,
+        "prot": 38,
+        "carb": 68,
+        "gras": 17,
+        "fibra": 9
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 taza de fideos integrales cocidos",
+          "alimento": "Pasta, whole-wheat, cooked (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 168910,
+          "gramos": 140
+        },
+        {
+          "texto": "1 lata de atún en agua escurrido",
+          "alimento": "Fish, tuna, light, canned in water, drained solids (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 173709,
+          "gramos": 112
+        },
+        {
+          "texto": "1 taza de zucchini",
+          "alimento": "Squash, summer, zucchini, includes skin, raw",
+          "fdc_id": 169291,
+          "gramos": 124
+        },
+        {
+          "texto": "1 cda de albahaca",
+          "alimento": "Basil, fresh",
+          "fdc_id": 172232,
+          "gramos": 1.5
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        }
+      ]
+    },
+    {
+      "id": "a12",
+      "nombre": "Curry suave de garbanzos y espinaca",
+      "comida": "Almuerzo",
+      "min": 30,
+      "sintomas": [
+        "Gases",
+        "Pesadez"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "congelable_dias": 90,
+      "kcal": 620,
+      "prot": 18,
+      "carb": 78,
+      "gras": 29,
+      "fibra": 13,
+      "porque": "Cúrcuma y comino con leche de coco, sabor intenso y digestión amable.",
+      "ing": [
+        "¾ taza de garbanzos cocidos",
+        "1 taza de espinaca",
+        "½ taza de leche de coco",
+        "1 cdta de cúrcuma",
+        "1 pizca de comino",
+        "¾ taza de arroz integral cocido"
+      ],
+      "pasos": [
+        "Calienta la leche de coco con las especias 3 minutos.",
+        "Agrega los garbanzos y la espinaca 5 minutos.",
+        "Sirve sobre el arroz."
+      ],
+      "estimado_ia": {
+        "kcal": 640,
+        "prot": 20,
+        "carb": 84,
+        "gras": 26,
+        "fibra": 16
+      },
+      "ingredientes_g": [
+        {
+          "texto": "¾ taza de garbanzos cocidos",
+          "alimento": "Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt",
+          "fdc_id": 173757,
+          "gramos": 123
+        },
+        {
+          "texto": "1 taza de espinaca",
+          "alimento": "Spinach, raw",
+          "fdc_id": 168462,
+          "gramos": 30
+        },
+        {
+          "texto": "½ taza de leche de coco",
+          "alimento": "Nuts, coconut milk, canned (liquid expressed from grated meat and water)",
+          "fdc_id": 170173,
+          "gramos": 113
+        },
+        {
+          "texto": "1 cdta de cúrcuma",
+          "alimento": "Spices, turmeric, ground",
+          "fdc_id": 172231,
+          "gramos": 3
+        },
+        {
+          "texto": "1 pizca de comino",
+          "alimento": "Spices, cumin seed",
+          "fdc_id": 170923,
+          "gramos": 0.4
+        },
+        {
+          "texto": "¾ taza de arroz integral cocido",
+          "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 169704,
+          "gramos": 146.3
+        }
+      ]
+    },
+    {
+      "id": "a13",
+      "nombre": "Bowl de camote, pollo y aguacate",
+      "comida": "Almuerzo",
+      "min": 30,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 455,
+      "prot": 36,
+      "carb": 39,
+      "gras": 19,
+      "fibra": 12,
+      "porque": "Plato completo con carbohidrato de absorción lenta.",
+      "ing": [
+        "1 camote mediano asado",
+        "1 palma de pollo a la plancha",
+        "½ aguacate",
+        "1 taza de lechuga",
+        "jugo de ½ limón"
+      ],
+      "pasos": [
+        "Asa el camote en cubos 20 minutos.",
+        "Arma el bowl con la lechuga, el pollo y el aguacate.",
+        "Aliña con limón."
+      ],
+      "estimado_ia": {
+        "kcal": 600,
+        "prot": 40,
+        "carb": 55,
+        "gras": 24,
+        "fibra": 11
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 camote mediano asado",
+          "alimento": "Sweet potato, cooked, baked in skin, flesh, without salt",
+          "fdc_id": 168483,
+          "gramos": 130
+        },
+        {
+          "texto": "1 palma de pollo a la plancha",
+          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+          "fdc_id": 171477,
+          "gramos": 100
+        },
+        {
+          "texto": "½ aguacate",
+          "alimento": "Avocados, raw, all commercial varieties",
+          "fdc_id": 171705,
+          "gramos": 100
+        },
+        {
+          "texto": "1 taza de lechuga",
+          "alimento": "Lettuce, cos or romaine, raw",
+          "fdc_id": 169247,
+          "gramos": 47
+        },
+        {
+          "texto": "jugo de ½ limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 24
+        }
+      ]
+    },
+    {
+      "id": "a14",
+      "nombre": "Sopa de pollo con verduras y jengibre",
+      "comida": "Almuerzo",
+      "min": 35,
+      "sintomas": [
+        "Pesadez",
+        "Gases"
+      ],
+      "tags": [
+        "congelable",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "congelable_dias": 90,
+      "kcal": 390,
+      "prot": 36,
+      "carb": 47,
+      "gras": 5,
+      "fibra": 5,
+      "porque": "Caldo caliente con verduras cocidas y jengibre, ligero y reconfortante.",
+      "ing": [
+        "1 palma de pollo",
+        "1 zanahoria",
+        "1 tallo de apio",
+        "1 cdta de jengibre rallado",
+        "1 taza de caldo",
+        "¾ taza de arroz integral cocido"
+      ],
+      "pasos": [
+        "Hierve el pollo con las verduras y el jengibre 20 minutos.",
+        "Desmenuza el pollo y devuélvelo al caldo.",
+        "Sirve con el arroz."
+      ],
+      "estimado_ia": {
+        "kcal": 480,
+        "prot": 36,
+        "carb": 50,
+        "gras": 14,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 palma de pollo",
+          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+          "fdc_id": 171477,
+          "gramos": 100
+        },
+        {
+          "texto": "1 zanahoria",
+          "alimento": "Carrots, raw",
+          "fdc_id": 170393,
+          "gramos": 61
+        },
+        {
+          "texto": "1 tallo de apio",
+          "alimento": "Celery, raw",
+          "fdc_id": 169988,
+          "gramos": 40
+        },
+        {
+          "texto": "1 cdta de jengibre rallado",
+          "alimento": "Ginger root, raw",
+          "fdc_id": 169231,
+          "gramos": 2
+        },
+        {
+          "texto": "1 taza de caldo",
+          "alimento": "Soup, vegetable broth, ready to serve",
+          "fdc_id": 171583,
+          "gramos": 240
+        },
+        {
+          "texto": "¾ taza de arroz integral cocido",
+          "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 169704,
+          "gramos": 146.3
+        }
+      ]
+    },
+    {
+      "id": "a15",
+      "nombre": "Lentejas con arroz y ensalada de pepino",
+      "comida": "Almuerzo",
+      "min": 30,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 440,
+      "prot": 17,
+      "carb": 62,
+      "gras": 15,
+      "fibra": 14,
+      "porque": "Proteína vegetal completa y mucha fibra, con pepino fresco.",
+      "ing": [
+        "¾ taza de lenteja cocida",
+        "½ taza de arroz integral cocido",
+        "½ pepino en rodajas",
+        "1 pizca de comino",
+        "1 cda de aceite de oliva",
+        "jugo de ½ limón"
+      ],
+      "pasos": [
+        "Calienta la lenteja con comino.",
+        "Sirve con el arroz.",
+        "Acompaña con pepino aliñado con aceite y limón."
+      ],
+      "estimado_ia": {
+        "kcal": 570,
+        "prot": 25,
+        "carb": 88,
+        "gras": 12,
+        "fibra": 18
+      },
+      "ingredientes_g": [
+        {
+          "texto": "¾ taza de lenteja cocida",
+          "alimento": "Lentils, mature seeds, cooked, boiled, without salt",
+          "fdc_id": 172421,
+          "gramos": 148.5
+        },
+        {
+          "texto": "½ taza de arroz integral cocido",
+          "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 169704,
+          "gramos": 97.5
+        },
+        {
+          "texto": "½ pepino en rodajas",
+          "alimento": "Cucumber, with peel, raw",
+          "fdc_id": 168409,
+          "gramos": 150
+        },
+        {
+          "texto": "1 pizca de comino",
+          "alimento": "Spices, cumin seed",
+          "fdc_id": 170923,
+          "gramos": 0.4
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        },
+        {
+          "texto": "jugo de ½ limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 24
+        }
+      ]
+    },
+    {
+      "id": "c01",
+      "nombre": "Pescado al horno con hinojo y limón",
+      "comida": "Cena",
+      "min": 25,
+      "sintomas": [
+        "Gases"
+      ],
+      "tags": [
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 385,
+      "prot": 28,
+      "carb": 36,
+      "gras": 16,
+      "fibra": 6,
+      "porque": "El hinojo es una hierba tradicional para la digestión; pescado ligero para la noche.",
+      "ing": [
+        "1 filete de pescado blanco",
+        "½ bulbo de hinojo en láminas",
+        "jugo de 1 limón",
+        "1 cda de aceite de oliva",
+        "1 papa pequeña cocida"
+      ],
+      "pasos": [
+        "Coloca el hinojo y el pescado en una bandeja con aceite y limón.",
+        "Hornea 15 minutos a 190 °C.",
+        "Sirve con la papa."
+      ],
+      "estimado_ia": {
+        "kcal": 430,
+        "prot": 36,
+        "carb": 32,
+        "gras": 16,
+        "fibra": 5
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 filete de pescado blanco",
+          "alimento": "Fish, tilapia, raw",
+          "fdc_id": 175176,
+          "gramos": 120
+        },
+        {
+          "texto": "½ bulbo de hinojo en láminas",
+          "alimento": "Fennel, bulb, raw",
+          "fdc_id": 169385,
+          "gramos": 115
+        },
+        {
+          "texto": "jugo de 1 limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 48
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        },
+        {
+          "texto": "1 papa pequeña cocida",
+          "alimento": "Potatoes, boiled, cooked in skin, flesh, without salt",
+          "fdc_id": 170438,
+          "gramos": 120
+        }
+      ]
+    },
+    {
+      "id": "c02",
+      "nombre": "Tofu salteado con brócoli y arroz",
+      "comida": "Cena",
+      "min": 15,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos"
+      ],
+      "kcal": 510,
+      "prot": 31,
+      "carb": 46,
+      "gras": 27,
+      "fibra": 12,
+      "porque": "Proteína vegetal ligera con verdura al vapor y jengibre.",
+      "ing": [
+        "1 palma grande de tofu en cubos",
+        "1½ tazas de brócoli",
+        "1 cdta de jengibre rallado",
+        "1 cda de aceite",
+        "½ taza de arroz integral cocido"
+      ],
+      "pasos": [
+        "Dora el tofu en el aceite 5 minutos.",
+        "Agrega el brócoli y el jengibre con 2 cdas de agua, tapa 4 minutos.",
+        "Sirve con el arroz."
+      ],
+      "estimado_ia": {
+        "kcal": 470,
+        "prot": 25,
+        "carb": 50,
+        "gras": 20,
+        "fibra": 8
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 palma grande de tofu en cubos",
+          "alimento": "Tofu, raw, firm, prepared with calcium sulfate",
+          "fdc_id": 172475,
+          "gramos": 130
+        },
+        {
+          "texto": "1½ tazas de brócoli",
+          "alimento": "Broccoli, cooked, boiled, drained, without salt",
+          "fdc_id": 169967,
+          "gramos": 234
+        },
+        {
+          "texto": "1 cdta de jengibre rallado",
+          "alimento": "Ginger root, raw",
+          "fdc_id": 169231,
+          "gramos": 2
+        },
+        {
+          "texto": "1 cda de aceite",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        },
+        {
+          "texto": "½ taza de arroz integral cocido",
+          "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 169704,
+          "gramos": 97.5
+        }
+      ]
+    },
+    {
+      "id": "c03",
+      "nombre": "Camote asado con garbanzos",
+      "comida": "Cena",
+      "min": 30,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 375,
+      "prot": 10,
+      "carb": 50,
+      "gras": 16,
+      "fibra": 11,
+      "porque": "Plato vegetal saciante con fibra y especias suaves.",
+      "ing": [
+        "1 camote mediano",
+        "½ taza de garbanzos cocidos",
+        "1 cda de aceite de oliva",
+        "1 pizca de comino",
+        "1 cda de perejil"
+      ],
+      "pasos": [
+        "Hornea el camote partido 25 minutos a 200 °C.",
+        "Saltea los garbanzos con comino.",
+        "Rellena el camote y termina con perejil."
+      ],
+      "estimado_ia": {
+        "kcal": 480,
+        "prot": 18,
+        "carb": 68,
+        "gras": 16,
+        "fibra": 14
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 camote mediano",
+          "alimento": "Sweet potato, cooked, baked in skin, flesh, without salt",
+          "fdc_id": 168483,
+          "gramos": 130
+        },
+        {
+          "texto": "½ taza de garbanzos cocidos",
+          "alimento": "Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt",
+          "fdc_id": 173757,
+          "gramos": 82
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        },
+        {
+          "texto": "1 pizca de comino",
+          "alimento": "Spices, cumin seed",
+          "fdc_id": 170923,
+          "gramos": 0.4
+        },
+        {
+          "texto": "1 cda de perejil",
+          "alimento": "Parsley, fresh",
+          "fdc_id": 170416,
+          "gramos": 3.8
+        }
+      ]
+    },
+    {
+      "id": "c04",
+      "nombre": "Crema de zanahoria y cúrcuma",
+      "comida": "Cena",
+      "min": 30,
+      "sintomas": [
+        "Gases",
+        "Hinchazón"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "congelable_dias": 90,
+      "kcal": 250,
+      "prot": 6,
+      "carb": 24,
+      "gras": 17,
+      "fibra": 8,
+      "porque": "Crema tibia y suave con cúrcuma y jengibre.",
+      "ing": [
+        "1½ tazas de zanahoria",
+        "1 cdta de cúrcuma",
+        "1 cdta de jengibre rallado",
+        "¼ taza de leche de coco",
+        "1 cda de semillas de zapallo"
+      ],
+      "pasos": [
+        "Cocina la zanahoria con las especias 20 minutos.",
+        "Licúa con la leche de coco.",
+        "Sirve con las semillas."
+      ],
+      "estimado_ia": {
+        "kcal": 330,
+        "prot": 6,
+        "carb": 40,
+        "gras": 16,
+        "fibra": 8
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1½ tazas de zanahoria",
+          "alimento": "Carrots, cooked, boiled, drained, without salt",
+          "fdc_id": 170394,
+          "gramos": 234
+        },
+        {
+          "texto": "1 cdta de cúrcuma",
+          "alimento": "Spices, turmeric, ground",
+          "fdc_id": 172231,
+          "gramos": 3
+        },
+        {
+          "texto": "1 cdta de jengibre rallado",
+          "alimento": "Ginger root, raw",
+          "fdc_id": 169231,
+          "gramos": 2
+        },
+        {
+          "texto": "¼ taza de leche de coco",
+          "alimento": "Nuts, coconut milk, canned (liquid expressed from grated meat and water)",
+          "fdc_id": 170173,
+          "gramos": 56.5
+        },
+        {
+          "texto": "1 cda de semillas de zapallo",
+          "alimento": "Seeds, pumpkin and squash seed kernels, dried",
+          "fdc_id": 170556,
+          "gramos": 8
+        }
+      ]
+    },
+    {
+      "id": "c05",
+      "nombre": "Tacos de lechuga con pavo",
+      "comida": "Cena",
+      "min": 20,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "express",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 305,
+      "prot": 30,
+      "carb": 9,
+      "gras": 18,
+      "fibra": 5,
+      "porque": "Cena fresca sin harinas, con proteína magra.",
+      "ing": [
+        "3 hojas grandes de lechuga",
+        "1 palma de pavo molido",
+        "½ tomate picado",
+        "¼ aguacate",
+        "1 cda de cilantro"
+      ],
+      "pasos": [
+        "Cocina el pavo con una pizca de comino 8 minutos.",
+        "Rellena las hojas de lechuga.",
+        "Termina con tomate, aguacate y cilantro."
+      ],
+      "estimado_ia": {
+        "kcal": 380,
+        "prot": 32,
+        "carb": 12,
+        "gras": 22,
+        "fibra": 5
+      },
+      "ingredientes_g": [
+        {
+          "texto": "3 hojas grandes de lechuga",
+          "alimento": "Lettuce, cos or romaine, raw",
+          "fdc_id": 169247,
+          "gramos": 60
+        },
+        {
+          "texto": "1 palma de pavo molido",
+          "alimento": "Turkey, Ground, cooked",
+          "fdc_id": 171506,
+          "gramos": 100
+        },
+        {
+          "texto": "½ tomate picado",
+          "alimento": "Tomatoes, red, ripe, raw, year round average",
+          "fdc_id": 170457,
+          "gramos": 61.5
+        },
+        {
+          "texto": "¼ aguacate",
+          "alimento": "Avocados, raw, all commercial varieties",
+          "fdc_id": 171705,
+          "gramos": 50
+        },
+        {
+          "texto": "1 cda de cilantro",
+          "alimento": "Coriander (cilantro) leaves, raw",
+          "fdc_id": 169997,
+          "gramos": 1
+        }
+      ]
+    },
+    {
+      "id": "c06",
+      "nombre": "Camarones al limón con zucchini",
+      "comida": "Cena",
+      "min": 15,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "express",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 245,
+      "prot": 18,
+      "carb": 10,
+      "gras": 15,
+      "fibra": 2,
+      "porque": "Cena rápida, ligera y baja en carbohidratos.",
+      "ing": [
+        "10 camarones medianos",
+        "1½ tazas de zucchini en tiras",
+        "jugo de 1 limón",
+        "1 cda de perejil",
+        "1 cda de aceite de oliva"
+      ],
+      "pasos": [
+        "Saltea los camarones 2 minutos por lado.",
+        "Agrega el zucchini 2 minutos.",
+        "Termina con limón y perejil."
+      ],
+      "estimado_ia": {
+        "kcal": 350,
+        "prot": 32,
+        "carb": 10,
+        "gras": 20,
+        "fibra": 3
+      },
+      "ingredientes_g": [
+        {
+          "texto": "10 camarones medianos",
+          "alimento": "Crustaceans, shrimp, mixed species, cooked, moist heat (may contain additives to retain moisture)",
+          "fdc_id": 171971,
+          "gramos": 70
+        },
+        {
+          "texto": "1½ tazas de zucchini en tiras",
+          "alimento": "Squash, summer, zucchini, includes skin, raw",
+          "fdc_id": 169291,
+          "gramos": 186
+        },
+        {
+          "texto": "jugo de 1 limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 48
+        },
+        {
+          "texto": "1 cda de perejil",
+          "alimento": "Parsley, fresh",
+          "fdc_id": 170416,
+          "gramos": 3.8
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        }
+      ]
+    },
+    {
+      "id": "c07",
+      "nombre": "Crema de zucchini con huevo poché",
+      "comida": "Cena",
+      "min": 30,
+      "sintomas": [
+        "Gases"
+      ],
+      "tags": [
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 245,
+      "prot": 10,
+      "carb": 10,
+      "gras": 19,
+      "fibra": 3,
+      "porque": "Verde, suave y tibia; el huevo suma proteína.",
+      "ing": [
+        "2 tazas de zucchini",
+        "1 taza de caldo de verduras",
+        "1 cda de albahaca",
+        "1 huevo",
+        "1 cda de aceite de oliva"
+      ],
+      "pasos": [
+        "Cocina el zucchini en el caldo 12 minutos.",
+        "Licúa con la albahaca y el aceite.",
+        "Sirve con el huevo poché encima."
+      ],
+      "estimado_ia": {
+        "kcal": 360,
+        "prot": 16,
+        "carb": 20,
+        "gras": 20,
+        "fibra": 5
+      },
+      "ingredientes_g": [
+        {
+          "texto": "2 tazas de zucchini",
+          "alimento": "Squash, summer, zucchini, includes skin, raw",
+          "fdc_id": 169291,
+          "gramos": 248
+        },
+        {
+          "texto": "1 taza de caldo de verduras",
+          "alimento": "Soup, vegetable broth, ready to serve",
+          "fdc_id": 171583,
+          "gramos": 240
+        },
+        {
+          "texto": "1 cda de albahaca",
+          "alimento": "Basil, fresh",
+          "fdc_id": 172232,
+          "gramos": 1.5
+        },
+        {
+          "texto": "1 huevo",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 50
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        }
+      ]
+    },
+    {
+      "id": "c08",
+      "nombre": "Salmón con espárragos y quinoa",
+      "comida": "Cena",
+      "min": 25,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 430,
+      "prot": 32,
+      "carb": 26,
+      "gras": 23,
+      "fibra": 5,
+      "porque": "Omega-3 del salmón con quinoa sin gluten.",
+      "ing": [
+        "1 filete de salmón",
+        "8 espárragos",
+        "½ taza de quinoa cocida",
+        "jugo de ½ limón",
+        "1 cdta de aceite de oliva"
+      ],
+      "pasos": [
+        "Hornea el salmón y los espárragos 12 minutos a 200 °C.",
+        "Sirve con la quinoa y el limón."
+      ],
+      "estimado_ia": {
+        "kcal": 520,
+        "prot": 36,
+        "carb": 32,
+        "gras": 27,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 filete de salmón",
+          "alimento": "Fish, salmon, Atlantic, farmed, raw",
+          "fdc_id": 175167,
+          "gramos": 120
+        },
+        {
+          "texto": "8 espárragos",
+          "alimento": "Asparagus, cooked, boiled, drained",
+          "fdc_id": 168390,
+          "gramos": 120
+        },
+        {
+          "texto": "½ taza de quinoa cocida",
+          "alimento": "Quinoa, cooked",
+          "fdc_id": 168917,
+          "gramos": 92.5
+        },
+        {
+          "texto": "jugo de ½ limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 24
+        },
+        {
+          "texto": "1 cdta de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 4.5
+        }
+      ]
+    },
+    {
+      "id": "c09",
+      "nombre": "Omelette de verduras con ensalada",
+      "comida": "Cena",
+      "min": 15,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 290,
+      "prot": 14,
+      "carb": 6,
+      "gras": 23,
+      "fibra": 2,
+      "porque": "Cena ligera con proteína y verduras cocidas.",
+      "ing": [
+        "2 huevos",
+        "½ taza de zucchini picado",
+        "¼ de pimentón",
+        "1 taza de lechuga",
+        "1 cda de aceite de oliva"
+      ],
+      "pasos": [
+        "Saltea el zucchini y el pimentón 3 minutos.",
+        "Agrega los huevos y cocina tapado.",
+        "Sirve con la lechuga aliñada."
+      ],
+      "estimado_ia": {
+        "kcal": 380,
+        "prot": 22,
+        "carb": 14,
+        "gras": 26,
+        "fibra": 4
+      },
+      "ingredientes_g": [
+        {
+          "texto": "2 huevos",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 100
+        },
+        {
+          "texto": "½ taza de zucchini picado",
+          "alimento": "Squash, summer, zucchini, includes skin, raw",
+          "fdc_id": 169291,
+          "gramos": 62
+        },
+        {
+          "texto": "¼ de pimentón",
+          "alimento": "Peppers, sweet, red, raw",
+          "fdc_id": 170108,
+          "gramos": 37.5
+        },
+        {
+          "texto": "1 taza de lechuga",
+          "alimento": "Lettuce, cos or romaine, raw",
+          "fdc_id": 169247,
+          "gramos": 47
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        }
+      ]
+    },
+    {
+      "id": "c10",
+      "nombre": "Pollo al horno con zapallo y romero",
+      "comida": "Cena",
+      "min": 40,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "congelable",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "congelable_dias": 60,
+      "kcal": 345,
+      "prot": 33,
+      "carb": 15,
+      "gras": 17,
+      "fibra": 4,
+      "porque": "Plato sencillo de horno con hierbas aromáticas.",
+      "ing": [
+        "1 muslo o filete de pollo (1 palma)",
+        "1½ tazas de zapallo en cubos",
+        "1 ramita de romero",
+        "1 cda de aceite de oliva"
+      ],
+      "pasos": [
+        "Coloca todo en una bandeja con el aceite y el romero.",
+        "Hornea 30 minutos a 200 °C."
+      ],
+      "estimado_ia": {
+        "kcal": 460,
+        "prot": 42,
+        "carb": 28,
+        "gras": 20,
+        "fibra": 5
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 muslo o filete de pollo (1 palma)",
+          "alimento": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+          "fdc_id": 171477,
+          "gramos": 100
+        },
+        {
+          "texto": "1½ tazas de zapallo en cubos",
+          "alimento": "Pumpkin, cooked, boiled, drained, without salt",
+          "fdc_id": 168449,
+          "gramos": 285
+        },
+        {
+          "texto": "1 ramita de romero",
+          "alimento": "Rosemary, fresh",
+          "fdc_id": 173473,
+          "gramos": 3
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        }
+      ]
+    },
+    {
+      "id": "c11",
+      "nombre": "Sopa de frijol y verduras",
+      "comida": "Cena",
+      "min": 30,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "congelable_dias": 90,
+      "kcal": 220,
+      "prot": 14,
+      "carb": 41,
+      "gras": 1,
+      "fibra": 14,
+      "porque": "Sopa de legumbres con verduras y comino, rica en fibra.",
+      "ing": [
+        "¾ taza de frijol cocido",
+        "1 zanahoria",
+        "1 tallo de apio",
+        "1 taza de espinaca",
+        "1 pizca de comino",
+        "1 taza de caldo"
+      ],
+      "pasos": [
+        "Cocina la zanahoria y el apio en el caldo 10 minutos.",
+        "Agrega el frijol y el comino 5 minutos.",
+        "Suma la espinaca al final."
+      ],
+      "estimado_ia": {
+        "kcal": 420,
+        "prot": 20,
+        "carb": 62,
+        "gras": 10,
+        "fibra": 18
+      },
+      "ingredientes_g": [
+        {
+          "texto": "¾ taza de frijol cocido",
+          "alimento": "Beans, black, mature seeds, cooked, boiled, without salt",
+          "fdc_id": 173735,
+          "gramos": 129
+        },
+        {
+          "texto": "1 zanahoria",
+          "alimento": "Carrots, raw",
+          "fdc_id": 170393,
+          "gramos": 61
+        },
+        {
+          "texto": "1 tallo de apio",
+          "alimento": "Celery, raw",
+          "fdc_id": 169988,
+          "gramos": 40
+        },
+        {
+          "texto": "1 taza de espinaca",
+          "alimento": "Spinach, raw",
+          "fdc_id": 168462,
+          "gramos": 30
+        },
+        {
+          "texto": "1 pizca de comino",
+          "alimento": "Spices, cumin seed",
+          "fdc_id": 170923,
+          "gramos": 0.4
+        },
+        {
+          "texto": "1 taza de caldo",
+          "alimento": "Soup, vegetable broth, ready to serve",
+          "fdc_id": 171583,
+          "gramos": 240
+        }
+      ]
+    },
+    {
+      "id": "c12",
+      "nombre": "Berenjena rellena de lentejas",
+      "comida": "Cena",
+      "min": 40,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 320,
+      "prot": 13,
+      "carb": 40,
+      "gras": 15,
+      "fibra": 18,
+      "porque": "Verdura asada con legumbre, saciante y ligera.",
+      "ing": [
+        "1 berenjena mediana",
+        "½ taza de lentejas cocidas",
+        "½ tomate picado",
+        "1 cda de perejil",
+        "1 cda de aceite de oliva"
+      ],
+      "pasos": [
+        "Hornea la berenjena partida 25 minutos a 200 °C.",
+        "Mezcla la pulpa con las lentejas, el tomate y el perejil.",
+        "Rellena y hornea 5 minutos más."
+      ],
+      "estimado_ia": {
+        "kcal": 430,
+        "prot": 19,
+        "carb": 56,
+        "gras": 15,
+        "fibra": 17
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 berenjena mediana",
+          "alimento": "Eggplant, raw",
+          "fdc_id": 169228,
+          "gramos": 300
+        },
+        {
+          "texto": "½ taza de lentejas cocidas",
+          "alimento": "Lentils, mature seeds, cooked, boiled, without salt",
+          "fdc_id": 172421,
+          "gramos": 99
+        },
+        {
+          "texto": "½ tomate picado",
+          "alimento": "Tomatoes, red, ripe, raw, year round average",
+          "fdc_id": 170457,
+          "gramos": 61.5
+        },
+        {
+          "texto": "1 cda de perejil",
+          "alimento": "Parsley, fresh",
+          "fdc_id": 170416,
+          "gramos": 3.8
+        },
+        {
+          "texto": "1 cda de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 13.5
+        }
+      ]
+    },
+    {
+      "id": "c13",
+      "nombre": "Atún sellado con ensalada de pepino y aguacate",
+      "comida": "Cena",
+      "min": 15,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "express",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 320,
+      "prot": 32,
+      "carb": 16,
+      "gras": 15,
+      "fibra": 8,
+      "porque": "Cena fresca, alta en proteína y grasas buenas.",
+      "ing": [
+        "1 filete de atún",
+        "½ pepino",
+        "½ aguacate",
+        "1 cda de menta",
+        "jugo de ½ limón"
+      ],
+      "pasos": [
+        "Sella el atún 1 minuto por lado.",
+        "Mezcla el pepino y el aguacate con la menta y el limón.",
+        "Sirve juntos."
+      ],
+      "estimado_ia": {
+        "kcal": 440,
+        "prot": 38,
+        "carb": 12,
+        "gras": 27,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 filete de atún",
+          "alimento": "Fish, tuna, fresh, yellowfin, raw",
+          "fdc_id": 175159,
+          "gramos": 120
+        },
+        {
+          "texto": "½ pepino",
+          "alimento": "Cucumber, with peel, raw",
+          "fdc_id": 168409,
+          "gramos": 150
+        },
+        {
+          "texto": "½ aguacate",
+          "alimento": "Avocados, raw, all commercial varieties",
+          "fdc_id": 171705,
+          "gramos": 100
+        },
+        {
+          "texto": "1 cda de menta",
+          "alimento": "Spearmint, fresh",
+          "fdc_id": 173475,
+          "gramos": 1.7
+        },
+        {
+          "texto": "jugo de ½ limón",
+          "alimento": "Lemon juice, raw",
+          "fdc_id": 167747,
+          "gramos": 24
+        }
+      ]
+    },
+    {
+      "id": "c14",
+      "nombre": "Salteado de pavo, repollo y jengibre",
+      "comida": "Cena",
+      "min": 20,
+      "sintomas": [
+        "Gases"
+      ],
+      "tags": [
+        "express",
+        "sin_lacteos"
+      ],
+      "kcal": 345,
+      "prot": 34,
+      "carb": 34,
+      "gras": 8,
+      "fibra": 5,
+      "porque": "Salteado ligero con jengibre y verduras cocidas.",
+      "ing": [
+        "1 palma de pavo en tiras",
+        "1½ tazas de repollo",
+        "½ zanahoria en tiras",
+        "1 cdta de jengibre rallado",
+        "½ taza de arroz integral cocido",
+        "1 cdta de aceite"
+      ],
+      "pasos": [
+        "Saltea el pavo con el jengibre 5 minutos.",
+        "Agrega el repollo y la zanahoria 4 minutos.",
+        "Sirve con el arroz."
+      ],
+      "estimado_ia": {
+        "kcal": 460,
+        "prot": 36,
+        "carb": 46,
+        "gras": 14,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 palma de pavo en tiras",
+          "alimento": "Turkey, whole, breast, meat only, cooked, roasted",
+          "fdc_id": 171496,
+          "gramos": 100
+        },
+        {
+          "texto": "1½ tazas de repollo",
+          "alimento": "Cabbage, raw",
+          "fdc_id": 169975,
+          "gramos": 105
+        },
+        {
+          "texto": "½ zanahoria en tiras",
+          "alimento": "Carrots, raw",
+          "fdc_id": 170393,
+          "gramos": 30.5
+        },
+        {
+          "texto": "1 cdta de jengibre rallado",
+          "alimento": "Ginger root, raw",
+          "fdc_id": 169231,
+          "gramos": 2
+        },
+        {
+          "texto": "½ taza de arroz integral cocido",
+          "alimento": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 169704,
+          "gramos": 97.5
+        },
+        {
+          "texto": "1 cdta de aceite",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 4.5
+        }
+      ]
+    },
+    {
+      "id": "c15",
+      "nombre": "Tortilla de maíz con huevo, espinaca y frijol",
+      "comida": "Cena",
+      "min": 15,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 345,
+      "prot": 18,
+      "carb": 45,
+      "gras": 11,
+      "fibra": 11,
+      "porque": "Cena rápida con proteína vegetal y animal, sin harina de trigo.",
+      "ing": [
+        "2 tortillas de maíz",
+        "1 huevo",
+        "½ taza de frijol cocido",
+        "1 taza de espinaca",
+        "1 cdta de aceite de oliva"
+      ],
+      "pasos": [
+        "Saltea la espinaca y el frijol 3 minutos.",
+        "Cocina el huevo.",
+        "Arma las tortillas con todo."
+      ],
+      "estimado_ia": {
+        "kcal": 400,
+        "prot": 20,
+        "carb": 50,
+        "gras": 13,
+        "fibra": 12
+      },
+      "ingredientes_g": [
+        {
+          "texto": "2 tortillas de maíz",
+          "alimento": "Tortillas, ready-to-bake or -fry, corn",
+          "fdc_id": 175036,
+          "gramos": 52
+        },
+        {
+          "texto": "1 huevo",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 50
+        },
+        {
+          "texto": "½ taza de frijol cocido",
+          "alimento": "Beans, black, mature seeds, cooked, boiled, without salt",
+          "fdc_id": 173735,
+          "gramos": 86
+        },
+        {
+          "texto": "1 taza de espinaca",
+          "alimento": "Spinach, raw",
+          "fdc_id": 168462,
+          "gramos": 30
+        },
+        {
+          "texto": "1 cdta de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 4.5
+        }
+      ]
+    },
+    {
+      "id": "m01",
+      "nombre": "Kéfir con piña y menta",
+      "comida": "Merienda",
+      "min": 5,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "express",
+        "vegetariano"
+      ],
+      "kcal": 145,
+      "prot": 10,
+      "carb": 23,
+      "gras": 3,
+      "fibra": 1,
+      "porque": "El kéfir es un fermentado; la piña y la menta lo hacen refrescante.",
+      "ing": [
+        "1 taza de kéfir",
+        "½ taza de piña",
+        "1 cda de menta"
+      ],
+      "pasos": [
+        "Licúa todo y sirve frío."
+      ],
+      "estimado_ia": {
+        "kcal": 170,
+        "prot": 9,
+        "carb": 24,
+        "gras": 4,
+        "fibra": 1
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 taza de kéfir",
+          "alimento": "Kefir, lowfat, plain, LIFEWAY",
+          "fdc_id": 170904,
+          "gramos": 243
+        },
+        {
+          "texto": "½ taza de piña",
+          "alimento": "Pineapple, raw, all varieties",
+          "fdc_id": 169124,
+          "gramos": 82.5
+        },
+        {
+          "texto": "1 cda de menta",
+          "alimento": "Spearmint, fresh",
+          "fdc_id": 173475,
+          "gramos": 1.7
+        }
+      ]
+    },
+    {
+      "id": "m02",
+      "nombre": "Muffins de banano y avena (2 unidades)",
+      "comida": "Merienda",
+      "min": 30,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano"
+      ],
+      "congelable_dias": 60,
+      "kcal": 280,
+      "prot": 11,
+      "carb": 46,
+      "gras": 7,
+      "fibra": 6,
+      "porque": "Sin azúcar añadida, endulzados con banano maduro.",
+      "ing": [
+        "1 banano maduro",
+        "⅓ taza de avena",
+        "1 huevo",
+        "1 pizca de canela"
+      ],
+      "pasos": [
+        "Mezcla todo.",
+        "Reparte en 2 moldes y hornea 20 minutos a 180 °C."
+      ],
+      "estimado_ia": {
+        "kcal": 250,
+        "prot": 8,
+        "carb": 40,
+        "gras": 7,
+        "fibra": 5
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 banano maduro",
+          "alimento": "Bananas, raw",
+          "fdc_id": 173944,
+          "gramos": 118
+        },
+        {
+          "texto": "⅓ taza de avena",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 27
+        },
+        {
+          "texto": "1 huevo",
+          "alimento": "Egg, whole, raw, fresh",
+          "fdc_id": 171287,
+          "gramos": 50
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        }
+      ]
+    },
+    {
+      "id": "m03",
+      "nombre": "Manzana asada con canela y nueces",
+      "comida": "Merienda",
+      "min": 15,
+      "sintomas": [
+        "Pesadez",
+        "Hinchazón"
+      ],
+      "tags": [
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 195,
+      "prot": 3,
+      "carb": 28,
+      "gras": 10,
+      "fibra": 6,
+      "porque": "La fruta cocida es más suave para la digestión.",
+      "ing": [
+        "1 manzana",
+        "1 pizca de canela",
+        "6 mitades de nuez"
+      ],
+      "pasos": [
+        "Corta la manzana en gajos y hornea 12 minutos a 190 °C con la canela.",
+        "Sirve con las nueces picadas."
+      ],
+      "estimado_ia": {
+        "kcal": 200,
+        "prot": 3,
+        "carb": 32,
+        "gras": 9,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 manzana",
+          "alimento": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 171688,
+          "gramos": 182
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        },
+        {
+          "texto": "6 mitades de nuez",
+          "alimento": "Nuts, walnuts, english",
+          "fdc_id": 170187,
+          "gramos": 15
+        }
+      ]
+    },
+    {
+      "id": "m04",
+      "nombre": "Hummus con palitos de zanahoria y pepino",
+      "comida": "Merienda",
+      "min": 5,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos"
+      ],
+      "kcal": 155,
+      "prot": 5,
+      "carb": 18,
+      "gras": 8,
+      "fibra": 5,
+      "porque": "Snack saciante con garbanzo y verduras crudas crujientes.",
+      "ing": [
+        "3 cdas de hummus",
+        "1 zanahoria en palitos",
+        "½ pepino en palitos"
+      ],
+      "pasos": [
+        "Sirve las verduras con el hummus."
+      ],
+      "estimado_ia": {
+        "kcal": 190,
+        "prot": 6,
+        "carb": 20,
+        "gras": 10,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "3 cdas de hummus",
+          "alimento": "Hummus, commercial",
+          "fdc_id": 174289,
+          "gramos": 45
+        },
+        {
+          "texto": "1 zanahoria en palitos",
+          "alimento": "Carrots, raw",
+          "fdc_id": 170393,
+          "gramos": 61
+        },
+        {
+          "texto": "½ pepino en palitos",
+          "alimento": "Cucumber, with peel, raw",
+          "fdc_id": 168409,
+          "gramos": 150
+        }
+      ]
+    },
+    {
+      "id": "m05",
+      "nombre": "Yogur con linaza y fresas",
+      "comida": "Merienda",
+      "min": 5,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_gluten"
+      ],
+      "kcal": 205,
+      "prot": 27,
+      "carb": 17,
+      "gras": 4,
+      "fibra": 3,
+      "porque": "Proteína con fibra suave de la linaza.",
+      "ing": [
+        "1 taza de yogur griego natural",
+        "1 cda de linaza molida",
+        "½ taza de fresas"
+      ],
+      "pasos": [
+        "Mezcla todo en un bowl."
+      ],
+      "estimado_ia": {
+        "kcal": 200,
+        "prot": 20,
+        "carb": 14,
+        "gras": 7,
+        "fibra": 4
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 taza de yogur griego natural",
+          "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 170894,
+          "gramos": 245
+        },
+        {
+          "texto": "1 cda de linaza molida",
+          "alimento": "Seeds, flaxseed",
+          "fdc_id": 169414,
+          "gramos": 7
+        },
+        {
+          "texto": "½ taza de fresas",
+          "alimento": "Strawberries, raw",
+          "fdc_id": 167762,
+          "gramos": 76
+        }
+      ]
+    },
+    {
+      "id": "m06",
+      "nombre": "Almendras y una pera",
+      "comida": "Merienda",
+      "min": 2,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 185,
+      "prot": 4,
+      "carb": 30,
+      "gras": 7,
+      "fibra": 7,
+      "porque": "Grasas buenas y fibra, fácil de llevar.",
+      "ing": [
+        "12 almendras",
+        "1 pera mediana"
+      ],
+      "pasos": [
+        "Come la pera con las almendras."
+      ],
+      "estimado_ia": {
+        "kcal": 220,
+        "prot": 6,
+        "carb": 30,
+        "gras": 10,
+        "fibra": 7
+      },
+      "ingredientes_g": [
+        {
+          "texto": "12 almendras",
+          "alimento": "Nuts, almonds",
+          "fdc_id": 170567,
+          "gramos": 14.4
+        },
+        {
+          "texto": "1 pera mediana",
+          "alimento": "Pears, raw",
+          "fdc_id": 169118,
+          "gramos": 178
+        }
+      ]
+    },
+    {
+      "id": "m07",
+      "nombre": "Galletas de avena y plátano (2 unidades)",
+      "comida": "Merienda",
+      "min": 25,
+      "sintomas": [
+        "Gases"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano",
+        "sin_lacteos"
+      ],
+      "congelable_dias": 60,
+      "kcal": 235,
+      "prot": 5,
+      "carb": 44,
+      "gras": 7,
+      "fibra": 4,
+      "porque": "Solo avena y fruta, sin azúcar.",
+      "ing": [
+        "½ plátano maduro",
+        "¼ taza de avena",
+        "1 cda de nueces picadas",
+        "1 pizca de canela"
+      ],
+      "pasos": [
+        "Machaca el plátano y mezcla con el resto.",
+        "Forma 2 galletas y hornea 15 minutos a 180 °C."
+      ],
+      "estimado_ia": {
+        "kcal": 190,
+        "prot": 5,
+        "carb": 30,
+        "gras": 6,
+        "fibra": 4
+      },
+      "ingredientes_g": [
+        {
+          "texto": "½ plátano maduro",
+          "alimento": "Plantains, yellow, raw",
+          "fdc_id": 169130,
+          "gramos": 89.5
+        },
+        {
+          "texto": "¼ taza de avena",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 20.3
+        },
+        {
+          "texto": "1 cda de nueces picadas",
+          "alimento": "Nuts, walnuts, english",
+          "fdc_id": 170187,
+          "gramos": 7.5
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        }
+      ]
+    },
+    {
+      "id": "m08",
+      "nombre": "Batido de papaya, chía y jengibre",
+      "comida": "Merienda",
+      "min": 5,
+      "sintomas": [
+        "Hinchazón",
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos"
+      ],
+      "kcal": 170,
+      "prot": 4,
+      "carb": 30,
+      "gras": 4,
+      "fibra": 6,
+      "porque": "Ligero y refrescante, con papaya y jengibre.",
+      "ing": [
+        "1 taza de papaya",
+        "½ taza de leche de almendras",
+        "1 cda de chía",
+        "1 cdta de jengibre rallado"
+      ],
+      "pasos": [
+        "Licúa todo con hielo y sirve."
+      ],
+      "estimado_ia": {
+        "kcal": 150,
+        "prot": 3,
+        "carb": 28,
+        "gras": 3,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 taza de papaya",
+          "alimento": "Potatoes, boiled, cooked in skin, flesh, without salt",
+          "fdc_id": 170438,
+          "gramos": 120
+        },
+        {
+          "texto": "½ taza de leche de almendras",
+          "alimento": "Nuts, almonds",
+          "fdc_id": 170567,
+          "gramos": 0.6
+        },
+        {
+          "texto": "1 cda de chía",
+          "alimento": "Seeds, chia seeds, dried",
+          "fdc_id": 170554,
+          "gramos": 12
+        },
+        {
+          "texto": "1 cdta de jengibre rallado",
+          "alimento": "Ginger root, raw",
+          "fdc_id": 169231,
+          "gramos": 2
+        }
+      ]
+    },
+    {
+      "id": "m09",
+      "nombre": "Huevo cocido con tomate y orégano",
+      "comida": "Merienda",
+      "min": 10,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 90,
+      "prot": 7,
+      "carb": 3,
+      "gras": 5,
+      "fibra": 1,
+      "porque": "Merienda de proteína sencilla y saciante.",
+      "ing": [
+        "1 huevo cocido",
+        "½ tomate",
+        "1 pizca de orégano"
+      ],
+      "pasos": [
+        "Hierve el huevo 9 minutos.",
+        "Sirve con el tomate en rodajas y orégano."
+      ],
+      "estimado_ia": {
+        "kcal": 130,
+        "prot": 8,
+        "carb": 4,
+        "gras": 9,
+        "fibra": 1
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 huevo cocido",
+          "alimento": "Egg, whole, cooked, hard-boiled",
+          "fdc_id": 173424,
+          "gramos": 50
+        },
+        {
+          "texto": "½ tomate",
+          "alimento": "Tomatoes, red, ripe, raw, year round average",
+          "fdc_id": 170457,
+          "gramos": 61.5
+        },
+        {
+          "texto": "1 pizca de orégano",
+          "alimento": "Spices, oregano, dried",
+          "fdc_id": 171328,
+          "gramos": 0.4
+        }
+      ]
+    },
+    {
+      "id": "m10",
+      "nombre": "Bolitas de dátil, avena y cacao (3 unidades)",
+      "comida": "Merienda",
+      "min": 15,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "congelable",
+        "vegetariano",
+        "sin_lacteos"
+      ],
+      "congelable_dias": 60,
+      "kcal": 320,
+      "prot": 6,
+      "carb": 69,
+      "gras": 6,
+      "fibra": 9,
+      "porque": "Para el antojo de dulce con ingredientes enteros.",
+      "ing": [
+        "3 dátiles",
+        "3 cdas de avena",
+        "1 cda de cacao puro",
+        "1 cda de almendras picadas"
+      ],
+      "pasos": [
+        "Tritura todo hasta formar una pasta.",
+        "Forma 3 bolitas y refrigera."
+      ],
+      "estimado_ia": {
+        "kcal": 200,
+        "prot": 4,
+        "carb": 32,
+        "gras": 7,
+        "fibra": 5
+      },
+      "ingredientes_g": [
+        {
+          "texto": "3 dátiles",
+          "alimento": "Dates, medjool",
+          "fdc_id": 168191,
+          "gramos": 72
+        },
+        {
+          "texto": "3 cdas de avena",
+          "alimento": "Cereals, oats, regular and quick, not fortified, dry",
+          "fdc_id": 173904,
+          "gramos": 15
+        },
+        {
+          "texto": "1 cda de cacao puro",
+          "alimento": "Cocoa, dry powder, unsweetened",
+          "fdc_id": 169593,
+          "gramos": 5.4
+        },
+        {
+          "texto": "1 cda de almendras picadas",
+          "alimento": "Nuts, almonds",
+          "fdc_id": 170567,
+          "gramos": 9
+        }
+      ]
+    },
+    {
+      "id": "m11",
+      "nombre": "Palomitas con cúrcuma y aceite de oliva",
+      "comida": "Merienda",
+      "min": 8,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 105,
+      "prot": 2,
+      "carb": 13,
+      "gras": 5,
+      "fibra": 2,
+      "porque": "Cereal integral crujiente con cúrcuma.",
+      "ing": [
+        "2 tazas de palomitas naturales",
+        "1 cdta de aceite de oliva",
+        "1 pizca de cúrcuma"
+      ],
+      "pasos": [
+        "Mezcla las palomitas con el aceite y la cúrcuma."
+      ],
+      "estimado_ia": {
+        "kcal": 130,
+        "prot": 3,
+        "carb": 20,
+        "gras": 5,
+        "fibra": 4
+      },
+      "ingredientes_g": [
+        {
+          "texto": "2 tazas de palomitas naturales",
+          "alimento": "Snacks, popcorn, air-popped",
+          "fdc_id": 167959,
+          "gramos": 16
+        },
+        {
+          "texto": "1 cdta de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 4.5
+        },
+        {
+          "texto": "1 pizca de cúrcuma",
+          "alimento": "Spices, turmeric, ground",
+          "fdc_id": 172231,
+          "gramos": 0.4
+        }
+      ]
+    },
+    {
+      "id": "m12",
+      "nombre": "Chips de camote al horno",
+      "comida": "Merienda",
+      "min": 30,
+      "sintomas": [
+        "Gases"
+      ],
+      "tags": [
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 130,
+      "prot": 2,
+      "carb": 21,
+      "gras": 5,
+      "fibra": 4,
+      "porque": "Snack crujiente sin frituras.",
+      "ing": [
+        "1 camote pequeño en láminas",
+        "1 cdta de aceite de oliva",
+        "1 pizca de canela"
+      ],
+      "pasos": [
+        "Mezcla las láminas con aceite y canela.",
+        "Hornea 20 minutos a 190 °C girando una vez."
+      ],
+      "estimado_ia": {
+        "kcal": 180,
+        "prot": 3,
+        "carb": 34,
+        "gras": 4,
+        "fibra": 5
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 camote pequeño en láminas",
+          "alimento": "Sweet potato, cooked, baked in skin, flesh, without salt",
+          "fdc_id": 168483,
+          "gramos": 100
+        },
+        {
+          "texto": "1 cdta de aceite de oliva",
+          "alimento": "Oil, olive, salad or cooking",
+          "fdc_id": 171413,
+          "gramos": 4.5
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        }
+      ]
+    },
+    {
+      "id": "m13",
+      "nombre": "Yogur con kiwi y semillas de zapallo",
+      "comida": "Merienda",
+      "min": 5,
+      "sintomas": [
+        "Digestión lenta"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_gluten"
+      ],
+      "kcal": 195,
+      "prot": 22,
+      "carb": 18,
+      "gras": 5,
+      "fibra": 3,
+      "porque": "El kiwi y el yogur son aliados clásicos del tránsito intestinal.",
+      "ing": [
+        "¾ taza de yogur griego natural",
+        "1 kiwi",
+        "1 cda de semillas de zapallo"
+      ],
+      "pasos": [
+        "Sirve el yogur con el kiwi picado y las semillas."
+      ],
+      "estimado_ia": {
+        "kcal": 190,
+        "prot": 17,
+        "carb": 18,
+        "gras": 7,
+        "fibra": 4
+      },
+      "ingredientes_g": [
+        {
+          "texto": "¾ taza de yogur griego natural",
+          "alimento": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
+          "fdc_id": 170894,
+          "gramos": 183.8
+        },
+        {
+          "texto": "1 kiwi",
+          "alimento": "Kiwifruit, green, raw",
+          "fdc_id": 168153,
+          "gramos": 69
+        },
+        {
+          "texto": "1 cda de semillas de zapallo",
+          "alimento": "Seeds, pumpkin and squash seed kernels, dried",
+          "fdc_id": 170556,
+          "gramos": 8
+        }
+      ]
+    },
+    {
+      "id": "m14",
+      "nombre": "Mousse de aguacate y cacao",
+      "comida": "Merienda",
+      "min": 5,
+      "sintomas": [
+        "Pesadez"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_lacteos",
+        "sin_gluten"
+      ],
+      "kcal": 225,
+      "prot": 4,
+      "carb": 25,
+      "gras": 16,
+      "fibra": 10,
+      "porque": "Postre cremoso sin lácteos ni azúcar refinada.",
+      "ing": [
+        "½ aguacate",
+        "½ banano maduro",
+        "1 cda de cacao puro"
+      ],
+      "pasos": [
+        "Licúa todo hasta que quede cremoso.",
+        "Refrigera 15 minutos."
+      ],
+      "estimado_ia": {
+        "kcal": 210,
+        "prot": 4,
+        "carb": 26,
+        "gras": 12,
+        "fibra": 9
+      },
+      "ingredientes_g": [
+        {
+          "texto": "½ aguacate",
+          "alimento": "Avocados, raw, all commercial varieties",
+          "fdc_id": 171705,
+          "gramos": 100
+        },
+        {
+          "texto": "½ banano maduro",
+          "alimento": "Bananas, raw",
+          "fdc_id": 173944,
+          "gramos": 59
+        },
+        {
+          "texto": "1 cda de cacao puro",
+          "alimento": "Cocoa, dry powder, unsweetened",
+          "fdc_id": 169593,
+          "gramos": 5.4
+        }
+      ]
+    },
+    {
+      "id": "m15",
+      "nombre": "Pera con queso fresco y canela",
+      "comida": "Merienda",
+      "min": 5,
+      "sintomas": [
+        "Hinchazón"
+      ],
+      "tags": [
+        "express",
+        "vegetariano",
+        "sin_gluten"
+      ],
+      "kcal": 185,
+      "prot": 6,
+      "carb": 28,
+      "gras": 7,
+      "fibra": 6,
+      "porque": "Combinación suave de fruta y lácteo fresco.",
+      "ing": [
+        "1 pera",
+        "2 cdas de queso fresco",
+        "1 pizca de canela"
+      ],
+      "pasos": [
+        "Corta la pera en gajos.",
+        "Sirve con el queso y la canela."
+      ],
+      "estimado_ia": {
+        "kcal": 170,
+        "prot": 6,
+        "carb": 28,
+        "gras": 4,
+        "fibra": 6
+      },
+      "ingredientes_g": [
+        {
+          "texto": "1 pera",
+          "alimento": "Pears, raw",
+          "fdc_id": 169118,
+          "gramos": 178
+        },
+        {
+          "texto": "2 cdas de queso fresco",
+          "alimento": "Cheese, fresh, queso fresco",
+          "fdc_id": 172223,
+          "gramos": 28
+        },
+        {
+          "texto": "1 pizca de canela",
+          "alimento": "Spices, cinnamon, ground",
+          "fdc_id": 171320,
+          "gramos": 0.4
+        }
+      ]
+    }
+  ],
+  "fuente_nutricion": "USDA FoodData Central, SR Legacy (abril 2018) — https://fdc.nal.usda.gov"
 }
