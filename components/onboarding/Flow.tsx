@@ -477,6 +477,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                     </Opcion>
                   ))}
                 </div>
+                <p className="rounded-[var(--radius-card)] bg-[var(--chip-bg)] p-4 text-sm leading-snug"><b>¿Por qué lo preguntamos?</b> Cuenta caminatas, bicicleta, gimnasio o baile. Con esto calculamos cuánta energía gasta tu cuerpo en un día.</p>
               </div>
             )}
 
@@ -495,6 +496,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                     </Opcion>
                   ))}
                 </div>
+                <p className="rounded-[var(--radius-card)] bg-[var(--chip-bg)] p-4 text-sm leading-snug"><b>Siempre con calma.</b> Si buscas cambiar de peso, lo hacemos de forma gradual (hasta un 10%) y nunca por debajo de un mínimo seguro.</p>
               </div>
             )}
 
@@ -576,6 +578,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                     </Opcion>
                   ))}
                 </div>
+                <p className="rounded-[var(--radius-card)] bg-[var(--chip-bg)] p-4 text-sm leading-snug"><b>Puedes elegir varios.</b> Cada síntoma cambia las recetas que te sugerimos: elegimos comidas suaves y fáciles de digerir.</p>
               </div>
             )}
 
@@ -668,7 +671,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                     >
                       <FotoReceta receta={it.receta} className="h-28" conFoto={fotos.includes(it.receta.id)} />
                       <div className="flex flex-1 flex-col p-3">
-                        <h2 className="line-clamp-2 min-h-11 text-base font-bold leading-snug">{it.receta.nombre}</h2>
+                        <h2 className="min-h-11 text-base font-bold leading-snug">{it.receta.nombre}</h2>
                         <p className="mt-1 text-sm text-[var(--text-secondary)]">
                           {it.receta.min} min · {porcionTexto(it.porcion)}
                         </p>

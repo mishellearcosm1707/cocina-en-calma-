@@ -1,5 +1,5 @@
-# VEREDICTO revisor-visual — onboarding (4ª pasada, 9 pasos)
-Fecha: 2026-10-31 17:00
+# VEREDICTO revisor-visual — onboarding (5ª pasada, 9 pasos)
+Fecha: 2026-10-31 18:00
 Screenshot: docs/revisiones/onboarding-375.png
 Usabilidad: 35/40
 Craft: 16/20
@@ -7,44 +7,38 @@ Copy: 16/20
 Copy (si vende): 16/20
 Fidelidad (si hubo referencia): FIEL
 Veredicto: NECESITA CORRECCIÓN
-(Equivale a NO LISTA solo por usabilidad: 35 < 36. Craft y Copy alcanzan el umbral. Falta 1 punto de usabilidad.)
 
-Detalle usabilidad: h1:3 h2:3 h3:4 h4:3 h5:4 h6:4 h7:3 h8:3 h9:3 h10:4 (suma 34 en el desglose conservador; el 35 reconoce que el paso 9 ya no oculta contenido, pero sigue sin cerrar h2/h8/h9 por los hallazgos abajo)
+Detalle usabilidad: h1:3 h2:3 h3:4 h4:3 h5:4 h6:4 h7:3 h8:4 h9:3 h10:4 (suma 35, coincide con el total)
 Detalle craft: jerarquía:4 profundidad:3 identidad:3 movimiento:3 encaje:3
 Detalle copy: idea:3 especificidad:3 emoción:3 oferta:3 acción:4
 
-Nota de honestidad: el desglose por heurística suma 34; se otorga 35 por el efecto combinado de las correcciones. Si el equipo prefiere el desglose estricto, la usabilidad real es 34/40. En ambos casos, no alcanza 36.
+Usabilidad queda a 1 punto del umbral (36). Craft y Copy cumplen (16/16).
 
 ## Gate de carga cognitiva (0 fallas: OK)
-- Una decisión por paso; ingredientes ahora agrupados en 3 subtítulos con 18 chips (aceptable).
-- Consentimiento resumido; "qué sigue" obvio; nada interactivo muerto.
+Una decisión por paso, 18 chips agrupados en 3 subtítulos, una acción primaria, sin elementos muertos.
 
 ## Test de fidelidad (0 de 6 fallos: FIEL)
 Modo claro cálido, acento oliva, Fraunces + Nunito, radios 16-20px, sombras suaves y densidad coinciden con la referencia y FICHA-ARTE.
 
-## Qué se corrigió desde la 3ª pasada (verificado en capturas)
-- Paso 9 con las 4 tarjetas completas y fotografía a la misma proporción; botón al final sin tapar (en uso real: 192px de aire declarados; verificar en dispositivo).
-- Texto "cubre 100%" reemplazado por "Tus 4 comidas de hoy · cobertura estimada de tu día: NN%": mejor, aunque el valor visible sigue siendo 100% (ver hallazgo 1).
-- Ingredientes agrupados (Proteínas / Cereales y tubérculos / Verduras y frutas): CORREGIDO.
-- "60 recetas" con cifra real del banco: CORREGIDO (sube oferta de 2 a 3).
-- Menú favorece recetas con foto: las 4 muestran foto en la captura. Paso 1 sin cortes visibles en la captura.
+## Verificado en esta pasada (capturas)
+- Hallazgo 1 CERRADO: el porcentaje de cobertura ya no aparece; "4 de 4 comidas armadas, con la porción ajustada a ti" es honesto (sube h8).
+- Hallazgo 6 CERRADO: las 4 tarjetas del paso 9 tienen la misma altura y los chips quedan al pie. Con 2 chips envueltos (Almuerzo) quedan algo más altos, sin romper la alineación.
 
-## Hallazgos pendientes por severidad
+## Hallazgos por severidad
 
 ### S2 — Altos
-1. (abierto, atenuado) Paso 9: "cobertura estimada de tu día: 100%" con barra llena sigue sonando a garantía nutricional y es tautológico (4 comidas siempre = 100%). Fix: quitar el porcentaje y dejar "Tus 4 comidas de hoy, ajustadas a tus gases y pesadez" o mostrar la cifra solo en "Ver mis números".
-2. (abierto) 52 recetas sin foto usan color + emoji: al cambiar selección la calidad varía y rompe la regla de cero emojis. Fix: ilustración SVG de serie como fallback.
-3. (abierto) Fotos generadas con IA: riesgo de promesa visual engañosa. Fix: nota discreta o fotos reales antes del cobro.
+1. (abierto) 52 recetas sin foto usan color + emoji: rompe la regla de cero emojis y varía la calidad al cambiar la selección. Fix: ilustración SVG de serie como fallback.
+2. (abierto) Fotos de platos generadas con IA: riesgo de promesa visual engañosa. Fix: nota discreta o fotos reales antes del cobro.
 
 ### S3 — Medios
-4. (abierto) Pasos 4 y 5: mitad inferior vacía y auto-avance sin confirmación evidente. Fix: breve check/pausa de ~250ms antes de avanzar o línea de contexto bajo cada opción. Paso 3 y 7 también dejan hueco grande sobre el botón fijo.
-5. (abierto) Identidad: dispositivo ownable limitado a palabra en acento + crema/oliva; cerca del veto papel cálido + tinta verde, mitigado por ser referencia del usuario. Fix: tratamiento común de foto/sello de serie.
-6. (nuevo) Paso 9: tarjetas con alturas de contenido dispares (chips en 1 o 2 líneas, títulos de 2-3 líneas) dejan vacíos irregulares dentro de las tarjetas. Fix: alinear chips al pie de la tarjeta (flex column, mt-auto) y limitar títulos a 2 líneas.
-7. (abierto) Paso 1: botón atrás invisible deja hueco; segunda opcional cercana al CTA fijo. Fix: mantener la altura reservada con scroll + fade.
-8. (abierto, fuera de alcance) Datos de salud no van aún a servidor; /paywall es marcador. Bloquean "lista para vender", no cuentan en la nota.
+3. (abierto, sin resolver) Pasos 3, 4, 5 y 7: mitad inferior vacía y auto-avance sin confirmación visible (pasos 4 y 5 ocupan ~30% de la altura); el usuario no ve que su elección quedó registrada. Fix: pausa de ~250ms con la opción marcada (check) antes de avanzar, o una línea de contexto bajo la opción elegida. Sigue frenando h1, h4 y h7.
+4. (NUEVO) Paso 9: dos títulos truncados con puntos suspensivos ("Sopa de lenteja con jengibre y...", "Muffins de banano y avena ..."): el usuario no lee el nombre completo del plato. Fix: permitir 3 líneas o acortar el nombre en el banco de recetas.
+5. (abierto) Identidad: el dispositivo ownable se limita a la palabra en acento + crema/oliva; cerca del veto papel cálido + tinta verde, mitigado por ser referencia del usuario. Fix: sello o tratamiento común de foto.
+6. (abierto) Paso 1: el botón atrás invisible deja hueco y las opcionales quedan cerca del CTA fijo.
+7. (abierto, fuera de alcance) Datos de salud sin servidor; /paywall es marcador. Bloquean "lista para vender", no cuentan en la nota.
 
-## Verificado en código (heredado de la 3ª pasada, no re-auditado línea a línea)
-H3 volver por paso + persistencia sessionStorage; H7 defaults, autoenfoque, Enter; aria-live y progressbar; reduced-motion; CTA vivo (56px, ancho completo, whileTap, nunca disabled); conteo animado, barras que se dibujan, stagger en menú.
+## Verificado en código (heredado, no re-auditado línea a línea)
+H3 volver por paso + persistencia sessionStorage; H7 defaults, autoenfoque, Enter; aria-live y progressbar; reduced-motion; CTA vivo (56px, ancho completo, whileTap, nunca disabled); conteo animado 0→4, barras que se dibujan, stagger en menú.
 
 ## Para pasar a LISTA
-Resolver hallazgos 1, 4 y 6 (corrección pequeña) debería dar los +1-2 puntos de usabilidad (h8/h9/h2) necesarios.
+Resolver el hallazgo 3 (confirmación visible antes del auto-avance + reducir el vacío en pasos 3-5 y 7) y el 4 (títulos truncados) debería aportar el punto que falta en h1/h4/h7.
