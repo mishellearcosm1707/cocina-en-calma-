@@ -7,7 +7,7 @@
 // "enviado" es el mismo exista o no el correo.
 
 import { Logo } from '@/components/Logo';
-import { supabaseNavegador } from '@/lib/supabase/navegador';
+import { supabaseEnlace } from '@/lib/supabase/navegador';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, MotionConfig } from 'motion/react';
@@ -17,7 +17,7 @@ import { Sello } from '@/components/landing/Sello';
 const EASE = [0.16, 1, 0.3, 1] as const;
 const ENTRA = { oculto: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } };
 const ESPERA = 60;
-const CORREO_OK = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const CORREO_OK = /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/;
 
 type Estado = 'inicio' | 'enviando' | 'enviado';
 
@@ -42,9 +42,9 @@ export function Login() {
     }
     setError('');
     setEstado('enviando');
-    const { error: falla } = await supabaseNavegador().auth.signInWithOtp({
+    const { error: falla } = await supabaseEnlace().auth.signInWithOtp({
       email: correo.trim(),
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+      options: { emailRedirectTo: `${window.location.origin}/auth/entrar` },
     });
     if (falla) {
       setEstado('inicio');
@@ -212,9 +212,9 @@ export function Login() {
                   onClick={() => {
                     setEspera(ESPERA);
                     setReenviado(true);
-                    void supabaseNavegador().auth.signInWithOtp({
+                    void supabaseEnlace().auth.signInWithOtp({
                       email: correo.trim(),
-                      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+                      options: { emailRedirectTo: `${window.location.origin}/auth/entrar` },
                     });
                   }}
                   className="min-h-12 self-start rounded-[var(--radius-button)] border border-[var(--accent)] px-5 text-base font-semibold text-[var(--accent)] disabled:border-[var(--surface-2)] disabled:text-[var(--text-secondary)]"
