@@ -1,4 +1,4 @@
-import { COMIDAS, RECETAS, type Comida, type Receta, type Sintoma } from './recetas';
+import { COMIDAS, esExpress, esSugerible, opcionPrep, RECETAS, type Comida, type Receta, type Sintoma } from './recetas';
 
 // Método aprobado por la nutricionista (2026-10-31) — fuentes y detalle en datos/metodo-y-fuentes.md:
 //  · Energía: Mifflin-St Jeor (1990) × factor de actividad. Solo "bajar" resta 10%; piso de seguridad 1200 kcal (mujer) / 1500 kcal (hombre).
@@ -82,7 +82,7 @@ export interface MenuDia {
 
 export const REPARTO: Record<Comida, number> = { Desayuno: 0.25, Almuerzo: 0.33, Merienda: 0.12, Cena: 0.3 };
 
-/** Mientras solo 8 de 60 recetas tengan foto real, el primer menú usa solo recetas con foto (bajar a 1 cuando haya más). */
+/** Mientras solo 8 recetas tengan foto real, el primer menú usa solo recetas con foto (bajar a 1 cuando haya más). */
 const BONO_FOTO = 20;
 
 /** Etiqueta positiva de identidad según el ritmo de cocina (labeling effect: el pago confirma una identidad ya entregada). */
@@ -94,9 +94,9 @@ export function etiquetaPerfil(ritmo: Ritmo | null): string {
 
 /** El ritmo de cocina empuja recetas: express → ≤15 min · diaria → ≤30 min · meal prep → las que se congelan. */
 function bonoRitmo(r: Receta, ritmo: Ritmo | null): number {
-  if (ritmo === 'express') return r.min <= 15 ? 2 : 0;
+  if (ritmo === 'express') return esExpress(r) ? 2 : 0;
   if (ritmo === 'diaria') return r.min <= 30 ? 1 : 0;
-  if (ritmo === 'prep') return r.congelable_dias ? 2 : 0;
+  if (ritmo === 'prep') return opcionPrep(r) ? 2 : 0;
   return 0;
 }
 
@@ -110,13 +110,13 @@ export function generarMenu(
 ): MenuDia {
   const elegidos = INGREDIENTES_RAPIDOS.filter((i) => ingredientes.includes(i.etiqueta));
   const items: ItemMenu[] = COMIDAS.map((comida) => {
-    const candidatas = RECETAS.filter((r) => r.comida === comida).map((r) => {
+    const candidatas = RECETAS.filter((r) => r.comida === comida && esSugerible(r)).map((r) => {
       const texto = r.ing.join(' ');
       const coincidencias = elegidos.filter((i) => i.clave.test(texto)).map((i) => i.etiqueta);
       const puntaje =
         r.sintomas.filter((s) => sintomas.includes(s)).length * 2 +
         coincidencias.length * 3 +
-        (r.min <= 15 ? 0.5 : 0) +
+        (esExpress(r) ? 0.5 : 0) +
         (conFoto.includes(r.id) ? BONO_FOTO : 0) + // el primer menú se ve completo: gana la receta que ya tiene foto
         bonoRitmo(r, ritmo);
       return { r, coincidencias, puntaje };

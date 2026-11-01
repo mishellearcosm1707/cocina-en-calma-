@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
 import type { Actividad, Objetivo, Ritmo, Sexo } from './calculos';
-import { COMIDAS, RECETAS, type Comida, type Receta, type Sintoma } from './recetas';
+import { COMIDAS, esExpress, esSugerible, opcionPrep, RECETAS, type Comida, type Receta, type Sintoma } from './recetas';
 
 // Estado de la app interna. Vive SOLO en el celular (localStorage) hasta que se conecte la base de datos en la etapa de
 // servicios externos; la primera vez nace del recorrido de inicio (sessionStorage) o, si no existe, de datos de ejemplo
@@ -93,11 +93,11 @@ export function contarLlenos(plan: Record<string, string> | undefined): number {
 const CON_FOTO = ['d01', 'd02', 'a01', 'a02', 'c01', 'c07', 'm01', 'm02'];
 
 export function sugerir(perfil: Perfil, comida: Comida, dia: number, usados: Set<string>, conFoto = false): Receta {
-  const pool = RECETAS.filter((r) => r.comida === comida)
+  const pool = RECETAS.filter((r) => r.comida === comida && esSugerible(r))
     .map((r) => {
       const sint = r.sintomas.filter((s) => perfil.sintomas.includes(s)).length * 2;
       const ritmo =
-        perfil.ritmo === 'express' ? (r.min <= 15 ? 2 : 0) : perfil.ritmo === 'prep' ? (r.congelable_dias ? 2 : 0) : 0;
+        perfil.ritmo === 'express' ? (esExpress(r) ? 2 : 0) : perfil.ritmo === 'prep' ? (opcionPrep(r) ? 2 : 0) : 0;
       return { r, p: sint + ritmo + (usados.has(r.id) ? -3 : 0) + (conFoto && CON_FOTO.includes(r.id) ? 10 : 0) };
     })
     .sort((a, b) => b.p - a.p || a.r.id.localeCompare(b.r.id));
@@ -313,37 +313,40 @@ export interface TandaPrep {
   guardar: 'nevera' | 'congelador';
 }
 
-/** Recetas de la semana que se pueden cocinar de una vez y guardar, de la que más tarda a la que menos. */
+/** Recetas que la semana repite y se pueden cocinar de una vez (meal prep), de la que más tarda a la que menos. */
 export function tandasPrep(plan: Record<string, string> | undefined): TandaPrep[] {
   const usos = new Map<string, { receta: Receta; dias: number[] }>();
   for (const [k, r] of resolverSemana(plan)) {
-    if (!r.congelable_dias) continue;
+    if (!opcionPrep(r)) continue;
     const dia = Number(k.split('-')[0]);
     const u = usos.get(r.id) ?? { receta: r, dias: [] };
     u.dias.push(dia);
     usos.set(r.id, u);
   }
   return [...usos.values()]
+    .filter((u) => u.dias.length >= 2)
     .map((u) => {
       const dias = [...u.dias].sort((a, b) => a - b);
-      return { ...u, dias, guardar: dias[dias.length - 1] <= 3 ? ('nevera' as const) : ('congelador' as const) };
+      const alcanza = dias[dias.length - 1] - dias[0] + 1 <= (u.receta.nevera_dias ?? 0);
+      const guardar: TandaPrep['guardar'] = alcanza || !u.receta.congelable_dias ? 'nevera' : 'congelador';
+      return { ...u, dias, guardar };
     })
     .sort((a, b) => b.receta.min - a.receta.min || b.dias.length - a.dias.length)
     .slice(0, 6);
 }
 
-/** Arma una semana pensada para cocinar una vez: cada receta guardable se repite en dos días. */
+/** Arma una semana pensada para cocinar una vez: cada receta de meal prep se repite en más de un día. */
 export function armarPrep(perfil: Perfil, plan: Record<string, string>): Record<string, string> {
   const nuevo = { ...plan };
   const puntos = (r: Receta) => r.sintomas.filter((s) => perfil.sintomas.includes(s)).length;
   const reparto: [Comida, number][] = [['Almuerzo', 2], ['Cena', 2], ['Desayuno', 1]];
   for (const [c, n] of reparto) {
-    RECETAS.filter((r) => r.comida === c && r.congelable_dias)
-      .sort((a, b) => puntos(b) - puntos(a) || a.id.localeCompare(b.id))
+    RECETAS.filter((r) => r.comida === c && esSugerible(r) && opcionPrep(r))
+      .sort((a, b) => puntos(b) - puntos(a) || (b.porciones ?? 1) - (a.porciones ?? 1) || a.id.localeCompare(b.id))
       .slice(0, n)
       .forEach((r, i) => {
         nuevo[clave(i, c)] = r.id;
-        nuevo[clave(i + 3, c)] = r.id;
+        nuevo[clave(i + (opcionPrep(r)?.guardar === 'nevera' ? 2 : 3), c)] = r.id;
       });
   }
   return completarSemana(perfil, nuevo);

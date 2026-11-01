@@ -3,6 +3,7 @@
 // Landing de Cocina en Calma — compuesta desde el kit (components/landing/) con el copy de
 // docs/copy/landing.md (trazado a FICHA-AVATAR.md). Modelo 2: el CTA lleva a /onboarding.
 
+import { TOTAL_RECETAS } from '@/lib/oferta';
 import { CalendarClock, ChefHat, Moon, Repeat, Scale, Shirt } from 'lucide-react';
 import { Hero } from '@/components/landing/Hero';
 import { Problema } from '@/components/landing/Problema';
@@ -102,7 +103,7 @@ export default function Landing() {
           features: [
             'Menú de cada día según tu síntoma y tu despensa',
             'Tus requerimientos del día, calculados con solo 6 datos',
-            '60 recetas avaladas por una nutricionista, con valores INCAP y USDA',
+            `${TOTAL_RECETAS} recetas avaladas por una nutricionista, con ingredientes de casa`,
             'Meal prep guiado de una tarde y lista de compras',
             'Chequeo diario que ajusta tu menú de mañana',
           ],

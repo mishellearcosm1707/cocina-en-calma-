@@ -3,8 +3,8 @@
 import { useEffect, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
-import { Clock, Snowflake, X, Zap } from 'lucide-react';
-import type { Receta } from '@/lib/recetas';
+import { Clock, Refrigerator, Snowflake, Users, X, Zap } from 'lucide-react';
+import { esExpress, type Receta } from '@/lib/recetas';
 import { Foto } from './comunes';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -80,9 +80,14 @@ export function HojaReceta({
               </div>
               <p className="mt-4 flex flex-wrap gap-2">
                 <span className="flex items-center gap-1 rounded-full bg-[var(--surface-2)] px-3 py-1 text-sm font-semibold">
-                  <Clock size={16} aria-hidden="true" /> {receta.min} min
+                  <Clock size={16} aria-hidden="true" /> {receta.tiempo_texto ?? `${receta.min} min`}
                 </span>
-                {receta.min <= 15 && (
+                {(receta.porciones ?? 1) > 1 && (
+                  <span className="flex items-center gap-1 rounded-full bg-[var(--surface-2)] px-3 py-1 text-sm font-semibold">
+                    <Users size={16} aria-hidden="true" /> Rinde {receta.porciones}
+                  </span>
+                )}
+                {esExpress(receta) && (
                   <span className="flex items-center gap-1 rounded-full bg-[var(--mustard-soft)] px-3 py-1 text-sm font-semibold text-[var(--mustard-ink)]">
                     <Zap size={16} aria-hidden="true" /> Express
                   </span>
@@ -90,6 +95,10 @@ export function HojaReceta({
                 {receta.congelable_dias ? (
                   <span className="flex items-center gap-1 rounded-full bg-[var(--sky)] px-3 py-1 text-sm font-semibold text-[var(--sky-ink)]">
                     <Snowflake size={16} aria-hidden="true" /> Se guarda {receta.congelable_dias} días
+                  </span>
+                ) : receta.nevera_dias ? (
+                  <span className="flex items-center gap-1 rounded-full bg-[var(--mustard-soft)] px-3 py-1 text-sm font-semibold text-[var(--mustard-ink)]">
+                    <Refrigerator size={16} aria-hidden="true" /> Nevera {receta.nevera_dias} días
                   </span>
                 ) : null}
                 {receta.sintomas.map((s) => (
@@ -143,7 +152,7 @@ export function HojaReceta({
                   ))}
                 </dl>
                 <p className="pb-3 text-sm text-[var(--text-secondary)]">
-                  Valores estimados con las tablas INCAP y USDA. Orientativos: no reemplazan a tu profesional de la nutrición.
+                  {receta.fuente === 'LIVIANA' ? 'Valores por porción del recetario.' : 'Valores estimados con las tablas INCAP y USDA.'} Orientativos: no reemplazan a tu profesional de la nutrición.
                 </p>
               </details>
               {accion && <div className="mt-6">{accion}</div>}

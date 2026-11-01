@@ -6,6 +6,7 @@
 // objeción "es caro" → precio por día (el ancla con la tarifa de una consulta se añade cuando la dueña aporte la cifra real); objeción de confianza → garantía y pago por Hotmart).
 // El cobro real se conecta en la etapa de servicios externos: hasta entonces el botón NO simula un pago.
 
+import { TOTAL_RECETAS } from '@/lib/oferta';
 import { useEffect, useState } from 'react';
 import { animate, AnimatePresence, motion, MotionConfig, useReducedMotion } from 'motion/react';
 import { Apple, BadgeCheck, Check, ChevronDown, Coffee, Leaf, Loader2, Lock, Moon, Soup, X, type LucideIcon } from 'lucide-react';
@@ -88,7 +89,7 @@ const PREGUNTAS = [
 const BENEFICIOS = [
   'Tus 7 días con 4 comidas, ajustados a tu síntoma',
   'Preparación de una sola tarde y lista de compras',
-  '60 recetas antiinflamatorias con ingredientes de casa',
+  `${TOTAL_RECETAS} recetas con ingredientes de casa`,
   'Chequeo diario que ajusta tu menú de mañana',
 ];
 

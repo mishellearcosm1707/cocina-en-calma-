@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion, MotionConfig } from 'motion/react';
 import { Award, CalendarCheck, Check, ChefHat, FileText, Flame, Frown, HeartPulse, Leaf, Lock, LogOut, Meh, ShieldCheck, Smile, Sparkles, Trash2, type LucideIcon } from 'lucide-react';
-import { calcularRequerimientos, etiquetaPerfil, type Actividad, type Objetivo } from '@/lib/calculos';
+import { calcularRequerimientos, type Actividad, type Objetivo } from '@/lib/calculos';
 import { actualizar, aIso, borrarTodo, contarLlenos, DIAS_CORTOS, lunesDe, sumarDias, tandasPrep, TOTAL_ESPACIOS, useApp, type EstadoApp, type Nivel, type Perfil } from '@/lib/semana';
 import { Chip, Esqueleto } from './comunes';
 
@@ -107,9 +107,6 @@ function Contenido({ perfil, app }: { perfil: Perfil; app: EstadoApp }) {
           <div className="min-w-0">
             <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent-on-dark)]">Tu perfil</p>
             <h1 className="truncate text-2xl font-bold leading-tight [font-family:var(--font-display)]">{perfil.nombre || 'Tu espacio'}</h1>
-            <p className="mt-1 inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-0.5 text-sm font-semibold">
-              <ChefHat size={14} aria-hidden="true" /> {etiquetaPerfil(perfil.ritmo)}
-            </p>
           </div>
         </div>
         <dl className="relative mt-5 grid grid-cols-3 gap-2 text-center">

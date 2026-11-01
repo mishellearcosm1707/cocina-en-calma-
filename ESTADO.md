@@ -146,3 +146,11 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Recetas: filtros en 3 grupos (Comida · Tu tiempo en la cocina · Te ayudan con).
 - Yo: encabezado animado, sensaciones de la semana, logros, números con color.
 - ⏸️ CHECKPOINT: esperando feedback del usuario; revisor-visual no corrido en estas pantallas. Siguiente: servicios externos con su OK.
+
+## Banco ampliado a 300 recetas + meal prep al elegir (2026-10-31)
+- Se importaron 240 recetas de los recetarios LIVIANA (CSV de Descargas del usuario: Canva desayunos/almuerzos, Cenas, Meriendas, Air Fryer, En familia, Snacks, Postres, Aderezos) a datos/recetas.json v0.4. Script reutilizable: guardado solo en scratchpad (importar.js); ids "x…". Campos nuevos: categoria, porciones, nevera_dias, tiempo_texto, fuente.
+- ⚠️ Síntomas y tiempos de guardado de las 240 nuevas son REGLAS AUTOMÁTICAS (32 sin síntoma): pendientes de revisión de la nutricionista. Valores nutricionales de las nuevas = los del recetario (no INCAP/USDA); las 60 de antes siguen con INCAP/USDA.
+- Aderezos: se ven en Recetas pero no se ponen en la semana; postres no se sugieren solos.
+- Meal prep al elegir receta (Semana y Recetas): componente PlanificarPrep recomienda cuántas comidas y qué días según porciones y días de nevera/congelador; el tab Prep lista lo que se repite.
+- Yo: quitada la etiqueta "Cocinera de…". Textos de ventas/planes dicen 300 recetas (lib/oferta.ts, mantener igual al banco).
+- ⏸️ CHECKPOINT: esperando feedback; revisor-visual no corrido; fotos solo 8 recetas.

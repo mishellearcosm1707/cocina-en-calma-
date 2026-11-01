@@ -110,11 +110,10 @@ export function Prep() {
             <ChefHat size={26} color="var(--mustard-ink)" aria-hidden="true" />
           </span>
           <h2 className="mt-3 text-xl font-bold [font-family:var(--font-display)]">
-            {tandas.length === 0 ? 'Tu semana todavía no tiene recetas para guardar' : 'Pocas recetas para cocinar juntas'}
+            {tandas.length === 0 ? 'Aún no planeaste ninguna receta para varios días' : 'Pocas recetas para cocinar una vez'}
           </h2>
           <p className="mt-1 text-base text-[var(--text-secondary)]">
-            El meal prep funciona con recetas que aguantan en la nevera o el congelador. Te armo una semana con 5 de ellas, cada una en dos
-            días: cocinas una vez y comes dos.
+            El meal prep es cocinar una receta una sola vez y comerla en varios días. También puedes hacerlo tú: al elegir una receta en Semana o en Recetas, la app te recomienda en qué días repetirla. O deja que yo te arme una semana con 5 recetas que se guardan bien, cada una en dos días.
           </p>
           <button
             type="button"

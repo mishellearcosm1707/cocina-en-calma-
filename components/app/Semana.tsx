@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { AnimatePresence, motion, MotionConfig } from 'motion/react';
 import { ArrowRight, Check, ChefHat, ChevronLeft, ChevronRight, Plus, Sparkles, X } from 'lucide-react';
-import { COMIDAS, RECETAS, type Comida, type Receta } from '@/lib/recetas';
+import { COMIDAS, esComida, opcionPrep, RECETAS, type Comida, type Receta } from '@/lib/recetas';
 import {
   actualizar,
   aIso,
@@ -24,6 +24,7 @@ import {
 } from '@/lib/semana';
 import { Cabecera, Chip, Conteo, Esqueleto, Foto } from './comunes';
 import { HojaReceta } from './HojaReceta';
+import { PlanificarPrep } from './PlanificarPrep';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -33,12 +34,14 @@ export function Semana() {
   const [diaElegido, setDia] = useState<number | null>(null);
   const [ver, setVer] = useState<Receta | null>(null);
   const [elegir, setElegir] = useState<{ dia: number; comida: Comida } | null>(null);
+  const [paso, setPaso] = useState<Receta | null>(null);
   const [soloMios, setSoloMios] = useState(true);
   const [texto, setTexto] = useState('');
   const [deshacer, setDeshacer] = useState<{ semana: string; plan: Record<string, string> } | null>(null);
   const cerrarVer = useCallback(() => setVer(null), []);
   const cerrarElegir = useCallback(() => {
     setElegir(null);
+    setPaso(null);
     setTexto('');
   }, []);
 
@@ -78,6 +81,15 @@ export function Semana() {
     cerrarElegir();
   }
 
+  function ponerVarios(dias: number[], comida: Comida, r: Receta) {
+    actualizar((e) => {
+      const actual = { ...(e.semanas[semanaKey] ?? {}) };
+      for (const d of dias) actual[clave(d, comida)] = r.id;
+      return { ...e, semanas: { ...e.semanas, [semanaKey]: actual } };
+    });
+    cerrarElegir();
+  }
+
   function completar() {
     setDeshacer({ semana: semanaKey, plan: { ...(plan ?? {}) } });
     actualizar((e) => ({
@@ -96,6 +108,7 @@ export function Semana() {
   const candidatas = elegir
     ? RECETAS.filter(
         (r) =>
+          esComida(r) &&
           r.comida === elegir.comida &&
           (!soloMios || r.sintomas.some((s) => app.perfil.sintomas.includes(s))) &&
           (!texto.trim() || r.nombre.toLowerCase().includes(texto.trim().toLowerCase())),
@@ -329,56 +342,85 @@ export function Semana() {
                   <X size={22} aria-hidden="true" />
                 </button>
               </div>
-              <div className="flex flex-wrap items-center gap-2 px-5 pt-2">
-                <input
-                  type="search"
-                  value={texto}
-                  onChange={(e) => setTexto(e.target.value)}
-                  placeholder="Buscar"
-                  aria-label="Buscar receta"
-                  className="h-12 min-w-0 flex-1 rounded-[var(--radius-button)] border border-[var(--surface-2)] bg-[var(--surface)] px-4 text-base outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
-                />
-                <Chip activo={soloMios} onClick={() => setSoloMios(!soloMios)}>
-                  Para mi síntoma
-                </Chip>
-              </div>
-              <ul className="mt-3 flex flex-col gap-2 overflow-y-auto px-5 pb-8">
-                {candidatas.length === 0 && (
-                  <li className="rounded-[var(--radius-card)] bg-[var(--surface)] p-4 text-base text-[var(--text-secondary)]">
-                    Nada con eso. Quita el filtro &quot;Para mi síntoma&quot; o cambia la búsqueda.
-                  </li>
-                )}
-                {candidatas.map((r) => {
-                  const elegida = plan?.[clave(elegir.dia, elegir.comida)] === r.id;
-                  return (
-                    <li key={r.id}>
+              {paso ? (
+                <div className="overflow-y-auto px-5 pb-8 pt-3">
+                  <div className="flex items-center gap-3">
+                    <Foto receta={paso} className="size-14" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-base font-bold leading-snug">{paso.nombre}</p>
                       <button
                         type="button"
-                        onClick={() => poner(elegir.dia, elegir.comida, r)}
-                        className="flex min-h-16 w-full items-center gap-3 rounded-[var(--radius-button)] bg-[var(--surface)] p-2 text-left shadow-[var(--shadow-1)] [touch-action:manipulation]"
+                        onClick={() => setPaso(null)}
+                        className="min-h-11 text-sm font-semibold text-[var(--accent)] underline underline-offset-4"
                       >
-                        <Foto receta={r} className="size-14" />
-                        <span className="min-w-0 flex-1">
-                          <span className="block text-base font-semibold leading-snug">{r.nombre}</span>
-                          <span className="block text-sm text-[var(--text-secondary)]">{r.min} min</span>
-                        </span>
-                        {elegida && <Check size={20} color="var(--accent)" aria-label="Elegida" />}
+                        Elegir otra
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mt-2">
+                    <PlanificarPrep
+                      receta={paso}
+                      diaBase={elegir.dia}
+                      soloTexto={`Solo el ${DIAS[elegir.dia].toLowerCase()}`}
+                      ocupados={new Set(DIAS.map((_, d) => d).filter((d) => d !== elegir.dia && plan?.[clave(d, elegir.comida)]))}
+                      onElegir={(dias) => (dias.length > 1 ? ponerVarios(dias, elegir.comida, paso) : poner(elegir.dia, elegir.comida, paso))}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <>
+                <div className="flex flex-wrap items-center gap-2 px-5 pt-2">
+                  <input
+                    type="search"
+                    value={texto}
+                    onChange={(e) => setTexto(e.target.value)}
+                    placeholder="Buscar"
+                    aria-label="Buscar receta"
+                    className="h-12 min-w-0 flex-1 rounded-[var(--radius-button)] border border-[var(--surface-2)] bg-[var(--surface)] px-4 text-base outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+                  />
+                  <Chip activo={soloMios} onClick={() => setSoloMios(!soloMios)}>
+                    Para mi síntoma
+                  </Chip>
+                </div>
+                <ul className="mt-3 flex flex-col gap-2 overflow-y-auto px-5 pb-8">
+                  {candidatas.length === 0 && (
+                    <li className="rounded-[var(--radius-card)] bg-[var(--surface)] p-4 text-base text-[var(--text-secondary)]">
+                      Nada con eso. Quita el filtro &quot;Para mi síntoma&quot; o cambia la búsqueda.
+                    </li>
+                  )}
+                  {candidatas.map((r) => {
+                    const elegida = plan?.[clave(elegir.dia, elegir.comida)] === r.id;
+                    return (
+                      <li key={r.id}>
+                        <button
+                          type="button"
+                          onClick={() => (opcionPrep(r) ? setPaso(r) : poner(elegir.dia, elegir.comida, r))}
+                          className="flex min-h-16 w-full items-center gap-3 rounded-[var(--radius-button)] bg-[var(--surface)] p-2 text-left shadow-[var(--shadow-1)] [touch-action:manipulation]"
+                        >
+                          <Foto receta={r} className="size-14" />
+                          <span className="min-w-0 flex-1">
+                            <span className="block text-base font-semibold leading-snug">{r.nombre}</span>
+                            <span className="block text-sm text-[var(--text-secondary)]">{r.min} min</span>
+                          </span>
+                          {elegida && <Check size={20} color="var(--accent)" aria-label="Elegida" />}
+                        </button>
+                      </li>
+                    );
+                  })}
+                  {plan?.[clave(elegir.dia, elegir.comida)] && (
+                    <li>
+                      <button
+                        type="button"
+                        onClick={() => poner(elegir.dia, elegir.comida, null)}
+                        className="min-h-12 w-full text-base font-semibold text-[var(--text-secondary)] underline underline-offset-4"
+                      >
+                        Quitar de mi semana
                       </button>
                     </li>
-                  );
-                })}
-                {plan?.[clave(elegir.dia, elegir.comida)] && (
-                  <li>
-                    <button
-                      type="button"
-                      onClick={() => poner(elegir.dia, elegir.comida, null)}
-                      className="min-h-12 w-full text-base font-semibold text-[var(--text-secondary)] underline underline-offset-4"
-                    >
-                      Quitar de mi semana
-                    </button>
-                  </li>
-                )}
-              </ul>
+                  )}
+                </ul>
+                </>
+              )}
             </motion.section>
           </>
         )}

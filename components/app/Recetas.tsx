@@ -1,19 +1,21 @@
 'use client';
 
 import { useCallback, useMemo, useState, type ReactNode } from 'react';
-import { Check, Plus, Search, Snowflake, Zap } from 'lucide-react';
-import { COMIDAS, RECETAS, type Comida, type Receta, type Sintoma } from '@/lib/recetas';
+import { Check, Search, Snowflake, Zap } from 'lucide-react';
+import { CATEGORIAS, categoriaDe, COMIDAS, esComida, esExpress, opcionPrep, RECETAS, type Categoria, type Comida, type Receta, type Sintoma } from '@/lib/recetas';
 import { actualizar, aIso, clave, indiceDia, lunesDe, useApp } from '@/lib/semana';
 import { Cabecera, Chip, Esqueleto, Foto, useFotos } from './comunes';
 import { HojaReceta } from './HojaReceta';
+import { PlanificarPrep } from './PlanificarPrep';
 
+const PAGINA = 24;
 const SINTOMAS: Sintoma[] = ['Hinchazón', 'Gases', 'Pesadez', 'Digestión lenta'];
 
 function FiltroFila({ titulo, children }: { titulo: string; children: ReactNode }) {
   return (
     <div className="mt-3" role="group" aria-label={titulo}>
       <p className="px-5 text-sm font-semibold uppercase tracking-wider text-[var(--text-secondary)]">{titulo}</p>
-      <div className="mt-1 flex gap-2 overflow-x-auto px-5 pb-1">{children}</div>
+      <div className="mt-1 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">{children}</div>
     </div>
   );
 }
@@ -25,6 +27,8 @@ export function Recetas() {
   const [sintoma, setSintoma] = useState<Sintoma | null>(null);
   const [express, setExpress] = useState(false);
   const [congelable, setCongelable] = useState(false);
+  const [categoria, setCategoria] = useState<Categoria | null>(null);
+  const [pagina, setPagina] = useState<{ k: string; n: number }>({ k: '', n: PAGINA });
   const [texto, setTexto] = useState('');
   const [agregada, setAgregada] = useState('');
   const cerrar = useCallback(() => {
@@ -39,37 +43,44 @@ export function Recetas() {
       (r) =>
         (!comida || r.comida === comida) &&
         (!sintoma || r.sintomas.includes(sintoma)) &&
-        (!express || r.min <= 15) &&
-        (!congelable || Boolean(r.congelable_dias)) &&
+        (!categoria || categoriaDe(r) === categoria) &&
+        (!express || esExpress(r)) &&
+        (!congelable || Boolean(opcionPrep(r))) &&
         (!q || r.nombre.toLowerCase().includes(q) || r.ing.some((i) => i.toLowerCase().includes(q))),
     ).sort((a, b) => Number(fotos.includes(b.id)) - Number(fotos.includes(a.id)));
-  }, [comida, sintoma, express, congelable, texto, fotos]);
+  }, [comida, sintoma, express, congelable, categoria, texto, fotos]);
 
   if (!app) return <Esqueleto />;
-  const activos = [comida, sintoma, express, congelable, texto.trim()].filter(Boolean).length;
+  const activos = [comida, sintoma, express, congelable, categoria, texto.trim()].filter(Boolean).length;
+  const filtroK = [comida, sintoma, express, congelable, categoria, texto].join('|');
+  const visibles = pagina.k === filtroK ? pagina.n : PAGINA;
 
   function limpiar() {
     setComida(null);
     setSintoma(null);
     setExpress(false);
     setCongelable(false);
+    setCategoria(null);
     setTexto('');
   }
 
-  function agregarAHoy(r: Receta) {
-    const hoy = new Date();
-    const semana = aIso(lunesDe(hoy));
-    actualizar((e) => ({
-      ...e,
-      semanas: { ...e.semanas, [semana]: { ...(e.semanas[semana] ?? {}), [clave(indiceDia(hoy), r.comida)]: r.id } },
-    }));
+  const hoy = new Date();
+  const semanaKey = aIso(lunesDe(hoy));
+  const hoyIdx = indiceDia(hoy);
+
+  function planificar(r: Receta, dias: number[]) {
+    actualizar((e) => {
+      const actual = { ...(e.semanas[semanaKey] ?? {}) };
+      for (const d of dias) actual[clave(d, r.comida)] = r.id;
+      return { ...e, semanas: { ...e.semanas, [semanaKey]: actual } };
+    });
     setAgregada(r.id);
   }
 
   return (
     <>
       <Cabecera
-        etiqueta={`${RECETAS.length} recetas antiinflamatorias`}
+        etiqueta={`${RECETAS.length} recetas`}
         titulo={
           <>
             Elige lo que <span className="text-[var(--accent)]">se te antoje</span>
@@ -93,6 +104,16 @@ export function Recetas() {
         </div>
       </div>
 
+      <FiltroFila titulo="Tipo de receta">
+        <Chip activo={!categoria} onClick={() => setCategoria(null)}>
+          Todas
+        </Chip>
+        {CATEGORIAS.map((c) => (
+          <Chip key={c} activo={categoria === c} onClick={() => setCategoria(categoria === c ? null : c)}>
+            {c}
+          </Chip>
+        ))}
+      </FiltroFila>
       <FiltroFila titulo="Comida">
         <Chip activo={!comida} onClick={() => setComida(null)}>
           Todas
@@ -144,7 +165,7 @@ export function Recetas() {
         </div>
       ) : (
         <ul className="grid grid-cols-2 gap-3 px-5">
-          {lista.map((r) => (
+          {lista.slice(0, visibles).map((r) => (
             <li key={r.id}>
               <button
                 type="button"
@@ -156,13 +177,13 @@ export function Recetas() {
                   <span className="text-sm font-semibold uppercase tracking-wider text-[var(--text-secondary)]">{r.comida}</span>
                   <span className="mt-1 min-h-12 text-base font-bold leading-snug">{r.nombre}</span>
                   <span className="mt-auto flex flex-wrap items-center gap-2 pt-2 text-sm text-[var(--text-secondary)]">
-                    {r.min <= 15 ? null : <>{r.min} min</>}
-                    {r.min <= 15 && (
+                    {esExpress(r) ? null : <>{r.min} min</>}
+                    {esExpress(r) && (
                       <span className="inline-flex items-center gap-1 rounded-full bg-[var(--mustard-soft)] px-2 py-0.5 text-sm font-semibold text-[var(--mustard-ink)]">
                         <Zap size={14} aria-hidden="true" /> {r.min} min
                       </span>
                     )}
-                    {r.congelable_dias ? (
+                    {opcionPrep(r) ? (
                       <span className="inline-flex items-center gap-1 rounded-full bg-[var(--sky)] px-2 py-0.5 text-sm font-semibold text-[var(--sky-ink)]">
                         <Snowflake size={14} aria-hidden="true" /> Prep
                       </span>
@@ -174,28 +195,39 @@ export function Recetas() {
           ))}
         </ul>
       )}
+      {lista.length > visibles && (
+        <div className="px-5 pt-4">
+          <button
+            type="button"
+            onClick={() => setPagina({ k: filtroK, n: visibles + PAGINA })}
+            className="flex min-h-14 w-full items-center justify-center rounded-[var(--radius-button)] border border-[var(--accent)] bg-[var(--surface)] text-base font-bold text-[var(--accent)] [touch-action:manipulation]"
+          >
+            Ver más recetas ({lista.length - visibles} faltan)
+          </button>
+        </div>
+      )}
 
       <HojaReceta
         receta={abierta}
         onCerrar={cerrar}
         accion={
-          abierta && (
-            <button
-              type="button"
-              onClick={() => agregarAHoy(abierta)}
-              className="flex h-14 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] bg-[var(--accent)] text-base font-bold text-[var(--bg)] shadow-[var(--shadow-2)] [touch-action:manipulation]"
-            >
-              {agregada === abierta.id ? (
-                <>
-                  <Check size={20} aria-hidden="true" /> Agregada a tu {abierta.comida.toLowerCase()} de hoy
-                </>
-              ) : (
-                <>
-                  <Plus size={20} aria-hidden="true" /> Poner en mi {abierta.comida.toLowerCase()} de hoy
-                </>
-              )}
-            </button>
-          )
+          abierta && esComida(abierta) ? (
+            agregada === abierta.id ? (
+              <p role="status" className="flex items-center justify-center gap-2 rounded-[var(--radius-button)] bg-[var(--olive-wash)] p-4 text-base font-bold text-[var(--accent)]">
+                <Check size={20} aria-hidden="true" /> Listo, ya está en tu semana
+              </p>
+            ) : (
+              <PlanificarPrep
+                key={abierta.id}
+                receta={abierta}
+                diaBase={hoyIdx}
+                soloTexto={`Poner en mi ${abierta.comida.toLowerCase()} de hoy`}
+                ocupados={new Set()}
+                libre
+                onElegir={(dias) => planificar(abierta, dias)}
+              />
+            )
+          ) : null
         }
       />
     </>
