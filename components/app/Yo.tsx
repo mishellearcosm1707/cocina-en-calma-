@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion, MotionConfig } from 'motion/react';
 import { Award, CalendarCheck, Check, ChefHat, FileText, Flame, Frown, HeartPulse, Leaf, Lock, LogOut, Meh, ShieldCheck, Smile, Sparkles, Trash2, type LucideIcon } from 'lucide-react';
@@ -191,7 +192,10 @@ function Contenido({ perfil, app }: { perfil: Perfil; app: EstadoApp }) {
       </section>
 
       <section aria-label="Lo que necesita tu cuerpo" className="mx-5 mt-4 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-2)]">
-        <h2 className="text-lg font-bold [font-family:var(--font-display)]">Lo que necesita tu cuerpo al día</h2>
+        <div className="flex items-center gap-3">
+          <Image src="/icono-nutricion.png" alt="" width={56} height={56} className="size-14 shrink-0" />
+          <h2 className="text-lg font-bold [font-family:var(--font-display)]">Lo que necesita tu cuerpo al día</h2>
+        </div>
         <dl className="mt-3 grid grid-cols-2 gap-3">
           {[
             ['Energía', `${req.kcal.toLocaleString('es')} kcal`, 'var(--olive-wash)', 'var(--accent)'],
