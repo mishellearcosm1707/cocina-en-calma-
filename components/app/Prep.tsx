@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { motion, MotionConfig } from 'motion/react';
-import { Check, ChefHat, Clock, Refrigerator, Snowflake, Sparkles, Undo2, UtensilsCrossed } from 'lucide-react';
+import { Check, ChefHat, Clock, FileText, Refrigerator, Snowflake, Sparkles, Undo2, UtensilsCrossed } from 'lucide-react';
 import { actualizar, aIso, armarPrep, DIAS, lunesDe, rangoSemana, tandasPrep, useApp } from '@/lib/semana';
-import { Cabecera, ConmutadorPrep, Esqueleto, Foto } from './comunes';
+import { Cabecera, ConmutadorPrep, Esqueleto, Foto, useGuia } from './comunes';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -21,6 +21,7 @@ function diasTexto(dias: number[]) {
 
 export function Prep() {
   const app = useApp();
+  const guia = useGuia();
   const [antes, setAntes] = useState<Record<string, string> | null>(null);
   if (!app) return <Esqueleto />;
 
@@ -60,6 +61,23 @@ export function Prep() {
         }
       />
       <ConmutadorPrep actual="prep" />
+
+      {guia && (
+        <a
+          href={guia}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mx-5 mt-4 flex min-h-16 items-center gap-3 rounded-[var(--radius-card)] bg-[var(--peach)] p-3 shadow-[var(--shadow-1)] [touch-action:manipulation]"
+        >
+          <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--surface)]">
+            <FileText size={24} color="var(--peach-ink)" aria-hidden="true" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-base font-bold text-[var(--peach-ink)]">Guía completa de meal prep</span>
+            <span className="block text-sm text-[var(--peach-ink)]">Ábrela y léela con calma (PDF)</span>
+          </span>
+        </a>
+      )}
 
       {tandas.length > 0 && (
         <motion.section

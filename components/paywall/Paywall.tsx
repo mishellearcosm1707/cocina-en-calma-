@@ -10,7 +10,7 @@ import { TOTAL_RECETAS } from '@/lib/oferta';
 import { useEffect, useState } from 'react';
 import { animate, AnimatePresence, motion, MotionConfig, useReducedMotion } from 'motion/react';
 import { Apple, BadgeCheck, Check, ChevronDown, Coffee, Leaf, Loader2, Lock, Moon, Soup, X, type LucideIcon } from 'lucide-react';
-import { calcularRequerimientos, etiquetaPerfil, generarMenu, type Actividad, type Objetivo, type Ritmo, type Sexo } from '@/lib/calculos';
+import { calcularRequerimientos, generarMenu, type Actividad, type Objetivo, type Ritmo, type Sexo } from '@/lib/calculos';
 import { Sello } from '@/components/landing/Sello';
 import type { Comida, Receta, Sintoma } from '@/lib/recetas';
 
@@ -225,14 +225,6 @@ export function Paywall({ fotos }: { fotos: string[] }) {
           >
             {subtitulo}
           </motion.p>
-          {ritmo && (
-            <motion.p
-              variants={APARECE}
-              className="mt-3 inline-flex w-fit items-center rounded-full bg-[var(--olive-wash)] px-3 py-1 text-sm font-semibold text-[var(--accent)]"
-            >
-              Tu perfil: {etiquetaPerfil(ritmo)}
-            </motion.p>
-          )}
 
           {/* Visual del valor: la semana con el lunes ya armado y 6 días bloqueados (pérdida honesta) */}
           <motion.section

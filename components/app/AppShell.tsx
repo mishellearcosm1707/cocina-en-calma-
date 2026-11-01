@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BookOpen, CalendarDays, ChefHat, Sun, User, type LucideIcon } from 'lucide-react';
-import { FotosContext } from './comunes';
+import { FotosContext, GuiaContext } from './comunes';
 
 const PESTANAS: { href: string; etiqueta: string; icono: LucideIcon }[] = [
   { href: '/app', etiqueta: 'Hoy', icono: Sun },
@@ -14,10 +14,11 @@ const PESTANAS: { href: string; etiqueta: string; icono: LucideIcon }[] = [
   { href: '/app/yo', etiqueta: 'Yo', icono: User },
 ];
 
-export function AppShell({ fotos, children }: { fotos: string[]; children: ReactNode }) {
+export function AppShell({ fotos, guia, children }: { fotos: string[]; guia: string | null; children: ReactNode }) {
   const ruta = usePathname();
   return (
     <FotosContext.Provider value={fotos}>
+      <GuiaContext.Provider value={guia}>
       <div className="relative mx-auto min-h-dvh w-full max-w-md overflow-x-hidden bg-[var(--bg)] text-[var(--text-primary)] [font-family:var(--font-body)]">
         <div
           aria-hidden="true"
@@ -68,6 +69,7 @@ export function AppShell({ fotos, children }: { fotos: string[]; children: React
           </ul>
         </nav>
       </div>
+      </GuiaContext.Provider>
     </FotosContext.Provider>
   );
 }

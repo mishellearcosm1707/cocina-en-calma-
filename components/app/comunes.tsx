@@ -11,6 +11,10 @@ import type { Comida, Receta } from '@/lib/recetas';
 export const FotosContext = createContext<string[]>([]);
 export const useFotos = () => useContext(FotosContext);
 
+/** Ruta de la guía en PDF si existe (public/guia-meal-prep.pdf), o null. */
+export const GuiaContext = createContext<string | null>(null);
+export const useGuia = () => useContext(GuiaContext);
+
 export const ICONO_COMIDA: Record<Comida, LucideIcon> = { Desayuno: Coffee, Almuerzo: Soup, Merienda: Apple, Cena: Moon };
 
 /** Foto real si existe; si no, chip con ícono de línea de la misma familia (nunca emojis mezclados). */

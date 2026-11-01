@@ -154,3 +154,4 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Meal prep al elegir receta (Semana y Recetas): componente PlanificarPrep recomienda cuántas comidas y qué días según porciones y días de nevera/congelador; el tab Prep lista lo que se repite.
 - Yo: quitada la etiqueta "Cocinera de…". Textos de ventas/planes dicen 300 recetas (lib/oferta.ts, mantener igual al banco).
 - ⏸️ CHECKPOINT: esperando feedback; revisor-visual no corrido; fotos solo 8 recetas.
+- Síntomas/guardado de las 240 recetas nuevas: la usuaria los revisó y le parecen bien (2026-10-31). Quitada la etiqueta "Cocinera de…" de Yo, onboarding y pantalla de planes. Lista de fotos: docs/lista-fotos.csv (archivo = id.jpg en public/recetas). Guía PDF en Prep: aparece sola si existe public/guia-meal-prep.pdf; ⚠️ al estar en public es descargable sin login → cuando haya Supabase moverla a almacenamiento privado.

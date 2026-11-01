@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 import {
   calcularRequerimientos,
-  etiquetaPerfil,
   generarMenu,
   INGREDIENTES_RAPIDOS,
   REPARTO,
@@ -984,7 +983,7 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                   </h1>
                   {ritmo && (
                     <p className="mt-2 text-base text-[var(--text-secondary)]">
-                      {nombre.trim() ? `${nombre.trim()}, tu perfil: ` : 'Tu perfil: '}<b>{etiquetaPerfil(ritmo)}</b>. {RITMOS.find((x) => x.v === ritmo)?.nota}.
+                      {nombre.trim() ? `${nombre.trim()}, ` : ''}{RITMOS.find((x) => x.v === ritmo)?.nota}.
                     </p>
                   )}
                 </div>
