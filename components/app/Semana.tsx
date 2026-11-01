@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { AnimatePresence, motion, MotionConfig } from 'motion/react';
-import { ArrowRight, Check, ChevronLeft, ChevronRight, Lock, PartyPopper, Plus, Sparkles, X } from 'lucide-react';
+import { ArrowRight, Check, ChefHat, ChevronLeft, ChevronRight, Plus, Sparkles, X } from 'lucide-react';
 import { COMIDAS, RECETAS, type Comida, type Receta } from '@/lib/recetas';
 import {
   actualizar,
@@ -265,7 +265,7 @@ export function Semana() {
         transition={{ type: 'spring', stiffness: 260, damping: 16 }}
       >
       <Link
-        href="/app/compras"
+        href="/app/prep"
         className={`mx-5 mt-4 flex min-h-16 items-center gap-3 rounded-[var(--radius-card)] px-4 py-3 [touch-action:manipulation] ${
           completa ? 'bg-[var(--accent)] text-[var(--bg)]' : 'bg-[var(--surface)] shadow-[var(--shadow-1)]'
         }`}
@@ -274,14 +274,14 @@ export function Semana() {
           aria-hidden="true"
           className={`flex size-10 shrink-0 items-center justify-center rounded-full ${completa ? 'bg-[var(--bg)]' : 'bg-[var(--surface-2)]'}`}
         >
-          {completa ? <PartyPopper size={20} color="var(--accent)" /> : <Lock size={20} color="var(--text-secondary)" />}
+          <ChefHat size={20} color="var(--accent)" />
         </span>
         <span className="flex-1">
           <span className="block text-base font-bold">
-            {completa ? 'Tu preparación de una tarde está lista' : 'Preparación de una tarde'}
+            Tu meal prep de la semana
           </span>
           <span className={`block text-sm ${completa ? 'text-[var(--bg)]' : 'text-[var(--text-secondary)]'}`}>
-            {completa ? 'Compras y guía para cocinar todo junto' : `Se desbloquea al elegir tus ${TOTAL_ESPACIOS} comidas`}
+            Cocina una vez, come toda la semana
           </span>
         </span>
         <ArrowRight size={20} aria-hidden="true" />

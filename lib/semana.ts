@@ -303,3 +303,48 @@ function suscribir(o: () => void): () => void {
 export function useApp(): EstadoApp | null {
   return useSyncExternalStore(suscribir, instantanea, () => null);
 }
+
+// ───────────────────────── meal prep ─────────────────────────
+export interface TandaPrep {
+  receta: Receta;
+  /** Días (0 = lunes) en que esa receta aparece en la semana. */
+  dias: number[];
+  /** Nevera si se come pronto; congelador si hay que guardarla más días. */
+  guardar: 'nevera' | 'congelador';
+}
+
+/** Recetas de la semana que se pueden cocinar de una vez y guardar, de la que más tarda a la que menos. */
+export function tandasPrep(plan: Record<string, string> | undefined): TandaPrep[] {
+  const usos = new Map<string, { receta: Receta; dias: number[] }>();
+  for (const [k, r] of resolverSemana(plan)) {
+    if (!r.congelable_dias) continue;
+    const dia = Number(k.split('-')[0]);
+    const u = usos.get(r.id) ?? { receta: r, dias: [] };
+    u.dias.push(dia);
+    usos.set(r.id, u);
+  }
+  return [...usos.values()]
+    .map((u) => {
+      const dias = [...u.dias].sort((a, b) => a - b);
+      return { ...u, dias, guardar: dias[dias.length - 1] <= 3 ? ('nevera' as const) : ('congelador' as const) };
+    })
+    .sort((a, b) => b.receta.min - a.receta.min || b.dias.length - a.dias.length)
+    .slice(0, 6);
+}
+
+/** Arma una semana pensada para cocinar una vez: cada receta guardable se repite en dos días. */
+export function armarPrep(perfil: Perfil, plan: Record<string, string>): Record<string, string> {
+  const nuevo = { ...plan };
+  const puntos = (r: Receta) => r.sintomas.filter((s) => perfil.sintomas.includes(s)).length;
+  const reparto: [Comida, number][] = [['Almuerzo', 2], ['Cena', 2], ['Desayuno', 1]];
+  for (const [c, n] of reparto) {
+    RECETAS.filter((r) => r.comida === c && r.congelable_dias)
+      .sort((a, b) => puntos(b) - puntos(a) || a.id.localeCompare(b.id))
+      .slice(0, n)
+      .forEach((r, i) => {
+        nuevo[clave(i, c)] = r.id;
+        nuevo[clave(i + 3, c)] = r.id;
+      });
+  }
+  return completarSemana(perfil, nuevo);
+}

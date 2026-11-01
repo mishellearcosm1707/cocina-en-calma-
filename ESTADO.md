@@ -139,3 +139,10 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - Idea entró con RESUMEN FINAL validado: no revalidar ni proponer alternativas.
 - PDF fuente: C:\Users\MISHELLE\Downloads\estudio de mercado, cliente ideal, razones .pdf
 - Escribir archivos con herramienta Write/Edit (UTF-8); evitar Set-Content sin -Encoding en PowerShell 5.1 (corrompe tildes).
+
+## Ajustes de la app interna tras la primera revisión del usuario
+- Hoy: chequeo "¿Cómo te sientes hoy?" arriba; el % se cambió por "n de 4 listas".
+- Meal prep real: pestaña "Prep" (/app/prep) con tarde de cocina (recetas, comidas, tiempo, pasos tachables, nevera/congelador por receta, botón "Armar mi semana de meal prep" con Deshacer). Compras es la otra mitad (conmutador). Ya no está bloqueado.
+- Recetas: filtros en 3 grupos (Comida · Tu tiempo en la cocina · Te ayudan con).
+- Yo: encabezado animado, sensaciones de la semana, logros, números con color.
+- ⏸️ CHECKPOINT: esperando feedback del usuario; revisor-visual no corrido en estas pantallas. Siguiente: servicios externos con su OK.

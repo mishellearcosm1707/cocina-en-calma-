@@ -3,14 +3,14 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, CalendarDays, ShoppingBasket, Sun, User, type LucideIcon } from 'lucide-react';
+import { BookOpen, CalendarDays, ChefHat, Sun, User, type LucideIcon } from 'lucide-react';
 import { FotosContext } from './comunes';
 
 const PESTANAS: { href: string; etiqueta: string; icono: LucideIcon }[] = [
   { href: '/app', etiqueta: 'Hoy', icono: Sun },
   { href: '/app/semana', etiqueta: 'Semana', icono: CalendarDays },
   { href: '/app/recetas', etiqueta: 'Recetas', icono: BookOpen },
-  { href: '/app/compras', etiqueta: 'Compras', icono: ShoppingBasket },
+  { href: '/app/prep', etiqueta: 'Prep', icono: ChefHat },
   { href: '/app/yo', etiqueta: 'Yo', icono: User },
 ];
 
@@ -34,7 +34,8 @@ export function AppShell({ fotos, children }: { fotos: string[]; children: React
         >
           <ul className="flex items-stretch justify-between">
             {PESTANAS.map((p) => {
-              const activa = p.href === '/app' ? ruta === '/app' : ruta.startsWith(p.href);
+              const activa =
+                p.href === '/app' ? ruta === '/app' : p.href === '/app/prep' ? ruta.startsWith('/app/prep') || ruta.startsWith('/app/compras') : ruta.startsWith(p.href);
               const Icono = p.icono;
               return (
                 <li key={p.href} className="flex-1">

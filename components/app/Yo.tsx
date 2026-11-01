@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Check, FileText, LogOut, ShieldCheck, Trash2 } from 'lucide-react';
-import { calcularRequerimientos, type Actividad, type Objetivo } from '@/lib/calculos';
-import { actualizar, borrarTodo, useApp, type Perfil } from '@/lib/semana';
-import { Cabecera, Chip, Esqueleto } from './comunes';
+import { motion, MotionConfig } from 'motion/react';
+import { Award, CalendarCheck, Check, ChefHat, FileText, Flame, Frown, HeartPulse, Leaf, Lock, LogOut, Meh, ShieldCheck, Smile, Sparkles, Trash2, type LucideIcon } from 'lucide-react';
+import { calcularRequerimientos, etiquetaPerfil, type Actividad, type Objetivo } from '@/lib/calculos';
+import { actualizar, aIso, borrarTodo, contarLlenos, DIAS_CORTOS, lunesDe, sumarDias, tandasPrep, TOTAL_ESPACIOS, useApp, type EstadoApp, type Nivel, type Perfil } from '@/lib/semana';
+import { Chip, Esqueleto } from './comunes';
 
 const ACTIVIDADES: { v: Actividad; t: string }[] = [
   { v: 'sedentaria', t: 'Casi nada' },
@@ -19,13 +20,20 @@ const OBJETIVOS: { v: Objetivo; t: string }[] = [
   { v: 'subir', t: 'Subir con calma' },
 ];
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+const CARAS: Record<Nivel, { icono: LucideIcon; fondo: string; tinta: string; t: string }> = {
+  ligera: { icono: Smile, fondo: 'var(--olive-wash)', tinta: 'var(--accent)', t: 'Ligera' },
+  normal: { icono: Meh, fondo: 'var(--mustard-soft)', tinta: 'var(--mustard-ink)', t: 'Normal' },
+  hinchada: { icono: Frown, fondo: 'var(--peach)', tinta: 'var(--peach-ink)', t: 'Hinchada' },
+};
+
 export function Yo() {
   const app = useApp();
   if (!app) return <Esqueleto />;
-  return <Contenido perfil={app.perfil} />;
+  return <Contenido perfil={app.perfil} app={app} />;
 }
 
-function Contenido({ perfil }: { perfil: Perfil }) {
+function Contenido({ perfil, app }: { perfil: Perfil; app: EstadoApp }) {
   const [peso, setPeso] = useState(String(perfil.peso));
   const [actividad, setActividad] = useState<Actividad>(perfil.actividad);
   const [objetivo, setObjetivo] = useState<Objetivo>(perfil.objetivo);
@@ -36,6 +44,26 @@ function Contenido({ perfil }: { perfil: Perfil }) {
   const cambio = +peso !== perfil.peso || actividad !== perfil.actividad || objetivo !== perfil.objetivo;
   const req = calcularRequerimientos({ ...perfil, peso: pesoOk ? +peso : perfil.peso, actividad, objetivo });
 
+  const hoy = new Date();
+  const lunes = lunesDe(hoy);
+  const semana = Array.from({ length: 7 }, (_, i) => {
+    const iso = aIso(sumarDias(lunes, i));
+    return { iso, nivel: app.chequeos[iso] as Nivel | undefined, hoy: iso === aIso(hoy) };
+  });
+  const total = semana.filter((d) => d.nivel).length;
+  const ligeras = semana.filter((d) => d.nivel === 'ligera').length;
+  let racha = 0;
+  for (let i = app.chequeos[aIso(hoy)] ? 0 : 1; app.chequeos[aIso(sumarDias(hoy, -i))]; i++) racha++;
+  const plan = app.semanas[aIso(lunes)];
+  const llenos = contarLlenos(plan);
+  const tandas = tandasPrep(plan).length;
+  const logros: { t: string; ok: boolean; icono: LucideIcon; fondo: string; tinta: string }[] = [
+    { t: 'Primer chequeo', ok: Object.keys(app.chequeos).length > 0, icono: HeartPulse, fondo: 'var(--peach)', tinta: 'var(--peach-ink)' },
+    { t: '3 días seguidos', ok: racha >= 3, icono: Flame, fondo: 'var(--mustard-soft)', tinta: 'var(--mustard-ink)' },
+    { t: 'Semana completa', ok: llenos >= TOTAL_ESPACIOS, icono: CalendarCheck, fondo: 'var(--olive-wash)', tinta: 'var(--accent)' },
+    { t: 'Meal prep armado', ok: tandas >= 3, icono: Sparkles, fondo: 'var(--sky)', tinta: 'var(--sky-ink)' },
+  ];
+
   function guardar() {
     if (!pesoOk) return;
     actualizar((e) => ({ ...e, perfil: { ...e.perfil, peso: +peso, actividad, objetivo } }));
@@ -43,29 +71,140 @@ function Contenido({ perfil }: { perfil: Perfil }) {
   }
 
   return (
-    <>
-      <Cabecera
-        etiqueta="Yo"
-        titulo={
-          <>
-            {perfil.nombre ? `${perfil.nombre}, ` : ''}
-            tus <span className="text-[var(--accent)]">números</span>
-          </>
-        }
-      />
+    <MotionConfig reducedMotion="user">
+      <motion.section
+        aria-label="Tu perfil"
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: EASE }}
+        className="relative mx-5 mt-6 overflow-hidden rounded-[var(--radius-card)] p-5 text-[var(--bg)] shadow-[var(--shadow-2)]"
+        style={{ background: 'linear-gradient(135deg, var(--accent) 0%, #6f8a3a 55%, var(--mustard) 130%)' }}
+      >
+        <motion.span
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-6 -top-6 text-white/15"
+          animate={{ rotate: [0, 8, 0, -8, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <Leaf size={150} strokeWidth={1.2} />
+        </motion.span>
+        <motion.span
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-4 left-24 text-white/10"
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <Leaf size={80} strokeWidth={1.2} />
+        </motion.span>
+        <div className="relative flex items-center gap-4">
+          <motion.span
+            className="flex size-16 shrink-0 items-center justify-center rounded-full bg-[var(--bg)] text-3xl font-bold text-[var(--accent)] [font-family:var(--font-display)]"
+            animate={{ boxShadow: ['0 0 0 0 rgb(255 255 255 / 0.5)', '0 0 0 14px rgb(255 255 255 / 0)'] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: 'easeOut' }}
+          >
+            {(perfil.nombre || 'T').charAt(0).toUpperCase()}
+          </motion.span>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent-on-dark)]">Tu perfil</p>
+            <h1 className="truncate text-2xl font-bold leading-tight [font-family:var(--font-display)]">{perfil.nombre || 'Tu espacio'}</h1>
+            <p className="mt-1 inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-0.5 text-sm font-semibold">
+              <ChefHat size={14} aria-hidden="true" /> {etiquetaPerfil(perfil.ritmo)}
+            </p>
+          </div>
+        </div>
+        <dl className="relative mt-5 grid grid-cols-3 gap-2 text-center">
+          {[
+            { n: String(racha), t: racha === 1 ? 'día de chequeo' : 'días de chequeo', I: Flame },
+            { n: `${llenos}/${TOTAL_ESPACIOS}`, t: 'comidas elegidas', I: CalendarCheck },
+            { n: String(tandas), t: tandas === 1 ? 'receta de prep' : 'recetas de prep', I: ChefHat },
+          ].map(({ n, t, I }) => (
+            <div key={t} className="rounded-[var(--radius-button)] bg-white/15 p-2">
+              <I size={18} aria-hidden="true" className="mx-auto" />
+              <dd className="text-xl font-bold tabular-nums [font-family:var(--font-display)]">{n}</dd>
+              <dt className="text-sm leading-tight">{t}</dt>
+            </div>
+          ))}
+        </dl>
+      </motion.section>
+
+      <motion.section
+        aria-label="Cómo te has sentido"
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.08, duration: 0.45, ease: EASE }}
+        className="mx-5 mt-4 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-1)]"
+      >
+        <h2 className="flex items-center gap-2 text-lg font-bold [font-family:var(--font-display)]">
+          <HeartPulse size={20} color="var(--accent-2)" aria-hidden="true" /> Cómo te has sentido
+        </h2>
+        <ul className="mt-3 grid grid-cols-7 gap-1 text-center">
+          {semana.map((d, i) => {
+            const cara = d.nivel ? CARAS[d.nivel] : null;
+            const Icono = cara?.icono;
+            return (
+              <motion.li
+                key={d.iso}
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.12 + i * 0.05, type: 'spring', stiffness: 300, damping: 18 }}
+              >
+                <span
+                  className={`mx-auto flex size-10 items-center justify-center rounded-full ${d.hoy ? 'ring-2 ring-[var(--accent)] ring-offset-2 ring-offset-[var(--surface)]' : ''}`}
+                  style={{ background: cara?.fondo ?? 'var(--surface-2)', color: cara?.tinta }}
+                >
+                  {Icono && cara ? <Icono size={22} strokeWidth={1.9} aria-label={cara.t} /> : <span className="text-sm text-[var(--text-secondary)]">–</span>}
+                </span>
+                <span className="mt-1 block text-sm font-semibold text-[var(--text-secondary)]">{DIAS_CORTOS[i]}</span>
+              </motion.li>
+            );
+          })}
+        </ul>
+        <p className="mt-3 text-base text-[var(--text-secondary)]">
+          {total === 0 ? (
+            'Anota cómo te sientes en Hoy y aquí verás tu patrón.'
+          ) : (
+            <>
+              Esta semana te sentiste <b className="text-[var(--text-primary)]">ligera {ligeras} {ligeras === 1 ? 'día' : 'días'}</b> de {total}.
+            </>
+          )}
+        </p>
+      </motion.section>
+
+      <section aria-label="Tus logros" className="mx-5 mt-4 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-1)]">
+        <h2 className="flex items-center gap-2 text-lg font-bold [font-family:var(--font-display)]">
+          <Award size={20} color="var(--mustard-ink)" aria-hidden="true" /> Tus logros
+        </h2>
+        <ul className="mt-3 grid grid-cols-2 gap-3">
+          {logros.map((l) => {
+            const Icono = l.icono;
+            return (
+              <li
+                key={l.t}
+                className={`flex items-center gap-3 rounded-[var(--radius-button)] p-3 ${l.ok ? '' : 'opacity-70'}`}
+                style={{ background: l.ok ? l.fondo : 'var(--surface-2)' }}
+              >
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--surface)]">
+                  {l.ok ? <Icono size={20} color={l.tinta} aria-hidden="true" /> : <Lock size={18} color="var(--text-secondary)" aria-hidden="true" />}
+                </span>
+                <span className="min-w-0 text-base font-semibold leading-snug">{l.t}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
 
       <section aria-label="Lo que necesita tu cuerpo" className="mx-5 mt-4 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-2)]">
         <h2 className="text-lg font-bold [font-family:var(--font-display)]">Lo que necesita tu cuerpo al día</h2>
         <dl className="mt-3 grid grid-cols-2 gap-3">
           {[
-            ['Energía', `${req.kcal.toLocaleString('es')} kcal`],
-            ['Proteína', `${req.proteina} g`],
-            ['Carbohidratos', `${req.carbohidratos} g`],
-            ['Grasas', `${req.grasas} g`],
-            ['Fibra', `${req.fibra} g`],
-          ].map(([k, v]) => (
-            <div key={k} className="rounded-[var(--radius-button)] bg-[var(--olive-wash)] p-3">
-              <dt className="text-sm text-[var(--text-secondary)]">{k}</dt>
+            ['Energía', `${req.kcal.toLocaleString('es')} kcal`, 'var(--olive-wash)', 'var(--accent)'],
+            ['Proteína', `${req.proteina} g`, 'var(--peach)', 'var(--peach-ink)'],
+            ['Carbohidratos', `${req.carbohidratos} g`, 'var(--mustard-soft)', 'var(--mustard-ink)'],
+            ['Grasas', `${req.grasas} g`, 'var(--sky)', 'var(--sky-ink)'],
+            ['Fibra', `${req.fibra} g`, 'var(--olive-wash)', 'var(--accent)'],
+          ].map(([k, v, fondo, tinta]) => (
+            <div key={k} className="rounded-[var(--radius-button)] p-3" style={{ background: fondo }}>
+              <dt className="text-sm font-semibold" style={{ color: tinta }}>{k}</dt>
               <dd className="text-xl font-bold tabular-nums [font-family:var(--font-display)]">{v}</dd>
             </div>
           ))}
@@ -209,6 +348,6 @@ function Contenido({ perfil }: { perfil: Perfil }) {
           </div>
         )}
       </section>
-    </>
+    </MotionConfig>
   );
 }

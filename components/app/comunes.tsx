@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useEffect, useRef, type ReactNode } from 'react';
 import { animate, useReducedMotion } from 'motion/react';
-import { Apple, Coffee, Moon, Soup, type LucideIcon } from 'lucide-react';
+import Link from 'next/link';
+import { Apple, ChefHat, Coffee, Moon, ShoppingBasket, Soup, type LucideIcon } from 'lucide-react';
 import type { Comida, Receta } from '@/lib/recetas';
 
 // Piezas compartidas de la app interna: fotos disponibles, miniatura de receta, esqueleto de carga y chips.
@@ -103,5 +104,35 @@ export function Conteo({ valor }: { valor: number }) {
     <span ref={ref} className="tabular-nums">
       {valor}
     </span>
+  );
+}
+
+/** Cambia entre las dos mitades de "Prep y compras" (son dos rutas, el mismo lugar para la persona). */
+export function ConmutadorPrep({ actual }: { actual: 'prep' | 'compras' }) {
+  const op = [
+    { id: 'prep', t: 'Meal prep', href: '/app/prep', icono: ChefHat },
+    { id: 'compras', t: 'Compras', href: '/app/compras', icono: ShoppingBasket },
+  ] as const;
+  return (
+    <div role="tablist" aria-label="Prep y compras" className="mx-5 mt-4 flex gap-1 rounded-full bg-[var(--surface-2)] p-1">
+      {op.map((o) => {
+        const Icono = o.icono;
+        const on = actual === o.id;
+        return (
+          <Link
+            key={o.id}
+            href={o.href}
+            role="tab"
+            aria-selected={on}
+            replace
+            className={`flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full text-base font-bold transition-colors duration-200 [touch-action:manipulation] ${
+              on ? 'bg-[var(--surface)] text-[var(--accent)] shadow-[var(--shadow-1)]' : 'text-[var(--text-secondary)]'
+            }`}
+          >
+            <Icono size={20} aria-hidden="true" /> {o.t}
+          </Link>
+        );
+      })}
+    </div>
   );
 }

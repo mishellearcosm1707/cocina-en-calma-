@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import { Check, Plus, Search, Snowflake, Zap } from 'lucide-react';
 import { COMIDAS, RECETAS, type Comida, type Receta, type Sintoma } from '@/lib/recetas';
 import { actualizar, aIso, clave, indiceDia, lunesDe, useApp } from '@/lib/semana';
@@ -8,6 +8,15 @@ import { Cabecera, Chip, Esqueleto, Foto, useFotos } from './comunes';
 import { HojaReceta } from './HojaReceta';
 
 const SINTOMAS: Sintoma[] = ['Hinchazón', 'Gases', 'Pesadez', 'Digestión lenta'];
+
+function FiltroFila({ titulo, children }: { titulo: string; children: ReactNode }) {
+  return (
+    <div className="mt-3" role="group" aria-label={titulo}>
+      <p className="px-5 text-sm font-semibold uppercase tracking-wider text-[var(--text-secondary)]">{titulo}</p>
+      <div className="mt-1 flex gap-2 overflow-x-auto px-5 pb-1">{children}</div>
+    </div>
+  );
+}
 
 export function Recetas() {
   const app = useApp();
@@ -84,7 +93,7 @@ export function Recetas() {
         </div>
       </div>
 
-      <div className="mt-3 flex gap-2 overflow-x-auto px-5 pb-1" role="group" aria-label="Filtrar por comida">
+      <FiltroFila titulo="Comida">
         <Chip activo={!comida} onClick={() => setComida(null)}>
           Todas
         </Chip>
@@ -93,20 +102,22 @@ export function Recetas() {
             {c}
           </Chip>
         ))}
-      </div>
-      <div className="mt-2 flex gap-2 overflow-x-auto px-5 pb-1" role="group" aria-label="Más filtros">
+      </FiltroFila>
+      <FiltroFila titulo="Tu tiempo en la cocina">
         <Chip activo={express} onClick={() => setExpress(!express)}>
-          Express
+          Listas en 15 min
         </Chip>
         <Chip activo={congelable} onClick={() => setCongelable(!congelable)}>
-          Congelable
+          Para meal prep
         </Chip>
+      </FiltroFila>
+      <FiltroFila titulo="Te ayudan con">
         {SINTOMAS.map((s) => (
           <Chip key={s} activo={sintoma === s} onClick={() => setSintoma(sintoma === s ? null : s)}>
             {s}
           </Chip>
         ))}
-      </div>
+      </FiltroFila>
 
       <p className="mt-3 flex items-center justify-between px-5 text-base text-[var(--text-secondary)]" role="status">
         <span>
@@ -145,9 +156,17 @@ export function Recetas() {
                   <span className="text-sm font-semibold uppercase tracking-wider text-[var(--text-secondary)]">{r.comida}</span>
                   <span className="mt-1 min-h-12 text-base font-bold leading-snug">{r.nombre}</span>
                   <span className="mt-auto flex flex-wrap items-center gap-2 pt-2 text-sm text-[var(--text-secondary)]">
-                    {r.min} min
-                    {r.min <= 15 && <Zap size={16} aria-label="Express" color="var(--mustard-ink)" />}
-                    {r.congelable_dias ? <Snowflake size={16} aria-label="Congelable" color="var(--sky-ink)" /> : null}
+                    {r.min <= 15 ? null : <>{r.min} min</>}
+                    {r.min <= 15 && (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-[var(--mustard-soft)] px-2 py-0.5 text-sm font-semibold text-[var(--mustard-ink)]">
+                        <Zap size={14} aria-hidden="true" /> {r.min} min
+                      </span>
+                    )}
+                    {r.congelable_dias ? (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-[var(--sky)] px-2 py-0.5 text-sm font-semibold text-[var(--sky-ink)]">
+                        <Snowflake size={14} aria-hidden="true" /> Prep
+                      </span>
+                    ) : null}
                   </span>
                 </span>
               </button>

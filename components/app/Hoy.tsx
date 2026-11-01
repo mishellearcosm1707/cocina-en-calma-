@@ -4,7 +4,6 @@ import { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { motion, MotionConfig } from 'motion/react';
 import { ArrowRight, Check, Flame, Frown, Meh, Smile, type LucideIcon } from 'lucide-react';
-import { calcularRequerimientos, REPARTO } from '@/lib/calculos';
 import { COMIDAS, type Comida, type Receta } from '@/lib/recetas';
 import {
   actualizar,
@@ -20,7 +19,7 @@ import {
   useApp,
   type Nivel,
 } from '@/lib/semana';
-import { Cabecera, Conteo, Esqueleto, Foto } from './comunes';
+import { Cabecera, Esqueleto, Foto } from './comunes';
 import { HojaReceta } from './HojaReceta';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -41,21 +40,8 @@ export function Hoy() {
   const plan = app.semanas[aIso(lunes)];
   const recetas = resolverSemana(plan);
   const d = indiceDia(hoy);
-  const req = calcularRequerimientos({
-    sexo: app.perfil.sexo,
-    edad: app.perfil.edad,
-    peso: app.perfil.peso,
-    talla: app.perfil.talla,
-    actividad: app.perfil.actividad,
-    objetivo: app.perfil.objetivo,
-  });
   const comidasHoy = COMIDAS.map((c) => ({ c, r: recetas.get(clave(d, c)) }));
-  const kcalHoy = comidasHoy.reduce((s, x) => {
-    if (!x.r) return s;
-    const p = Math.min(1.5, Math.max(0.75, Math.round(((req.kcal * REPARTO[x.c]) / x.r.kcal) * 4) / 4));
-    return s + x.r.kcal * p;
-  }, 0);
-  const cobertura = Math.min(100, Math.round((kcalHoy / req.kcal) * 100));
+  const elegidas = comidasHoy.filter((x) => x.r).length;
   const llenos = contarLlenos(plan);
   // La comida que toca ahora según la hora: es la acción obvia de la pantalla.
   const hora = hoy.getHours();
@@ -86,82 +72,11 @@ export function Hoy() {
       />
 
       <motion.section
-        aria-label="Tu menú de hoy"
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: EASE }}
-        className="mx-5 mt-5 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-2)]"
-      >
-        <div className="flex items-center justify-between gap-3">
-          <h2 className="text-xl font-bold [font-family:var(--font-display)]">Tu menú de hoy</h2>
-          <span className="rounded-full bg-[var(--olive-wash)] px-3 py-1 text-base font-bold text-[var(--accent)]">
-            <Conteo valor={cobertura} />%
-          </span>
-        </div>
-        <p className="mt-1 text-sm text-[var(--text-secondary)]">de lo que tu cuerpo necesita hoy, sin pesar nada</p>
-        <div
-          role="progressbar"
-          aria-valuenow={cobertura}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-label="Cuánto de lo que necesita tu cuerpo cubre tu menú de hoy"
-          className="mt-3 h-2 overflow-hidden rounded-full bg-[var(--surface-2)]"
-        >
-          <motion.div
-            className="h-full rounded-full bg-[linear-gradient(90deg,var(--accent),var(--mustard))]"
-            initial={{ width: 0 }}
-            animate={{ width: `${cobertura}%` }}
-            transition={{ duration: 0.8, ease: EASE }}
-          />
-        </div>
-        <ul className="mt-4 flex flex-col gap-3">
-          {comidasHoy.map(({ c, r }, n) => (
-            <motion.li
-              key={c}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.08 * n, duration: 0.3, ease: EASE }}
-            >
-              {r ? (
-                <motion.button
-                  type="button"
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => setAbierta(r)}
-                  className={`flex min-h-16 w-full items-center gap-3 rounded-[var(--radius-button)] text-left [touch-action:manipulation] ${
-                    c === toca ? '-mx-2 bg-[var(--olive-wash)] p-2 ring-2 ring-[var(--accent)]' : ''
-                  }`}
-                >
-                  <Foto receta={r} className="size-16" />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-semibold uppercase tracking-wider text-[var(--text-secondary)]">{c}</span>
-                    <span className="block text-base font-semibold leading-snug">{r.nombre}</span>
-                    <span className="block text-sm text-[var(--text-secondary)]">{r.min} min</span>
-                  </span>
-                  {c === toca ? (
-                    <span className="shrink-0 rounded-full bg-[var(--accent)] px-3 py-1 text-sm font-bold text-[var(--bg)]">Te toca</span>
-                  ) : (
-                    <ArrowRight size={18} aria-hidden="true" color="var(--text-secondary)" />
-                  )}
-                </motion.button>
-              ) : (
-                <Link
-                  href="/app/semana"
-                  className="flex min-h-16 items-center justify-between rounded-[var(--radius-button)] border border-dashed border-[var(--text-tertiary)] px-4 text-base font-semibold text-[var(--accent)]"
-                >
-                  Elegir tu {c.toLowerCase()} <ArrowRight size={18} aria-hidden="true" />
-                </Link>
-              )}
-            </motion.li>
-          ))}
-        </ul>
-      </motion.section>
-
-      <motion.section
         aria-label="Chequeo del día"
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15, duration: 0.4, ease: EASE }}
-        className="mx-5 mt-4 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-1)]"
+        transition={{ delay: 0.05, duration: 0.4, ease: EASE }}
+        className="mx-5 mt-5 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-1)]"
       >
         <h2 className="text-lg font-bold [font-family:var(--font-display)]">¿Cómo te sientes hoy?</h2>
         <div className="mt-3 grid grid-cols-3 gap-3">
@@ -206,6 +121,62 @@ export function Hoy() {
         )}
       </motion.section>
 
+      <motion.section
+        aria-label="Tu menú de hoy"
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: EASE }}
+        className="mx-5 mt-5 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-2)]"
+      >
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="text-xl font-bold [font-family:var(--font-display)]">Tu menú de hoy</h2>
+          <span className="rounded-full bg-[var(--olive-wash)] px-3 py-1 text-sm font-bold text-[var(--accent)]">
+            {elegidas} de {COMIDAS.length} listas
+          </span>
+        </div>
+        <p className="mt-1 text-sm text-[var(--text-secondary)]">Toca una comida para ver cómo se prepara.</p>
+        <ul className="mt-3 flex flex-col gap-3">
+          {comidasHoy.map(({ c, r }, n) => (
+            <motion.li
+              key={c}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.08 * n, duration: 0.3, ease: EASE }}
+            >
+              {r ? (
+                <motion.button
+                  type="button"
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => setAbierta(r)}
+                  className={`flex min-h-16 w-full items-center gap-3 rounded-[var(--radius-button)] text-left [touch-action:manipulation] ${
+                    c === toca ? '-mx-2 bg-[var(--olive-wash)] p-2 ring-2 ring-[var(--accent)]' : ''
+                  }`}
+                >
+                  <Foto receta={r} className="size-16" />
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-semibold uppercase tracking-wider text-[var(--text-secondary)]">{c}</span>
+                    <span className="block text-base font-semibold leading-snug">{r.nombre}</span>
+                    <span className="block text-sm text-[var(--text-secondary)]">{r.min} min</span>
+                  </span>
+                  {c === toca ? (
+                    <span className="shrink-0 rounded-full bg-[var(--accent)] px-3 py-1 text-sm font-bold text-[var(--bg)]">Te toca</span>
+                  ) : (
+                    <ArrowRight size={18} aria-hidden="true" color="var(--text-secondary)" />
+                  )}
+                </motion.button>
+              ) : (
+                <Link
+                  href="/app/semana"
+                  className="flex min-h-16 items-center justify-between rounded-[var(--radius-button)] border border-dashed border-[var(--text-tertiary)] px-4 text-base font-semibold text-[var(--accent)]"
+                >
+                  Elegir tu {c.toLowerCase()} <ArrowRight size={18} aria-hidden="true" />
+                </Link>
+              )}
+            </motion.li>
+          ))}
+        </ul>
+      </motion.section>
+
       <motion.div
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
@@ -218,7 +189,7 @@ export function Hoy() {
           <span>
             <span className="block text-base font-bold">Tu semana: {llenos} de {TOTAL_ESPACIOS} comidas</span>
             <span className="block text-sm text-[var(--text-secondary)]">
-              {llenos >= TOTAL_ESPACIOS ? 'Lista: ya puedes preparar todo en una tarde' : `Completa las ${TOTAL_ESPACIOS - llenos} que faltan y desbloqueas tu preparación`}
+              {llenos >= TOTAL_ESPACIOS ? 'Lista: ve tu meal prep y cocina todo en una tarde' : `Te faltan ${TOTAL_ESPACIOS - llenos}: complétalas y arma tu meal prep`}
             </span>
           </span>
           <ArrowRight size={20} aria-hidden="true" color="var(--accent)" />
