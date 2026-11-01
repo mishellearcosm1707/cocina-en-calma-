@@ -6,10 +6,11 @@
 // objeción "es caro" → precio por día (el ancla con la tarifa de una consulta se añade cuando la dueña aporte la cifra real); objeción de confianza → garantía y pago por Hotmart).
 // El cobro real se conecta en la etapa de servicios externos: hasta entonces el botón NO simula un pago.
 
+import { Logo } from '@/components/Logo';
 import { TOTAL_RECETAS } from '@/lib/oferta';
 import { useEffect, useState } from 'react';
 import { animate, AnimatePresence, motion, MotionConfig, useReducedMotion } from 'motion/react';
-import { Apple, BadgeCheck, Check, ChevronDown, Coffee, Leaf, Loader2, Lock, Moon, Soup, X, type LucideIcon } from 'lucide-react';
+import { Apple, BadgeCheck, Check, ChevronDown, Coffee, Loader2, Lock, Moon, Soup, X, type LucideIcon } from 'lucide-react';
 import { calcularRequerimientos, generarMenu, type Actividad, type Objetivo, type Ritmo, type Sexo } from '@/lib/calculos';
 import { Sello } from '@/components/landing/Sello';
 import type { Comida, Receta, Sintoma } from '@/lib/recetas';
@@ -179,9 +180,7 @@ export function Paywall({ fotos }: { fotos: string[] }) {
               <X size={22} aria-hidden="true" />
             </a>
             <span className="flex items-center gap-2 text-base font-semibold text-[var(--text-primary)]">
-              <span aria-hidden="true" className="flex size-6 items-center justify-center rounded-lg bg-[var(--accent)]">
-                <Leaf size={14} strokeWidth={2.4} color="var(--bg)" />
-              </span>
+              <Logo alto={32} />
               Cocina en Calma
             </span>
             <span aria-hidden="true" className="size-11" />

@@ -3,6 +3,7 @@
 // Landing de Cocina en Calma — compuesta desde el kit (components/landing/) con el copy de
 // docs/copy/landing.md (trazado a FICHA-AVATAR.md). Modelo 2: el CTA lleva a /onboarding.
 
+import { Logo } from '@/components/Logo';
 import { TOTAL_RECETAS } from '@/lib/oferta';
 import { CalendarClock, ChefHat, Moon, Repeat, Scale, Shirt } from 'lucide-react';
 import { Hero } from '@/components/landing/Hero';
@@ -28,6 +29,7 @@ export default function Landing() {
     <div className="min-h-dvh bg-[var(--bg)] text-[var(--text-primary)] [font-family:var(--font-body)]">
       <Hero
         appName="Cocina en Calma"
+        logo={<Logo alto={36} prioridad />}
         h1Marked="Termina el día más [acento]ligera[/acento], sin pesar ni contar calorías"
         subtitleMarked="El Menú Calma arma tu día con tu [b]síntoma[/b] y tu despensa"
         ctaLabel={CTA_LABEL}
@@ -158,7 +160,7 @@ export default function Landing() {
 
       <FooterLegal
         appName="Cocina en Calma"
-        logo={<span aria-hidden="true" className="size-5 rounded-[6px] bg-[var(--accent)]" />}
+        logo={<Logo alto={28} />}
         anio={2026} /* fijo: new Date() no puede evaluarse en un client component prerenderizado */
         enlaces={[
           { label: 'Privacidad', href: '/privacidad' },

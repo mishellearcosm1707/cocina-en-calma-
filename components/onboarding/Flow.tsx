@@ -5,12 +5,13 @@
 // palabra clave · el botón nunca nace apagado: si falta algo, avisa qué (los datos viven solo en memoria
 // mientras dura el recorrido; el registro del consentimiento con servidor llega con la etapa de servicios).
 
+import { Logo } from '@/components/Logo';
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, animate, motion, useReducedMotion } from 'motion/react';
 import Link from 'next/link';
 import {
   Activity, ArrowLeft, ArrowRight, BatteryLow, Bike, CalendarDays, Check, CircleAlert, CircleCheck, CircleDot,
-  Clock, Dumbbell, Footprints, Gauge, Heart, HeartPulse, Hourglass, Leaf, Mars, Scale, ShieldCheck, ShoppingBasket, Smile,
+  Clock, Dumbbell, Footprints, Gauge, Heart, HeartPulse, Hourglass, Mars, Scale, ShieldCheck, ShoppingBasket, Smile,
   Sofa, Sunset, Target, Timer, TrendingDown, TrendingUp, User, Venus, Weight, Wind, Zap, type LucideIcon,
 } from 'lucide-react';
 import {
@@ -326,7 +327,7 @@ function Armando({ frases, alTerminar, reducir }: { frases: string[]; alTerminar
           animate={{ rotate: reducir ? 0 : 360 }}
           transition={{ duration: 1.1, ease: 'linear', repeat: Infinity }}
         />
-        <Leaf size={32} strokeWidth={2} color="var(--accent)" aria-hidden="true" />
+        <Logo alto={44} />
       </div>
       <h1 className="text-balance text-3xl font-bold leading-tight [font-family:var(--font-display)]">
         Armando tu <Resaltada>Menú Calma</Resaltada>

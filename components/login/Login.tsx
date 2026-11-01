@@ -6,10 +6,11 @@
 // simula con estado local y la pantalla lo dice (mockup honesto, 50 §C3ter). Anti-enumeración: el mensaje de
 // "enviado" es el mismo exista o no el correo.
 
+import { Logo } from '@/components/Logo';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, MotionConfig } from 'motion/react';
-import { ArrowLeft, ArrowRight, CircleCheck, Leaf, Loader2, MailCheck } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CircleCheck, Loader2, MailCheck } from 'lucide-react';
 import { Sello } from '@/components/landing/Sello';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -66,9 +67,7 @@ export function Login() {
         >
           <motion.div variants={ENTRA} className="flex h-14 items-center justify-between">
             <Link href="/" className="flex min-h-11 items-center gap-2 text-base font-semibold">
-              <span aria-hidden="true" className="flex size-6 items-center justify-center rounded-lg bg-[var(--accent)]">
-                <Leaf size={14} strokeWidth={2.4} color="var(--bg)" />
-              </span>
+              <Logo alto={32} />
               Cocina en Calma
             </Link>
             <Link href="/paywall" className="flex min-h-11 items-center gap-1 text-sm font-semibold text-[var(--text-secondary)]">

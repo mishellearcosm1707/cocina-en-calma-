@@ -19,6 +19,7 @@ import {
   useApp,
   type Nivel,
 } from '@/lib/semana';
+import { Logo } from '@/components/Logo';
 import { Cabecera, Esqueleto, Foto } from './comunes';
 import { HojaReceta } from './HojaReceta';
 
@@ -61,6 +62,7 @@ export function Hoy() {
 
   return (
     <MotionConfig reducedMotion="user">
+      <Logo alto={40} className="absolute right-5 top-6" />
       <Cabecera
         etiqueta={fechaLarga(hoy)}
         titulo={
