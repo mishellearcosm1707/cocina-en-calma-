@@ -7,6 +7,7 @@
 // "enviado" es el mismo exista o no el correo.
 
 import { Logo } from '@/components/Logo';
+import { supabaseNavegador } from '@/lib/supabase/navegador';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, MotionConfig } from 'motion/react';
@@ -33,7 +34,7 @@ export function Login() {
     return () => window.clearTimeout(t);
   }, [espera]);
 
-  function enviar() {
+  async function enviar() {
     if (estado === 'enviando') return;
     if (!CORREO_OK.test(correo.trim())) {
       setError('Revisa tu correo: parece que le falta algo, por ejemplo tu@correo.com.');
@@ -41,11 +42,21 @@ export function Login() {
     }
     setError('');
     setEstado('enviando');
-    // Sin servicio de correo conectado: se simula el envío y se avisa en pantalla.
-    window.setTimeout(() => {
-      setEstado('enviado');
-      setEspera(ESPERA);
-    }, 900);
+    const { error: falla } = await supabaseNavegador().auth.signInWithOtp({
+      email: correo.trim(),
+      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+    });
+    if (falla) {
+      setEstado('inicio');
+      setError(
+        falla.status === 429
+          ? 'Pediste muchos enlaces seguidos. Espera un minuto y vuelve a intentar.'
+          : 'No pudimos enviar el enlace ahora. Revisa tu conexión e inténtalo de nuevo.',
+      );
+      return;
+    }
+    setEstado('enviado');
+    setEspera(ESPERA);
   }
 
   return (
@@ -195,16 +206,16 @@ export function Login() {
                     </li>
                   ))}
                 </ol>
-                <p className="rounded-[var(--radius-card)] bg-[var(--mustard-soft)] p-4 text-sm leading-snug text-[var(--text-primary)]">
-                  <b>Vista previa:</b> todavía no enviamos correos. El acceso real se activa cuando conectemos tu cuenta y tu
-                  pago.
-                </p>
                 <button
                   type="button"
                   disabled={espera > 0}
                   onClick={() => {
                     setEspera(ESPERA);
                     setReenviado(true);
+                    void supabaseNavegador().auth.signInWithOtp({
+                      email: correo.trim(),
+                      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+                    });
                   }}
                   className="min-h-12 self-start rounded-[var(--radius-button)] border border-[var(--accent)] px-5 text-base font-semibold text-[var(--accent)] disabled:border-[var(--surface-2)] disabled:text-[var(--text-secondary)]"
                 >

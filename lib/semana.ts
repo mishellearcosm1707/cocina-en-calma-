@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from 'react';
 import type { Actividad, Objetivo, Ritmo, Sexo } from './calculos';
+import { supabaseNavegador } from './supabase/navegador';
 import { COMIDAS, esExpress, esSugerible, opcionPrep, RECETAS, type Comida, type Receta, type Sintoma } from './recetas';
 
 // Estado de la app interna. Vive SOLO en el celular (localStorage) hasta que se conecte la base de datos en la etapa de
@@ -279,9 +280,63 @@ export function actualizar(fn: (e: EstadoApp) => EstadoApp): void {
     /* ver arriba */
   }
   oyentes.forEach((o) => o());
+  programarGuardado();
+}
+
+// ───────────────────────── sincronización con la cuenta (Supabase) ─────────────────────────
+let usuario: string | null = null;
+let temporizador: ReturnType<typeof setTimeout> | undefined;
+
+function programarGuardado(): void {
+  if (!usuario) return;
+  clearTimeout(temporizador);
+  temporizador = setTimeout(() => {
+    if (usuario && cache) void supabaseNavegador().from('estado_app').upsert({ user_id: usuario, estado: cache });
+  }, 800);
+}
+
+/** Al entrar a la app con sesión: si la cuenta ya tiene datos se usan esos; si no, se guardan los de este celular. */
+export async function iniciarSincronizacion(): Promise<void> {
+  if (usuario) return;
+  const sb = supabaseNavegador();
+  const {
+    data: { user },
+  } = await sb.auth.getUser();
+  if (!user) return;
+  const { data } = await sb.from('estado_app').select('estado').maybeSingle();
+  const remoto = data?.estado as EstadoApp | undefined;
+  if (remoto?.v === 1) {
+    cache = remoto;
+    try {
+      window.localStorage.setItem(CLAVE, JSON.stringify(cache));
+    } catch {
+      /* ver arriba */
+    }
+    oyentes.forEach((o) => o());
+  } else {
+    const local = instantanea();
+    cache = { ...local, perfil: { ...local.perfil, correo: user.email ?? local.perfil.correo } };
+    await sb.from('estado_app').upsert({ user_id: user.id, estado: cache });
+    oyentes.forEach((o) => o());
+  }
+  usuario = user.id;
+}
+
+/** Cierra la sesión y deja este celular sin datos de la cuenta. */
+export async function cerrarSesion(): Promise<void> {
+  clearTimeout(temporizador);
+  usuario = null;
+  await supabaseNavegador().auth.signOut();
+  try {
+    window.localStorage.removeItem(CLAVE);
+  } catch {
+    /* nada que borrar */
+  }
+  cache = undefined;
 }
 
 export function borrarTodo(): void {
+  if (usuario) void supabaseNavegador().from('estado_app').delete().eq('user_id', usuario);
   try {
     window.localStorage.removeItem(CLAVE);
     window.sessionStorage.removeItem(CLAVE_INICIO);

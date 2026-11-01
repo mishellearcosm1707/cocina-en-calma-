@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { motion, MotionConfig } from 'motion/react';
 import { Award, CalendarCheck, Check, ChefHat, FileText, Flame, Frown, HeartPulse, Leaf, Lock, LogOut, Meh, ShieldCheck, Smile, Sparkles, Trash2, type LucideIcon } from 'lucide-react';
 import { calcularRequerimientos, type Actividad, type Objetivo } from '@/lib/calculos';
-import { actualizar, aIso, borrarTodo, contarLlenos, DIAS_CORTOS, lunesDe, sumarDias, tandasPrep, TOTAL_ESPACIOS, useApp, type EstadoApp, type Nivel, type Perfil } from '@/lib/semana';
+import { actualizar, aIso, borrarTodo, cerrarSesion, contarLlenos, DIAS_CORTOS, lunesDe, sumarDias, tandasPrep, TOTAL_ESPACIOS, useApp, type EstadoApp, type Nivel, type Perfil } from '@/lib/semana';
 import { Chip, Esqueleto } from './comunes';
 
 const ACTIVIDADES: { v: Actividad; t: string }[] = [
@@ -293,12 +293,17 @@ function Contenido({ perfil, app }: { perfil: Perfil; app: EstadoApp }) {
           <ShieldCheck size={20} color="var(--accent)" aria-hidden="true" className="mt-0.5 shrink-0" />
           Tu plan: pago único de $14.99 con Garantía Calma de 7 días por Hotmart.
         </p>
-        <Link
-          href="/login"
-          className="mt-4 flex min-h-12 items-center justify-center gap-2 rounded-[var(--radius-button)] border border-[var(--text-tertiary)] bg-[var(--surface)] px-4 text-base font-semibold [touch-action:manipulation]"
+        <button
+          type="button"
+          onClick={() => {
+            void cerrarSesion().then(() => {
+              window.location.assign('/login');
+            });
+          }}
+          className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] border border-[var(--text-tertiary)] bg-[var(--surface)] px-4 text-base font-semibold [touch-action:manipulation]"
         >
           <LogOut size={20} aria-hidden="true" /> Cerrar sesión
-        </Link>
+        </button>
       </section>
 
       <section aria-label="Privacidad" className="mx-5 mt-4 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-1)]">

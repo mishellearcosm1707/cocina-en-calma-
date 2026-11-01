@@ -1,8 +1,9 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { iniciarSincronizacion } from '@/lib/semana';
 import { BookOpen, CalendarDays, ChefHat, Sun, User, type LucideIcon } from 'lucide-react';
 import { FotosContext, GuiaContext } from './comunes';
 
@@ -16,6 +17,9 @@ const PESTANAS: { href: string; etiqueta: string; icono: LucideIcon }[] = [
 
 export function AppShell({ fotos, guia, children }: { fotos: string[]; guia: string | null; children: ReactNode }) {
   const ruta = usePathname();
+  useEffect(() => {
+    void iniciarSincronizacion();
+  }, []);
   return (
     <FotosContext.Provider value={fotos}>
       <GuiaContext.Provider value={guia}>
