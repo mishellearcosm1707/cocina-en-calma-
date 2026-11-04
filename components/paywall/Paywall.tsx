@@ -67,7 +67,13 @@ function Miniatura({ receta, foto }: { receta: Receta; foto: boolean }) {
     <span className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-[var(--radius-button)] bg-[var(--olive-wash)]">
       {foto ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={`/recetas/${receta.id}.jpg`} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <img
+          src={`/recetas/${receta.id}-s.jpg`}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
       ) : (
         <Icono size={24} strokeWidth={1.8} color="var(--accent)" aria-hidden="true" />
       )}

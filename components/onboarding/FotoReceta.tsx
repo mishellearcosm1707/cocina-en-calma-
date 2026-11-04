@@ -36,8 +36,11 @@ export function FotoReceta({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={`/recetas/${receta.id}.jpg`}
+          srcSet={`/recetas/${receta.id}-s.jpg 240w, /recetas/${receta.id}.jpg 640w`}
+          sizes="(max-width: 448px) 90vw, 400px"
           alt={receta.nombre}
           loading="lazy"
+          decoding="async"
           onError={() => setFalla(true)}
           className="absolute inset-0 h-full w-full object-cover"
         />

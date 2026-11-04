@@ -172,7 +172,7 @@ export function Recetas() {
                 onClick={() => setAbierta(r)}
                 className="flex h-full w-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-[var(--surface)] text-left shadow-[var(--shadow-1)] [touch-action:manipulation]"
               >
-                <Foto receta={r} className="h-28 w-full !rounded-none" />
+                <Foto receta={r} className="h-28 w-full !rounded-none" sizes="(max-width: 448px) 50vw, 224px" />
                 <span className="flex flex-1 flex-col p-3">
                   <span className="text-sm font-semibold uppercase tracking-wider text-[var(--text-secondary)]">{r.comida}</span>
                   <span className="mt-1 min-h-12 text-base font-bold leading-snug">{r.nombre}</span>

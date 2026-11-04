@@ -17,8 +17,8 @@ export const useGuia = () => useContext(GuiaContext);
 
 export const ICONO_COMIDA: Record<Comida, LucideIcon> = { Desayuno: Coffee, Almuerzo: Soup, Merienda: Apple, Cena: Moon };
 
-/** Foto real si existe; si no, chip con ícono de línea de la misma familia (nunca emojis mezclados). */
-export function Foto({ receta, className = 'size-14' }: { receta: Receta; className?: string }) {
+/** Foto real si existe (dos tamaños: el navegador baja solo el que necesita); si no, chip con ícono de línea de la misma familia (nunca emojis mezclados). */
+export function Foto({ receta, className = 'size-14', sizes = '96px' }: { receta: Receta; className?: string; sizes?: string }) {
   const fotos = useFotos();
   const Icono = ICONO_COMIDA[receta.comida];
   const hay = fotos.includes(receta.id);
@@ -28,7 +28,15 @@ export function Foto({ receta, className = 'size-14' }: { receta: Receta; classN
     >
       {hay ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={`/recetas/${receta.id}.jpg`} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+        <img
+          src={`/recetas/${receta.id}.jpg`}
+          srcSet={`/recetas/${receta.id}-s.jpg 240w, /recetas/${receta.id}.jpg 640w`}
+          sizes={sizes}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
       ) : (
         <Icono size={24} strokeWidth={1.7} color="var(--accent)" aria-hidden="true" />
       )}
