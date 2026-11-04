@@ -187,7 +187,7 @@ const PERFIL_EJEMPLO: Perfil = {
   ritmo: 'diaria',
 };
 
-function perfilDelInicio(): Perfil {
+function perfilDelInicio(): Perfil | null {
   try {
     const g = JSON.parse(window.sessionStorage.getItem(CLAVE_INICIO) ?? '{}') as Partial<{
       nombre: string;
@@ -217,12 +217,12 @@ function perfilDelInicio(): Perfil {
   } catch {
     /* sin recorrido de inicio: se usa el perfil de ejemplo */
   }
-  return PERFIL_EJEMPLO;
+  return null;
 }
 
 /** Semana de ejemplo: casi llena (faltan 6 espacios) para que se vea la meta; y la semana pasada completa. */
 function crearInicial(): EstadoApp {
-  const perfil = perfilDelInicio();
+  const perfil = perfilDelInicio() ?? PERFIL_EJEMPLO;
   const hoy = new Date();
   const lunes = lunesDe(hoy);
   const hoyIdx = indiceDia(hoy);
@@ -245,7 +245,22 @@ function crearInicial(): EstadoApp {
   };
 }
 
+/** Estado de una cuenta nueva: su perfil real, sin historial inventado, con los primeros 3 días ya armados. */
+function crearReal(perfil: Perfil): EstadoApp {
+  const hoy = new Date();
+  const hoyIdx = indiceDia(hoy);
+  const completo = completarSemana(perfil, {});
+  const plan: Record<string, string> = {};
+  for (const [k, id] of Object.entries(completo)) {
+    const d = Number(k.split('-')[0]);
+    if (d >= hoyIdx && d <= hoyIdx + 2) plan[k] = id;
+  }
+  return { v: 1, perfil, semanas: { [aIso(lunesDe(hoy))]: plan }, chequeos: {}, comprados: {} };
+}
+
 let cache: EstadoApp | undefined;
+let preparado = false;
+let faltaPerfilFlag = false;
 const oyentes = new Set<() => void>();
 
 function cargar(): EstadoApp {
@@ -295,32 +310,46 @@ function programarGuardado(): void {
   }, 800);
 }
 
-/** Al entrar a la app con sesión: si la cuenta ya tiene datos se usan esos; si no, se guardan los de este celular. */
+/** Al entrar a la app con sesión: si la cuenta ya tiene datos se usan esos; si no, se crea el estado con el perfil del recorrido de inicio. */
 export async function iniciarSincronizacion(): Promise<void> {
-  if (usuario) return;
+  if (preparado) return;
   const sb = supabaseNavegador();
   const {
     data: { user },
   } = await sb.auth.getUser();
-  if (!user) return;
+  if (!user) {
+    preparado = true;
+    oyentes.forEach((o) => o());
+    return;
+  }
   const { data } = await sb.from('estado_app').select('estado').maybeSingle();
   const remoto = data?.estado as EstadoApp | undefined;
   if (remoto?.v === 1) {
     cache = remoto;
-    try {
-      window.localStorage.setItem(CLAVE, JSON.stringify(cache));
-    } catch {
-      /* ver arriba */
-    }
-    oyentes.forEach((o) => o());
   } else {
-    const local = instantanea();
-    cache = { ...local, perfil: { ...local.perfil, correo: user.email ?? local.perfil.correo } };
+    const perfil = perfilDelInicio();
+    if (!perfil) {
+      // Cuenta nueva sin recorrido de inicio (por ejemplo abrió el correo en otro celular): hay que armar su perfil.
+      faltaPerfilFlag = true;
+      preparado = true;
+      oyentes.forEach((o) => o());
+      return;
+    }
+    cache = crearReal({ ...perfil, correo: user.email ?? perfil.correo });
     await sb.from('estado_app').upsert({ user_id: user.id, estado: cache });
-    oyentes.forEach((o) => o());
+  }
+  try {
+    window.localStorage.setItem(CLAVE, JSON.stringify(cache));
+  } catch {
+    /* ver arriba */
   }
   usuario = user.id;
+  preparado = true;
+  oyentes.forEach((o) => o());
 }
+
+/** true si la cuenta es nueva y todavía no tiene perfil (hay que llevarla al recorrido de inicio). */
+export const faltaPerfil = () => faltaPerfilFlag;
 
 /** Cierra la sesión y deja este celular sin datos de la cuenta. */
 export async function cerrarSesion(): Promise<void> {
@@ -333,10 +362,17 @@ export async function cerrarSesion(): Promise<void> {
     /* nada que borrar */
   }
   cache = undefined;
+  preparado = false;
+  faltaPerfilFlag = false;
+  try {
+    window.sessionStorage.removeItem(CLAVE_INICIO);
+  } catch {
+    /* nada que borrar */
+  }
 }
 
 export function borrarTodo(): void {
-  if (usuario) void supabaseNavegador().from('estado_app').delete().eq('user_id', usuario);
+  const id = usuario;
   try {
     window.localStorage.removeItem(CLAVE);
     window.sessionStorage.removeItem(CLAVE_INICIO);
@@ -344,7 +380,18 @@ export function borrarTodo(): void {
     /* nada que borrar */
   }
   cache = undefined;
+  usuario = null;
+  preparado = false;
+  faltaPerfilFlag = false;
   oyentes.forEach((o) => o());
+  // Con cuenta: se borra también en la nube y se vuelve a las preguntas de inicio para armar un perfil nuevo.
+  if (id) {
+    void supabaseNavegador()
+      .from('estado_app')
+      .delete()
+      .eq('user_id', id)
+      .then(() => window.location.assign('/onboarding?cuenta=1'));
+  }
 }
 
 function suscribir(o: () => void): () => void {
@@ -356,7 +403,7 @@ function suscribir(o: () => void): () => void {
 
 /** Estado de la app (null mientras se dibuja en el servidor: las pantallas muestran su esqueleto). */
 export function useApp(): EstadoApp | null {
-  return useSyncExternalStore(suscribir, instantanea, () => null);
+  return useSyncExternalStore(suscribir, () => (preparado ? instantanea() : null), () => null);
 }
 
 // ───────────────────────── meal prep ─────────────────────────

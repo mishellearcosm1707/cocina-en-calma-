@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 // Fotos reales disponibles (public/recetas/<id>.jpg): así no se piden archivos que no existen.
 export default function Onboarding() {
   const fotos = readdirSync(join(process.cwd(), 'public/recetas'))
-    .filter((f) => f.endsWith('.jpg'))
+    .filter((f) => f.endsWith('.jpg') && !f.endsWith('-s.jpg'))
     .map((f) => f.replace('.jpg', ''));
   return <FlowCliente fotos={fotos} />;
 }

@@ -371,6 +371,8 @@ function porcionTexto(p: number): string {
 }
 
 export function Flow({ fotos = [] }: { fotos?: string[] }) {
+  // /onboarding?cuenta=1: la persona ya compró y entró con su correo; el recorrido solo arma su perfil y la lleva a la app.
+  const [cuenta] = useState(() => new URLSearchParams(window.location.search).get('cuenta') === '1');
   const reducir = useReducedMotion();
   const [ini] = useState(leerGuardado);
   const [idx, setIdx] = useState(Math.min(ini.idx ?? 0, PASOS.length - 1));
@@ -1040,9 +1042,11 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                     </motion.li>
                   ))}
                 </ul>
+                {!cuenta && (
                 <div className="rounded-[var(--radius-card)] border border-[var(--surface-2)] bg-[var(--surface)] p-4 text-sm leading-snug">
                   <b>Este es tu menú de hoy, gratis.</b> Con tu plan completo armas toda la semana con {RECETAS.length} recetas, ves tus compras y cocinas todo en una tarde. <b>Pago único de $14.99</b> y 7 días de garantía.
                 </div>
+                )}
                 <p className="text-sm text-[var(--text-secondary)]">
                   Orientación nutricional general. No reemplaza a tu médico o nutricionista.
                 </p>
@@ -1063,10 +1067,10 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
           {paso === 'menu' ? (
             <motion.a
               whileTap={{ scale: 0.97 }}
-              href="/paywall"
+              href={cuenta ? '/app' : '/paywall'}
               className="flex h-14 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] bg-[var(--accent)] text-base font-bold text-[var(--bg)] shadow-[0_10px_24px_-8px_color-mix(in_oklab,var(--accent)_70%,transparent)]"
             >
-              Ver mi semana completa
+              {cuenta ? 'Entrar a mi app' : 'Ver mi semana completa'}
               <ArrowRight size={20} strokeWidth={2.5} aria-hidden="true" />
             </motion.a>
           ) : (
