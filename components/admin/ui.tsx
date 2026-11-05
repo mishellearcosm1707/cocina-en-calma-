@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react';
-import { AlertTriangle, Lightbulb } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Hourglass, Lightbulb } from 'lucide-react';
 import type { AvisoDueña } from '@/lib/admin/datos';
 
 // Piezas del panel: un dato héroe + una frase que lo interpreta. Si no hay dato, dice "Sin datos" y por qué.
 
 export function Pagina({ titulo, bajada, children }: { titulo: string; bajada?: string; children: ReactNode }) {
   return (
-    <section className="flex flex-col gap-4">
+    <section className="escalon flex flex-col gap-4">
       <header>
         <h1 className="text-2xl font-bold leading-tight [font-family:var(--font-display)]">{titulo}</h1>
         {bajada && <p className="mt-1 text-base text-[var(--text-secondary)]">{bajada}</p>}
@@ -47,8 +47,30 @@ export function Tarjeta({
   );
 }
 
+/** Dato héroe: la cifra que más importa, ancha, con fondo propio. */
+export function Heroe({ titulo, valor, insight, tono = 'neutro' }: { titulo: string; valor: string | null; insight?: string; tono?: 'neutro' | 'bien' | 'alerta' }) {
+  const color = tono === 'bien' ? 'var(--accent)' : tono === 'alerta' ? 'var(--error)' : 'var(--text-primary)';
+  return (
+    <article className="rounded-[var(--radius-card)] bg-[linear-gradient(135deg,var(--olive-wash),var(--surface))] p-5 shadow-[var(--shadow-2)]">
+      <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--text-secondary)]">{titulo}</h2>
+      {valor === null ? (
+        <p className="mt-2 text-3xl font-bold text-[var(--text-secondary)] [font-family:var(--font-display)]">Sin datos todavía</p>
+      ) : (
+        <p className="mt-2 text-5xl font-bold tabular-nums leading-none [font-family:var(--font-display)]" style={{ color }}>
+          {valor}
+        </p>
+      )}
+      {insight && <p className="mt-3 text-lg leading-snug text-[var(--text-secondary)]">{insight}</p>}
+    </article>
+  );
+}
+
 export function Rejilla({ children }: { children: ReactNode }) {
-  return <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">{children}</div>;
+  return <div className="escalon grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">{children}</div>;
+}
+
+export function Rejilla3({ children }: { children: ReactNode }) {
+  return <div className="escalon grid grid-cols-1 gap-3 sm:grid-cols-3">{children}</div>;
 }
 
 export function Bloque({ titulo, children }: { titulo: string; children: ReactNode }) {
@@ -118,11 +140,23 @@ export function Embudo({ pasos }: { pasos: Array<{ etiqueta: string; personas: n
   );
 }
 
-export function Avisos({ avisos }: { avisos: AvisoDueña[] }) {
+export function Avisos({ avisos, hayDatos }: { avisos: AvisoDueña[]; hayDatos: boolean }) {
+  if (!avisos.length && !hayDatos) {
+    return (
+      <p role="status" className="flex items-start gap-3 rounded-[var(--radius-card)] bg-[var(--surface-2)] p-4 text-lg font-bold text-[var(--text-secondary)]">
+        <Hourglass size={24} aria-hidden="true" className="mt-0.5 shrink-0" />
+        <span>
+          Aún no hay ventas ni avisos
+          <span className="mt-1 block text-base font-normal">Cuando lleguen las primeras compras, aquí verás qué necesita tu atención.</span>
+        </span>
+      </p>
+    );
+  }
   if (!avisos.length) {
     return (
-      <p role="status" className="rounded-[var(--radius-card)] bg-[var(--olive-wash)] p-4 text-lg font-bold text-[var(--accent)]">
-        ✅ Todo en orden este mes
+      <p role="status" className="flex items-center gap-3 rounded-[var(--radius-card)] bg-[var(--olive-wash)] p-4 text-lg font-bold text-[var(--accent)]">
+        <CheckCircle2 size={24} aria-hidden="true" className="shrink-0" />
+        Todo en orden este mes
       </p>
     );
   }

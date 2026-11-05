@@ -20,7 +20,7 @@ export default async function Uso() {
         <Tarjeta
           titulo="Se activan el primer día"
           valor={uso.activacion.pct === null ? null : porcentaje(uso.activacion.pct)}
-          insight={uso.activacion.n ? `Sobre ${uso.activacion.n}: hicieron un chequeo, armaron su semana o su meal prep el mismo día que entraron.` : 'Aparece con las primeras entradas.'}
+          insight={uso.activacion.n ? `Sobre ${uso.activacion.n}: hicieron un chequeo, armaron su semana o su meal prep el mismo día que entraron.${uso.activacion.n < 10 ? ' Muestra muy pequeña: todavía no decide nada.' : ''}` : 'Aparece con las primeras entradas.'}
         />
       </Rejilla>
       <Rejilla>

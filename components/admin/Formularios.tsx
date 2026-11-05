@@ -6,7 +6,7 @@ import { agregarGasto, agregarUsuario, generarEnlace, guardarCostos, type Result
 const campo =
   'h-12 w-full rounded-[var(--radius-button)] border border-[var(--surface-2)] bg-[var(--bg)] px-3 text-base outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]';
 const boton =
-  'flex min-h-12 items-center justify-center rounded-[var(--radius-button)] bg-[var(--accent)] px-5 text-base font-bold text-[var(--bg)] disabled:opacity-60 [touch-action:manipulation]';
+  'flex min-h-12 items-center justify-center rounded-[var(--radius-button)] bg-[var(--accent)] px-5 text-base font-bold text-[var(--bg)] transition-transform duration-150 active:scale-[0.97] disabled:opacity-60 [touch-action:manipulation]';
 
 function Etiqueta({ id, children }: { id: string; children: ReactNode }) {
   return (

@@ -1,3 +1,4 @@
+import { CheckCircle2 } from 'lucide-react';
 import { Bloque, Pagina, Rejilla, Tabla, Tarjeta, VacioInfo } from '@/components/admin/ui';
 import { exigirAdmin } from '@/lib/admin/acceso';
 import { calcularSalud } from '@/lib/admin/datos';
@@ -21,7 +22,10 @@ export default async function Salud() {
   return (
     <Pagina titulo="Salud" bajada="¿Todo funciona? Aquí ves si Hotmart te está avisando bien y si la app tiene errores.">
       <p role="status" className="rounded-[var(--radius-card)] p-4 text-lg font-bold" style={{ background: bien ? 'var(--olive-wash)' : 'var(--peach)', color: bien ? 'var(--accent)' : 'var(--peach-ink)' }}>
-        {bien ? '✅ Todo bien en las últimas 24 horas' : 'Hay cosas que revisar abajo'}
+        <span className="flex items-center gap-2">
+          {bien && <CheckCircle2 size={24} aria-hidden="true" />}
+          {bien ? 'Todo bien en las últimas 24 horas' : 'Hay cosas que revisar abajo'}
+        </span>
       </p>
       <Rejilla>
         <Tarjeta titulo="Último aviso de Hotmart" valor={s.ultimoAviso ? haceCuanto(s.ultimoAviso) : null} insight={s.ultimoAviso ? fechaHora(s.ultimoAviso) : 'Hotmart todavía no ha enviado ningún aviso (normal antes de la primera compra).'} />
