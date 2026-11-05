@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Nunito } from "next/font/google";
 import "./globals.css";
 
@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description:
     "Termina el día más ligera, sin pesar ni contar calorías. Menús antiinflamatorios según tu síntoma y lo que tienes en casa. Pago único de $14.99.",
 };
+
+export const viewport: Viewport = { themeColor: "#4F6F2B", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

@@ -105,6 +105,8 @@ export function Paywall({ fotos }: { fotos: string[] }) {
   // Solo se dibuja en el navegador (carga dinámica sin SSR), así que puede leer el progreso al nacer.
   const [g] = useState<Partial<Guardado>>(leer);
   const [aviso, setAviso] = useState('');
+  // /paywall?sin_acceso=1: la persona entró con su correo pero ese correo no tiene una compra activa.
+  const [sinAcceso] = useState(() => new URLSearchParams(window.location.search).get('sin_acceso') === '1');
   const [cargando, setCargando] = useState(false);
   const [abierto, setAbierto] = useState<number | null>(null);
   const [diaAviso, setDiaAviso] = useState(false);
@@ -197,6 +199,12 @@ export function Paywall({ fotos }: { fotos: string[] }) {
             </span>
             <span aria-hidden="true" className="size-11" />
           </motion.div>
+
+          {sinAcceso && (
+            <motion.p variants={APARECE} role="status" className="mt-2 rounded-[var(--radius-card)] bg-[var(--mustard-soft)] p-3 text-base text-[var(--mustard-ink)]">
+              <b>Ese correo todavía no tiene acceso.</b> Si ya compraste, entra con el mismo correo de tu compra en Hotmart. Si el problema sigue, escríbenos y lo resolvemos.
+            </motion.p>
+          )}
 
           <motion.p
             variants={APARECE}

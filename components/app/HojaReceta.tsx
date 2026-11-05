@@ -1,5 +1,6 @@
 'use client';
 
+import { useAtraparFoco } from '@/lib/foco';
 import { useEffect, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
@@ -31,6 +32,8 @@ export function HojaReceta({
     };
   }, [receta, onCerrar]);
 
+  const trampa = useAtraparFoco(Boolean(receta));
+
   if (typeof document === 'undefined') return null;
   return createPortal(
     <AnimatePresence>
@@ -47,6 +50,8 @@ export function HojaReceta({
           />
           <motion.section
             key="hoja"
+            ref={trampa}
+            tabIndex={-1}
             role="dialog"
             aria-modal="true"
             aria-label={receta.nombre}

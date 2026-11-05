@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from 'react';
 import type { Actividad, Objetivo, Ritmo, Sexo } from './calculos';
+import { claveIngrediente, nombresIngrediente } from './ingredientes';
 import { supabaseNavegador } from './supabase/navegador';
 import { COMIDAS, esExpress, esSugerible, opcionPrep, RECETAS, type Comida, type Receta, type Sintoma } from './recetas';
 
@@ -135,22 +136,6 @@ function pasilloDe(nombre: string): Pasillo {
   return 'Lácteos y despensa';
 }
 
-/** Quita la cantidad del inicio ("½ taza de avena" → "avena") para sumar el mismo ingrediente de varias recetas. */
-function nombreIngrediente(linea: string): string {
-  return linea
-    .replace(/^[\d½¼¾⅓⅔/.,\s-]+/, '')
-    .replace(/^(tazas?|cdas?|cditas?|cdtas?|palmas?|cucharadas?|cucharaditas?|dientes?|unidades?|unidad|pizca|puñado|rebanadas?|latas?|filetes?|hojas?|ramitas?|rodajas?|g|gr|ml)\b\s*/i, '')
-    .replace(/^(de|del)\s+/i, '')
-    .replace(/\s*\(.*\)\s*$/, '')
-    .replace(/,.*$/, '')
-    .replace(
-      /\b(picad[oa]s?|rallad[oa]s?|cocid[oa]s?|fresc[oa]s?|madur[oa]s?|pequeñ[oa]s?|grandes?|median[oa]s?|naturales?|sin sal|en cubos|en rodajas|en tiras|al gusto)\b/gi,
-      '',
-    )
-    .replace(/\s{2,}/g, ' ')
-    .trim();
-}
-
 export interface ItemCompra {
   clave: string;
   nombre: string;
@@ -161,13 +146,16 @@ export interface ItemCompra {
 export function listaCompras(plan: Record<string, string> | undefined): ItemCompra[] {
   const m = new Map<string, ItemCompra>();
   for (const r of resolverSemana(plan).values()) {
+    const vistos = new Set<string>();
     for (const linea of r.ing) {
-      const nombre = nombreIngrediente(linea);
-      if (!nombre) continue;
-      const k = nombre.toLowerCase();
-      const previo = m.get(k);
-      if (previo) previo.veces += 1;
-      else m.set(k, { clave: k, nombre: nombre.charAt(0).toUpperCase() + nombre.slice(1), veces: 1, pasillo: pasilloDe(nombre) });
+      for (const nombre of nombresIngrediente(linea)) {
+        const k = claveIngrediente(nombre);
+        if (vistos.has(k)) continue;
+        vistos.add(k);
+        const previo = m.get(k);
+        if (previo) previo.veces += 1;
+        else m.set(k, { clave: k, nombre, veces: 1, pasillo: pasilloDe(nombre) });
+      }
     }
   }
   return [...m.values()].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));

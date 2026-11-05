@@ -1,5 +1,6 @@
 'use client';
 
+import { useAtraparFoco } from '@/lib/foco';
 import { registrarEvento } from '@/lib/eventos';
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -58,6 +59,8 @@ export function Semana() {
     window.addEventListener('keydown', tecla);
     return () => window.removeEventListener('keydown', tecla);
   }, [elegir, cerrarElegir]);
+
+  const trampa = useAtraparFoco(Boolean(elegir));
 
   if (!app) return <Esqueleto />;
 
@@ -323,6 +326,8 @@ export function Semana() {
             />
             <motion.section
               key="selector"
+              ref={trampa}
+              tabIndex={-1}
               role="dialog"
               aria-modal="true"
               aria-label={`Elegir ${elegir.comida.toLowerCase()}`}

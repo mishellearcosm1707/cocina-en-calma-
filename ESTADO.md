@@ -176,3 +176,11 @@ Big Idea: "Desinflama tu abdomen y recupera tu ropa favorita sin volver a pesar 
 - No aplica y se dice así: MRR/churn (pago único), costo de IA (la app no usa IA), Sentry (no conectado → "Sin datos").
 - Evidencia: capturas reales de la dueña en docs/revisiones/admin-resumen-desktop.png y admin-usuarias-desktop.png. revisor-visual sobre Resumen (1ª pasada): NO LISTA 27/40 · 8/20 (banner verde con 0 datos, 8 tarjetas sin héroe, sin movimiento). Corregido: estado neutro sin datos, 1 héroe + 2 filas de 3, entrada escalonada, feedback al tocar, pestaña activa a la vista, íconos en vez de emojis. PENDIENTE: nueva captura de Resumen para re-puntuar. Resto de pantallas del panel: sin revisor (secundarias).
 - Pendiente de la dueña: HOTMART_HOTTOK, HOTMART_PRODUCT_ID y SUPABASE_SECRET_KEY (ya puesta) en Vercel; ?src= en el enlace de pago; registrar costos en Ajustes.
+
+## Pulido general (2026-11-05)
+- Página 404 propia en español (también la ve quien no es admin en /admin); mensaje en la pantalla de planes cuando un correo no tiene acceso (?sin_acceso=1).
+- robots.txt (solo ventas y legales se indexan), sitemap.xml, manifest (instalable en la pantalla de inicio), color del navegador y cabeceras de seguridad (X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy). Sin CSP todavía (pendiente, riesgo de romper fuentes/Supabase).
+- Hojas de receta y selector de semana: el foco entra, se queda dentro (Tab/Shift+Tab) y vuelve al cerrar (lib/foco.ts).
+- Lista de compras: lib/ingredientes.ts limpia cantidades, jugo/ralladura→fruta, sal y pimienta en un renglón, separa "X y Y", junta singular/plural (340 → 292 artículos distintos).
+- Pruebas automáticas: npm test (tests/*.mjs con node:test): hottok, eventos de Hotmart, importes, ingredientes. 7 pruebas pasan.
+- Pendiente del pulido: CSP, límite de peticiones en /api/eventos, re-puntuar Resumen del panel (falta captura nueva), fotos de 267 recetas, textos legales con datos reales de la dueña.
