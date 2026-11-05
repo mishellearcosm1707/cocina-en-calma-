@@ -1,5 +1,6 @@
 'use client';
 
+import { registrarEvento } from '@/lib/eventos';
 import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import { Check, Search, Snowflake, Zap } from 'lucide-react';
 import { CATEGORIAS, categoriaDe, COMIDAS, esComida, esExpress, opcionPrep, RECETAS, type Categoria, type Comida, type Receta, type Sintoma } from '@/lib/recetas';
@@ -69,6 +70,7 @@ export function Recetas() {
   const hoyIdx = indiceDia(hoy);
 
   function planificar(r: Receta, dias: number[]) {
+    registrarEvento('receta_planificada', { dias: dias.length });
     actualizar((e) => {
       const actual = { ...(e.semanas[semanaKey] ?? {}) };
       for (const d of dias) actual[clave(d, r.comida)] = r.id;

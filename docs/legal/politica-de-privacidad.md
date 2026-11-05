@@ -11,6 +11,7 @@
 - **Cuenta:** tu correo electrónico y, si quieres, tu nombre.
 - **Datos de salud y bienestar (sensibles):** sexo, edad, peso, talla, nivel de actividad física, objetivo (por ejemplo "mantener mi peso") y los síntomas digestivos que nos cuentas, incluidos tus chequeos diarios. Estos datos son opcionales, pero sin ellos no podemos calcular tus requerimientos ni ajustar tus menús.
 - **Tus elecciones en la app:** ingredientes que tienes en casa, recetas que eliges, tu semana armada y tus listas de compras.
+- **Conteos anónimos de uso y errores:** para saber qué partes de la app funcionan y cuáles fallan, contamos cosas como "una persona llegó al paso 5 del recorrido" o "ocurrió un error en esta pantalla". Estos conteos no incluyen tu correo, tu nombre ni tus respuestas de salud, y se usan solo para mejorar el servicio.
 - **Datos técnicos de uso:** tipo de dispositivo, idioma y cómo usas la app, solo si aceptas la analítica opcional.
 - **Pago:** el pago lo procesa Hotmart. Nosotros NO vemos ni guardamos el número de tu tarjeta; recibimos la confirmación de compra y tu correo.
 

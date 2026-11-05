@@ -1,11 +1,14 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-import { estadoDeEvento, extraer, hottokValido, type EventoHotmart } from '@/lib/hotmart';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { estadoDeEvento, estadoDeVenta, extraer, hottokValido, type EventoHotmart } from '@/lib/hotmart';
+
+type Resultado = 'aplicado' | 'duplicado' | 'ignorado' | 'no_autorizado' | 'error';
 
 /**
- * Aviso automático de Hotmart cuando alguien compra, pide reembolso o hace contracontracargo.
- * Orden: autenticidad (hottok) → producto permitido → no repetido → cambio de acceso en la base de datos.
+ * Aviso automático de Hotmart cuando alguien compra, pide reembolso o hace contracargo.
+ * Orden: autenticidad (hottok) → producto permitido → no repetido → acceso + venta en la base de datos.
  * Respuestas: 401 no autenticado · 200 ignorado/ya procesado/aplicado · 500 falló algo (Hotmart reintenta).
+ * Cada intento queda en webhook_log para que el panel avise si algo falla.
  */
 export async function POST(request: Request) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -17,6 +20,10 @@ export async function POST(request: Request) {
     console.error('[hotmart] falta configuración del servidor');
     return NextResponse.json({ error: 'sin configurar' }, { status: 500 });
   }
+  const db = createClient(url, clave, { auth: { persistSession: false, autoRefreshToken: false } });
+  const anotar = async (resultado: Resultado, evento?: string) => {
+    await db.from('webhook_log').insert({ resultado, evento: evento ?? null });
+  };
 
   let cuerpo: EventoHotmart;
   try {
@@ -27,44 +34,96 @@ export async function POST(request: Request) {
 
   if (!hottokValido(request.headers.get('x-hotmart-hottok') ?? cuerpo.hottok, hottok)) {
     console.warn('[hotmart] aviso rechazado: hottok no válido');
+    await anotar('no_autorizado', cuerpo.event);
     return NextResponse.json({ error: 'no autorizado' }, { status: 401 });
   }
 
-  const { evento, email, transaccion, productoId } = extraer(cuerpo);
-  if (productoId !== producto) return NextResponse.json({ ignorado: 'otro producto' });
-  const estado = estadoDeEvento(evento);
-  if (!estado || !email || !transaccion) return NextResponse.json({ ignorado: 'evento sin efecto' });
-
-  const db = createClient(url, clave, { auth: { persistSession: false, autoRefreshToken: false } });
+  const d = extraer(cuerpo);
+  if (d.productoId !== producto) {
+    await anotar('ignorado', d.evento);
+    return NextResponse.json({ ignorado: 'otro producto' });
+  }
+  const estado = estadoDeEvento(d.evento);
+  const estadoVenta = estadoDeVenta(d.evento);
+  if (!estado || !estadoVenta || !d.email || !d.transaccion) {
+    await anotar('ignorado', d.evento);
+    return NextResponse.json({ ignorado: 'evento sin efecto' });
+  }
+  const email = d.email;
+  const transaccion = d.transaccion;
+  const evento = d.evento as string;
 
   // Hotmart reenvía avisos: cada (transacción, evento) se procesa una sola vez.
   const { error: repetido } = await db.from('eventos_hotmart').insert({ transaccion, evento });
   if (repetido) {
-    if (repetido.code === '23505') return NextResponse.json({ duplicado: true });
+    if (repetido.code === '23505') {
+      await anotar('duplicado', evento);
+      return NextResponse.json({ duplicado: true });
+    }
     console.error('[hotmart] no se pudo registrar el evento', repetido.code);
+    await anotar('error', evento);
     return NextResponse.json({ error: 'registro' }, { status: 500 });
   }
 
   try {
-    const { data: previo, error: errLeer } = await db.from('accesos').select('id, transaccion').eq('email', email).maybeSingle();
-    if (errLeer) throw errLeer;
-    if (previo) {
-      // Un reembolso de una compra vieja no le quita el acceso a una compra más reciente.
-      if (estado !== 'activo' && previo.transaccion !== transaccion) return NextResponse.json({ ignorado: 'compra anterior' });
-      const { error } = await db
-        .from('accesos')
-        .update(estado === 'activo' ? { estado, transaccion } : { estado })
-        .eq('id', previo.id);
-      if (error) throw error;
-    } else if (estado === 'activo') {
-      const { error } = await db.from('accesos').insert({ email, estado, transaccion });
-      if (error) throw error;
-    }
+    await aplicar(db, { ...d, email, transaccion }, estado, estadoVenta);
   } catch (e) {
     // Se libera el evento para que el reintento de Hotmart pueda aplicarse.
     await db.from('eventos_hotmart').delete().match({ transaccion, evento });
-    console.error('[hotmart] no se pudo aplicar el acceso', e instanceof Error ? e.message : 'error');
+    console.error('[hotmart] no se pudo aplicar', e instanceof Error ? e.message : 'error');
+    await anotar('error', evento);
     return NextResponse.json({ error: 'aplicar' }, { status: 500 });
   }
+  await anotar('aplicado', evento);
   return NextResponse.json({ ok: true });
+}
+
+async function aplicar(
+  db: SupabaseClient,
+  d: ReturnType<typeof extraer> & { email: string; transaccion: string },
+  estado: 'activo' | 'reembolsado' | 'cancelado',
+  estadoVenta: 'aprobada' | 'reembolsada' | 'contracargo' | 'cancelada',
+) {
+  const { data: previo, error: errLeer } = await db.from('accesos').select('id, transaccion').eq('email', d.email).maybeSingle();
+  if (errLeer) throw errLeer;
+  // Un reembolso de una compra vieja no le quita el acceso a una compra más reciente.
+  const esCompraVieja = Boolean(previo) && estado !== 'activo' && previo?.transaccion !== d.transaccion;
+
+  if (!esCompraVieja) {
+    if (previo) {
+      const cambios = estado === 'activo' ? { estado, transaccion: d.transaccion, nombre: d.nombre, origen: 'hotmart' } : { estado };
+      const { error } = await db.from('accesos').update(cambios).eq('id', previo.id);
+      if (error) throw error;
+    } else if (estado === 'activo') {
+      const { error } = await db.from('accesos').insert({ email: d.email, estado, transaccion: d.transaccion, nombre: d.nombre, origen: 'hotmart' });
+      if (error) throw error;
+    }
+  }
+
+  // Libro de ventas: los importes que Hotmart no informa quedan en NULL (el panel dirá "Sin datos").
+  if (estadoVenta === 'aprobada') {
+    const { error } = await db.from('ventas').upsert(
+      {
+        transaccion: d.transaccion,
+        email: d.email,
+        producto_id: d.productoId,
+        moneda: d.moneda,
+        bruto_minor: d.bruto,
+        fee_hotmart_minor: d.feeHotmart,
+        afiliado_minor: d.afiliado,
+        neto_productor_minor: d.netoProductor,
+        canal: d.canal,
+        estado: 'aprobada',
+        ...(d.fechaCompra ? { comprada_en: d.fechaCompra } : {}),
+      },
+      { onConflict: 'transaccion' },
+    );
+    if (error) throw error;
+  } else {
+    const { error } = await db
+      .from('ventas')
+      .update({ estado: estadoVenta, cerrada_en: new Date().toISOString() })
+      .eq('transaccion', d.transaccion);
+    if (error) throw error;
+  }
 }

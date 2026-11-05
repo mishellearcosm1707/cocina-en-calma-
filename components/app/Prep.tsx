@@ -1,5 +1,6 @@
 'use client';
 
+import { registrarEvento } from '@/lib/eventos';
 import { useState } from 'react';
 import { motion, MotionConfig } from 'motion/react';
 import { Check, ChefHat, Clock, FileText, Refrigerator, Snowflake, Sparkles, Undo2, UtensilsCrossed } from 'lucide-react';
@@ -40,6 +41,7 @@ export function Prep() {
     actualizar((e) => ({ ...e, comprados: { ...e.comprados, [marca(id, i)]: !e.comprados[marca(id, i)] } }));
   }
   function armar() {
+    registrarEvento('prep_armado');
     setAntes({ ...(plan ?? {}) });
     actualizar((e) => ({ ...e, semanas: { ...e.semanas, [semanaKey]: armarPrep(e.perfil, e.semanas[semanaKey] ?? {}) } }));
   }

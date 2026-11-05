@@ -1,5 +1,6 @@
 'use client';
 
+import { registrarEvento } from '@/lib/eventos';
 import { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { motion, MotionConfig } from 'motion/react';
@@ -57,6 +58,7 @@ export function Hoy() {
   for (let i = miNivel ? 0 : 1; app.chequeos[aIso(sumarDias(hoy, -i))]; i++) racha++;
 
   function anotar(n: Nivel) {
+    registrarEvento('chequeo_registrado');
     actualizar((e) => ({ ...e, chequeos: { ...e.chequeos, [hoyIso]: n } }));
   }
 

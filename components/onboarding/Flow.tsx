@@ -5,6 +5,7 @@
 // palabra clave · el botón nunca nace apagado: si falta algo, avisa qué (los datos viven solo en memoria
 // mientras dura el recorrido; el registro del consentimiento con servidor llega con la etapa de servicios).
 
+import { registrarEvento } from '@/lib/eventos';
 import { Logo } from '@/components/Logo';
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, animate, motion, useReducedMotion } from 'motion/react';
@@ -380,6 +381,11 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
   const [bloqueo, setBloqueo] = useState(false);
   const [aviso, setAviso] = useState('');
   const paso = PASOS[idx];
+  useEffect(() => {
+    if (cuenta) return;
+    registrarEvento('onboarding_paso_visto', { paso });
+    if (paso === 'menu') registrarEvento('onboarding_completado');
+  }, [paso, cuenta]);
 
   const [c, setC] = useState(ini.c ?? { terminos: false, salud: false, novedades: false, analitica: false });
   const [filtro, setFiltro] = useState<'ok' | 'aplica' | null>(ini.filtro ?? null);

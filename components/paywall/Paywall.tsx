@@ -6,6 +6,7 @@
 // objeción "es caro" → precio por día (el ancla con la tarifa de una consulta se añade cuando la dueña aporte la cifra real); objeción de confianza → garantía y pago por Hotmart).
 // El cobro real se conecta en la etapa de servicios externos: hasta entonces el botón NO simula un pago.
 
+import { registrarEvento } from '@/lib/eventos';
 import { Logo } from '@/components/Logo';
 import { TOTAL_RECETAS } from '@/lib/oferta';
 import { useEffect, useState } from 'react';
@@ -141,6 +142,10 @@ export function Paywall({ fotos }: { fotos: string[] }) {
       </>
     );
 
+  useEffect(() => {
+    registrarEvento('paywall_visto');
+  }, []);
+
   function desbloquear() {
     if (cargando) return;
     if (typeof navigator !== 'undefined' && !navigator.onLine) {
@@ -150,6 +155,7 @@ export function Paywall({ fotos }: { fotos: string[] }) {
     setAviso('');
     setCargando(true);
     if (CHECKOUT_URL) {
+      registrarEvento('checkout_iniciado');
       window.location.href = CHECKOUT_URL;
       return;
     }

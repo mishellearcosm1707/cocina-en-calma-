@@ -1,5 +1,6 @@
 'use client';
 
+import { registrarEvento } from '@/lib/eventos';
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
@@ -72,6 +73,7 @@ export function Semana() {
   const llenosDia = (i: number) => COMIDAS.filter((c) => recetas.has(clave(i, c))).length;
 
   function poner(d: number, c: Comida, r: Receta | null) {
+    if (r) registrarEvento('receta_planificada', { dias: 1 });
     actualizar((e) => {
       const actual = { ...(e.semanas[semanaKey] ?? {}) };
       if (r) actual[clave(d, c)] = r.id;
@@ -82,6 +84,7 @@ export function Semana() {
   }
 
   function ponerVarios(dias: number[], comida: Comida, r: Receta) {
+    registrarEvento('receta_planificada', { dias: dias.length });
     actualizar((e) => {
       const actual = { ...(e.semanas[semanaKey] ?? {}) };
       for (const d of dias) actual[clave(d, comida)] = r.id;
@@ -91,6 +94,7 @@ export function Semana() {
   }
 
   function completar() {
+    registrarEvento('semana_completada');
     setDeshacer({ semana: semanaKey, plan: { ...(plan ?? {}) } });
     actualizar((e) => ({
       ...e,

@@ -1,5 +1,6 @@
 'use client';
 
+import { registrarEvento, unaVezPorDia } from '@/lib/eventos';
 import { useEffect, type ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -20,6 +21,7 @@ export function AppShell({ fotos, guia, children }: { fotos: string[]; guia: str
   useEffect(() => {
     void iniciarSincronizacion().then(() => {
       if (faltaPerfil()) window.location.replace('/onboarding?cuenta=1');
+      else unaVezPorDia('sesion', () => registrarEvento('sesion_iniciada'));
     });
   }, []);
   return (
