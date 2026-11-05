@@ -21,6 +21,13 @@ export async function proxy(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  // /admin: sin sesión de admin responde 404 real (ni confirma que el panel existe). La política de la tabla `admins` deja a
+  // cada persona ver solo su propia fila; además cada página y acción vuelve a verificar en el servidor (lib/admin/acceso.ts).
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    const { data: esAdmin } = user ? await supabase.from('admins').select('user_id').maybeSingle() : { data: null };
+    if (!esAdmin) return NextResponse.rewrite(new URL('/no-existe', request.url), { status: 404 });
+    return respuesta;
+  }
   if (!user) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
@@ -38,4 +45,4 @@ export async function proxy(request: NextRequest) {
   return respuesta;
 }
 
-export const config = { matcher: ['/app/:path*'] };
+export const config = { matcher: ['/app/:path*', '/admin/:path*'] };
