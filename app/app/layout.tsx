@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import { existsSync, readdirSync } from 'node:fs';
+import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { AppShell } from '@/components/app/AppShell';
 
@@ -14,7 +14,8 @@ export default function LayoutApp({ children }: { children: ReactNode }) {
   const fotos = readdirSync(join(process.cwd(), 'public/recetas'))
     .filter((f) => f.endsWith('.jpg') && !f.endsWith('-s.jpg'))
     .map((f) => f.replace('.jpg', ''));
-  const guia = existsSync(join(process.cwd(), 'public/guia-meal-prep.pdf')) ? '/guia-meal-prep.pdf' : null;
+  // La guía en PDF vive en un bucket privado; /app/guia pide un enlace temporal solo a quien tiene acceso activo.
+  const guia = '/app/guia';
   return (
     <AppShell fotos={fotos} guia={guia}>
       {children}

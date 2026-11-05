@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# archivos originales privados (la guía en PDF vive en el bucket privado de Supabase)
+/fuentes-privadas/
