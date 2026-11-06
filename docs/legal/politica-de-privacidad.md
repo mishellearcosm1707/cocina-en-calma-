@@ -61,13 +61,13 @@ Puedes hacerlo tú misma desde la app, en **Yo → Tu privacidad**:
 - **Borrar mis datos y empezar de nuevo.**
 - **Eliminar mi cuenta.**
 
-También puedes escribirnos a **conexiondigital_hub@outlook.com** y respondemos en un máximo de **15 días hábiles**. Si sientes que no atendimos bien tu solicitud, puedes acudir a la autoridad de protección de datos de tu país (en Ecuador, la Superintendencia de Protección de Datos Personales).
+También puedes escribirnos a **conexiondigital_hub@outlook.com** y respondemos en un máximo de **15 días**. Si sientes que no atendimos bien tu solicitud, puedes acudir a la autoridad de protección de datos de tu país (en Ecuador, la Superintendencia de Protección de Datos Personales).
 
 ## 8. Decisiones automatizadas
 No tomamos decisiones automatizadas que tengan efectos legales sobre ti. Los cálculos de calorías y nutrientes son **estimaciones orientativas** con fórmulas conocidas; tú decides si las sigues.
 
 ## 9. Seguridad
-Usamos conexiones cifradas, acceso restringido y reglas que aíslan cada cuenta para que nadie más vea tus datos. Ningún sistema es infalible: si ocurre un incidente que te afecte, te lo informaremos sin demora, y también a la autoridad cuando corresponda.
+Usamos conexiones cifradas, acceso restringido y reglas que aíslan cada cuenta para que nadie más vea tus datos. Ningún sistema es infalible: si ocurre un incidente que te afecte, te lo informaremos sin demora, y también a la Superintendencia de Protección de Datos Personales dentro de los plazos que fija la ley.
 
 ## 10. Edad mínima
 Cocina en Calma es solo para personas **mayores de 18 años**. No recopilamos datos de menores a sabiendas; si detectamos una cuenta de una persona menor de edad, la eliminamos.
