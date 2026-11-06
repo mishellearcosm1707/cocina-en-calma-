@@ -36,14 +36,18 @@ export async function POST(request: Request) {
     return sinContenido();
   }
 
-  // Si hay sesión de una persona con cuenta, el evento se asocia a su id (no a su correo).
+  // Si hay sesión de una persona con cuenta Y aceptó "ayudar a mejorar la app (medir mi uso)", el evento se asocia a su id
+  // (no a su correo). Sin ese permiso el evento se guarda sin id: es un conteo anónimo.
   let userId: string | null = null;
   try {
     const supabase = await supabaseServidor();
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    userId = user?.id ?? null;
+    if (user) {
+      const { data: permiso } = await supabase.from('consentimientos').select('otorgado').eq('finalidad', 'analitica').order('creado_en', { ascending: false }).limit(1).maybeSingle();
+      if (permiso?.otorgado) userId = user.id;
+    }
   } catch {
     userId = null;
   }

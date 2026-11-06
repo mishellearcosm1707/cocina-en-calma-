@@ -425,6 +425,17 @@ export function Paywall({ fotos }: { fotos: string[] }) {
               ¿Ya compraste? Entra a tu cuenta
             </a>
           </motion.div>
+          <p className="mt-6 text-center text-sm text-[var(--text-secondary)]">
+            Pago único, sin renovaciones. Al comprar aceptas los{' '}
+            <a href="/terminos" className="font-semibold underline underline-offset-4">
+              Términos
+            </a>
+            ; la{' '}
+            <a href="/reembolsos" className="font-semibold underline underline-offset-4">
+              garantía de 7 días
+            </a>{' '}
+            está explicada aquí. Orientación nutricional general: no reemplaza a tu médico o nutricionista.
+          </p>
         </motion.main>
 
         <footer className="fixed inset-x-0 bottom-0 z-10 mx-auto w-full max-w-md bg-[var(--bg)] px-5 pb-[max(16px,env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_16px_var(--bg)]">

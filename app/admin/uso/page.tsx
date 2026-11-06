@@ -13,7 +13,7 @@ export default async function Uso() {
   const pasos = [...uso.embudo, { clave: 'compras', etiqueta: 'Compran (Hotmart avisa)', personas: ventas.length }];
 
   return (
-    <Pagina titulo="Uso" bajada="¿La gente usa la app y vuelve? Todo es anónimo: se cuentan acciones, no se guardan respuestas de salud.">
+    <Pagina titulo="Uso" bajada="¿La gente usa la app y vuelve? Solo cuenta a quienes aceptaron «ayudar a mejorar la app». Todo es anónimo: no se guardan respuestas de salud.">
       <Rejilla>
         <Tarjeta titulo="Activas en 7 días" valor={uso.conEventos ? String(uso.activos7) : null} insight="Personas con cuenta que entraron." />
         <Tarjeta titulo="Activas en 30 días" valor={uso.conEventos ? String(uso.activos30) : null} />

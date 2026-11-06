@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react';
+import { registrarConsentimiento } from './consentimiento';
 import type { Actividad, Objetivo, Ritmo, Sexo } from './calculos';
 import { claveIngrediente, nombresIngrediente } from './ingredientes';
 import { supabaseNavegador } from './supabase/navegador';
@@ -233,6 +234,16 @@ function crearInicial(): EstadoApp {
   };
 }
 
+/** Los permisos que la persona marcó en el recorrido de inicio (se guardan en el navegador hasta que tiene cuenta). */
+function consentimientoDelInicio(): { terminos: boolean; salud: boolean; novedades: boolean; analitica: boolean } | null {
+  try {
+    const g = JSON.parse(window.sessionStorage.getItem(CLAVE_INICIO) ?? '{}') as { c?: { terminos: boolean; salud: boolean; novedades: boolean; analitica: boolean } };
+    return g.c ?? null;
+  } catch {
+    return null;
+  }
+}
+
 /** Estado de una cuenta nueva: su perfil real, sin historial inventado, con los primeros 3 días ya armados. */
 function crearReal(perfil: Perfil): EstadoApp {
   const hoy = new Date();
@@ -325,6 +336,16 @@ export async function iniciarSincronizacion(): Promise<void> {
     }
     cache = crearReal({ ...perfil, correo: user.email ?? perfil.correo });
     await sb.from('estado_app').upsert({ user_id: user.id, estado: cache });
+    // Registro del consentimiento: una fila por decisión, con la versión del texto y la fecha.
+    const c = consentimientoDelInicio();
+    if (c) {
+      await Promise.all([
+        registrarConsentimiento('terminos_privacidad', c.terminos, 'onboarding'),
+        registrarConsentimiento('datos_salud', c.salud, 'onboarding'),
+        registrarConsentimiento('novedades', c.novedades, 'onboarding'),
+        registrarConsentimiento('analitica', c.analitica, 'onboarding'),
+      ]);
+    }
   }
   try {
     window.localStorage.setItem(CLAVE, JSON.stringify(cache));

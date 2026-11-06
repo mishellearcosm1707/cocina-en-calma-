@@ -651,7 +651,11 @@ export function Flow({ fotos = [] }: { fotos?: string[] }) {
                 </p>
                 <div className="mt-2 flex flex-col gap-3">
                   <Casilla marcada={c.terminos} onChange={(v) => setC({ ...c, terminos: v })}>
-                    <b>Obligatoria.</b> Acepto el{' '}
+                    <b>Obligatoria.</b> Acepto los{' '}
+                    <a href="/terminos" target="_blank" rel="noopener" className="font-semibold underline underline-offset-4">
+                      términos
+                    </a>
+                    , el{' '}
                     <a href="/aviso-salud" target="_blank" rel="noopener" className="font-semibold underline underline-offset-4">
                       aviso de salud
                     </a>{' '}

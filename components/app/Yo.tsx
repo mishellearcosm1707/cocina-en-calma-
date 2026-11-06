@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion, MotionConfig } from 'motion/react';
-import { Award, CalendarCheck, Check, ChefHat, FileText, Flame, Frown, HeartPulse, Leaf, Lock, LogOut, Meh, ShieldCheck, Smile, Sparkles, Trash2, type LucideIcon } from 'lucide-react';
+import { Award, CalendarCheck, Check, ChefHat, Flame, Frown, HeartPulse, Leaf, Lock, LogOut, Meh, ShieldCheck, Smile, Sparkles, type LucideIcon } from 'lucide-react';
 import { calcularRequerimientos, type Actividad, type Objetivo } from '@/lib/calculos';
-import { actualizar, aIso, borrarTodo, cerrarSesion, contarLlenos, DIAS_CORTOS, lunesDe, sumarDias, tandasPrep, TOTAL_ESPACIOS, useApp, type EstadoApp, type Nivel, type Perfil } from '@/lib/semana';
+import { actualizar, aIso, cerrarSesion, contarLlenos, DIAS_CORTOS, lunesDe, sumarDias, tandasPrep, TOTAL_ESPACIOS, useApp, type EstadoApp, type Nivel, type Perfil } from '@/lib/semana';
 import { Chip, Esqueleto } from './comunes';
+import { Privacidad } from './Privacidad';
 
 const ACTIVIDADES: { v: Actividad; t: string }[] = [
   { v: 'sedentaria', t: 'Casi nada' },
@@ -39,7 +39,6 @@ function Contenido({ perfil, app }: { perfil: Perfil; app: EstadoApp }) {
   const [actividad, setActividad] = useState<Actividad>(perfil.actividad);
   const [objetivo, setObjetivo] = useState<Objetivo>(perfil.objetivo);
   const [guardado, setGuardado] = useState(false);
-  const [confirmar, setConfirmar] = useState(false);
 
   const pesoOk = +peso >= 30 && +peso <= 250;
   const cambio = +peso !== perfil.peso || actividad !== perfil.actividad || objetivo !== perfil.objetivo;
@@ -306,54 +305,7 @@ function Contenido({ perfil, app }: { perfil: Perfil; app: EstadoApp }) {
         </button>
       </section>
 
-      <section aria-label="Privacidad" className="mx-5 mt-4 rounded-[var(--radius-card)] bg-[var(--surface)] p-4 shadow-[var(--shadow-1)]">
-        <h2 className="text-lg font-bold [font-family:var(--font-display)]">Tus datos de salud</h2>
-        <p className="mt-1 text-base text-[var(--text-secondary)]">
-          Por ahora se guardan solo en este celular. Puedes borrarlos cuando quieras.
-        </p>
-        <div className="mt-3 flex flex-col">
-          <Link href="/privacidad" className="flex min-h-12 items-center gap-2 text-base font-semibold text-[var(--accent)]">
-            <FileText size={20} aria-hidden="true" /> Política de privacidad
-          </Link>
-          <Link href="/aviso-salud" className="flex min-h-12 items-center gap-2 text-base font-semibold text-[var(--accent)]">
-            <FileText size={20} aria-hidden="true" /> Aviso de salud
-          </Link>
-        </div>
-        {!confirmar ? (
-          <button
-            type="button"
-            onClick={() => setConfirmar(true)}
-            className="mt-2 flex min-h-12 items-center gap-2 text-base font-semibold text-[var(--error)]"
-          >
-            <Trash2 size={20} aria-hidden="true" /> Borrar mis datos de este celular
-          </button>
-        ) : (
-          <div role="alert" className="mt-3 rounded-[var(--radius-button)] bg-[var(--peach)] p-3">
-            <p className="text-base font-semibold text-[var(--peach-ink)]">
-              Se borra tu semana, tus chequeos y tus datos. No se puede deshacer.
-            </p>
-            <div className="mt-3 flex gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  borrarTodo();
-                  setConfirmar(false);
-                }}
-                className="min-h-12 flex-1 rounded-[var(--radius-button)] bg-[var(--error)] px-4 text-base font-bold text-[var(--bg)]"
-              >
-                Sí, borrar
-              </button>
-              <button
-                type="button"
-                onClick={() => setConfirmar(false)}
-                className="min-h-12 flex-1 rounded-[var(--radius-button)] border border-[var(--text-tertiary)] bg-[var(--surface)] px-4 text-base font-semibold"
-              >
-                Cancelar
-              </button>
-            </div>
-          </div>
-        )}
-      </section>
+      <Privacidad />
     </MotionConfig>
   );
 }

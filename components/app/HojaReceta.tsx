@@ -160,6 +160,9 @@ export function HojaReceta({
                   {receta.fuente === 'LIVIANA' ? 'Valores por porción del recetario.' : 'Valores estimados con las tablas INCAP y USDA.'} Orientativos: no reemplazan a tu profesional de la nutrición.
                 </p>
               </details>
+              <p className="mt-4 text-sm text-[var(--text-secondary)]">
+                Orientación nutricional general: no reemplaza a tu médico o nutricionista. Si estás embarazada, en lactancia o tienes una condición de salud, consúltalo primero.
+              </p>
               {accion && <div className="mt-6">{accion}</div>}
             </div>
           </motion.section>

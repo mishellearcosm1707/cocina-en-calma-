@@ -34,10 +34,9 @@ Tabla `consentimientos` (una fila por decisión, solo se agregan filas, no se ed
 - Registro/onboarding: casilla 1 con enlaces
 - Ajustes: "Mis datos" (descargar), "Retirar permisos", "Eliminar mi cuenta"
 
-## E. Pendientes antes de publicar
-- [x] Responsable: Conexión Digital, Ecuador (dado por el usuario 2026-10-31)
-- [ ] Correo de contacto de privacidad (crear uno propio de la empresa, no personal), ciudad/dirección y RUC → completar [PENDIENTE] en la política
-- [ ] Términos de Servicio y Política de Reembolso (alineada a Hotmart: garantía de 7 días) — por redactar
-- [ ] Confirmar proveedores y regiones de servidor; decidir si se activa analítica
-- [ ] Revisión de abogado en Ecuador (ver docs/legal/brief-para-abogado.md)
-- [ ] Construir la pantalla de consentimiento (hoy no está en la vista previa)
+## E. Estado (auditoría legal del 2026-11-06)
+- [x] Responsable: Conexión Digital (nombre comercial de persona natural, Ecuador). Correo legal: conexiondigital_hub@outlook.com
+- [x] Términos, Reembolsos, Cookies y Privacidad v1.0 publicados y enlazados desde el pie de la página de ventas
+- [x] Registro de consentimientos en servidor (tabla `consentimientos`: usuario, finalidad, otorgado/retirado, versión del texto, fecha, origen)
+- [x] Botones reales en Yo → Tu privacidad: descargar mis datos, cambiar permisos, borrar mis datos, eliminar mi cuenta
+- [ ] Revisión de abogado en Ecuador (ver brief-para-abogado.md) — recomendada antes de superar ventas relevantes

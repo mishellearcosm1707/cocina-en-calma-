@@ -1,15 +1,15 @@
 // Registro de uso ANÓNIMO para el panel de la dueña: sin correo, sin nombre y sin respuestas de salud.
 // Solo cuenta cosas como "alguien llegó al paso 5". Se envía a /api/eventos, que solo acepta una lista cerrada de eventos.
 
-const CLAVE_SESION = 'cec-sesion-v1';
+const CLAVE_SESION = 'cec-sesion-v1'; // en sessionStorage: se borra al cerrar la pestaña, no sigue a la persona entre visitas
 
-/** Identificador aleatorio de este navegador (no identifica a la persona). */
+/** Identificador aleatorio de ESTA visita (no identifica a la persona ni dura más que la pestaña). */
 function sesion(): string | undefined {
   try {
-    let s = window.localStorage.getItem(CLAVE_SESION);
+    let s = window.sessionStorage.getItem(CLAVE_SESION);
     if (!s) {
       s = crypto.randomUUID();
-      window.localStorage.setItem(CLAVE_SESION, s);
+      window.sessionStorage.setItem(CLAVE_SESION, s);
     }
     return s;
   } catch {

@@ -3,6 +3,7 @@
 // Landing de Cocina en Calma — compuesta desde el kit (components/landing/) con el copy de
 // docs/copy/landing.md (trazado a FICHA-AVATAR.md). Modelo 2: el CTA lleva a /onboarding.
 
+import { CORREO_LEGAL } from '@/lib/legal';
 import { Logo } from '@/components/Logo';
 import { TOTAL_RECETAS } from '@/lib/oferta';
 import { CalendarClock, ChefHat, Moon, Repeat, Scale, Shirt } from 'lucide-react';
@@ -162,8 +163,12 @@ export default function Landing() {
         appName="Cocina en Calma"
         logo={<Logo alto={28} />}
         anio={2026} /* fijo: new Date() no puede evaluarse en un client component prerenderizado */
+        soporteEmail={CORREO_LEGAL}
         enlaces={[
+          { label: 'Términos', href: '/terminos' },
           { label: 'Privacidad', href: '/privacidad' },
+          { label: 'Reembolsos', href: '/reembolsos' },
+          { label: 'Cookies', href: '/cookies' },
           { label: 'Aviso de salud', href: '/aviso-salud' },
         ]}
       />

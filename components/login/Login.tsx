@@ -134,6 +134,17 @@ export function Login() {
                     }`}
                   />
                   <p className="text-sm text-[var(--text-secondary)]">Te llega un enlace a este correo. Usa el mismo con el que compraste en Hotmart.</p>
+                  <p className="text-sm text-[var(--text-secondary)]">
+                    Al entrar aceptas los{' '}
+                    <a href="/terminos" className="font-semibold underline underline-offset-4">
+                      Términos
+                    </a>{' '}
+                    y la{' '}
+                    <a href="/privacidad" className="font-semibold underline underline-offset-4">
+                      Política de privacidad
+                    </a>
+                    .
+                  </p>
                   {error && (
                     <p id="error-acceso" role="alert" className="text-sm text-[var(--error)]">
                       {error}
