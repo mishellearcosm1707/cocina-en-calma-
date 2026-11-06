@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { CapturaCanal } from '@/components/CapturaCanal';
 import { Fraunces, Nunito } from "next/font/google";
 import "./globals.css";
 
@@ -27,7 +28,10 @@ export const viewport: Viewport = { themeColor: "#4F6F2B", width: "device-width"
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={`${fraunces.variable} ${nunito.variable} h-full antialiased`}>
-      <body className="min-h-dvh flex flex-col">{children}</body>
+      <body className="min-h-dvh flex flex-col">
+        <CapturaCanal />
+        {children}
+      </body>
     </html>
   );
 }
